@@ -59,7 +59,7 @@ var list_word_delete_string;
 function description_modifie(){
     var text_insert=document.getElementById('modif_text').value;
     list_text=text.split(" ");
-    list_text_insert=text_insert.split(" ");
+    list_text_insert=text_insert.match(/\S+/g);
     var length_text_origin=list_text.length;
     var length_text_modified=list_text_insert.length;
 
