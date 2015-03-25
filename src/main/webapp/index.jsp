@@ -3,7 +3,7 @@
   <body>
     <h2>
       <s:property value="message"/>
-      Test commit à mon tour Romain
+      Test commit à mon tour Pierre
     </h2>
   </body>
 </html>
