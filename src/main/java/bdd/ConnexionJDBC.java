@@ -12,7 +12,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import dbwConnection.DbwConnection;
 
 public class ConnexionJDBC {
     /* La liste qui contiendra tous les résultats de nos essais */

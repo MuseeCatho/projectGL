@@ -36,22 +36,23 @@ public class JDBC extends ActionSupport implements ServletRequestAware{
 //    }
     public String connect() throws SQLException{
     	System.out.println("testtttttt");
-    ConnexionJDBC test = new ConnexionJDBC();
-      List<String> messages = test.executerTests();
-//       
-//       try {
-//    	   
-//           DbwConnection conn = new DbwConnection("localhost:8080/musee_catho/dbw.php", "edel6", "edel6app","edel6.sql.free.fr", "edel6");
-//
-//           ResultSet rs = conn.executeQuery("SELECT * FROM 'categories'");
-//
-//           while (rs.next()) {
-//               System.out.print(rs.getString(1));
-//           }
-//
-//       } catch (Exception e) {
-//           e.printStackTrace();
-//       }
+//    ConnexionJDBC test = new ConnexionJDBC();
+//      List<String> messages = test.executerTests();
+       
+       try {
+    	   
+           DbwConnection conn = new DbwConnection("http://edel6.free.fr/dbw.php", "edel6", "edel6app","edel6.sql.free.fr", "edel6");
+
+           ResultSet rs = conn.executeQuery("SELECT * FROM object");
+
+           while (rs.next()) {
+        	   String title=rs.getString("title");
+               System.out.print("title :"+ title);
+           }
+
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
        
        
     	return SUCCESS;
