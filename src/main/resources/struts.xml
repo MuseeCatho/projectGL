@@ -8,4 +8,9 @@
             <result>/index.jsp</result>
         </action>
     </package>
+    <package name="bdd" namespace="/" extends="struts-default">
+        <action name="connect_bdd" class="bdd.JDBC" method="connect">
+            <result>/test.jsp</result>
+        </action>
+    </package>
 </struts>
