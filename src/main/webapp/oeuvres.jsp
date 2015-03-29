@@ -1,4 +1,3 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,7 +5,7 @@
 
 <script src="http://code.jquery.com/jquery.js"></script>
             <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+       <link rel="stylesheet" href="css/bootstrap.min.css">
 
         <!-- Optional theme -->
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
@@ -16,7 +15,7 @@
 
         
 
-    <title>Maquette musée</title>
+    <title>Google Maps Api v3</title>
   </head>
   <style type="text/css">
     #container{position:relative;width:100%;margin:auto;}
@@ -26,10 +25,6 @@
     #pres{
         margin-top: 100px;
         width:90%;
-    }.panel-footer{
-        margin-top: 50px;
-    }body{
-        background-color: #EFEFC8;
     }
   </style>
   <body>
@@ -52,8 +47,8 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.jsp">Accueil<span class="sr-only">(current)</span></a></li>
-                    <li><a href="oeuvres.jsp">Oeuvres</a></li>
+                    <li><a href="index.jsp">Accueil<span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="oeuvres.jsp">Oeuvres</a></li>
                     <li><a href="carte.jsp">Carte</a></li>
                     <li><a href="#">Contacts</a></li>
                     <!--<li class="dropdown">
@@ -100,59 +95,53 @@
             </nav>
 
 
+<div class="col-lg-8 col-lg-offset-2">
 
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-              <!-- Indicators -->
-              <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-              </ol>
-
-              <!-- Wrapper for slides -->
-              <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                  <img src="img/carousel1.jpg" alt="caroussel1">
-                  <div class="carousel-caption">
-                    Image1
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Livre biblique</h3>
                   </div>
-                </div>
-                <div class="item">
-                  <img src="img/carousel2.jpg" alt="carousel2">
-                  <div class="carousel-caption">
-                    Image2
+                  <div class="panel-body">
+                    <div class="col-lg-2"><img src="img/bible.gif" class="img-responsive" alt="Responsive image"></div>
+                    <div class="col-lg-2">description</div>
+                    <div class="col-lg-2 col-lg-offset-5">
+                          <div class="btn-group" role="group">
+                          <button type="button" class="btn btn-default">Details</button>
+                              </div>
+                    </div>
                   </div>
-                </div>
               </div>
 
-              <!-- Controls -->
-              <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Livre biblique</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="col-lg-2"><img src="img/bible.gif" class="img-responsive" alt="Responsive image"></div>
+                    <div class="col-lg-2">description</div>
+                    <div class="col-lg-2 col-lg-offset-5">
+                        <div class="btn-group" role="group">
+                          <button type="button" class="btn btn-default">Details</button>
+                              </div>
+                    </div>
+                  </div>
+              </div>
 
-
-
-        </div>
-
-        <div class="row top-buffer" id="pres">
-            <div class="col-lg-4 col-lg-offset-1"><img src="img/presentation.jpg" class="img-responsive" alt="Responsive image"></div>
-
-
-            <div class="col-lg-4 col-lg-offset-1">Texte de présentation</div>
-            
-
-        </div>
-
-        <div class="panel-footer" id="footer">
- 
-        <p class="text-center">&copy; Company | Privacy | Terms</p>
- 
-      </div>
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Livre biblique</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="col-lg-2"><img src="img/bible.gif" class="img-responsive" alt="Responsive image"></div>
+                    <div class="col-lg-2">description</div>
+                    <div class="col-lg-2 col-lg-offset-5">
+                      <div class="btn-group" role="group">
+                          <button type="button" class="btn btn-default">Details</button>
+                              </div>
+                          </div>
+                   </div>
+              </div>
+</div>
  
     <!-- Include Javascript -->
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>

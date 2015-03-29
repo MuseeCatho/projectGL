@@ -11,6 +11,12 @@ public class HelloAction extends ActionSupport
       setMessage(MESSAGE);
       return SUCCESS;
   }
+  
+  public String connect()
+  {
+      System.out.println("eeeeeeeeeeeee");
+      return SUCCESS;
+  }
   public String getMessage() {
       return message;
   }
