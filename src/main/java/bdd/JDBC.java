@@ -24,18 +24,18 @@ public class JDBC extends ActionSupport implements ServletRequestAware{
     
 
 //    public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-//        /* Initialisation de l'objet Java et récupération des messages */
+//        /* Initialisation de l'objet Java et rÃ©cupÃ©ration des messages */
 //        TestJDBC test = new TestJDBC();
 //        List<String> messages = test.executerTests();
 //
-//        /* Enregistrement de la liste des messages dans l'objet requête */
+//        /* Enregistrement de la liste des messages dans l'objet requÃªte */
 //        request.setAttribute( ATT_MESSAGES, messages );
 //
-//        /* Transmission vers la page en charge de l'affichage des résultats */
+//        /* Transmission vers la page en charge de l'affichage des rÃ©sultats */
 //        this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 //    }
     public String connect() throws SQLException{
-    	System.out.println("testtttttt");
+    	System.out.println("teÃ©sttttttt");
 //    ConnexionJDBC test = new ConnexionJDBC();
 //      List<String> messages = test.executerTests();
        
