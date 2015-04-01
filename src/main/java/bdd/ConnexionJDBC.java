@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 public class ConnexionJDBC {
-    /* La liste qui contiendra tous les résultats de nos essais */
+    /* La liste qui contiendra tous les rÃ©sultats de nos essais */
     private List<String> messages = new ArrayList<String>();
 
     public List<String> executerTests() throws SQLException {
@@ -22,13 +22,13 @@ public class ConnexionJDBC {
         try {
             messages.add( "Chargement du driver..." );
             Class.forName( "com.mysql.jdbc.Driver" );
-            messages.add( "Driver chargé !" );
+            messages.add( "Driver chargÃ© !" );
         } catch ( ClassNotFoundException e ) {
-            messages.add( "Erreur lors du chargement : le driver n'a pas été trouvé dans le classpath ! <br/>"
+            messages.add( "Erreur lors du chargement<br/>"
                     + e.getMessage() );
         }
 
-        /* Connexion à la base de données */
+        /* Connexion Ã  la base de donnÃ©es */
         String url = "jdbc:mysql://edel6.sql.free.fr:3306/edel6";
         //String url = "edel6.sql.free.fr/edel6";
         String utilisateur = "edel6";
@@ -38,24 +38,24 @@ public class ConnexionJDBC {
         Statement statement = null;
         ResultSet resultat = null;
         //try {
-            messages.add( "Connexion à la base de données..." );
+            messages.add( "Connexion Ã  la base de donnÃ©es..." );
             //connexion = new DbwConnection("localhost:8080/musee_catho/dbw.php", utilisateur, motDePasse, "edel6.sql.free.fr", "edel6");
             connexion = DriverManager.getConnection( url, utilisateur, motDePasse );
-            messages.add( "Connexion réussie !" );
+            messages.add( "Connexion rÃ©ussie !" );
 
-            /* Création de l'objet gérant les requêtes */
+            /* CrÃ©ation de l'objet gÃ©rant les requÃªtes */
             statement = connexion.createStatement();
-            messages.add( "Objet requête créé !" );
+            messages.add( "Objet requÃªte crÃ©Ã© !" );
 
-            /* Exécution d'une requête de lecture */
+            /* ExÃ©cution d'une requÃªte de lecture */
             resultat = statement.executeQuery( "SELECT id FROM object;" );
-            messages.add( "Requête \"SELECT id, email, mot_de_passe, nom FROM Utilisateur;\" effectuée !" );
+            messages.add( "RequÃªte \"SELECT id, email, mot_de_passe, nom FROM Utilisateur;\" effectuÃ©e !" );
      
-            /* Récupération des données du résultat de la requête de lecture */
+            /* RÃ©cupÃ©ration des donnÃ©es du rÃ©sultat de la requÃªte de lecture */
             while ( resultat.next() ) {
                 int idUtilisateur = resultat.getInt( "id" );
-                /* Formatage des données pour affichage dans la JSP finale. */
-                messages.add( "Données retournées par la requête : id = " + idUtilisateur);
+                /* Formatage des donnÃ©es pour affichage dans la JSP finale. */
+                messages.add( "DonnÃ©es retournÃ©es par la requÃªte : id = " + idUtilisateur);
             }
 //        } catch ( SQLException e ) {
 //            messages.add( "Erreur lors de la connexion : <br/>"
