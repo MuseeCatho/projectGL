@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<script src="http://code.jquery.com/jquery.js"></script>
+<script src="js/jquery.js"></script>
             <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
 
@@ -124,60 +124,7 @@ initialize = function(){
         title: 'Nantes'
     });
 
-    var myLatLng3 = new google.maps.LatLng(48.218371,-1.553621);
-    var marker3 = new google.maps.Marker({
-        position: myLatLng3,
-        map: map,
-        title: 'Rennes'
-    });
-
-    var myLatLng4 = new google.maps.LatLng(49.4308412,1.0706169);
-    var marker4 = new google.maps.Marker({
-        position: myLatLng4,
-        map: map,
-        title: 'Rennes'
-    });
-
-    var myLatLng5 = new google.maps.LatLng(24.4308412,1.0706169);
-    var marker5 = new google.maps.Marker({
-        position: myLatLng5,
-        map: map,
-        title: 'Afrique'
-    });
-
-    var myLatLng5 = new google.maps.LatLng(50.4308412,50.0706169);
-    var marker5 = new google.maps.Marker({
-        position: myLatLng5,
-        map: map,
-        title: 'Asie'
-    });
-
-    var myLatLng5 = new google.maps.LatLng(50.4308412,80.0706169);
-    var marker5 = new google.maps.Marker({
-        position: myLatLng5,
-        map: map,
-        title: 'Asie'
-    });
-
-    var myLatLng5 = new google.maps.LatLng(-30.4308412,140.0706169);
-    var marker5 = new google.maps.Marker({
-        position: myLatLng5,
-        map: map,
-        title: 'Oceanie'
-    });
-    var myLatLng4 = new google.maps.LatLng(49.4308412,-122.0706169);
-    var marker4 = new google.maps.Marker({
-        position: myLatLng4,
-        map: map,
-        title: 'States'
-    });
-
-    var myLatLng4 = new google.maps.LatLng(-30.4308412,-62.0706169);
-    var marker4 = new google.maps.Marker({
-        position: myLatLng4,
-        map: map,
-        title: 'States'
-    });
+  
 
 
 
@@ -197,10 +144,72 @@ initialize = function(){
   google.maps.event.addListener(marker2, 'click', function() {
     infowindow.open(map,marker2);
   });
-
-    
+ 
+  
+  
+  getPosition(map);
+  
+	    
+	    
 };
 initialize();
+
+function getPosition(map){
+	
+	
+	$.ajax({
+	       url : 'getLocationForMap.action',
+	       type : 'POST',
+	       contentType: "application/json",
+	       encoding:"UTF-8",
+	       async: true,
+/* 	       data     : {
+	    	   "login": $("#login").val(),
+	    	   "password": $("#password").val()
+	    	}, */
+	       success : function(data){
+	    	   //console.log(data);
+	    	   alert(data);
+	    	   var res = data.replace(/&quot;/g, "\"");
+	    	   console.log(res);
+	    	   console.log("res.length: "+res.length);
+	    	   var jsoParse=JSON.parse(res);
+/* 	    	   console.log("jsoParse[0].id : "+jsoParse[0].id);
+	    	   console.log("jsoParse[0].id : "+jsoParse[0].title);
+	    	   console.log("jsoParse[0].id : "+jsoParse[0].id); */
+	    	   console.log("jsoParse.length : "+jsoParse.length);
+	    	   
+	    	   for (var i = 0; i < jsoParse.length; i++) {
+	    		    console.log("country : "+jsoParse[i].country);
+	    		    console.log("city : "+jsoParse[i].city);
+	    		    var adress=jsoParse[i].country+" , "+jsoParse[i].city;
+	    		    codeAddress(map,adress);
+	    	   }
+
+	    	   
+	       }
+	    });
+	
+}
+
+
+
+function codeAddress(map,address) {
+   // var address = 'Sydney, NSW';
+    var geocoder= new google.maps.Geocoder();
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+}
+
 
 </script>
   </body>

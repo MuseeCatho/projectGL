@@ -14,11 +14,11 @@
         <property name="mot_de_passe" type="string">
             <column name="mot_de_passe" length="20" not-null="true" unique="true" />
         </property>
-        <property name="nom" type="string">
+       <!--  <property name="nom" type="string">
             <column name="nom" length="20" not-null="true" unique="true" />
-        </property>
+        </property>-->
         <property name="date_inscription" type="date">
-            <column name="date_inscription" />
+            <column name="date_inscription" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

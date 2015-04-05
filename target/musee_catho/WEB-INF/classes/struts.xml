@@ -13,4 +13,9 @@
             <result>/test.jsp</result>
         </action>
     </package>
+    <package name="action" namespace="/" extends="struts-default">
+        <action name="getLocationForMap" class="action.MapAction" method="getLocation">
+            <result type="json"/>
+        </action>
+    </package>
 </struts>

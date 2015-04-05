@@ -202,6 +202,27 @@ initialize = function(){
 };
 initialize();
 
+function getPosition(){
+	
+	
+	$.ajax({
+	       url : 'getLocationForMap.action',
+	       type : 'POST',
+	       contentType: "application/json",
+	       encoding:"UTF-8",
+	       async: true,
+/* 	       data     : {
+	    	   "login": $("#login").val(),
+	    	   "password": $("#password").val()
+	    	}, */
+	       success : function(data){
+	    	   console.log(data);
+	    	  alert("test");
+	       }
+	    });
+	
+}
+getPosition();
 </script>
   </body>
 </html>

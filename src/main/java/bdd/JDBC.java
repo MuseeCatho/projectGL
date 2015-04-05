@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mapping.ObjectMuseum;
 import mapping.Utilisateur;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
@@ -61,13 +62,9 @@ public class JDBC extends ActionSupport implements ServletRequestAware{
     	Session session = HibernateUtil.getSessionFactory().openSession();
     	 
         session.beginTransaction();
-        Utilisateur users = new Utilisateur();
+        ObjectMuseum object = new ObjectMuseum(new Integer(0),new Integer(3),"Livre","BELGIQUE","789898-78","livre representant...","20","30","89",null,new Date(),"Anvers");
  
-        users.setMot_de_passe("toto2");
-        users.setEmail("test@test2.fr");
-        users.setDate_inscription(new Date());
- 
-        session.save(users);
+        session.save(object);
         session.getTransaction().commit();
        
        
