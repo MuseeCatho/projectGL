@@ -2,6 +2,7 @@ package bdd;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,7 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mapping.ObjectMuseum;
+import mapping.Utilisateur;
+
 import org.apache.struts2.interceptor.ServletRequestAware;
+import org.hibernate.Session;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -39,20 +44,28 @@ public class JDBC extends ActionSupport implements ServletRequestAware{
 //    ConnexionJDBC test = new ConnexionJDBC();
 //      List<String> messages = test.executerTests();
        
-       try {
-    	   
-           DbwConnection conn = new DbwConnection("http://edel6.free.fr/dbw.php", "edel6", "edel6app","edel6.sql.free.fr", "edel6");
-
-           ResultSet rs = conn.executeQuery("SELECT * FROM object");
-
-           while (rs.next()) {
-        	   String title=rs.getString("title");
-               System.out.print("title :"+ title);
-           }
-
-       } catch (Exception e) {
-           e.printStackTrace();
-       }
+//       try {
+//    	   
+//           DbwConnection conn = new DbwConnection("http://edel6.free.fr/dbw.php", "edel6", "edel6app","edel6.sql.free.fr", "edel6");
+//
+//           ResultSet rs = conn.executeQuery("SELECT * FROM object");
+//
+//           while (rs.next()) {
+//        	   String title=rs.getString("title");
+//               System.out.print("title :"+ title);
+//           }
+//
+//       } catch (Exception e) {
+//           e.printStackTrace();
+//       }
+    	
+    	Session session = HibernateUtil.getSessionFactory().openSession();
+    	 
+        session.beginTransaction();
+        ObjectMuseum object = new ObjectMuseum(new Integer(0),new Integer(3),"Livre","BELGIQUE","789898-78","livre representant...","20","30","89",null,new Date(),"Anvers");
+ 
+        session.save(object);
+        session.getTransaction().commit();
        
        
     	return SUCCESS;
