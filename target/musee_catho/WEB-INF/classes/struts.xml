@@ -15,7 +15,19 @@
     </package>
     <package name="action" namespace="/" extends="struts-default">
         <action name="getLocationForMap" class="action.MapAction" method="getLocation">
-            <result type="json"/>
+            <result name="success">result.jsp</result>
         </action>
     </package>
+    
+    
+   <!--  <package name="json-default" extends="struts-default">
+    <result-types>
+        <result-type name="json" class="org.apache.struts2.json.JSONResult"/>
+    </result-types>
+    <interceptors>
+        <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
+    </interceptors>
+	</package> -->
+
+
 </struts>

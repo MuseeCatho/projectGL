@@ -14,36 +14,16 @@ public class ObjectMuseum implements java.io.Serializable {
 	private String title;
 	private String country;
 	private String reference;
-	private String description;
+	private String description_e;
+	private String description_f;
 	private String length;
 	private String heigth;
 	private String width;
 	private String archeologist;
 	private Date date;
 	private String city;
-	
-	public ObjectMuseum(Integer id, Integer period_id, String title, String country,
-			String reference, String description, String length, String heigth,
-			String width, String archeologist, Date date, String city) {
-		this.id = id;
-		this.period_id = period_id;
-		this.title = title;
-		this.country = country;
-		this.reference = reference;
-		this.description = description;
-		this.length = length;
-		this.heigth = heigth;
-		this.width = width;
-		this.archeologist = archeologist;
-		this.date = date;
-		this.city = city;
-	}
-
-	
-	public ObjectMuseum() {
-	}
-
-
+	private Double latitude;
+	private Double longitude;
 	public Integer getId() {
 		return id;
 	}
@@ -74,11 +54,17 @@ public class ObjectMuseum implements java.io.Serializable {
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
-	public String getDescription() {
-		return description;
+	public String getDescription_e() {
+		return description_e;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDescription_e(String description_e) {
+		this.description_e = description_e;
+	}
+	public String getDescription_f() {
+		return description_f;
+	}
+	public void setDescription_f(String description_f) {
+		this.description_f = description_f;
 	}
 	public String getLength() {
 		return length;
@@ -116,9 +102,40 @@ public class ObjectMuseum implements java.io.Serializable {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public Double getLatitude() {
+		return latitude;
 	}
-	
- 
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+	public Double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+	public ObjectMuseum(Integer id, Integer period_id, String title,
+			String country, String reference, String description_e,
+			String description_f, String length, String heigth, String width,
+			String archeologist, Date date, String city, Double latitude,
+			Double longitude) {
+		this.id = id;
+		this.period_id = period_id;
+		this.title = title;
+		this.country = country;
+		this.reference = reference;
+		this.description_e = description_e;
+		this.description_f = description_f;
+		this.length = length;
+		this.heigth = heigth;
+		this.width = width;
+		this.archeologist = archeologist;
+		this.date = date;
+		this.city = city;
+		this.latitude = latitude;
+		this.longitude = longitude;
+	}
+	public ObjectMuseum() {
+	}
+
 }

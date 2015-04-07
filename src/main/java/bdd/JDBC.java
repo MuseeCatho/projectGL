@@ -18,8 +18,7 @@ import org.hibernate.Session;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import dbwConnection.DbwConnection;
-import dbwConnection.ResultSet;
+
 import bdd.ConnexionJDBC;
 
 public class JDBC extends ActionSupport implements ServletRequestAware{
