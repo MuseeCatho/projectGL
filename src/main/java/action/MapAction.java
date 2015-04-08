@@ -3,6 +3,7 @@ package action;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import com.google.gson.Gson;
 
 import mapping.ObjectMuseum;
@@ -56,7 +57,7 @@ public class MapAction extends ActionSupport{
 
 	public void insert(){
 		ObjectDaoImpl objectDao=new ObjectDaoImpl();
-		ObjectMuseum object = new ObjectMuseum(new Integer(0),new Integer(3),"Livre Bis Bis","BELGIQUE","789898-78","livre representant...","20","30","89",null,new Date(),"Anvers");
+		ObjectMuseum object = new ObjectMuseum(new Integer(0),new Integer(3),"Livre","BELGIQUE","789898-78","livre representant...","Livre bis","20","30","89",null,new Date(),"Anvers",null,null);
 		objectDao.insert(object);
 	}
 

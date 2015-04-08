@@ -61,7 +61,7 @@ public class JDBC extends ActionSupport implements ServletRequestAware{
     	Session session = HibernateUtil.getSessionFactory().openSession();
     	 
         session.beginTransaction();
-        ObjectMuseum object = new ObjectMuseum(new Integer(0),new Integer(3),"Livre","BELGIQUE","789898-78","livre representant...","20","30","89",null,new Date(),"Anvers");
+        ObjectMuseum object = new ObjectMuseum(new Integer(0),new Integer(3),"Livre","BELGIQUE","789898-78","livre representant...","Livre bis","20","30","89",null,new Date(),"Anvers",null,null);
  
         session.save(object);
         session.getTransaction().commit();
