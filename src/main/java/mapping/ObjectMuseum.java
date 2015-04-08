@@ -24,6 +24,8 @@ public class ObjectMuseum implements java.io.Serializable {
 	private String city;
 	private Double latitude;
 	private Double longitude;
+	
+	
 	public Integer getId() {
 		return id;
 	}
