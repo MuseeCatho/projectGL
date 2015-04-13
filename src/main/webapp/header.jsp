@@ -74,8 +74,20 @@
 
                    <button type="button" class="btn btn-primary navbar-btn">Login</button>
                    
-                   <button type="button" class="btn btn-primary navbar-btn">Incription</button>
+                   <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".bs-example-modal-lg">Incription</button>
                    
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
             </nav>
+            
+            
+            
+            
+            <!-- MODAL -->
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		      Inscription
+		    </div>
+		  </div>
+		</div>

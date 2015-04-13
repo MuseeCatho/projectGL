@@ -95,7 +95,6 @@ function getPosition(map){
 	    	}, */
 	       success : function(data){
 	    	   //console.log(data);
-	    	   alert(data);
 	    	   var res = data.replace(/&quot;/g, "\"");
 	    	   console.log(res);
 	    	   console.log("res.length: "+res.length);

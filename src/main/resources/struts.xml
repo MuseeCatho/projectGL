@@ -17,6 +17,9 @@
         <action name="getLocationForMap" class="action.MapAction" method="getLocation">
             <result name="success">result.jsp</result>
         </action>
+        <action name="signIn" class="action.UsersAction" method="signIn">
+            <result name="success">result.jsp</result>
+        </action>
     </package>
     
     
