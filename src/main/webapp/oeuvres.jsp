@@ -30,7 +30,10 @@
                     <div class="col-lg-2">description</div>
                     <div class="col-lg-2 col-lg-offset-5">
                           <div class="btn-group" role="group">
+                          <a href="detail.jsp">
                           <button type="button" class="btn btn-default">Details</button>
+                          </a>
+                          
                               </div>
                     </div>
                   </div>
@@ -45,7 +48,9 @@
                     <div class="col-lg-2">description</div>
                     <div class="col-lg-2 col-lg-offset-5">
                         <div class="btn-group" role="group">
+                           <a href="detail.jsp">
                           <button type="button" class="btn btn-default">Details</button>
+                          </a>
                               </div>
                     </div>
                   </div>
@@ -60,7 +65,9 @@
                     <div class="col-lg-2">description</div>
                     <div class="col-lg-2 col-lg-offset-5">
                       <div class="btn-group" role="group">
+                            <a href="detail.jsp">
                           <button type="button" class="btn btn-default">Details</button>
+                          </a>
                               </div>
                           </div>
                    </div>
