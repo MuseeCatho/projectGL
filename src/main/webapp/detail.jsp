@@ -17,10 +17,14 @@
 
 			
        		<div id="header-object" style="margin-top:-40px;">
+       		<div style="flaot:left;display:inline-block;">
 				<h1 style=" color: #222;font-size: 1.28em; padding: 18px 0 5px 0;line-height: 1.2em;font-weight: bold;">Oeuvre
 	  			<span style="  display: block;font-size: 1.3em;padding: 2px 0 0 0;  color: #A66F4D;">Bas relief Hébraique</span>
 	  			</h1>
-		
+	  			</div>
+	  			<div style="display:inline-block;float:right;margin-top:35px;">
+			<a class="btn btn-primary navbar-btn" href="#" role="button" style="">Proposer une modification</a>
+			</div>
 			</div>
 			
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -72,6 +76,18 @@
   height: 300px;margin-left:50px;">
 <h1 style="text-align:center;">Image 3d</h1>
 </div>
+</div>
+
+<div id="video" style="clear:both;">
+<h4>Regarder la vidéo de l'objet :</h4>
+<iframe width="400" height="225" src="https://www.youtube.com/embed/LqTyPFFS8fg" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div style="margin-top:30px;">
+<h4>Ajouter un commentaire :</h4>
+<textarea style="margin: 0px; height: 150px; width: 420px;">
+
+</textarea>
 </div>
 	        
 	        </div>
