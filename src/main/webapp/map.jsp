@@ -114,6 +114,7 @@ function getPosition(map){
 	    	   
 	       }
 	    });
+
 	
 }
 
