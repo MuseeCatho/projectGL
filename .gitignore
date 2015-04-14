@@ -1,3 +1,4 @@
 target/*
-src/main/ressources/hibernate.cfg.xml
+src/main/resources/hibernate.cfg.xml
+
 
