@@ -11,11 +11,8 @@
         <property name="period_id" type="java.lang.Integer">
             <column name="period_id" />
         </property>
-        <property name="title_f" type="string">
-            <column name="title_f" length="40" not-null="true"/>
-        </property>
-          <property name="title_e" type="string">
-            <column name="title_e" length="40" not-null="true"/>
+        <property name="title" type="string">
+            <column name="title" length="40" not-null="true"/>
         </property>
         <property name="country" type="string">
             <column name="country" length="40" not-null="true" />
