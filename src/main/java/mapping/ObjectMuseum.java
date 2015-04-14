@@ -11,7 +11,8 @@ public class ObjectMuseum implements java.io.Serializable {
  
 	private Integer id;
 	private Integer period_id;
-	private String title;
+	private String title_f;
+	private String title_e;
 	private String country;
 	private String reference;
 	private String description_e;
@@ -38,11 +39,17 @@ public class ObjectMuseum implements java.io.Serializable {
 	public void setPeriod_id(Integer period_id) {
 		this.period_id = period_id;
 	}
-	public String getTitle() {
-		return title;
+	public String getTitle_f() {
+		return title_f;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setTitle_f(String title_f) {
+		this.title_f = title_f;
+	}
+	public String getTitle_e() {
+		return title_e;
+	}
+	public void setTitle_e(String title_e) {
+		this.title_e = title_e;
 	}
 	public String getCountry() {
 		return country;
@@ -116,14 +123,15 @@ public class ObjectMuseum implements java.io.Serializable {
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
-	public ObjectMuseum(Integer id, Integer period_id, String title,
+	public ObjectMuseum(Integer id, Integer period_id, String title_f,String title_e,
 			String country, String reference, String description_e,
 			String description_f, String length, String heigth, String width,
 			String archeologist, Date date, String city, Double latitude,
 			Double longitude) {
 		this.id = id;
 		this.period_id = period_id;
-		this.title = title;
+		this.title_f = title_f;
+		this.title_e = title_e;
 		this.country = country;
 		this.reference = reference;
 		this.description_e = description_e;
