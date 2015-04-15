@@ -25,13 +25,13 @@ public class UserDaoImpl implements UserDao<User, Integer>{
 	}
 	
 	
-	public User findUserAdmin(String pseudo,String password){
+	public User findUserAdmin(String pseudo,String password,int admin){
 		System.out.println("pseudo : "+pseudo);
 		System.out.println("password : "+password);
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction(); 
 		Criteria cr = session.createCriteria(User.class);
-		cr.add(Restrictions.eq("admin",new Integer(1)));
+		cr.add(Restrictions.eq("admin",new Integer(admin)));
 		cr.add(Restrictions.eq("password",password));
 		cr.add(Restrictions.eq("pseudo",pseudo));
 		User user = (User) cr.uniqueResult();

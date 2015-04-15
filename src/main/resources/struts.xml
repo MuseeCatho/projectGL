@@ -19,6 +19,9 @@
         </action>
         <action name="detailObject" class="action.DetailAction" method="showdetail">
             <result name="success">detail.jsp</result>
+        </action>
+        <action name="logOut" class="action.UsersAction" method="logOut">
+            <result name="success">index.jsp</result>
         </action>  
     </package>
     
