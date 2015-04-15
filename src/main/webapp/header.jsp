@@ -1,7 +1,9 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 		<script src="js/jquery.js"></script>
+		<script src="js/signIn.js"></script>
 
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -36,18 +38,8 @@
                     <li><a href="oeuvres.jsp">Oeuvres</a></li>
                     <li><a href="map.jsp">Carte</a></li>
                     <li><a href="contact.jsp">Contacts</a></li>
-                    <!--<li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
-                      </ul>
-                    </li>-->
+                    <li><a href=""><s:property value="#session.firstname" /></a></li>
+                    
                   </ul>
                   <form class="navbar-form navbar-left" role="search">
                     <div class="form-group">
@@ -72,9 +64,9 @@
                   </form>
 
 
-                   <button type="button" class="btn btn-primary navbar-btn">Login</button>
+                   <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".login">Login</button>
                    
-                   <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".bs-example-modal-lg">Incription</button>
+                   <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".inscription">Incription</button>
                    
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
@@ -83,11 +75,52 @@
             
             
             
-            <!-- MODAL -->
-            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <!-- MODAL INSCRIPTION-->
+            <div class="modal fade inscription" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-lg">
 		    <div class="modal-content">
-		      Inscription
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Inscription</h4>
+		      </div>
+		      <div class="modal-body">
+		        ...
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Je m'inscris</button>
+		      </div>
 		    </div>
 		  </div>
 		</div>
+		
+		<!-- MODAL LOGIN-->
+            <div class="modal fade login" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Login</h4>
+		      </div>
+		      <div class="modal-body">
+		      	
+					   
+					       <div class="col-lg-7 col-lg-offset-2">
+					        <label for="inputEmail" class="sr-only">Email address</label>
+					        <input id="inputPseudo" class="form-control" placeholder="Pseudo" required autofocus>
+					        <label for="inputPassword" class="sr-only">Password</label>
+					        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+					        </div>
+					        <div class="col-lg-7 col-lg-offset-2">
+					        <button class="btn btn-lg btn-primary btn-block" data-dismiss="modal" type="button" onclick="signIn()">Sign in</button>
+					        </div>
+					        <div id="error"> </div>
+					      
+				
+		      </div>
+		      <div class="modal-footer">
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
