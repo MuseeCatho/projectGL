@@ -19,7 +19,7 @@ function signInAdmin(){
 	    	   if(data.indexOf("0") > -1){
 	    		   $( "#error" ).append("Vous n'êtes pas autorisé.");
 	    	   }else{
-	    		   window.location = 'http://localhost:8080/musee_catho/map.jsp';
+	    		   window.location = 'http://localhost:8080/musee_catho/admin/index.jsp';
 	    	   }
 	       }
 	    });
