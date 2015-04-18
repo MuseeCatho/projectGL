@@ -51,7 +51,7 @@ public class UsersAction extends ActionSupport{
 	return SUCCESS;
 	}
 	
-	 public String logout() throws Exception {
+	 public String logOut() throws Exception {
 		//HttpSession session = ServletActionContext.getRequest().getSession();
 		//session.removeAttribute("logined");
 		//session.removeAttribute("context"); 
