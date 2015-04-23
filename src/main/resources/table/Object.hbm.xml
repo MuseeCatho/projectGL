@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+    <class name="mapping.ObjectMuseum" table="object">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="period_id" type="java.lang.Integer">
+            <column name="period_id" />
+        </property>
+        <property name="title_f" type="string">
+            <column name="title_f" length="40" not-null="true"/>
+        </property>
+        <property name="title_e" type="string">
+            <column name="title_e" length="40" not-null="true"/>
+        </property>
+        <property name="country" type="string">
+            <column name="country" length="40" not-null="true" />
+        </property>
+        <property name="reference" type="string">
+            <column name="reference" length="40" not-null="false" />
+        </property>
+        <property name="description_e" type="string">
+            <column name="description_e" length="3000" not-null="false"/>
+        </property>
+        <property name="description_f" type="string">
+            <column name="description_f" length="3000" not-null="false"/>
+        </property>
+        <property name="length" type="string">
+            <column name="length" not-null="false" />
+        </property>
+        <property name="heigth" type="string">
+            <column name="heigth" not-null="false" />
+        </property>
+        <property name="width" type="string">
+            <column name="width" not-null="false" />
+        </property>  
+        <property name="archeologist" type="string">
+            <column name="archeologist" length="40" not-null="false" unique="true" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" not-null="true" />
+        </property>
+       <property name="city" type="string">
+            <column name="city" length="40" not-null="true" unique="true" />
+        </property>
+        <property name="latitude" type="java.lang.Double">
+            <column name="latitude" not-null="false" />
+        </property>
+        <property name="longitude" type="java.lang.Double">
+            <column name="longitude" not-null="false" />
+        </property>
+    </class>
+</hibernate-mapping>
