@@ -22,13 +22,16 @@
         </action>
         <action name="logOut" class="action.UsersAction" method="logOut">
             <result name="success">index.jsp</result>
-        </action>  
+        </action> 
     </package>
     
     <package name="test" namespace="/admin" extends="struts-default">
         <action name="sign" class="action.UsersAction" method="signIn">
             <result name="success">result.jsp</result>
-        </action> 
+        </action>
+          <action name="add_object_test" class="action.ObjectAction" method="addObjectAction">
+   			<result name="succes">profil.jsp</result>
+   		</action>  
     </package>
     
     

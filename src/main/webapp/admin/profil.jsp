@@ -7,18 +7,7 @@
 </head>
 <body>
  <s:include value="header_admin.jsp"></s:include>
-
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li ><a href="#">Accueil <span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="#">Gestion de profil</a></li>
-            <li><a href="#">Gestion des oeuvres</a></li>
-            <li><a href="#">Gestion des membres</a></li>
-            <li><a href="#">Gestion des informations</a></li>	
-          </ul>
-        </div>
+ <s:include value="tab_control.jsp"></s:include>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">GESTION DE PROFIL</h1>
 
