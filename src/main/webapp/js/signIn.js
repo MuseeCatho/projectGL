@@ -44,10 +44,27 @@ function signIn(){
 	       success : function(data){
 	    	   console.log(data);
 	    	   if(data.indexOf("0") > -1){
-	    		   $( "#error" ).append("Vous n'êtes pas autorisé.");
+	    		   $( "#error" ).append("Login ou mot de passe incorrect.");
 	    	   }else{
+	    		   $('.login').modal('hide');
 	    		   window.location = 'http://localhost:8080/musee_catho/index.jsp';
 	    	   }
+	       }
+	    });
+	
+}
+function logOut(){
+	console.log("logout");
+	
+	
+	$.ajax({
+	       url : 'logOut.action',
+	       type : 'POST',
+	       //contentType: "application/json",
+	       encoding:"UTF-8",
+	       async: true,
+	       success : function(data){
+	    	   window.location = 'http://localhost:8080/musee_catho/index.jsp';
 	       }
 	    });
 	

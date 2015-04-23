@@ -38,8 +38,15 @@
                     <li><a href="oeuvres.jsp">Oeuvres</a></li>
                     <li><a href="map.jsp">Carte</a></li>
                     <li><a href="contact.jsp">Contacts</a></li>
-                    <li><a href=""><s:property value="#session.firstname" /></a></li>
                     
+                    <s:if test="%{#session.firstname!=null}">
+						<li><a href="profil.jsp"><s:property value="#session.firstname" /></a></li>
+					</s:if>
+					<s:else>
+					  
+					</s:else>
+					
+					
                   </ul>
                   <form class="navbar-form navbar-left" role="search">
                     <div class="form-group">
@@ -63,10 +70,16 @@
                     </div>
                   </form>
 
-
-                   <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".login">Login</button>
+					<s:if test="%{#session.firstname!=null}">
+						<button type="button" class="btn btn-primary navbar-btn" onclick="logOut()">Log out</button>
+					</s:if>
+					<s:else>
+					  <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".login">Login</button>
                    
-                   <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".inscription">Incription</button>
+                   	  <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".inscription">Incription</button>
+                   
+					</s:else>
+                   
                    
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
@@ -112,7 +125,7 @@
 					        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
 					        </div>
 					        <div class="col-lg-7 col-lg-offset-2">
-					        <button class="btn btn-lg btn-primary btn-block" data-dismiss="modal" type="button" onclick="signIn()">Sign in</button>
+					        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="signIn()">Sign in</button>
 					        </div>
 					        <div id="error"> </div>
 					      

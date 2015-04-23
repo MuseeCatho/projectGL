@@ -59,12 +59,10 @@
 
         <div class="row top-buffer" id="pres">
             <div class="col-lg-4 col-lg-offset-1"><img src="img/presentation.jpg" class="img-responsive" alt="Responsive image"></div>
-
-
             <div class="col-lg-4 col-lg-offset-1">Texte de présentation</div>
-            
-
         </div>
+        
+        
         
         <s:include value="footer.jsp"></s:include>
         
