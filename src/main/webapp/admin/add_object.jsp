@@ -16,15 +16,24 @@
 <form>
 	  <div class="form-group">
 	    <label for="title_f">Titre de l'objet</label>
-	    <input type="text" class="form-control" id="title_f" name="title_f" placeholder="Entrer un titre qui definit l'objet de maniere principale">
+	    <input type="text" class="form-control" id="title_f" name="title_f" placeholder="Entrer un titre">
 	  </div>
 	  <div class="form-group">
 	    <label for="description_f">Description de l'objet</label>
-	    <input type="text" class="form-control" id="description_f" name="description_f" placeholder="Entrer une description de l'objet">
+<!-- 	    <input type="text" class="form-control" id="description_f" name="description_f" placeholder="Entrer une description de l'objet"> -->
+	    <textarea class="form-control" id="description_f" name="description_f" placeholder="Entrer une description de l'objet" rows="3"></textarea>
 	  </div>
 	  <div class="form-group">
 	    <label for="reference">Réference de l'objet</label>
 	    <input type="text" class="form-control" id="reference" name="reference" placeholder="Entrer la réference de l'objet si elle existe">
+	  </div>
+	  <div class="form-group">
+	    <label for="country">Pays</label>
+	    <input type="text" class="form-control" id="country" name="country" placeholder="Entrer le pays d'origine de l'objet">
+	  </div>
+	    <div class="form-group">
+	    <label for="city">Ville</label>
+	    <input type="text" class="form-control" id="city" name="city" placeholder="Entrer la ville d'origine de l'objet">
 	  </div>
 
 	  <button type="submit" class="btn btn-default" onclick="AddObjectAdmin()">Valider</button>
