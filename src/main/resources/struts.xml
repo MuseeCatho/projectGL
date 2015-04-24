@@ -30,7 +30,7 @@
             <result name="success">result.jsp</result>
         </action>
           <action name="add_object_test" class="action.ObjectAction" method="addObjectAction">
-   			<result name="success">profil.jsp</result>
+   			<result name="success">control_object.jsp</result>
    		</action>  
     </package>
     

@@ -59,16 +59,16 @@ public class ObjectDaoImpl implements ObjectDao<ObjectMuseum, Integer>{
 	        session.beginTransaction();
 	        
 	        //Add new Employee object
-	        ObjectMuseum obj = new ObjectMuseum();
-	        obj.setTitle_f("titre 1");
+	       // ObjectMuseum obj = new ObjectMuseum();
+	        /*obj.setTitle_f("titre 1");
 	        obj.setTitle_e("title 1");
 	        obj.setCountry("France");
 	        obj.setDate(new Date());
 	        obj.setDescription_f("Ajout d'objet Test");
-	        obj.setCity("Paris");
+	        obj.setCity("Paris");*/
 	         
 	        //Save the employee in database
-	        session.save(obj);
+	        session.save(objet);
 	 
 	        //Commit the transaction
 	        session.getTransaction().commit();
