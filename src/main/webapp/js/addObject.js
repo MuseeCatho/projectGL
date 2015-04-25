@@ -13,11 +13,11 @@ function AddObjectAdmin(){
 	       encoding:"UTF-8",
 	       async: true,
 	       data: {
-	    	   "title_f": title_f,
-	    	   "description_f": description_f,
-	    	   "reference":reference,
-	    	   "country":country,
-	    	   "city":city
+//	    	   "title_f": title_f,
+//	    	   "description_f": description_f,
+//	    	   "reference":reference,
+//	    	   "country":country,
+//	    	   "city":city
 	    	},
 	       success : function(data){
 	    	   console.log(data);

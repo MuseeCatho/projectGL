@@ -35,8 +35,26 @@
 	    <label for="city">Ville</label>
 	    <input type="text" class="form-control" id="city" name="city" placeholder="Entrer la ville d'origine de l'objet">
 	  </div>
+	     <div class="form-group">
+<!-- 	     	<label for="period">Sélectionner la periode de l'objet</label> -->
+<%-- 	     	<select class="form-control" name="period" id="period"> --%>
+<!-- 			  <option value="volvo">Volvo</option> -->
+<!-- 			  <option value="saab">Saab</option> -->
+<!-- 			  <option value="opel">Opel</option> -->
+<!-- 			  <option value="audi">Audi</option> -->
+<%-- 			</select> --%>
+			<s:select label="Sélectionner la periode de l'objet" 
+		headerKey="-1"
+		list="#{'Moyen age':'Moyen age', 'Prehistoire':'Prehistoire','Moderne':'Moderne'}" 
+		name="period" 
+		value="defaultSearchEngine" />
+		
+		
+	     </div>
+	  
 
-	  <button type="submit" class="btn btn-default" onclick="AddObjectAdmin()">Valider</button>
+<!-- 	  <button type="submit" class="btn btn-default" onclick="AddObjectAdmin()">Valider</button> -->
+	  <div style="margin-left:0px;"><s:submit value="submit" name="submit" cssClass="btn btn-default" /></div>
 </form>
 
 </body>

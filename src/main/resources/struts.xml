@@ -29,9 +29,12 @@
         <action name="sign" class="action.UsersAction" method="signIn">
             <result name="success">result.jsp</result>
         </action>
-          <action name="add_object_test" class="action.ObjectAction" method="addObjectAction">
-   			<result name="success">control_object.jsp</result>
-   		</action>  
+          <action name="add_object" class="action.ObjectAction" method="addObjectAction">
+   			<result name="success">add_object.jsp</result>
+   		</action> 
+   		<action name="selectAction" class="action.ObjectAction" method="display">
+			<result name="none">add_object.jsp</result>
+   		</action> 
     </package>
     
     

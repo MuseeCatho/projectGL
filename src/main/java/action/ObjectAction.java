@@ -1,6 +1,8 @@
 package action;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import mapping.ObjectMuseum;
 
@@ -21,6 +23,8 @@ public class ObjectAction extends ActionSupport{
 	private String country;
 	private String city;
 	private String reference;
+	private List<String> listPeriod;
+	private String period;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -73,6 +77,22 @@ public class ObjectAction extends ActionSupport{
 	public void setResult(int result) {
 		this.result = result;
 	}
+	
+	public List<String> getListPeriod() {
+		return listPeriod;
+	}
+	public void setListPeriod(List<String> listPeriod) {
+		this.listPeriod = listPeriod;
+	}
+	public String getPeriod() {
+		return period;
+	}
+	public void setPeriod(String period) {
+		this.period = period;
+	}
+	public String getDefaultSearchEngine() {
+		return "Moyen Age";
+	}
 
 	private int result;
 
@@ -98,12 +118,35 @@ public class ObjectAction extends ActionSupport{
 		if (this.description_e == null){
 			this.description_e = this.description_f;
 		}
-		ObjectMuseum object = new ObjectMuseum(new Integer(0),new Integer(3), this.title_f,this.title_e,this.country,this.reference,this.description_e,this.description_f,"20","30","89",null,new Date(),this.city,null,null);
-		result=1;
-		objectDao.addObject(object);
-		System.out.println("objet ajouté");
+		if(this.title_f!=null){
+			ObjectMuseum object = new ObjectMuseum(new Integer(0),new Integer(3), this.title_f,this.title_e,this.country,this.reference,this.description_e,this.description_f,"20","30","89",null,new Date(),this.city,null,null);
+			objectDao.addObject(object);
+			result=1;
+			System.out.println("objet ajouté");
+			this.title_f=null;
+		}
+			
+		
+		
+	
 		
 		return SUCCESS;
 	}
-
+	
+//	public void SelectAction(){
+//		 
+//		listPeriod = new ArrayList<String>();
+//		listPeriod.add("Préhistoire");
+//		listPeriod.add("Antiquité");
+//		listPeriod.add("Moyen-Age");
+//		listPeriod.add("Temps Moderne");
+//		
+//	}
+//	
+//	public String display() {
+//		return NONE;
+//	}
+//	public String execute() {
+//		return SUCCESS;
+//	}
 }
