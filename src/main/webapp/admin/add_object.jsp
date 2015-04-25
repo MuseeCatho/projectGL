@@ -3,7 +3,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<title>Ajout d'un objet</title>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 </head>
 <body>
  <s:include value="header_admin.jsp"></s:include>
@@ -13,7 +14,7 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Gestion des oeuvres</h1>
 
-<form>
+<form id="add_object">
 	  <div class="form-group">
 	    <label for="title_f">Titre de l'objet</label>
 	    <input type="text" class="form-control" id="title_f" name="title_f" placeholder="Entrer un titre">
@@ -51,11 +52,30 @@
 		
 		
 	     </div>
-	  
+	     <input type="hidden" name="latitude" id="latitude" value="">
+	  	 <input type="hidden" name="longitude" id="longitude" value="">
 
 <!-- 	  <button type="submit" class="btn btn-default" onclick="AddObjectAdmin()">Valider</button> -->
-	  <div style="margin-left:0px;"><s:submit value="submit" name="submit" cssClass="btn btn-default" /></div>
+	  <div style="margin-left:0px;"><s:submit value="submit" name="submit" cssClass="btn btn-default"/></div>
 </form>
+<script>
+// function beforeSubmit(){
+	var lat_lng=["0","0"];
+	 var country=$("#country").val(), city=$("#city").val();
+$('#add_object').submit(function(event) {
+	  //alert('Handler for .submit() called.');
+	  //AddObjectAdmin();
 
+// 	  lat_lng=getLatitudeLongitude(country+","+city, function(num) {
+// 			latitude=num.lat();
+// 			longitude=num.lng();	
+// 	  });
+	  alert(lat_lng[0]);
+	  document.getElementById("longitude").value=lat_lng[0];
+	  document.getElementById("latitude").value=lat_lng[1];
+	  return true;
+	});
+// }
+</script>
 </body>
 </html>
