@@ -25,6 +25,7 @@
     <script type="text/javascript">
     var map;
 var initialize;
+var listMarker=[];
  
 initialize = function(){
 
@@ -36,7 +37,7 @@ initialize = function(){
     }
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-    var myLatLng = new google.maps.LatLng(48.583148,7.747882);
+/*     var myLatLng = new google.maps.LatLng(48.583148,7.747882);
     var marker = new google.maps.Marker({
         position: myLatLng,
         map: map,
@@ -48,12 +49,12 @@ initialize = function(){
         position: myLatLng2,
         map: map,
         title: 'Nantes'
-    });
+    }); */
 
   
 
 
-
+/* 
     var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
@@ -70,7 +71,7 @@ initialize = function(){
   google.maps.event.addListener(marker2, 'click', function() {
     infowindow.open(map,marker2);
   });
- 
+  */
   
   
   getPosition(map);
@@ -103,12 +104,19 @@ function getPosition(map){
 	    	   console.log("jsoParse[0].id : "+jsoParse[0].title);
 	    	   console.log("jsoParse[0].id : "+jsoParse[0].id); */
 	    	   console.log("jsoParse.length : "+jsoParse.length);
-	    	   
+
 	    	   for (var i = 0; i < jsoParse.length; i++) {
 	    		    console.log("country : "+jsoParse[i].country);
 	    		    console.log("city : "+jsoParse[i].city);
-	    		    var adress=jsoParse[i].country+" , "+jsoParse[i].city;
-	    		    codeAddress(map,adress);
+	    		    //var adress=jsoParse[i].country+" , "+jsoParse[i].city;
+	    		    var latitude=jsoParse[i].latitude; 
+	    		    var longitude=jsoParse[i].longitude; 
+	    		    var myLatlng = new google.maps.LatLng(latitude,longitude);
+	    		    
+	    		    listMarker[i]=createMarker(myLatlng,"m"+i,map,jsoParse[i].title_f,jsoParse[i].description_f);
+	    		    
+
+	    		
 	    	   }
 
 	    	   
@@ -118,9 +126,36 @@ function getPosition(map){
 	
 }
 
+function createMarker(pos, t,map,title,description) {
+    var marker = new google.maps.Marker({       
+        position: pos, 
+        map: map,  // google.maps.Map 
+        title: t      
+    }); 
+    
+
+    var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">'+title+'</h1>'+
+      '<div id="bodyContent">'+
+      '<p>'+description+'</p>'+
+      '</div>'+
+      '</div>';
+
+  var infowindow = new google.maps.InfoWindow({
+      content: contentString
+  });
+  
+    google.maps.event.addListener(marker, 'click', function() { 
+    	infowindow.open(map,marker); 
+    }); 
+    return marker;  
+}
 
 
-function codeAddress(map,address) {
+// PAS UTILISE////////////////////////////////////
+/* function codeAddress(map,address) {
    // var address = 'Sydney, NSW';
     var geocoder= new google.maps.Geocoder();
     geocoder.geocode( { 'address': address}, function(results, status) {
@@ -134,7 +169,7 @@ function codeAddress(map,address) {
         alert('Geocode was not successful for the following reason: ' + status);
       }
     });
-}
+} */
 
 
 </script>

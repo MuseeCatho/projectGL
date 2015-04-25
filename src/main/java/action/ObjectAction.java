@@ -21,9 +21,34 @@ public class ObjectAction extends ActionSupport{
 	private String country;
 	private String city;
 	private String reference;
+	private String latitude;
+	private String longitude;
+	private int result;
 	
 	private static final long serialVersionUID = 1L;
 
+	public String addObjectAction(){
+		
+		ObjectDaoImpl objectDao = new ObjectDaoImpl();
+		System.out.println("objet prêt à être ajouté");
+		System.out.println("title_f: "+this.title_f);
+		System.out.println("desc: "+this.description_f);
+		System.out.println("ref: "+this.reference);
+		System.out.println("latitude: "+this.latitude);
+		System.out.println("longitude: "+this.longitude);
+		if (this.title_e == null){
+			this.title_e = this.title_f;
+		} 
+		if (this.description_e == null){
+			this.description_e = this.description_f;
+		}
+		ObjectMuseum object = new ObjectMuseum(new Integer(0),new Integer(3), this.title_f,this.title_e,this.country,this.reference,this.description_e,this.description_f,"20","30","89",null,new Date(),this.city, Double.parseDouble(this.latitude), Double.parseDouble(this.longitude));
+		result=1;
+		objectDao.addObject(object);
+		System.out.println("objet ajouté");
+		
+		return SUCCESS;
+	}
 	
 	public String getDescription_e() {
 		return description_e;
@@ -73,37 +98,27 @@ public class ObjectAction extends ActionSupport{
 	public void setResult(int result) {
 		this.result = result;
 	}
+	public String getLatitude() {
+		return latitude;
+	}
 
-	private int result;
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
 
-	
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
 	
 	public static ObjectDaoImpl getObjectDao() {
 		return objectDao;
 	}
 	public static void setObjectDao(ObjectDaoImpl objectDao) {
 		ObjectAction.objectDao = objectDao;
-	}
-	
-	public String addObjectAction(){
-		
-		ObjectDaoImpl objectDao = new ObjectDaoImpl();
-		System.out.println("objet prêt à être ajouté");
-		System.out.println("title_f: "+this.title_f);
-		System.out.println("desc: "+this.description_f);
-		System.out.println("ref: "+this.reference);
-		if (this.title_e == null){
-			this.title_e = this.title_f;
-		} 
-		if (this.description_e == null){
-			this.description_e = this.description_f;
-		}
-		ObjectMuseum object = new ObjectMuseum(new Integer(0),new Integer(3), this.title_f,this.title_e,this.country,this.reference,this.description_e,this.description_f,"20","30","89",null,new Date(),this.city,null,null);
-		result=1;
-		objectDao.addObject(object);
-		System.out.println("objet ajouté");
-		
-		return SUCCESS;
 	}
 
 }
