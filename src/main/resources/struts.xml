@@ -23,6 +23,9 @@
         <action name="logOut" class="action.UsersAction" method="logOut">
             <result name="success">index.jsp</result>
         </action> 
+        <action name="add_user" class="action.UsersAction" method="addUser">
+            <result name="success">result.jsp</result>
+        </action> 
     </package>
     
     <package name="test" namespace="/admin" extends="struts-default">
