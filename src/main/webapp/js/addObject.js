@@ -1,7 +1,7 @@
 var geocoder;
 var latitude;
 var longitude;
-
+var long="000", lat="000";
 function AddObjectAdmin(){
 	//alert("ok");
 	var title_f = $( "#title_f" ).val(); 
@@ -13,7 +13,8 @@ function AddObjectAdmin(){
 	var latitude;
 	var longitude;
 	alert("ok");
-	getLatitudeLongitude(country+","+city, function(num) {
+	var list=[];
+	list=getLatitudeLongitude(country+","+city, function(num) {
 	    // this anonymous function will run when the
 	    // callback is called
 		latitude=num.lat();
@@ -49,6 +50,11 @@ function AddObjectAdmin(){
 //	    });
 	
 	});
+	alert("ok");
+	alert(long);
+	
+//	document.getElementById("longitude").value=list[0];
+//	document.getElementById("latitude").value=list[1];
 
 }
 
@@ -61,6 +67,12 @@ function getLatitudeLongitude(address,callback) {
 	    	  callback(results[0].geometry.location);
 	    	  console.log("location.lat : "+results[0].geometry.location.lat());
 	    	  console.log("location.lng : "+results[0].geometry.location.lng());
+	    	  alert([results[0].geometry.location.lat(),results[0].geometry.location.lng()]);
+	    	  window.long=[results[0].geometry.location.lat(),results[0].geometry.location.lng()];
+	    	  window.lat=[results[0].geometry.location.lat(),results[0].geometry.location.lat()];
+	    	  alert("lat:"+lat);
+	  		window.document.getElementById("longitude").value=results[0].geometry.location.lat();
+    		window.document.getElementById("latitude").value=results[0].geometry.location.lng();
 	    	  return [results[0].geometry.location.lat(),results[0].geometry.location.lng()];
 	      } else {
 
@@ -69,5 +81,6 @@ function getLatitudeLongitude(address,callback) {
 	    });
 	  
 }
+
 
 

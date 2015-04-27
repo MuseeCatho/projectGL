@@ -64,14 +64,15 @@
 	 var country=$("#country").val(), city=$("#city").val();
 $('#add_object').submit(function(event) {
 	  //alert('Handler for .submit() called.');
-	  //AddObjectAdmin();
+	  AddObjectAdmin();
 
 // 	  lat_lng=getLatitudeLongitude(country+","+city, function(num) {
 // 			latitude=num.lat();
 // 			longitude=num.lng();	
 // 	  });
-	  alert(lat_lng[0]);
-	  document.getElementById("longitude").value=lat_lng[0];
+	  //alert(lat_lng[0]);
+	 // alert(lat);
+	  document.getElementById("longitude").value=lat_lng[0];//qui n'est rien d'autre que la valeur 0
 	  document.getElementById("latitude").value=lat_lng[1];
 	  return true;
 	});
