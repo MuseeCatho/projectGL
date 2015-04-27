@@ -17,6 +17,12 @@ public class UsersAction extends ActionSupport{
 	private User user;
 
 	private String pseudo;
+	private String firstname;
+	private String name;
+	private String email;
+	private String country;
+	private String city;
+	private String job;	
 	private String password;
 	private int result;
 	private int admin;
@@ -60,32 +66,41 @@ public class UsersAction extends ActionSupport{
        session.remove("firstname");
        return SUCCESS;
    }
+	 
+	 public String addUser() throws Exception {
+		 UserDaoImpl userDao=new UserDaoImpl();
+		 
+		 System.out.println("addUser - pseudo : "+this.pseudo);
+		 System.out.println("addUser - password : "+this.password);
+		 System.out.println("addUser - name : "+this.name);
+		 System.out.println("addUser - firstname : "+this.firstname);
+		 System.out.println("addUser - email : "+this.email);
+		 System.out.println("addUser - country : "+this.country);
+		 System.out.println("addUser - city : "+this.city);
+		 System.out.println("addUser - job : "+this.job);
+		 
+		 User user = new User(new Integer(0), this.firstname, this.name, this.password,this.job, this.pseudo, this.country, this.city,this.email, new Integer(0), new Integer(0));
+		 userDao.insertUser(user);
+		 
+		 result=0;
+		 
+	       return SUCCESS;
+	   }
 	
 
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
-
 	public int getResult() {
 		return result;
 	}
-
-
-
 	public void setResult(int result) {
 		this.result = result;
 	}
-
-
-
 	public User getUser() {
 		return user;
 	}
-
-
 	public void setUser(User user) {
 		this.user = user;
 	}
@@ -107,6 +122,54 @@ public class UsersAction extends ActionSupport{
 	}
 	public void setAdmin(int admin) {
 		this.admin = admin;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getJob() {
+		return job;
+	}
+
+	public void setJob(String job) {
+		this.job = job;
 	}
 
 }

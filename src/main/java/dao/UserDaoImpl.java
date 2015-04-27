@@ -37,6 +37,13 @@ public class UserDaoImpl implements UserDao<User, Integer>{
 		User user = (User) cr.uniqueResult();
 		return user;
 	}
+	
+	public void insertUser(User entity) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();    
+        session.save(entity);
+        session.getTransaction().commit();
+	}
 
 
 

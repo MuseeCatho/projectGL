@@ -1,5 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<!DOCTYPE html>
+<!DOCTYPE>
 <html>
   
   <style type="text/css">
@@ -16,6 +16,8 @@
         background-color: #EFEFC8;
     }
   </style>
+  
+ 
   <body>
     <div id="container">
 <s:include value="header.jsp"></s:include>
