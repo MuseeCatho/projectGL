@@ -4,6 +4,7 @@
 
 		<script src="js/jquery.js"></script>
 		<script src="js/signIn.js"></script>
+		<script src="js/addUser.js"></script>
 
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -16,7 +17,7 @@
 		        
 
     <title>Museum</title>
-  </head>
+ </head>
 
 <nav class="navbar navbar-default">
               <div class="container-fluid">
@@ -96,13 +97,76 @@
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		        <h4 class="modal-title" id="myModalLabel">Inscription</h4>
 		      </div>
+		      <form>
 		      <div class="modal-body">
-		        ...
+		      
+		      
+		        <div class="container-fluid">
+		        
+		        	<div class="row"><!-- PSEUDO -->
+		              <div class="col-md-4">
+						  <label for="pseudo">Pseudo*</label>
+	        			  <input class="form-control" id="pseudo" type="text" required autofocus>
+					  </div>
+		            </div>
+		            <div class="row">
+		              <div class="col-md-4">
+						  <label for="name">Nom*</label>
+	        			  <input class="form-control" id="name" type="text" required>
+					  </div>
+		              <div class="col-md-4 col-md-offset-2">
+		              		<label for="firstName">Prenom*</label>
+	        			  	<input class="form-control" id="firstname" type="text" required>
+		              </div>
+		            </div>
+		            <div class="row">
+		              <div class="col-md-4">
+						  <label for="email">Email*</label>
+	        			  <input class="form-control" id="email" type="email" required>
+					  </div>
+		            </div>
+		            <div class="row">
+		              <div class="col-md-4">
+						  <label for="password">Mot de passe*</label>
+	        			  <input class="form-control" id="password" type="password" required>
+					  </div>
+					</div>
+					<div class="row">
+		              <div class="col-md-4">
+		              		<label for="confirm_password">Confirmation mot de passe*</label>
+	        			  <input class="form-control" id="confirm_password" type="password" required>
+		              </div>
+		            </div>
+		            <div class="row">
+		              <div class="col-md-4">
+						  <label for="country">Pays*</label>
+	        			  <input class="form-control" id="country" type="text" required>
+					  </div>
+		              <div class="col-md-4 col-md-offset-2">
+		              		<label for="city">Ville*</label>
+	        			  <input class="form-control" id="city" type="text" required>
+		              </div>
+		            </div>
+		            <div class="row">
+		              <div class="col-md-4">
+						  <label for="job">Métier</label>
+	        			  <input class="form-control" id="job" type="text">
+					  </div>
+		            </div>
+		            </br>
+		            <div class="row">
+		            	<div class="col-md-4">
+		              		<p>* champs obligatoires</p></br>
+		              		 <div id="errorInscription"></div>
+		              	</div>
+		            </div>
+		          </div>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Je m'inscris</button>
+		        <button type="submit" class="btn btn-primary" onclick="addUser()">Je m'inscris</button> 
 		      </div>
+		       </form>
 		    </div>
 		  </div>
 		</div>
@@ -116,22 +180,15 @@
 		        <h4 class="modal-title" id="myModalLabel">Login</h4>
 		      </div>
 		      <div class="modal-body">
-		      	
-					   
-					       <div class="col-lg-7 col-lg-offset-2">
 					        <label for="inputEmail" class="sr-only">Email address</label>
 					        <input id="inputPseudo" class="form-control" placeholder="Pseudo" required autofocus>
 					        <label for="inputPassword" class="sr-only">Password</label>
 					        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-					        </div>
-					        <div class="col-lg-7 col-lg-offset-2">
-					        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="signIn()">Sign in</button>
-					        </div>
-					        <div id="error"> </div>
-					      
-				
+					        <div id="error"> </div>			      
 		      </div>
 		      <div class="modal-footer">
+
+		        <button type="button" class="btn btn-primary" onclick="signIn()">Sign in</button>
 		      </div>
 		    </div>
 		  </div>
