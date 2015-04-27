@@ -37,18 +37,12 @@
 	    <input type="text" class="form-control" id="city" name="city" placeholder="Entrer la ville d'origine de l'objet">
 	  </div>
 	     <div class="form-group">
-<!-- 	     	<label for="period">Sélectionner la periode de l'objet</label> -->
-<%-- 	     	<select class="form-control" name="period" id="period"> --%>
-<!-- 			  <option value="volvo">Volvo</option> -->
-<!-- 			  <option value="saab">Saab</option> -->
-<!-- 			  <option value="opel">Opel</option> -->
-<!-- 			  <option value="audi">Audi</option> -->
-<%-- 			</select> --%>
-			<s:select label="Sélectionner la periode de l'objet" 
-		headerKey="-1"
-		list="#{'Moyen age':'Moyen age', 'Prehistoire':'Prehistoire','Moderne':'Moderne'}" 
-		name="period" 
-		value="defaultSearchEngine" />
+
+<%-- 			<s:select label="Sélectionner la periode de l'objet"  --%>
+<%-- 		headerKey="-1" --%>
+<%-- 		list="#{'Moyen age':'Moyen age', 'Prehistoire':'Prehistoire','Moderne':'Moderne'}"  --%>
+<%-- 		name="period"  --%>
+<%-- 		value="defaultSearchEngine" /> --%>
 		
 		
 	     </div>
@@ -60,23 +54,22 @@
 </form>
 <script>
 // function beforeSubmit(){
-	var lat_lng=["0","0"];
-	 var country=$("#country").val(), city=$("#city").val();
-$('#add_object').submit(function(event) {
+function formSubmit(){ 
+	$('#add_object').submit(function(event) {
 	  //alert('Handler for .submit() called.');
 	  AddObjectAdmin();
-
-// 	  lat_lng=getLatitudeLongitude(country+","+city, function(num) {
-// 			latitude=num.lat();
-// 			longitude=num.lng();	
-// 	  });
-	  //alert(lat_lng[0]);
-	 // alert(lat);
-	  //document.getElementById("longitude").value=lat_lng[0];//qui n'est rien d'autre que la valeur 0
-	  //document.getElementById("latitude").value=lat_lng[1];
-	  event.preventDefault();
-	  return true;
+	  var lng=$("#longitude").val();
+	  var lat = $('#latitude').val();
+// 	  if(!(lng && lat)){
+		  //alert("Fail");
+		  event.preventDefault();
+		  //alert("re-test");
+		 
+// 	  }
 	});
+}
+formSubmit();
+
 // }
 </script>
 </body>
