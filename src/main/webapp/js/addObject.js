@@ -13,12 +13,15 @@ function AddObjectAdmin(){
 	var latitude;
 	var longitude;
 	alert("ok");
-	var list=[];
-	list=getLatitudeLongitude(country+","+city, function(num) {
+	var list=["0","0"];
+	console.log("country:"+country);
+	console.log("city:"+city);
+	codeAddress(country+","+city);
+//			, function(num) {
 	    // this anonymous function will run when the
 	    // callback is called
-		latitude=num.lat();
-		longitude=num.lng();
+//		latitude=num.lat();
+//		longitude=num.lng();
 		
 //		alert(longitude);
 //		alert(latitude);
@@ -49,10 +52,10 @@ function AddObjectAdmin(){
 //	       }
 //	    });
 	
-	});
+	//});
 	alert("ok");
-	alert(long);
-	
+	//console.log("list[0]:"+list[0]);
+	console.log(codeAddress(country+","+city));
 //	document.getElementById("longitude").value=list[0];
 //	document.getElementById("latitude").value=list[1];
 
@@ -68,12 +71,11 @@ function getLatitudeLongitude(address,callback) {
 	    	  console.log("location.lat : "+results[0].geometry.location.lat());
 	    	  console.log("location.lng : "+results[0].geometry.location.lng());
 	    	  alert([results[0].geometry.location.lat(),results[0].geometry.location.lng()]);
-	    	  window.long=[results[0].geometry.location.lat(),results[0].geometry.location.lng()];
-	    	  window.lat=[results[0].geometry.location.lat(),results[0].geometry.location.lat()];
+	    	  //window.long=[results[0].geometry.location.lat(),results[0].geometry.location.lng()];
+	    	  //window.lat=[results[0].geometry.location.lat(),results[0].geometry.location.lat()];
 	    	  alert("lat:"+lat);
-	  		window.document.getElementById("longitude").value=results[0].geometry.location.lat();
-    		window.document.getElementById("latitude").value=results[0].geometry.location.lng();
-	    	  return [results[0].geometry.location.lat(),results[0].geometry.location.lng()];
+	  		//window.document.getElementById("longitude").value=results[0].geometry.location.lat();
+    		//window.document.getElementById("latitude").value=results[0].geometry.location.lng();
 	      } else {
 
 	        alert('Geocode was not successful for the following reason: ' + status);
@@ -81,6 +83,36 @@ function getLatitudeLongitude(address,callback) {
 	    });
 	  
 }
+var geocoder;
+var map;
+	var markers = new Array();
+	var i = 0;
+function initialize() {
+  geocoder = new google.maps.Geocoder();
+  var latlng = new google.maps.LatLng(47.383, 0.700);
+  var myOptions = {
+    zoom: 12,
+    center: latlng,
+	mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+  map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		
+}
+function codeAddress(address) {
+
+	  var geocoder = new google.maps.Geocoder();
+	  geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+	
+				document.getElementById('latitude').value = results[0].geometry.location.lat();
+				document.getElementById('longitude').value = results[0].geometry.location.lng();
+
+				return[results[0].geometry.location.lat(),results[0].geometry.location.lng()];
+      } else {
+        alert("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
+      }
+    });
+  }
 
 
 

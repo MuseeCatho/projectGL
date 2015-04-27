@@ -72,8 +72,9 @@ $('#add_object').submit(function(event) {
 // 	  });
 	  //alert(lat_lng[0]);
 	 // alert(lat);
-	  document.getElementById("longitude").value=lat_lng[0];//qui n'est rien d'autre que la valeur 0
-	  document.getElementById("latitude").value=lat_lng[1];
+	  //document.getElementById("longitude").value=lat_lng[0];//qui n'est rien d'autre que la valeur 0
+	  //document.getElementById("latitude").value=lat_lng[1];
+	  event.preventDefault();
 	  return true;
 	});
 // }
