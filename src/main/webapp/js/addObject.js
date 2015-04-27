@@ -3,7 +3,7 @@ var latitude;
 var longitude;
 
 function AddObjectAdmin(){
-	
+	//alert("ok");
 	var title_f = $( "#title_f" ).val(); 
 	var description_f = $( "#description_f" ).val(); 
 	var reference = $("#reference").val();
@@ -12,15 +12,22 @@ function AddObjectAdmin(){
 	console.log("console:"+title_f+" "+description_f);
 	var latitude;
 	var longitude;
-	
-	getLatitudeLongitude(country+","+city, function(num) {
+	//alert("ok");
+	console.log("country:"+country);
+	console.log("city:"+city);
+	getLatitudeLongitude((country+","+city), function(num) {
 	    // this anonymous function will run when the
 	    // callback is called
 		latitude=num.lat();
 		longitude=num.lng();
 		
+		//alert(longitude);
+		//alert(latitude);
+		document.getElementById("longitude").value=longitude;
+		document.getElementById("latitude").value=latitude;
+		//alert(document.getElementById("latitude").value);
 	$.ajax({
-	       url : 'admin/add_object_test.action',
+	       url : 'admin/add_object.action',
 	       type : 'POST',
 	       //contentType: "application/json",
 	       encoding:"UTF-8",
@@ -33,16 +40,24 @@ function AddObjectAdmin(){
 	    	   "city":city,
 	    	   "latitude": latitude,
 	    	   "longitude" : longitude
+
 	    	},
 	       success : function(data){
 	    	   console.log(data);
 	    	   window.location = 'http://localhost:8080/musee_catho/admin/index.jsp';
-	    	   alert("ok");
+	    	   //alert("ok");
 	    	
 	       }
 	    });
 	
 	});
+	alert("Objet ajouté ");
+	//alert("ok");
+	//console.log("list[0]:"+list[0]);
+	//console.log(codeAddress(country+","+city));
+//	document.getElementById("longitude").value=list[0];
+//	document.getElementById("latitude").value=list[1];
+
 }
 
 function getLatitudeLongitude(address,callback) {
@@ -54,10 +69,35 @@ function getLatitudeLongitude(address,callback) {
 	    	  callback(results[0].geometry.location);
 	    	  console.log("location.lat : "+results[0].geometry.location.lat());
 	    	  console.log("location.lng : "+results[0].geometry.location.lng());
+	    	  //alert([results[0].geometry.location.lat(),results[0].geometry.location.lng()]);
+	    	  //window.long=[results[0].geometry.location.lat(),results[0].geometry.location.lng()];
+	    	  //window.lat=[results[0].geometry.location.lat(),results[0].geometry.location.lat()];
+	    	  //alert("lat:"+lat);
+	  		document.getElementById("longitude").value=results[0].geometry.location.lat();
+    		document.getElementById("latitude").value=results[0].geometry.location.lng();
 	      } else {
+
 	        alert('Geocode was not successful for the following reason: ' + status);
 	      }
 	    });
+	  
 }
+//
+//function codeAddress(address) {
+//
+//	  var geocoder = new google.maps.Geocoder();
+//	  geocoder.geocode( { 'address': address}, function(results, status) {
+//      if (status == google.maps.GeocoderStatus.OK) {
+//	
+//				document.getElementById('latitude').value = results[0].geometry.location.lat();
+//				document.getElementById('longitude').value = results[0].geometry.location.lng();
+//
+//				//return[results[0].geometry.location.lat(),results[0].geometry.location.lng()];
+//      } else {
+//        alert("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
+//      }
+//    });
+//  }
+
 
 

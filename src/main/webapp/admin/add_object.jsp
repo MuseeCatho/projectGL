@@ -14,7 +14,7 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Gestion des oeuvres</h1>
 
-<form>
+<form id="add_object">
 	  <div class="form-group">
 	    <label for="title_f">Titre de l'objet</label>
 	    <input type="text" class="form-control" id="title_f" name="title_f" placeholder="Entrer un titre">
@@ -36,9 +36,41 @@
 	    <label for="city">Ville</label>
 	    <input type="text" class="form-control" id="city" name="city" placeholder="Entrer la ville d'origine de l'objet">
 	  </div>
+	     <div class="form-group">
 
-	  <button type="submit" class="btn btn-default" onclick="AddObjectAdmin()">Valider</button>
+<%-- 			<s:select label="Sélectionner la periode de l'objet"  --%>
+<%-- 		headerKey="-1" --%>
+<%-- 		list="#{'Moyen age':'Moyen age', 'Prehistoire':'Prehistoire','Moderne':'Moderne'}"  --%>
+<%-- 		name="period"  --%>
+<%-- 		value="defaultSearchEngine" /> --%>
+		
+		
+	     </div>
+	     <input type="hidden" name="latitude" id="latitude" value="">
+	  	 <input type="hidden" name="longitude" id="longitude" value="">
+
+<!-- 	  <button type="submit" class="btn btn-default" onclick="AddObjectAdmin()">Valider</button> -->
+	  <div style="margin-left:0px;"><s:submit value="submit" name="submit" cssClass="btn btn-default"/></div>
 </form>
+<script>
+// function beforeSubmit(){
+function formSubmit(){ 
+	$('#add_object').submit(function(event) {
+	  //alert('Handler for .submit() called.');
+	  AddObjectAdmin();
+	  var lng=$("#longitude").val();
+	  var lat = $('#latitude').val();
+// 	  if(!(lng && lat)){
+		  //alert("Fail");
+		  event.preventDefault();
+		  //alert("re-test");
+		 
+// 	  }
+	});
+}
+formSubmit();
 
+// }
+</script>
 </body>
 </html>
