@@ -1,14 +1,17 @@
 package action;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 import mapping.ObjectMuseum;
+import mapping.Period;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import dao.ObjectDaoImpl;
+import dao.PeriodDaoImpl;
 
 public class ObjectAction extends ActionSupport{
 
@@ -27,6 +30,7 @@ public class ObjectAction extends ActionSupport{
 	private String latitude;
 	private String longitude;
 	private List<String> listOfPeriod;
+	private List<Integer> listOfPeriodId;
 	private int result;
 
 	
@@ -43,8 +47,15 @@ public class ObjectAction extends ActionSupport{
 
 	public String addObjectAction(){
 		
+		PeriodDaoImpl periods = new PeriodDaoImpl();
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
 		listOfPeriod = listperiod();//va charger une liste de période dans le formulaire
+		Collection<Period> listOfPeriods = periods.getPeriod();
+		System.out.println(listOfPeriods);
+		listOfPeriodId = new ArrayList<Integer>();
+		listOfPeriodId.add(1);
+		listOfPeriodId.add(2);
+		listOfPeriodId.add(3);
 		System.out.println("objet prêt à être ajouté");
 		System.out.println("title_f: "+this.title_f);
 		System.out.println("desc: "+this.description_f);
@@ -72,6 +83,14 @@ public class ObjectAction extends ActionSupport{
 	}
 	
 	
+	public List<Integer> getListOfPeriodId() {
+		return listOfPeriodId;
+	}
+
+	public void setListOfPeriodId(List<Integer> listOfPeriodId) {
+		this.listOfPeriodId = listOfPeriodId;
+	}
+
 	public List<String> getListOfPeriod() {
 		return listOfPeriod;
 	}

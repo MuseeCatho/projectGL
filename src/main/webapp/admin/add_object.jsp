@@ -39,7 +39,8 @@
 	     <div class="form-group">
 
 			<s:select label="Sélectionner la periode de l'objet" 
- 		headerKey="-1" 
+ 		headerKey="-1"
+ 		listKey="listOfPeriodId" 
  		list="listOfPeriod"  
  		name="period" 
  		value="defaultSearchEngine" />
