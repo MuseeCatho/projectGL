@@ -23,24 +23,36 @@ public class ObjectAction extends ActionSupport{
 	private String country;
 	private String city;
 	private String reference;
-	private List<String> listPeriod;
 	private String period;
 	private String latitude;
 	private String longitude;
+	private List<String> listOfPeriod;
 	private int result;
 
 	
 	private static final long serialVersionUID = 1L;
+	
+
+	public ArrayList<String> listperiod() {
+		listOfPeriod = new ArrayList<String>();
+		listOfPeriod.add("Antiquité");
+		listOfPeriod.add("Moyen Age");
+		listOfPeriod.add("Préhistoire");
+		return (ArrayList<String>) listOfPeriod;
+	}
 
 	public String addObjectAction(){
 		
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
+		listOfPeriod = listperiod();//va charger une liste de période dans le formulaire
 		System.out.println("objet prêt à être ajouté");
 		System.out.println("title_f: "+this.title_f);
 		System.out.println("desc: "+this.description_f);
 		System.out.println("ref: "+this.reference);
 		System.out.println("latitude: "+this.latitude);
 		System.out.println("longitude: "+this.longitude);
+		System.out.println("Période: "+this.period);
+
 		if (this.title_e == null){
 			this.title_e = this.title_f;
 		} 
@@ -59,6 +71,17 @@ public class ObjectAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
+	
+	public List<String> getListOfPeriod() {
+		return listOfPeriod;
+	}
+
+
+	public void setListOfPeriod(List<String> listOfPeriod) {
+		this.listOfPeriod = listOfPeriod;
+	}
+
+
 	public String getDescription_e() {
 		return description_e;
 	}
@@ -107,13 +130,6 @@ public class ObjectAction extends ActionSupport{
 	public void setResult(int result) {
 		this.result = result;
 	}
-	
-	public List<String> getListPeriod() {
-		return listPeriod;
-	}
-	public void setListPeriod(List<String> listPeriod) {
-		this.listPeriod = listPeriod;
-	}
 	public String getPeriod() {
 		return period;
 	}
@@ -146,22 +162,7 @@ public class ObjectAction extends ActionSupport{
 	public static void setObjectDao(ObjectDaoImpl objectDao) {
 		ObjectAction.objectDao = objectDao;
 	}
+	
 
-//	public void SelectAction(){
-//		 
-//		listPeriod = new ArrayList<String>();
-//		listPeriod.add("Préhistoire");
-//		listPeriod.add("Antiquité");
-//		listPeriod.add("Moyen-Age");
-//		listPeriod.add("Temps Moderne");
-//		
-//	}
-//	
-//	public String display() {
-//		return NONE;
-//	}
-//	public String execute() {
-//		return SUCCESS;
-//	}
 
 }

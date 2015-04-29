@@ -39,7 +39,8 @@ function AddObjectAdmin(){
 	    	   "country":country,
 	    	   "city":city,
 	    	   "latitude": latitude,
-	    	   "longitude" : longitude
+	    	   "longitude" : longitude,
+	    	   "period": $('#period').val()
 
 	    	},
 	       success : function(data){
