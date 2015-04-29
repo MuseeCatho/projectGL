@@ -39,12 +39,12 @@
 	     <div class="form-group">
 
 			<s:select label="Sélectionner la periode de l'objet" 
- 		headerKey="-1"
- 		listKey="listOfPeriodId" 
- 		list="listOfPeriod"  
- 		name="period" 
- 		value="defaultSearchEngine" />
-<%--  		<s:select key="action.ObjectAction" list="listofperiod" />  --%>
+	 		headerKey="-1" 
+	 		list="listP"
+	   		listKey="id"
+	   		listValue="name"  
+	 		name="period" 
+ 			value="defaultSearchEngine" />
 		
 	     </div>
 	     <input type="hidden" name="latitude" id="latitude" value="">

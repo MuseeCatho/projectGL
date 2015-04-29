@@ -13,7 +13,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import bdd.HibernateUtil;
-public class PeriodDaoImpl implements PeriodDao{
+public class PeriodDaoImpl implements PeriodDao<Period, Integer>{
 	
 	private Session currentSession;
 	private Transaction currentTransaction;
@@ -26,16 +26,16 @@ public class PeriodDaoImpl implements PeriodDao{
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction(); 
 		Criteria cr = session.createCriteria(Period.class);
-		List<Period> results = cr.list();
+		Collection<Period> results = cr.list();
 		return results;
 	} 
 	
-//	public ArrayList<String> getPeriod(){
+//	public Collection<Period> getPeriod(){
 //		Session session = HibernateUtil.getSessionFactory().openSession();
 //        session.beginTransaction(); 
 //		Criteria cr = session.createCriteria(Period.class);
 //		List<Period> results = cr.list();
-//		ArrayList<String> resultsString = (ArrayList<String>) session.createCriteria(Period.class.getName());
+//		Collection<Period> resultsString = (Collection<Period>) session.createCriteria(Period.class.getName());
 //		return resultsString;
 //	} 
 }
