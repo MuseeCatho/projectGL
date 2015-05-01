@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -40,7 +41,7 @@ public class ObjectDaoImpl implements ObjectDao<ObjectMuseum, Integer>{
 		List<ObjectMuseum> results = cr.list();
 		return results;
 	}
-	
+
 	/*public ObjectMuseum addObject(String pseudo,String password,int admin){
 		System.out.println("pseudo : "+pseudo);
 		System.out.println("password : "+password);

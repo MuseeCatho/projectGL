@@ -1,15 +1,19 @@
 package action;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 import mapping.ObjectMuseum;
+import mapping.Period;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import dao.ObjectDaoImpl;
+import dao.PeriodDaoImpl;
 
+import com.google.gson.Gson;
 public class ObjectAction extends ActionSupport{
 
 	/**
@@ -23,24 +27,62 @@ public class ObjectAction extends ActionSupport{
 	private String country;
 	private String city;
 	private String reference;
-	private List<String> listPeriod;
-	private String period;
+	private Integer period;
 	private String latitude;
 	private String longitude;
+	private List<String> listOfPeriod;
+	private List<Integer> listOfPeriodId;
+	private List<Period> listP;
 	private int result;
 
 	
 	private static final long serialVersionUID = 1L;
+	
+
+	public ArrayList<String> listperiod() {
+		listOfPeriod = new ArrayList<String>();
+		listOfPeriod.add("Antiquité");
+		listOfPeriod.add("Moyen Age");
+		listOfPeriod.add("Préhistoire");
+		return (ArrayList<String>) listOfPeriod;
+	}
 
 	public String addObjectAction(){
 		
+		PeriodDaoImpl periods = new PeriodDaoImpl();
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
+//		listOfPeriod = listperiod();//va charger une liste de période dans le formulaire
+//		listOfPeriod = new ArrayList<String>();
+//		listOfPeriodId = new ArrayList<Integer>();
+		listP = new ArrayList<Period>();
+		listP = (List<Period>) periods.getPeriod();;
+		//System.out.println(listP);
+		
+		/*List list = new ArrayList(collectionPeriods);
+//		Gson gson = new Gson();
+//		String resultperiod = gson.toJson(listOfPeriods);
+//		System.out.println(resultperiod);
+		for(int i=0;i<collectionPeriods.size();i++){
+//			listOfPeriod.add(listOfPeriods[i])
+			Period p=(Period) list.get(i);
+			listOfPeriodId.add(p.getId());
+			listOfPeriod.add(p.getName());
+		}*/
+		
+		//Collection<ObjectMuseum> listOfPeriodss = objectDao.getLocations();
+		
+//		listOfPeriodId = new ArrayList<Integer>();
+//		listOfPeriodId.add(1);
+//		listOfPeriodId.add(2);
+//		listOfPeriodId.add(3);
 		System.out.println("objet prêt à être ajouté");
 		System.out.println("title_f: "+this.title_f);
 		System.out.println("desc: "+this.description_f);
 		System.out.println("ref: "+this.reference);
 		System.out.println("latitude: "+this.latitude);
 		System.out.println("longitude: "+this.longitude);
+		System.out.println("Période: "+this.period);
+
 		if (this.title_e == null){
 			this.title_e = this.title_f;
 		} 
@@ -48,7 +90,7 @@ public class ObjectAction extends ActionSupport{
 			this.description_e = this.description_f;
 		}
 		if(this.title_f!=null){
-			ObjectMuseum object = new ObjectMuseum(new Integer(0),new Integer(3), this.title_f,this.title_e,this.country,this.reference,this.description_e,this.description_f,"20","30","89",null,new Date(),this.city, Double.parseDouble(this.latitude), Double.parseDouble(this.longitude));
+			ObjectMuseum object = new ObjectMuseum(new Integer(0),this.period, this.title_f,this.title_e,this.country,this.reference,this.description_e,this.description_f,"20","30","89",null,new Date(),this.city, Double.parseDouble(this.latitude), Double.parseDouble(this.longitude));
 			objectDao.addObject(object);
 			result=1;
 			System.out.println("objet ajouté");
@@ -59,6 +101,33 @@ public class ObjectAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
+	
+	public List<Period> getListP() {
+		return listP;
+	}
+
+	public void setListP(List<Period> listP) {
+		this.listP = listP;
+	}
+
+	public List<Integer> getListOfPeriodId() {
+		return listOfPeriodId;
+	}
+
+	public void setListOfPeriodId(List<Integer> listOfPeriodId) {
+		this.listOfPeriodId = listOfPeriodId;
+	}
+
+	public List<String> getListOfPeriod() {
+		return listOfPeriod;
+	}
+
+
+	public void setListOfPeriod(List<String> listOfPeriod) {
+		this.listOfPeriod = listOfPeriod;
+	}
+
+
 	public String getDescription_e() {
 		return description_e;
 	}
@@ -107,17 +176,10 @@ public class ObjectAction extends ActionSupport{
 	public void setResult(int result) {
 		this.result = result;
 	}
-	
-	public List<String> getListPeriod() {
-		return listPeriod;
-	}
-	public void setListPeriod(List<String> listPeriod) {
-		this.listPeriod = listPeriod;
-	}
-	public String getPeriod() {
+	public int getPeriod() {
 		return period;
 	}
-	public void setPeriod(String period) {
+	public void setPeriod(int period) {
 		this.period = period;
 	}
 	public String getDefaultSearchEngine() {
@@ -146,22 +208,7 @@ public class ObjectAction extends ActionSupport{
 	public static void setObjectDao(ObjectDaoImpl objectDao) {
 		ObjectAction.objectDao = objectDao;
 	}
+	
 
-//	public void SelectAction(){
-//		 
-//		listPeriod = new ArrayList<String>();
-//		listPeriod.add("Préhistoire");
-//		listPeriod.add("Antiquité");
-//		listPeriod.add("Moyen-Age");
-//		listPeriod.add("Temps Moderne");
-//		
-//	}
-//	
-//	public String display() {
-//		return NONE;
-//	}
-//	public String execute() {
-//		return SUCCESS;
-//	}
 
 }

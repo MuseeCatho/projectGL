@@ -38,12 +38,13 @@
 	  </div>
 	     <div class="form-group">
 
-<%-- 			<s:select label="Sélectionner la periode de l'objet"  --%>
-<%-- 		headerKey="-1" --%>
-<%-- 		list="#{'Moyen age':'Moyen age', 'Prehistoire':'Prehistoire','Moderne':'Moderne'}"  --%>
-<%-- 		name="period"  --%>
-<%-- 		value="defaultSearchEngine" /> --%>
-		
+			<s:select label="Sélectionner la periode de l'objet" 
+	 		headerKey="-1" 
+	 		list="listP"
+	   		listKey="id"
+	   		listValue="name"  
+	 		name="period" 
+ 			value="defaultSearchEngine" />
 		
 	     </div>
 	     <input type="hidden" name="latitude" id="latitude" value="">
