@@ -97,7 +97,7 @@
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		        <h4 class="modal-title" id="myModalLabel">Inscription</h4>
 		      </div>
-		      <form>
+		      <form data-toggle="validator" role="form">
 		      <div class="modal-body">
 		      
 		      
@@ -108,6 +108,7 @@
 						  <label for="pseudo">Pseudo*</label>
 	        			  <input class="form-control" id="pseudo" type="text" required autofocus>
 					  </div>
+					  <div class="col-md-4 col-md-offset-2" id="checkPseudo"></div>
 		            </div>
 		            <div class="row">
 		              <div class="col-md-4">
@@ -125,17 +126,22 @@
 	        			  <input class="form-control" id="email" type="email" required>
 					  </div>
 		            </div>
-		            <div class="row">
-		              <div class="col-md-4">
-						  <label for="password">Mot de passe*</label>
-	        			  <input class="form-control" id="password" type="password" required>
-					  </div>
-					</div>
-					<div class="row">
-		              <div class="col-md-4">
-		              		<label for="confirm_password">Confirmation mot de passe*</label>
-	        			  <input class="form-control" id="confirm_password" type="password" required>
+		            <div class="form-group">
+			            <div class="row">
+			              <div class="form-group col-md-4">
+							  <label for="password" class="control-label">Mot de passe*</label>
+		        			  <input class="form-control" data-minlength="6" id="password" type="password" required>
+						  </div>
+						</div>
+						<div class="row">
+			              <div class="form-group col-md-4" >
+			              		<label for="confirm_password" class="control-label">Confirmation mot de passe*</label>
+		        			  <input class="form-control" data-match="#password" data-match-error="Whoops, these don't match" id="confirm_password" type="password" required>
+			              </div>
+			              <div class="col-md-4 col-md-offset-2" id="errorConfirmPassword"></div>
+
 		              </div>
+			         
 		            </div>
 		            <div class="row">
 		              <div class="col-md-4">
@@ -157,14 +163,14 @@
 		            <div class="row">
 		            	<div class="col-md-4">
 		              		<p>* champs obligatoires</p></br>
-		              		 <div id="errorInscription"></div>
+		              		 <div id="errorInscription" style="color:red;"></div>
 		              	</div>
 		            </div>
 		          </div>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <button type="submit" class="btn btn-primary" onclick="addUser()">Je m'inscris</button> 
+		        <button type="button" class="btn btn-primary" onclick="addUser()">Je m'inscris</button> 
 		      </div>
 		       </form>
 		    </div>
@@ -184,7 +190,7 @@
 					        <input id="inputPseudo" class="form-control" placeholder="Pseudo" required autofocus>
 					        <label for="inputPassword" class="sr-only">Password</label>
 					        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-					        <div id="error"> </div>			      
+					        <div id="error" style="color:red;"></div>			      
 		      </div>
 		      <div class="modal-footer">
 

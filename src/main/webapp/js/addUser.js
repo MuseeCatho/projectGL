@@ -1,6 +1,8 @@
 function addUser(){
 	
-	alert("adduser");
+	//on vide les erreurs si il y en a
+	$('#errorInscription').text("");
+	
 	var name = $( "#name" ).val(); 
 	var firstname = $( "#firstname" ).val(); 
 	var pseudo = $("#pseudo").val();
@@ -9,33 +11,93 @@ function addUser(){
 	var country = $("#country").val();
 	var city = $("#city").val();
 	var job = $("#job").val();
-	alert("name : "+name + "____ pseudo :"+pseudo);
+	//alert("name : "+name + "____ pseudo :"+pseudo);
 	if(name=="" || firstname=="" || pseudo=="" || email=="" || password=="" || country=="" || city==""){
-		alert("Tous les champs ne sont pas remplis");
-	}else{
-
 		
-	$.ajax({
-	       url : 'add_user.action',
+		$('#errorInscription').append("Tous les champs ne sont pas remplis");
+	}else{
+		
+		if(checkPasswordMatch()==0){
+			$('#errorInscription').append("Erreur lors de la saisie du mot de passe.");
+		}else{		
+			checkPseudoMatch(function(result) {
+				
+			if(result==1){
+				$('#errorInscription').append("Pseudo non disponible.");
+			}else{
+			
+					$.ajax({
+					       url : 'add_user.action',
+					       type : 'POST',
+					       //contentType: "application/json",
+					       encoding:"UTF-8",
+					       async: true,
+					       data: {
+					    	   "name": name,
+					    	   "firstname": firstname,
+					    	   "pseudo":pseudo,
+					    	   "email":email,
+					    	   "password":password,
+					    	   "country": country,
+					    	   "city" : city,
+					    	   "job" : job
+					    	},
+					       success : function(data){
+					    	   window.location = 'http://localhost:8080/musee_catho/index.jsp';
+					    	   alert("Vous êtes inscrit");
+					       }
+					    });
+			}
+			
+			});
+		
+		
+		}
+	}
+
+}
+
+$(document).ready(function () {
+	   $("#confirm_password").keyup(checkPasswordMatch);
+	   $("#pseudo").keyup(checkPseudoMatch);
+});
+
+function checkPasswordMatch() {
+	//alert("confirm_password");
+    var password = $("#password").val();
+    var confirmPassword = $("#confirm_password").val();
+
+    if (password != confirmPassword){
+        $("#errorConfirmPassword").html("<span style=\"color:red;\">Confirmation mot de passe incorrect.<span>");
+    	return 0;
+    }else{
+        $("#errorConfirmPassword").html("<span style=\"color:green;\">Confirmation mot de passe correct.<span>");
+    	return 1;
+    }
+}
+
+function checkPseudoMatch(callback) {
+    var pseudo = $("#pseudo").val();
+    var valueReturn=0;
+    
+    
+    $.ajax({
+	       url : 'checkPseudo.action',
 	       type : 'POST',
 	       //contentType: "application/json",
 	       encoding:"UTF-8",
 	       async: true,
 	       data: {
-	    	   "name": name,
-	    	   "firstname": firstname,
-	    	   "pseudo":pseudo,
-	    	   "email":email,
-	    	   "password":password,
-	    	   "country": country,
-	    	   "city" : city,
-	    	   "job" : job
+	    	   "pseudo": pseudo
 	    	},
 	       success : function(data){
-	    	   window.location = 'http://localhost:8080/musee_catho/index.jsp';
-	    	   alert("Vous êtes désormais inscrit");
-	       }
+	    	   if(data.indexOf("0") > -1){
+	    		   $("#checkPseudo").html("<span style=\"color:green;\">Pseudo disponible.<span>");
+	    	   }else{
+	    		   $("#checkPseudo").html("<span style=\"color:red;\">Pseudo non disponible.<span>");   
+	    	   }
+	    	   callback(data);  	  
+	       },
+	    	 success : callback
 	    });
-	}
-
 }

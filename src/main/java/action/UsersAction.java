@@ -86,6 +86,20 @@ public class UsersAction extends ActionSupport{
 		 
 	       return SUCCESS;
 	   }
+	 
+	 public String checkPseudo() throws Exception {
+		 
+		 UserDaoImpl userDao=new UserDaoImpl();
+		 user =userDao.findUserAdmin(this.pseudo,null,0);
+		 if(user==null){
+			 result=0;
+		 }else{
+			 result=1;
+		 }
+		 System.out.println("result : "+result);
+		 return SUCCESS;
+	 }
+	 
 	
 
 
