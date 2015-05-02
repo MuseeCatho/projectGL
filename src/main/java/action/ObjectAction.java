@@ -15,10 +15,6 @@ import dao.PeriodDaoImpl;
 
 import com.google.gson.Gson;
 public class ObjectAction extends ActionSupport{
-
-	/**
-	 * 
-	 */
 	private static ObjectDaoImpl objectDao;
 	private String title_f;
 	private String title_e;
@@ -34,16 +30,18 @@ public class ObjectAction extends ActionSupport{
 	private List<Integer> listOfPeriodId;
 	private List<Period> listP;
 	private int result;
+	private List<ObjectMuseum> listObject;
 
 	
-	private static final long serialVersionUID = 1L;
-	
+	public ObjectAction(){
+		getListOeuvre();
+	}
 
 	public ArrayList<String> listperiod() {
 		listOfPeriod = new ArrayList<String>();
-		listOfPeriod.add("Antiquité");
+		listOfPeriod.add("Antiquitï¿½");
 		listOfPeriod.add("Moyen Age");
-		listOfPeriod.add("Préhistoire");
+		listOfPeriod.add("Prï¿½histoire");
 		return (ArrayList<String>) listOfPeriod;
 	}
 
@@ -51,7 +49,7 @@ public class ObjectAction extends ActionSupport{
 		
 		PeriodDaoImpl periods = new PeriodDaoImpl();
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
-//		listOfPeriod = listperiod();//va charger une liste de période dans le formulaire
+//		listOfPeriod = listperiod();//va charger une liste de pï¿½riode dans le formulaire
 //		listOfPeriod = new ArrayList<String>();
 //		listOfPeriodId = new ArrayList<Integer>();
 		listP = new ArrayList<Period>();
@@ -75,13 +73,13 @@ public class ObjectAction extends ActionSupport{
 //		listOfPeriodId.add(1);
 //		listOfPeriodId.add(2);
 //		listOfPeriodId.add(3);
-		System.out.println("objet prêt à être ajouté");
+		System.out.println("objet prï¿½t ï¿½ ï¿½tre ajoutï¿½");
 		System.out.println("title_f: "+this.title_f);
 		System.out.println("desc: "+this.description_f);
 		System.out.println("ref: "+this.reference);
 		System.out.println("latitude: "+this.latitude);
 		System.out.println("longitude: "+this.longitude);
-		System.out.println("Période: "+this.period);
+		System.out.println("Pï¿½riode: "+this.period);
 
 		if (this.title_e == null){
 			this.title_e = this.title_f;
@@ -93,14 +91,21 @@ public class ObjectAction extends ActionSupport{
 			ObjectMuseum object = new ObjectMuseum(new Integer(0),this.period, this.title_f,this.title_e,this.country,this.reference,this.description_e,this.description_f,"20","30","89",null,new Date(),this.city, Double.parseDouble(this.latitude), Double.parseDouble(this.longitude));
 			objectDao.addObject(object);
 			result=1;
-			System.out.println("objet ajouté");
+			System.out.println("objet ajoutï¿½");
 		}
-		
-	
-		
 		return SUCCESS;
 	}
 	
+	
+public List<ObjectMuseum> getListOeuvre(){
+		
+		ObjectDaoImpl objectDao=new ObjectDaoImpl();
+		listObject =new ArrayList<ObjectMuseum>(objectDao.getLocations());
+		ArrayList list = new ArrayList();
+			
+		return list;
+	}
+
 	
 	public List<Period> getListP() {
 		return listP;
@@ -202,13 +207,109 @@ public class ObjectAction extends ActionSupport{
 		this.longitude = longitude;
 	}
 	
+	
+	public List<ObjectMuseum> getListObject() {
+		return listObject;
+	}
+
+	public void setListObject(List<ObjectMuseum> listObject) {
+		this.listObject = listObject;
+	}
+
+
+
 	public static ObjectDaoImpl getObjectDao() {
 		return objectDao;
 	}
+
+
+
 	public static void setObjectDao(ObjectDaoImpl objectDao) {
 		ObjectAction.objectDao = objectDao;
 	}
-	
-
 
 }
+
+/*package action;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+import javax.servlet.DispatcherType;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
+
+import mapping.ObjectMuseum;
+
+import com.google.gson.Gson;
+import com.opensymphony.xwork2.ActionSupport;
+
+import dao.ObjectDaoImpl;
+
+public class ObjectAction extends ActionSupport{
+	private static ObjectDaoImpl objectDao;
+	private List<ObjectMuseum> listObject;
+	
+	public ObjectAction(){
+		getListOeuvre();
+	}
+
+	public List<ObjectMuseum> getListOeuvre(){
+		
+		ObjectDaoImpl objectDao=new ObjectDaoImpl();
+		listObject =new ArrayList<ObjectMuseum>(objectDao.getLocations());
+		ArrayList list = new ArrayList();
+		
+		for (ObjectMuseum e: listObject) {
+
+			System.out.println(e);
+		}		
+		return list;
+	}
+	
+	
+	
+	public List<ObjectMuseum> getListObject() {
+		return listObject;
+	}
+
+	public void setListObject(List<ObjectMuseum> listObject) {
+		this.listObject = listObject;
+	}
+
+
+
+	public static ObjectDaoImpl getObjectDao() {
+		return objectDao;
+	}
+
+
+
+	public static void setObjectDao(ObjectDaoImpl objectDao) {
+		ObjectAction.objectDao = objectDao;
+	}
+
+	
+	
+}
+
+*/

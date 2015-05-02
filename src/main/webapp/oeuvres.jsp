@@ -20,17 +20,18 @@
 
   <div class="row">
 	<div class="col-lg-8 col-lg-offset-2">
+<s:iterator value="listObject">
 
               <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Livre biblique</h3>
+                    <h3 class="panel-title"><s:property value="title_f"/></h3>
                   </div>
                   <div class="panel-body">
                     <div class="col-lg-2"><img src="img/bible.gif" class="img-responsive" alt="Responsive image"></div>
-                    <div class="col-lg-2">description</div>
+                    <div class="col-lg-2"><s:property value="description_f"/></div>
                     <div class="col-lg-2 col-lg-offset-5">
                           <div class="btn-group" role="group">
-                          <a href="detailObject.action?id=">
+                          <a href="detail.jsp">
                           <button type="button" class="btn btn-default">Details</button>
                           </a>
                           
@@ -38,40 +39,8 @@
                     </div>
                   </div>
               </div>
+</s:iterator>
 
-              <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Livre biblique</h3>
-                  </div>
-                  <div class="panel-body">
-                    <div class="col-lg-2"><img src="img/bible.gif" class="img-responsive" alt="Responsive image"></div>
-                    <div class="col-lg-2">description</div>
-                    <div class="col-lg-2 col-lg-offset-5">
-                        <div class="btn-group" role="group">
-                           <a href="detail.jsp">
-                          <button type="button" class="btn btn-default">Details</button>
-                          </a>
-                              </div>
-                    </div>
-                  </div>
-              </div>
-
-              <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Livre biblique</h3>
-                  </div>
-                  <div class="panel-body">
-                    <div class="col-lg-2"><img src="img/bible.gif" class="img-responsive" alt="Responsive image"></div>
-                    <div class="col-lg-2">description</div>
-                    <div class="col-lg-2 col-lg-offset-5">
-                      <div class="btn-group" role="group">
-                            <a href="detail.jsp">
-                          <button type="button" class="btn btn-default">Details</button>
-                          </a>
-                              </div>
-                          </div>
-                   </div>
-              </div>
 		</div>
 	</div>
 		

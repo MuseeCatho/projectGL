@@ -40,6 +40,13 @@
    		</action> 
     </package>
     
+    <package name="actionOeuvre" namespace="/" extends="struts-default">
+        <action name="getOeuvre" class="action.ObjectAction">
+            <result name="success">oeuvres.jsp</result>
+        </action> 
+    </package>
+    
+    
     
    <!--  <package name="json-default" extends="struts-default">
     <result-types>

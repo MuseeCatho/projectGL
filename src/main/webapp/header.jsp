@@ -36,7 +36,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
                     <li><a href="index.jsp">Accueil<span class="sr-only">(current)</span></a></li>
-                    <li><a href="oeuvres.jsp">Oeuvres</a></li>
+                    <li><a href="getOeuvre.action">Oeuvres</a></li>
                     <li><a href="map.jsp">Carte</a></li>
                     <li><a href="contact.jsp">Contacts</a></li>
                     
@@ -149,7 +149,7 @@
 		            </div>
 		            <div class="row">
 		              <div class="col-md-4">
-						  <label for="job">Métier</label>
+						  <label for="job">Mï¿½tier</label>
 	        			  <input class="form-control" id="job" type="text">
 					  </div>
 		            </div>
