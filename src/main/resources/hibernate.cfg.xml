@@ -16,5 +16,6 @@
         <mapping resource="table/Object.hbm.xml"></mapping>
         <mapping resource="table/User.hbm.xml"></mapping>
         <mapping resource="table/Period.hbm.xml"></mapping>
+        <mapping resource="table/Category.hbm.xml"></mapping>
     </session-factory>
 </hibernate-configuration>
