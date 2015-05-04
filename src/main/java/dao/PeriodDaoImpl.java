@@ -6,6 +6,7 @@ import java.util.List;
 
 import mapping.ObjectMuseum;
 import mapping.Period;
+import mapping.User;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -22,12 +23,14 @@ public class PeriodDaoImpl implements PeriodDao<Period, Integer>{
 		
 	}
 	
-	public Collection<Period> getPeriod(){
+	public Period getPeriod(Integer idPeriod){
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction(); 
-		Criteria cr = session.createCriteria(Period.class);
-		Collection<Period> results = cr.list();
-		return results;
+		Criteria cr = session.createCriteria(Period.class)
+				.add(Restrictions.eq("id",idPeriod));
+		Period period = (Period) cr.uniqueResult();
+		return period;
+		
 	} 
 	
 //	public Collection<Period> getPeriod(){

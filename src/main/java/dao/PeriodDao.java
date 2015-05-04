@@ -7,5 +7,5 @@ import mapping.Period;
 
 public interface PeriodDao<Period, Integer> {
 
-	public Collection<Period> getPeriod();
+	public mapping.Period getPeriod(Integer idPeriod);
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 import mapping.ObjectMuseum;
 import mapping.Period;
+import bean.ObjectPage;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -31,10 +32,16 @@ public class ObjectAction extends ActionSupport{
 	private List<Period> listP;
 	private int result;
 	private List<ObjectMuseum> listObject;
+	private Period periodObject;
+	private List<ObjectPage> listObjectPage;
 
 	
 	public ObjectAction(){
-		getListOeuvre();
+		ListObject();
+	}
+
+	public void setPeriod(Integer period) {
+		this.period = period;
 	}
 
 	public ArrayList<String> listperiod() {
@@ -52,8 +59,6 @@ public class ObjectAction extends ActionSupport{
 //		listOfPeriod = listperiod();//va charger une liste de p�riode dans le formulaire
 //		listOfPeriod = new ArrayList<String>();
 //		listOfPeriodId = new ArrayList<Integer>();
-		listP = new ArrayList<Period>();
-		listP = (List<Period>) periods.getPeriod();;
 		//System.out.println(listP);
 		
 		/*List list = new ArrayList(collectionPeriods);
@@ -96,17 +101,36 @@ public class ObjectAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
-	
-public List<ObjectMuseum> getListOeuvre(){
-		
+	public String ListObject(){
 		ObjectDaoImpl objectDao=new ObjectDaoImpl();
+		PeriodDaoImpl periodDao=new PeriodDaoImpl();
+		
 		listObject =new ArrayList<ObjectMuseum>(objectDao.getLocations());
-		ArrayList list = new ArrayList();
-			
-		return list;
+		listObjectPage = new ArrayList<ObjectPage>();
+		
+		for(ObjectMuseum e:listObject){
+			periodObject = periodDao.getPeriod(e.getPeriod_id());
+			ObjectPage objectPage = new ObjectPage(new Integer(0), e.getPeriod_id(), e.getTitle_f(), e.getTitle_e(), e.getCountry(), e.getReference(), e.getDescription_e(), e.getDescription_f(), e.getLength(),e.getHeigth(),e.getWidth(), e.getArcheologist(), e.getDate(),e.getCity(),e.getLatitude(), e.getLongitude(), periodObject.getName());
+			listObjectPage.add(objectPage);
+		}
+		return city;
+	}
+	public List<ObjectPage> getListObjectPage() {
+		return listObjectPage;
 	}
 
-	
+	public void setListObjectPage(List<ObjectPage> listObjectPage) {
+		this.listObjectPage = listObjectPage;
+	}
+
+	public Period getPeriodObject() {
+		return periodObject;
+	}
+
+	public void setPeriodObject(Period periodObject) {
+		this.periodObject = periodObject;
+	}
+
 	public List<Period> getListP() {
 		return listP;
 	}
