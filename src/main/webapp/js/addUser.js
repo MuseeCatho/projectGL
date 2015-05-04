@@ -59,7 +59,7 @@ function addUser(){
 
 $(document).ready(function () {
 	   $("#confirm_password").keyup(checkPasswordMatch);
-	   $("#pseudo").keyup(checkPseudoMatch);
+	   $("#pseudo").keyup(checkPseudoMatchForm);
 });
 
 function checkPasswordMatch() {
@@ -68,10 +68,10 @@ function checkPasswordMatch() {
     var confirmPassword = $("#confirm_password").val();
 
     if (password != confirmPassword){
-        $("#errorConfirmPassword").html("<span style=\"color:red;\">Confirmation mot de passe incorrect.<span>");
+        $("#errorConfirmPassword").html("<div class=\"alert alert-danger\" role=\"alert\">Confirmation mot de passe incorrect</div>");
     	return 0;
     }else{
-        $("#errorConfirmPassword").html("<span style=\"color:green;\">Confirmation mot de passe correct.<span>");
+        $("#errorConfirmPassword").html("<div class=\"alert alert-success\" role=\"alert\">Confirmation mot de passe correct</div>");
     	return 1;
     }
 }
@@ -90,14 +90,29 @@ function checkPseudoMatch(callback) {
 	       data: {
 	    	   "pseudo": pseudo
 	    	},
+	    	 success : callback
+	    });
+}
+function checkPseudoMatchForm(callback) {
+    var pseudo = $("#pseudo").val();
+    var valueReturn=0;
+    
+    
+    $.ajax({
+	       url : 'checkPseudo.action',
+	       type : 'POST',
+	       //contentType: "application/json",
+	       encoding:"UTF-8",
+	       async: true,
+	       data: {
+	    	   "pseudo": pseudo
+	    	},
 	       success : function(data){
 	    	   if(data.indexOf("0") > -1){
-	    		   $("#checkPseudo").html("<span style=\"color:green;\">Pseudo disponible.<span>");
+	    		   $("#checkPseudo").html("<div class=\"alert alert-success\" role=\"alert\">Pseudo disponible</div>");
 	    	   }else{
-	    		   $("#checkPseudo").html("<span style=\"color:red;\">Pseudo non disponible.<span>");   
-	    	   }
-	    	   callback(data);  	  
-	       },
-	    	 success : callback
+	    		   $("#checkPseudo").html("<div class=\"alert alert-danger\" role=\"alert\">Pseudo non disponible</div>");   
+	    	   } 	  
+	       }
 	    });
 }

@@ -90,10 +90,6 @@ function getPosition(map){
 	       contentType: "application/json",
 	       encoding:"UTF-8",
 	       async: true,
-/* 	       data     : {
-	    	   "login": $("#login").val(),
-	    	   "password": $("#password").val()
-	    	}, */
 	       success : function(data){
 	    	   //console.log(data);
 	    	   var res = data.replace(/&quot;/g, "\"");
@@ -113,20 +109,15 @@ function getPosition(map){
 	    		    var longitude=jsoParse[i].longitude; 
 	    		    var myLatlng = new google.maps.LatLng(latitude,longitude);
 	    		    
-	    		    listMarker[i]=createMarker(myLatlng,"m"+i,map,jsoParse[i].title_f,jsoParse[i].description_f);
-	    		    
-
-	    		
+	    		    listMarker[i]=createMarker(myLatlng,"m"+i,map,jsoParse[i].title_f,jsoParse[i].description_f,jsoParse[i].id);
 	    	   }
-
-	    	   
 	       }
 	    });
 
 	
 }
 
-function createMarker(pos, t,map,title,description) {
+function createMarker(pos, t,map,title,description,id) {
     var marker = new google.maps.Marker({       
         position: pos, 
         map: map,  // google.maps.Map 
@@ -134,7 +125,7 @@ function createMarker(pos, t,map,title,description) {
     }); 
     
 
-    var contentString = '<div id="content">'+
+    var contentString = '<a href="detailObject.action?id='+id+'"><div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
       '<h1 id="firstHeading" class="firstHeading">'+title+'</h1>'+
@@ -152,26 +143,6 @@ function createMarker(pos, t,map,title,description) {
     }); 
     return marker;  
 }
-
-
-// PAS UTILISE////////////////////////////////////
-/* function codeAddress(map,address) {
-   // var address = 'Sydney, NSW';
-    var geocoder= new google.maps.Geocoder();
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
-} */
-
-
 </script>
   </body>
 </html>
