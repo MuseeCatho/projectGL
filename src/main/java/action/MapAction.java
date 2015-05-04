@@ -1,5 +1,10 @@
 package action;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +28,6 @@ public class MapAction extends ActionSupport{
 	private static ObjectDaoImpl objectDao;
 	private List<ObjectMuseum> listObject;
 	private String result;
-
 	
 	public String getResult() {
 		return result;
@@ -33,7 +37,7 @@ public class MapAction extends ActionSupport{
 		this.result = result;
 	}
 
-	public String getLocation(){
+	public String getLocation() {
 		
 		ObjectDaoImpl objectDao=new ObjectDaoImpl();
 		listObject =new ArrayList<ObjectMuseum>(objectDao.getLocations());

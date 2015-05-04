@@ -1,5 +1,8 @@
 package action;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.Map;
 
 import mapping.User;
@@ -28,21 +31,21 @@ public class UsersAction extends ActionSupport{
 	private int admin;
 
 
-	
+
 
 
 	private static final long serialVersionUID = 1L;
 
-	
+
 	public String signIn(){
-	
-	UserDaoImpl userDao=new UserDaoImpl();
-	System.out.println("signIn - pseudo : "+this.pseudo);
-	System.out.println("signIn - password : "+this.password);
-	System.out.println("signIn - admin : "+this.admin);
-	
-	user =userDao.findUserAdmin(this.pseudo, this.password,this.admin);
-	//user =userDao.findUserAdmin("roro78220", "AZERTY");
+
+		UserDaoImpl userDao=new UserDaoImpl();
+		System.out.println("signIn - pseudo : "+this.pseudo);
+		System.out.println("signIn - password : "+this.password);
+		System.out.println("signIn - admin : "+this.admin);
+
+		user =userDao.findUserAdmin(this.pseudo, this.password,this.admin);
+		//user =userDao.findUserAdmin("roro78220", "AZERTY");
 		if(user==null){
 			result=0;
 		}else{
@@ -51,42 +54,58 @@ public class UsersAction extends ActionSupport{
 			session.put("firstname", user.getFirstname());
 			result=1;
 		}
-	System.out.println(result);
-	
-	
-	return SUCCESS;
+		System.out.println(result);
+
+
+		return SUCCESS;
 	}
-	
-	 public String logOut() throws Exception {
+
+	public String logOut() throws Exception {
 		//HttpSession session = ServletActionContext.getRequest().getSession();
 		//session.removeAttribute("logined");
 		//session.removeAttribute("context"); 
 		Map session = ActionContext.getContext().getSession();
 		session.remove("id_user");
-       session.remove("firstname");
-       return SUCCESS;
-   }
-	 
-	 public String addUser() throws Exception {
-		 UserDaoImpl userDao=new UserDaoImpl();
-		 
-		 System.out.println("addUser - pseudo : "+this.pseudo);
-		 System.out.println("addUser - password : "+this.password);
-		 System.out.println("addUser - name : "+this.name);
-		 System.out.println("addUser - firstname : "+this.firstname);
-		 System.out.println("addUser - email : "+this.email);
-		 System.out.println("addUser - country : "+this.country);
-		 System.out.println("addUser - city : "+this.city);
-		 System.out.println("addUser - job : "+this.job);
-		 
-		 User user = new User(new Integer(0), this.firstname, this.name, this.password,this.job, this.pseudo, this.country, this.city,this.email, new Integer(0), new Integer(0));
-		 userDao.insertUser(user);
-		 
-		 result=0;
-		 
-	       return SUCCESS;
-	   }
-	
+		session.remove("firstname");
+		return SUCCESS;
+	}
+
+	public String addUser() throws Exception {
+		UserDaoImpl userDao=new UserDaoImpl();
+
+		System.out.println("addUser - pseudo : "+this.pseudo);
+		System.out.println("addUser - password : "+this.password);
+		System.out.println("addUser - name : "+this.name);
+		System.out.println("addUser - firstname : "+this.firstname);
+		System.out.println("addUser - email : "+this.email);
+		System.out.println("addUser - country : "+this.country);
+		System.out.println("addUser - city : "+this.city);
+		System.out.println("addUser - job : "+this.job);
+
+		User user = new User(new Integer(0), this.firstname, this.name, this.password,this.job, this.pseudo, this.country, this.city,this.email, new Integer(0), new Integer(0));
+		userDao.insertUser(user);
+
+		result=0;
+
+		return SUCCESS;
+	}
+
+	public void getUsers(){
+		System.out.print("ouai 12");
+		try {
+			FileWriter fw = new FileWriter ("ren.txt");
+			BufferedWriter bw = new BufferedWriter (fw);
+			PrintWriter file = new PrintWriter (bw); 
+			file.print("ren");
+			file.close();
+			System.out.println("ouai10");
+		}
+		catch (Exception e){
+			System.out.println("ouai12");
+			//System.out.println(e.toString());
+		}
+	}
+
 
 
 	public void setPassword(String password) {
@@ -104,7 +123,7 @@ public class UsersAction extends ActionSupport{
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
 	public String getPseudo() {
 		return pseudo;
 	}
