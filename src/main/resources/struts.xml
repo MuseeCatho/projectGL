@@ -28,7 +28,10 @@
         </action> 
          <action name="checkPseudo" class="action.UsersAction" method="checkPseudo">
             <result name="success">result.jsp</result>
-        </action> 
+        </action>
+        <action name="get_users" class="action.UsersAction" method="getUsers">
+			<result name="success">result.jsp</result>
+		</action>
         
     </package>
     
@@ -60,6 +63,7 @@
         <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
     </interceptors>
 	</package> -->
+
 
 
 </struts>
