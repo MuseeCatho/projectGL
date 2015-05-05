@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+    <class name="mapping.Photos" table="photo">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="link_photos" type="string">
+            <column name="link_photos" length="3000" not-null="true"/>
+        </property>
+        <property name="id_object" type="java.lang.Integer">
+            <column name="id_object" not-null="false" />
+        </property>
+        <property name="name_f" type="string">
+            <column name="name_f" length="40" not-null="true"/>
+        </property>
+        <property name="name_e" type="string">
+            <column name="name_e" length="40" not-null="true" />
+        </property>
+        <property name="show" type="boolean">
+            <column name="show" />
+        </property>
+    </class>
+</hibernate-mapping>
