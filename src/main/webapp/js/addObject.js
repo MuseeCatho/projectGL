@@ -26,23 +26,29 @@ function AddObjectAdmin(){
 		document.getElementById("longitude").value=longitude;
 		document.getElementById("latitude").value=latitude;
 		//alert(document.getElementById("latitude").value);
+		var datas={ "title_f": title_f,
+		    	   "description_f": description_f,
+		    	   "reference":reference,
+		    	   "country":country,
+		    	   "city":city,
+		    	   "latitude": latitude,
+		    	   "longitude" : longitude,
+		    	   "period": $('#period').val(),
+		    	   "categories": []
+				
+		};
+		   $("input:checked").each(function() {
+	 	          datas['categories'].push($(this).val());
+	 	       });
+		   datas['categories']=datas['categories'].join(",")
 	$.ajax({
 	       url : 'admin/add_object.action',
 	       type : 'POST',
 	       //contentType: "application/json",
 	       encoding:"UTF-8",
 	       async: true,
-	       data: {
-	    	   "title_f": title_f,
-	    	   "description_f": description_f,
-	    	   "reference":reference,
-	    	   "country":country,
-	    	   "city":city,
-	    	   "latitude": latitude,
-	    	   "longitude" : longitude,
-	    	   "period": $('#period').val()
-
-	    	},
+	       data: datas,
+    	
 	       success : function(data){
 	    	   console.log(data);
 	    	   window.location = 'http://localhost:8080/musee_catho/admin/index.jsp';

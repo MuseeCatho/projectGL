@@ -31,6 +31,7 @@ public class ObjectAction extends ActionSupport{
 	private String longitude;
 	private List<Period> listP;
 	private List<Category> listCategory;
+	private String categories;
 	private int result;
 	private List<ObjectMuseum> listObject;
 
@@ -46,10 +47,10 @@ public class ObjectAction extends ActionSupport{
 		PeriodDaoImpl periods = new PeriodDaoImpl();
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
 		CategoryDaoImpl categories = new CategoryDaoImpl();
+		
 		listP = new ArrayList<Period>();
 		listP = (List<Period>) periods.getPeriod();
 		
-
 		listCategory = new ArrayList<Category>();
 		listCategory = (List<Category>) categories.getCategory();
 
@@ -60,6 +61,7 @@ public class ObjectAction extends ActionSupport{
 		System.out.println("latitude: "+this.latitude);
 		System.out.println("longitude: "+this.longitude);
 		System.out.println("Période: "+this.period);
+		System.out.println("Categories: "+this.categories);
 
 		if (this.title_e == null){
 			this.title_e = this.title_f;
@@ -68,7 +70,7 @@ public class ObjectAction extends ActionSupport{
 			this.description_e = this.description_f;
 		}
 		if(this.title_f!=null){
-			ObjectMuseum object = new ObjectMuseum(new Integer(0),this.period, this.title_f,this.title_e,this.country,this.reference,this.description_e,this.description_f,"20","30","89",null,new Date(),this.city, Double.parseDouble(this.latitude), Double.parseDouble(this.longitude));
+			ObjectMuseum object = new ObjectMuseum(new Integer(0),this.period, this.title_f,this.title_e,this.country,this.reference,this.description_e,this.description_f,"20","30","89",null,new Date(),this.city, 4.0,4.0);
 			objectDao.addObject(object);
 			result=1;
 			System.out.println("objet ajouté");
@@ -78,6 +80,24 @@ public class ObjectAction extends ActionSupport{
 	
 	
 	
+	
+	public void setPeriod(Integer period) {
+		this.period = period;
+	}
+
+
+	public String getCategories() {
+		return categories;
+	}
+
+
+
+	public void setCategories(String categories) {
+		this.categories = categories;
+	}
+
+
+
 	public List<Period> getListP() {
 		return listP;
 	}

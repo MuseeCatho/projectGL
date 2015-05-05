@@ -50,6 +50,12 @@
  			value="defaultSearchEngine"
  			cssClass="form-control" />
  			
+ 			<label for="categories">
+	Sélectionner les catégories
+	</label>
+ 			<s:checkboxlist id="categories" label="" list="listCategory" listKey="id"
+	   		listValue="name_f" name="categories"/>
+ 			
 <!--  	<label for="category"> -->
 <!-- 	Sélectionner la catégorie de l'objet -->
 <!-- 	</label> -->
