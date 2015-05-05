@@ -90,7 +90,7 @@ public class UsersAction extends ActionSupport{
 		return SUCCESS;
 	}
 
-	public void getUsers(){
+	public String getUsers(){
 		System.out.print("ouai 12");
 		try {
 			FileWriter fw = new FileWriter ("ren.txt");
@@ -104,6 +104,8 @@ public class UsersAction extends ActionSupport{
 			System.out.println("ouai12");
 			//System.out.println(e.toString());
 		}
+		result=104;
+		return SUCCESS;
 	}
 
 

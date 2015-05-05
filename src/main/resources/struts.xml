@@ -14,21 +14,21 @@
 		</action>
 	</package>
 	<package name="action" namespace="/" extends="struts-default">
-		<action name="getLocationForMap" class="action.MapAction"
+		<!-- <action name="getLocationForMap" class="action.MapAction"
 			method="getLocation">
 			<result name="success">result.jsp</result>
-		</action>
+		</action>-->
 		<action name="detailObject" class="action.DetailAction" method="showdetail">
 			<result name="success">detail.jsp</result>
 		</action>
 		<action name="logOut" class="action.UsersAction" method="logOut">
 			<result name="success">index.jsp</result>
 		</action>
-		<action name="add_user" class="action.UsersAction" method="addUser">
+		<!-- <action name="add_user" class="action.UsersAction" method="addUser">
 			<result name="success">result.jsp</result>
-		</action>
+		</action>-->
 		<action name="get_users" class="action.UsersAction" method="getUsers">
-			<result name="success2">/admin/users_manager.jsp</result>
+			<result name="success">result.jsp</result>
 		</action>
 	</package>
 
