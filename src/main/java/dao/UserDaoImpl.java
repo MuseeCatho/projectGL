@@ -32,7 +32,9 @@ public class UserDaoImpl implements UserDao<User, Integer>{
         session.beginTransaction(); 
 		Criteria cr = session.createCriteria(User.class);
 		cr.add(Restrictions.eq("admin",new Integer(admin)));
+		if(password!=null){
 		cr.add(Restrictions.eq("password",password));
+		}
 		cr.add(Restrictions.eq("pseudo",pseudo));
 		User user = (User) cr.uniqueResult();
 		return user;

@@ -17,10 +17,7 @@ import dao.PeriodDaoImpl;
 
 import com.google.gson.Gson;
 public class ObjectAction extends ActionSupport{
-
-	/**
-	 * 
-	 */
+	
 	private static ObjectDaoImpl objectDao;
 	private String title_f;
 	private String title_e;
@@ -35,10 +32,13 @@ public class ObjectAction extends ActionSupport{
 	private List<Period> listP;
 	private List<Category> listCategory;
 	private int result;
+	private List<ObjectMuseum> listObject;
 
 	
-	private static final long serialVersionUID = 1L;
-	
+	public ObjectAction(){
+		getListOeuvre();
+	}
+
 
 
 	public String addObjectAction(){
@@ -46,10 +46,10 @@ public class ObjectAction extends ActionSupport{
 		PeriodDaoImpl periods = new PeriodDaoImpl();
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
 		CategoryDaoImpl categories = new CategoryDaoImpl();
-		
 		listP = new ArrayList<Period>();
 		listP = (List<Period>) periods.getPeriod();
 		
+
 		listCategory = new ArrayList<Category>();
 		listCategory = (List<Category>) categories.getCategory();
 
@@ -73,16 +73,31 @@ public class ObjectAction extends ActionSupport{
 			result=1;
 			System.out.println("objet ajouté");
 		}
-		
-	
-		
 		return SUCCESS;
 	}
 	
 	
+	
+	public List<Period> getListP() {
+		return listP;
+	}
+
+
+
 	public List<Category> getListCategory() {
 		return listCategory;
 	}
+	
+	public List<ObjectMuseum> getListOeuvre(){
+		
+		ObjectDaoImpl objectDao=new ObjectDaoImpl();
+		listObject =new ArrayList<ObjectMuseum>(objectDao.getLocations());
+		ArrayList list = new ArrayList();
+			
+		return list;
+	}
+
+	
 
 
 	public void setListCategory(List<Category> listCategory) {
@@ -90,9 +105,6 @@ public class ObjectAction extends ActionSupport{
 	}
 
 
-	public List<Period> getListP() {
-		return listP;
-	}
 
 	public void setListP(List<Period> listP) {
 		this.listP = listP;
@@ -173,13 +185,109 @@ public class ObjectAction extends ActionSupport{
 		this.longitude = longitude;
 	}
 	
+	
+	public List<ObjectMuseum> getListObject() {
+		return listObject;
+	}
+
+	public void setListObject(List<ObjectMuseum> listObject) {
+		this.listObject = listObject;
+	}
+
+
+
 	public static ObjectDaoImpl getObjectDao() {
 		return objectDao;
 	}
+
+
+
 	public static void setObjectDao(ObjectDaoImpl objectDao) {
 		ObjectAction.objectDao = objectDao;
 	}
-	
-
 
 }
+
+/*package action;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+import javax.servlet.DispatcherType;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
+
+import mapping.ObjectMuseum;
+
+import com.google.gson.Gson;
+import com.opensymphony.xwork2.ActionSupport;
+
+import dao.ObjectDaoImpl;
+
+public class ObjectAction extends ActionSupport{
+	private static ObjectDaoImpl objectDao;
+	private List<ObjectMuseum> listObject;
+	
+	public ObjectAction(){
+		getListOeuvre();
+	}
+
+	public List<ObjectMuseum> getListOeuvre(){
+		
+		ObjectDaoImpl objectDao=new ObjectDaoImpl();
+		listObject =new ArrayList<ObjectMuseum>(objectDao.getLocations());
+		ArrayList list = new ArrayList();
+		
+		for (ObjectMuseum e: listObject) {
+
+			System.out.println(e);
+		}		
+		return list;
+	}
+	
+	
+	
+	public List<ObjectMuseum> getListObject() {
+		return listObject;
+	}
+
+	public void setListObject(List<ObjectMuseum> listObject) {
+		this.listObject = listObject;
+	}
+
+
+
+	public static ObjectDaoImpl getObjectDao() {
+		return objectDao;
+	}
+
+
+
+	public static void setObjectDao(ObjectDaoImpl objectDao) {
+		ObjectAction.objectDao = objectDao;
+	}
+
+	
+	
+}
+
+*/
