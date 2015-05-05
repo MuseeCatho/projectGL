@@ -40,7 +40,7 @@ function AddObjectAdmin(){
 		   $("input:checked").each(function() {
 	 	          datas['categories'].push($(this).val());
 	 	       });
-		   datas['categories']=datas['categories'].join(",")
+		   datas['categories']=datas['categories'].join(",");
 	$.ajax({
 	       url : 'admin/add_object.action',
 	       type : 'POST',

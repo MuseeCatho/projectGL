@@ -1,6 +1,7 @@
 package action;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -8,14 +9,20 @@ import java.util.List;
 import mapping.Category;
 import mapping.ObjectMuseum;
 import mapping.Period;
+import mapping.ObjectCategory;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import dao.CategoryDaoImpl;
 import dao.ObjectDaoImpl;
 import dao.PeriodDaoImpl;
+import dao.ObjectCategoryDaoImpl;
+
+
+
 
 import com.google.gson.Gson;
+
 public class ObjectAction extends ActionSupport{
 	
 	private static ObjectDaoImpl objectDao;
@@ -70,10 +77,18 @@ public class ObjectAction extends ActionSupport{
 			this.description_e = this.description_f;
 		}
 		if(this.title_f!=null){
-			ObjectMuseum object = new ObjectMuseum(new Integer(0),this.period, this.title_f,this.title_e,this.country,this.reference,this.description_e,this.description_f,"20","30","89",null,new Date(),this.city, 4.0,4.0);
+			ArrayList<String> listCatIdStr = new  ArrayList<String>(Arrays.asList(this.categories.split(",")));
+			ArrayList<Integer> listCatId = new ArrayList<Integer>();
+			for(String s : listCatIdStr) listCatId.add(Integer.valueOf(s));//conversion de la liste string en int
+			System.out.println("lcid:"+listCatId.get(0));
+			ObjectMuseum object = new ObjectMuseum(new Integer(0),this.period, this.title_f,this.title_e,this.country,this.reference,this.description_e,this.description_f,"20","30","89",null,new Date(),this.city, Double.parseDouble(this.latitude),Double.parseDouble(this.longitude));
 			objectDao.addObject(object);
+			System.out.println("id objet :"+object.getId());
+			ObjectCategoryDaoImpl objCat= new ObjectCategoryDaoImpl();
+			objCat.insertCategoryOfObject(listCatId, object.getId());
 			result=1;
 			System.out.println("objet ajouté");
+			
 		}
 		return SUCCESS;
 	}
