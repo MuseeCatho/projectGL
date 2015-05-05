@@ -5,16 +5,19 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import mapping.Category;
 import mapping.ObjectMuseum;
 import mapping.Period;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import dao.CategoryDaoImpl;
 import dao.ObjectDaoImpl;
 import dao.PeriodDaoImpl;
 
 import com.google.gson.Gson;
 public class ObjectAction extends ActionSupport{
+	
 	private static ObjectDaoImpl objectDao;
 	private String title_f;
 	private String title_e;
@@ -26,9 +29,8 @@ public class ObjectAction extends ActionSupport{
 	private Integer period;
 	private String latitude;
 	private String longitude;
-	private List<String> listOfPeriod;
-	private List<Integer> listOfPeriodId;
 	private List<Period> listP;
+	private List<Category> listCategory;
 	private int result;
 	private List<ObjectMuseum> listObject;
 
@@ -37,49 +39,27 @@ public class ObjectAction extends ActionSupport{
 		getListOeuvre();
 	}
 
-	public ArrayList<String> listperiod() {
-		listOfPeriod = new ArrayList<String>();
-		listOfPeriod.add("Antiquitï¿½");
-		listOfPeriod.add("Moyen Age");
-		listOfPeriod.add("Prï¿½histoire");
-		return (ArrayList<String>) listOfPeriod;
-	}
+
 
 	public String addObjectAction(){
 		
 		PeriodDaoImpl periods = new PeriodDaoImpl();
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
-//		listOfPeriod = listperiod();//va charger une liste de pï¿½riode dans le formulaire
-//		listOfPeriod = new ArrayList<String>();
-//		listOfPeriodId = new ArrayList<Integer>();
+		CategoryDaoImpl categories = new CategoryDaoImpl();
 		listP = new ArrayList<Period>();
-		listP = (List<Period>) periods.getPeriod();;
-		//System.out.println(listP);
+		listP = (List<Period>) periods.getPeriod();
 		
-		/*List list = new ArrayList(collectionPeriods);
-//		Gson gson = new Gson();
-//		String resultperiod = gson.toJson(listOfPeriods);
-//		System.out.println(resultperiod);
-		for(int i=0;i<collectionPeriods.size();i++){
-//			listOfPeriod.add(listOfPeriods[i])
-			Period p=(Period) list.get(i);
-			listOfPeriodId.add(p.getId());
-			listOfPeriod.add(p.getName());
-		}*/
-		
-		//Collection<ObjectMuseum> listOfPeriodss = objectDao.getLocations();
-		
-//		listOfPeriodId = new ArrayList<Integer>();
-//		listOfPeriodId.add(1);
-//		listOfPeriodId.add(2);
-//		listOfPeriodId.add(3);
-		System.out.println("objet prï¿½t ï¿½ ï¿½tre ajoutï¿½");
+
+		listCategory = new ArrayList<Category>();
+		listCategory = (List<Category>) categories.getCategory();
+
+		System.out.println("objet prêt à être ajouté");
 		System.out.println("title_f: "+this.title_f);
 		System.out.println("desc: "+this.description_f);
 		System.out.println("ref: "+this.reference);
 		System.out.println("latitude: "+this.latitude);
 		System.out.println("longitude: "+this.longitude);
-		System.out.println("Pï¿½riode: "+this.period);
+		System.out.println("Période: "+this.period);
 
 		if (this.title_e == null){
 			this.title_e = this.title_f;
@@ -91,13 +71,24 @@ public class ObjectAction extends ActionSupport{
 			ObjectMuseum object = new ObjectMuseum(new Integer(0),this.period, this.title_f,this.title_e,this.country,this.reference,this.description_e,this.description_f,"20","30","89",null,new Date(),this.city, Double.parseDouble(this.latitude), Double.parseDouble(this.longitude));
 			objectDao.addObject(object);
 			result=1;
-			System.out.println("objet ajoutï¿½");
+			System.out.println("objet ajouté");
 		}
 		return SUCCESS;
 	}
 	
 	
-public List<ObjectMuseum> getListOeuvre(){
+	
+	public List<Period> getListP() {
+		return listP;
+	}
+
+
+
+	public List<Category> getListCategory() {
+		return listCategory;
+	}
+	
+	public List<ObjectMuseum> getListOeuvre(){
 		
 		ObjectDaoImpl objectDao=new ObjectDaoImpl();
 		listObject =new ArrayList<ObjectMuseum>(objectDao.getLocations());
@@ -107,29 +98,16 @@ public List<ObjectMuseum> getListOeuvre(){
 	}
 
 	
-	public List<Period> getListP() {
-		return listP;
+
+
+	public void setListCategory(List<Category> listCategory) {
+		this.listCategory = listCategory;
 	}
+
+
 
 	public void setListP(List<Period> listP) {
 		this.listP = listP;
-	}
-
-	public List<Integer> getListOfPeriodId() {
-		return listOfPeriodId;
-	}
-
-	public void setListOfPeriodId(List<Integer> listOfPeriodId) {
-		this.listOfPeriodId = listOfPeriodId;
-	}
-
-	public List<String> getListOfPeriod() {
-		return listOfPeriod;
-	}
-
-
-	public void setListOfPeriod(List<String> listOfPeriod) {
-		this.listOfPeriod = listOfPeriod;
 	}
 
 
