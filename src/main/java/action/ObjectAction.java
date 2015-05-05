@@ -1,23 +1,36 @@
 package action;
 
 import java.util.ArrayList;
+
+import java.util.Arrays;
+import java.util.Collection;
+
 import java.util.Date;
 import java.util.List;
 
 import mapping.Category;
 import mapping.ObjectMuseum;
 import mapping.Period;
+
 import mapping.Photos;
 import bean.ObjectPage;
+
+import mapping.ObjectCategory;
+
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import dao.CategoryDaoImpl;
 import dao.ObjectDaoImpl;
 import dao.PeriodDaoImpl;
-import dao.PhotosDaoImpl;
 
-public class ObjectAction extends ActionSupport {
+import dao.PhotosDaoImpl;
+import dao.ObjectCategoryDaoImpl;
+import com.google.gson.Gson;
+
+public class ObjectAction extends ActionSupport{
+	
+
 	private static ObjectDaoImpl objectDao;
 	private String title_f;
 	private String title_e;
@@ -33,6 +46,7 @@ public class ObjectAction extends ActionSupport {
 	private List<Integer> listOfPeriodId;
 	private List<Period> listP;
 	private List<Category> listCategory;
+	private String categories;
 	private int result;
 	private List<ObjectMuseum> listObject;
 	private Period periodObject;
@@ -40,7 +54,7 @@ public class ObjectAction extends ActionSupport {
 	private Photos photosObject;
 
 	public ObjectAction() {
-		ListObject();
+		//ListObject();// Amandine pourquoi avoir mis ceci ici ?
 	}
 
 	public void setPeriod(Integer period) {
@@ -60,37 +74,59 @@ public class ObjectAction extends ActionSupport {
 		PeriodDaoImpl periods = new PeriodDaoImpl();
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
 		CategoryDaoImpl categories = new CategoryDaoImpl();
+		
 		listP = new ArrayList<Period>();
 		listP = (List<Period>) periods.getPeriod();
+
+		
 		listCategory = new ArrayList<Category>();
 		listCategory = (List<Category>) categories.getCategory();
-		System.out.println("objet prÃªt Ã  Ãªtre ajoutÃ©");
-		System.out.println("title_f: " + this.title_f);
-		System.out.println("desc: " + this.description_f);
-		System.out.println("ref: " + this.reference);
-		System.out.println("latitude: " + this.latitude);
-		System.out.println("longitude: " + this.longitude);
-		System.out.println("PÃ©riode: " + this.period);
-		if (this.title_e == null) {
+
+		System.out.println("objet prêt à être ajouté");
+		System.out.println("title_f: "+this.title_f);
+		System.out.println("desc: "+this.description_f);
+		System.out.println("ref: "+this.reference);
+		System.out.println("latitude: "+this.latitude);
+		System.out.println("longitude: "+this.longitude);
+		System.out.println("Période: "+this.period);
+		System.out.println("Categories: "+this.categories);
+
+		if (this.title_e == null){
+
 			this.title_e = this.title_f;
 		}
 		if (this.description_e == null) {
 			this.description_e = this.description_f;
 		}
-		if (this.title_f != null) {
-			ObjectMuseum object = new ObjectMuseum(new Integer(0), this.period,
-					this.title_f, this.title_e, this.country, this.reference,
-					this.description_e, this.description_f, "20", "30", "89",
-					null, new Date(), this.city,
-					Double.parseDouble(this.latitude),
-					Double.parseDouble(this.longitude));
+
+		if(this.title_f!=null){
+			ArrayList<String> listCatIdStr = new  ArrayList<String>(Arrays.asList(this.categories.split(",")));
+			ArrayList<Integer> listCatId = new ArrayList<Integer>();
+			for(String s : listCatIdStr) listCatId.add(Integer.valueOf(s));//conversion de la liste string en int
+			System.out.println("lcid:"+listCatId.get(0));
+			ObjectMuseum object = new ObjectMuseum(new Integer(0),this.period, this.title_f,this.title_e,this.country,this.reference,this.description_e,this.description_f,"20","30","89",null,new Date(),this.city, Double.parseDouble(this.latitude),Double.parseDouble(this.longitude));
 			objectDao.addObject(object);
-			result = 1;
-			System.out.println("objet ajoutÃ©");
+			System.out.println("id objet :"+object.getId());
+			ObjectCategoryDaoImpl objCat= new ObjectCategoryDaoImpl();
+			objCat.insertCategoryOfObject(listCatId, object.getId());
+			result=1;
+			System.out.println("objet ajouté");
+			
 		}
 		return SUCCESS;
 	}
 	
+
+	public String getCategories() {
+		return categories;
+	}
+
+
+
+	public void setCategories(String categories) {
+		this.categories = categories;
+	}
+
 	public List<Category> getListCategory() {
 		return listCategory;
 		}
