@@ -28,7 +28,7 @@
                     <h3 class="panel-title"><s:property value="title_f"/></h3>
                   </div>
                   <div class="panel-body">
-                    <div class="col-lg-2"><img src="img/bible.gif" class="img-responsive" alt="Responsive image"></div>
+                    <div class="col-lg-2"><img src="<s:property value="link_photos"/>" class="img-responsive" alt="Responsive image"></div>
                     <div class="col-lg-2"><s:property value="description_f"/><br/>
                     <s:property value="name"/></div>
                     <div class="col-lg-2 col-lg-offset-5">

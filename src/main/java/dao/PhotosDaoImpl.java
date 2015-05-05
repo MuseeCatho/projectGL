@@ -1,6 +1,6 @@
 package dao;
 
-import mapping.Period;
+import mapping.Photos;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -8,22 +8,21 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import bdd.HibernateUtil;
-public class PeriodDaoImpl implements PeriodDao<Period, Integer>{
-	
+public class PhotosDaoImpl implements PhotosDao<Photos, Integer>{
+
 	private Session currentSession;
 	private Transaction currentTransaction;
 	
-	public PeriodDaoImpl(){
+	public PhotosDaoImpl(){
 		
 	}
 	
-	public Period getPeriod(Integer idPeriod){
+	public Photos getPhotos(Integer idPhotos){
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction(); 
-		Criteria cr = session.createCriteria(Period.class)
-				.add(Restrictions.eq("id",idPeriod));
-		Period period = (Period) cr.uniqueResult();
-		return period;
-		
+		Criteria cr = session.createCriteria(Photos.class)
+				.add(Restrictions.eq("id_object",idPhotos));
+		Photos photos = (Photos) cr.uniqueResult();
+		return photos;
 	} 
 }

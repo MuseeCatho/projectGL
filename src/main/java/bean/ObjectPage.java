@@ -32,7 +32,7 @@ public class ObjectPage implements java.io.Serializable {
 			String country, String reference, String description_e,
 			String description_f, String length, String heigth, String width,
 			String archeologist, Date date, String city, Double latitude,
-			Double longitude, String name) {
+			Double longitude, String name, String link_photos) {
 		this.idObject = idObject;
 		this.period_id = period_id;
 		this.title_f = title_f;
@@ -50,9 +50,22 @@ public class ObjectPage implements java.io.Serializable {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.name = name;
+		this.link_photos=link_photos;
 	}
 		
 	
+
+	public String getLink_photos() {
+		return link_photos;
+	}
+
+
+
+	public void setLink_photos(String link_photos) {
+		this.link_photos = link_photos;
+	}
+
+
 
 	public Date getDate() {
 		return date;

@@ -7,12 +7,14 @@ import java.util.List;
 
 import mapping.ObjectMuseum;
 import mapping.Period;
+import mapping.Photos;
 import bean.ObjectPage;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import dao.ObjectDaoImpl;
 import dao.PeriodDaoImpl;
+import dao.PhotosDaoImpl;
 
 import com.google.gson.Gson;
 public class ObjectAction extends ActionSupport{
@@ -34,6 +36,7 @@ public class ObjectAction extends ActionSupport{
 	private List<ObjectMuseum> listObject;
 	private Period periodObject;
 	private List<ObjectPage> listObjectPage;
+	private Photos photosObject;
 
 	
 	public ObjectAction(){
@@ -54,7 +57,6 @@ public class ObjectAction extends ActionSupport{
 
 	public String addObjectAction(){
 		
-		PeriodDaoImpl periods = new PeriodDaoImpl();
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
 //		listOfPeriod = listperiod();//va charger une liste de p�riode dans le formulaire
 //		listOfPeriod = new ArrayList<String>();
@@ -101,16 +103,26 @@ public class ObjectAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
+	public Photos getPhotosObject() {
+		return photosObject;
+	}
+
+	public void setPhotosObject(Photos photosObject) {
+		this.photosObject = photosObject;
+	}
+
 	public String ListObject(){
 		ObjectDaoImpl objectDao=new ObjectDaoImpl();
 		PeriodDaoImpl periodDao=new PeriodDaoImpl();
+		PhotosDaoImpl photosDao=new PhotosDaoImpl();
 		
 		listObject =new ArrayList<ObjectMuseum>(objectDao.getLocations());
 		listObjectPage = new ArrayList<ObjectPage>();
 		
 		for(ObjectMuseum e:listObject){
 			periodObject = periodDao.getPeriod(e.getPeriod_id());
-			ObjectPage objectPage = new ObjectPage(new Integer(0), e.getPeriod_id(), e.getTitle_f(), e.getTitle_e(), e.getCountry(), e.getReference(), e.getDescription_e(), e.getDescription_f(), e.getLength(),e.getHeigth(),e.getWidth(), e.getArcheologist(), e.getDate(),e.getCity(),e.getLatitude(), e.getLongitude(), periodObject.getName());
+			photosObject = photosDao.getPhotos(e.getPeriod_id());
+			ObjectPage objectPage = new ObjectPage(new Integer(0), e.getPeriod_id(), e.getTitle_f(), e.getTitle_e(), e.getCountry(), e.getReference(), e.getDescription_e(), e.getDescription_f(), e.getLength(),e.getHeigth(),e.getWidth(), e.getArcheologist(), e.getDate(),e.getCity(),e.getLatitude(), e.getLongitude(), periodObject.getName(),photosObject.getLink_photos());
 			listObjectPage.add(objectPage);
 		}
 		return city;
