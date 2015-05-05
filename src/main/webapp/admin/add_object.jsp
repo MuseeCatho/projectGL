@@ -50,18 +50,18 @@
  			value="defaultSearchEngine"
  			cssClass="form-control" />
  			
- 	<label for="category">
-	Sélectionner la catégorie de l'objet
-	</label>
-			<s:select label="Sélectionner la periode de l'objet" 
-	 		headerKey="-1" 
-	 		list="listCategory"
-	   		listKey="id"
-	   		listValue="name_f"  
-	 		name="category"
-	 		id="category" 
- 			value="defaultSearchEngine"
- 			cssClass="form-control" />		
+<!--  	<label for="category"> -->
+<!-- 	Sélectionner la catégorie de l'objet -->
+<!-- 	</label> -->
+<%-- 			<s:select label="Sélectionner la periode de l'objet"  --%>
+<%-- 	 		headerKey="-1"  --%>
+<%-- 	 		list="listCategory" --%>
+<%-- 	   		listKey="id" --%>
+<%-- 	   		listValue="name_f"   --%>
+<%-- 	 		name="category" --%>
+<%-- 	 		id="category"  --%>
+<%--  			value="defaultSearchEngine" --%>
+<%--  			cssClass="form-control" />		 --%>
 		
 	     </div>
 	     <input type="hidden" name="latitude" id="latitude" value="">

@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.List;
 
 import mapping.Category;
-import mapping.Period;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -26,7 +25,7 @@ public class CategoryDaoImpl /*implements CategoryDao<Category, Integer>*/{
 	public Collection<Category> getCategory(){
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction(); 
-		Criteria cr = session.createCriteria(Period.class);
+		Criteria cr = session.createCriteria(Category.class);
 		Collection<Category> results = cr.list();
 		return results;
 	} 
