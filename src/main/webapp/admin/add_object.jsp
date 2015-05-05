@@ -37,14 +37,31 @@
 	    <input type="text" class="form-control" id="city" name="city" placeholder="Entrer la ville d'origine de l'objet">
 	  </div>
 	     <div class="form-group">
-
+	<label for="period">
+	Sélectionner la période de l'objet
+	</label>
 			<s:select label="Sélectionner la periode de l'objet" 
 	 		headerKey="-1" 
 	 		list="listP"
 	   		listKey="id"
 	   		listValue="name"  
-	 		name="period" 
- 			value="defaultSearchEngine" />
+	 		name="period"
+	 		id="period" 
+ 			value="defaultSearchEngine"
+ 			cssClass="form-control" />
+ 			
+<!--  	<label for="category"> -->
+<!-- 	Sélectionner la catégorie de l'objet -->
+<!-- 	</label> -->
+<%-- 			<s:select label="Sélectionner la periode de l'objet"  --%>
+<%-- 	 		headerKey="-1"  --%>
+<%-- 	 		list="listCategory" --%>
+<%-- 	   		listKey="id" --%>
+<%-- 	   		listValue="name_f"   --%>
+<%-- 	 		name="category" --%>
+<%-- 	 		id="category"  --%>
+<%--  			value="defaultSearchEngine" --%>
+<%--  			cssClass="form-control" />		 --%>
 		
 	     </div>
 	     <input type="hidden" name="latitude" id="latitude" value="">
