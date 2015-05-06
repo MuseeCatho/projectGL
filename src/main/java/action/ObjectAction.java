@@ -42,8 +42,6 @@ public class ObjectAction extends ActionSupport{
 	private Integer period;
 	private String latitude;
 	private String longitude;
-	private List<String> listOfPeriod;
-	private List<Integer> listOfPeriodId;
 	private List<Period> listP;
 	private List<Category> listCategory;
 	private String categories;
@@ -58,14 +56,6 @@ public class ObjectAction extends ActionSupport{
 
 	public void setPeriod(Integer period) {
 		this.period = period;
-	}
-
-	public ArrayList<String> listperiod() {
-		listOfPeriod = new ArrayList<String>();
-		listOfPeriod.add("Antiquit�");
-		listOfPeriod.add("Moyen Age");
-		listOfPeriod.add("Pr�histoire");
-		return (ArrayList<String>) listOfPeriod;
 	}
 
 	public String addObjectAction() {
@@ -194,22 +184,6 @@ public class ObjectAction extends ActionSupport{
 
 	public void setListP(List<Period> listP) {
 		this.listP = listP;
-	}
-
-	public List<Integer> getListOfPeriodId() {
-		return listOfPeriodId;
-	}
-
-	public void setListOfPeriodId(List<Integer> listOfPeriodId) {
-		this.listOfPeriodId = listOfPeriodId;
-	}
-
-	public List<String> getListOfPeriod() {
-		return listOfPeriod;
-	}
-
-	public void setListOfPeriod(List<String> listOfPeriod) {
-		this.listOfPeriod = listOfPeriod;
 	}
 
 	public String getDescription_e() {
