@@ -54,7 +54,6 @@ public class ObjectAction extends ActionSupport{
 	private Photos photosObject;
 
 	public ObjectAction() {
-		//ListObject();// Amandine pourquoi avoir mis ceci ici ?
 	}
 
 	public void setPeriod(Integer period) {
@@ -150,7 +149,7 @@ public class ObjectAction extends ActionSupport{
 		this.photosObject = photosObject;
 	}
 
-	public String ListObject() {
+	public String listObject() {
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
 		PeriodDaoImpl periodDao = new PeriodDaoImpl();
 		PhotosDaoImpl photosDao = new PhotosDaoImpl();
@@ -161,7 +160,7 @@ public class ObjectAction extends ActionSupport{
 		for (ObjectMuseum e : listObject) {
 			periodObject = periodDao.getPeriodId(e.getPeriod_id());
 			photosObject = photosDao.getPhotos(e.getPeriod_id());
-			ObjectPage objectPage = new ObjectPage(new Integer(0),
+			ObjectPage objectPage = new ObjectPage(e.getId(),
 					e.getPeriod_id(), e.getTitle_f(), e.getTitle_e(),
 					e.getCountry(), e.getReference(), e.getDescription_e(),
 					e.getDescription_f(), e.getLength(), e.getHeigth(),
@@ -170,7 +169,7 @@ public class ObjectAction extends ActionSupport{
 					periodObject.getName(), photosObject.getLink_photos());
 			listObjectPage.add(objectPage);
 		}
-		return city;
+		return SUCCESS;
 	}
 
 	public List<ObjectPage> getListObjectPage() {
