@@ -33,7 +33,7 @@
                     <s:property value="name"/></div>
                     <div class="col-lg-2 col-lg-offset-5">
                           <div class="btn-group" role="group">
-                          <a href="detail.jsp">
+                          <a href="detail.jsp?id=<s:property value="idObject"/>">
                           <button type="button" class="btn btn-default">Details</button>
                           </a>
                           

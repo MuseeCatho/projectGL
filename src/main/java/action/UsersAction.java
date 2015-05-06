@@ -1,5 +1,7 @@
 package action;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -36,15 +38,15 @@ public class UsersAction extends ActionSupport{
 
 	private static final long serialVersionUID = 1L;
 
-
-	public String signIn(){
+	
+	public String signIn() throws NoSuchAlgorithmException{
 
 		UserDaoImpl userDao=new UserDaoImpl();
 		System.out.println("signIn - pseudo : "+this.pseudo);
 		System.out.println("signIn - password : "+this.password);
 		System.out.println("signIn - admin : "+this.admin);
 
-		user =userDao.findUserAdmin(this.pseudo, this.password,this.admin);
+		user =userDao.findUserAdmin(this.pseudo, hashPassword(this.password),this.admin);
 		//user =userDao.findUserAdmin("roro78220", "AZERTY");
 		if(user==null){
 			result=0;
@@ -82,8 +84,15 @@ public class UsersAction extends ActionSupport{
 		 System.out.println("addUser - city : "+this.city);
 		 System.out.println("addUser - job : "+this.job);
 		 
-		 User user = new User(new Integer(0), this.firstname, this.name, this.password,this.job, this.pseudo, this.country, this.city,this.email, new Integer(0), new Integer(0));
+        
+		 
+		 User user = new User(new Integer(0), this.firstname, this.name,hashPassword(this.password),this.job, this.pseudo, this.country, this.city,this.email, new Integer(0), new Integer(0));
 		 userDao.insertUser(user);
+		 
+
+	 
+	        
+	        
 		 
 		 result=0;
 		 
@@ -103,7 +112,21 @@ public class UsersAction extends ActionSupport{
 		 return SUCCESS;
 	 }
 	 
-	
+	public String hashPassword(String password) throws NoSuchAlgorithmException{
+		
+		 MessageDigest md = MessageDigest.getInstance("MD5");
+	        md.update(this.password.getBytes());
+	        byte byteData[] = md.digest();
+	   	 
+	        //convert the byte to hex format method 1
+	        StringBuffer sb = new StringBuffer();
+	        for (int i = 0; i < byteData.length; i++) {
+	         sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+	        }
+	 
+	        
+		return sb.toString();
+	}
 
 
 	public String getUsers(){

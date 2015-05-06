@@ -3,6 +3,7 @@
 	<div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
+			
 				<li<%if (pageName != null && pageName.equals("welcome"))out.print(" class=\"active\"");%>>
 					<a href="index.jsp">Accueil<span class="sr-only">(current)</span></a>
 				</li>
