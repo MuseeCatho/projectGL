@@ -41,6 +41,15 @@ public class ObjectDaoImpl implements ObjectDao<ObjectMuseum, Integer>{
 		List<ObjectMuseum> results = cr.list();
 		return results;
 	}
+	
+	public Collection<ObjectMuseum> getOeuvres(Integer idOeuvre){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction(); 
+		Criteria cr = session.createCriteria(ObjectMuseum.class)
+		.add(Restrictions.eq("id",idOeuvre));
+		List<ObjectMuseum> results = cr.list();
+		return results;
+	}
 
 	/*public ObjectMuseum addObject(String pseudo,String password,int admin){
 		System.out.println("pseudo : "+pseudo);

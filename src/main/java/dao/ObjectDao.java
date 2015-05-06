@@ -13,6 +13,7 @@ public interface ObjectDao<ObjectMuseum, Integer> {
 	public void insert(ObjectMuseum entity);
 	
 	public Collection<ObjectMuseum> getLocations();
+	public Collection<ObjectMuseum> getOeuvres(Integer idOeuvre);
 	
 	
 

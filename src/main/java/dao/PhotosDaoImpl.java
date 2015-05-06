@@ -1,5 +1,9 @@
 package dao;
 
+import java.util.Collection;
+import java.util.List;
+
+import mapping.Period;
 import mapping.Photos;
 
 import org.hibernate.Criteria;
@@ -17,12 +21,13 @@ public class PhotosDaoImpl implements PhotosDao<Photos, Integer>{
 		
 	}
 	
-	public Photos getPhotos(Integer idPhotos){
+	public Collection<Photos> getPhotos(Integer idPhotos){
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction(); 
 		Criteria cr = session.createCriteria(Photos.class)
 				.add(Restrictions.eq("id_object",idPhotos));
-		Photos photos = (Photos) cr.uniqueResult();
+		List<Photos> photos = cr.list();
 		return photos;
+	
 	} 
 }
