@@ -13,7 +13,9 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Gestion des oeuvres</h1>
 
-         <a href="add_object.action">Ajouter un objet</a>
+         <a href="add_object.action">Ajouter un objet</a><br>
+         
+         <a href="add_category.action">Ajouter une categorie</a>
         </div>
 </body>
 </html>

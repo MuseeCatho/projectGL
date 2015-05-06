@@ -29,4 +29,11 @@ public class CategoryDaoImpl /*implements CategoryDao<Category, Integer>*/{
 		Collection<Category> results = cr.list();
 		return results;
 	} 
+	
+	public void insertCategory(Category entity){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();    
+        session.save(entity);
+        session.getTransaction().commit();
+	}
 }

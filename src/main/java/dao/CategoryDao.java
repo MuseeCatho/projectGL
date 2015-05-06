@@ -8,4 +8,6 @@ public interface CategoryDao<Category, Integer> {
 	
 	public Collection<Category> getCategory();
 	
+	public void insertCategory(Category entity);
+	
 }
