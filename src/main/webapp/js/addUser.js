@@ -59,6 +59,7 @@ function addUser(){
 
 $(document).ready(function () {
 	   $("#confirm_password").keyup(checkPasswordMatch);
+	   $("#password").keyup(checkPasswordMatch);
 	   $("#pseudo").keyup(checkPseudoMatchForm);
 });
 
@@ -67,12 +68,17 @@ function checkPasswordMatch() {
     var password = $("#password").val();
     var confirmPassword = $("#confirm_password").val();
 
-    if (password != confirmPassword){
-        $("#errorConfirmPassword").html("<div class=\"alert alert-danger\" role=\"alert\">Confirmation mot de passe incorrect</div>");
+    if(password.length<5 || confirmPassword.length<5){
+    	$("#errorConfirmPassword").html("<div class=\"alert alert-danger\" role=\"alert\">Le mot de passe doit contenir au moins 6 caracteres</div>");
     	return 0;
     }else{
-        $("#errorConfirmPassword").html("<div class=\"alert alert-success\" role=\"alert\">Confirmation mot de passe correct</div>");
-    	return 1;
+    	if (password != confirmPassword){
+            $("#errorConfirmPassword").html("<div class=\"alert alert-danger\" role=\"alert\">Confirmation mot de passe incorrect</div>");
+        	return 0;
+        }else{
+            $("#errorConfirmPassword").html("<div class=\"alert alert-success\" role=\"alert\">Confirmation mot de passe correct</div>");
+        	return 1;
+        }
     }
 }
 

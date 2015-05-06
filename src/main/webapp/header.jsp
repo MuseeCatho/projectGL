@@ -134,13 +134,13 @@
 			            <div class="row">
 			              <div class="form-group col-md-4">
 							  <label for="password" class="control-label">Mot de passe*</label>
-		        			  <input class="form-control" data-minlength="6" id="password" type="password" required>
+		        			  <input class="form-control" size="4" id="password" type="password" required>
 						  </div>
 						</div>
 						<div class="row">
 			              <div class="form-group col-md-4" >
 			              		<label for="confirm_password" class="control-label">Confirmation mot de passe*</label>
-		        			  <input class="form-control" data-match="#password" data-match-error="Whoops, these don't match" id="confirm_password" type="password" required>
+		        			  <input class="form-control" data-match="#password" id="confirm_password" type="password" required>
 			              </div>
 			              <div class="col-md-4 col-md-offset-2" id="errorConfirmPassword"></div>
 
@@ -159,7 +159,7 @@
 		            </div>
 		            <div class="row">
 		              <div class="col-md-4">
-						  <label for="job">Mï¿½tier</label>
+						  <label for="job">Métier</label>
 	        			  <input class="form-control" id="job" type="text">
 					  </div>
 		            </div>
