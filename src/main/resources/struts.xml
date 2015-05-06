@@ -48,7 +48,7 @@
     </package>
     
     <package name="actionOeuvre" namespace="/" extends="struts-default">
-        <action name="getOeuvre" class="action.ObjectAction">
+        <action name="getOeuvre" class="action.ObjectAction" method = "listObject">
             <result name="success">oeuvres.jsp</result>
         </action> 
     </package>
