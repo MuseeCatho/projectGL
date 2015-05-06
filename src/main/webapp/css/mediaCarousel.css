@@ -1,0 +1,28 @@
+.mediaCarousel {
+	width: 400px;
+}
+
+.mediaCarousel .carousel-inner {
+	height: 100%;
+}
+
+.mediaCarousel .item {
+	height: 100%;
+}
+
+.mediaCarousel img {
+	width: 75%;
+	max-height: 300px;
+	margin: auto;
+}
+
+.mediaModal {
+	width: 75%;
+	background-color: black;
+	text-align: center;
+}
+
+.mediaModal img {
+	max-width: 100%;
+	max-height: 85vmin;
+}

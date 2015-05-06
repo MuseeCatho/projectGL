@@ -1,10 +1,14 @@
 package dao;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import mapping.ObjectMuseum;
 import mapping.User;
 
 import org.hibernate.Criteria;
@@ -19,11 +23,6 @@ public class UserDaoImpl implements UserDao<User, Integer>{
 	
 	private Session currentSession;
 	private Transaction currentTransaction;
-
-
-	public UserDaoImpl() {
-	}
-	
 	
 	public User findUserAdmin(String pseudo,String password,int admin){
 		System.out.println("pseudo : "+pseudo);
@@ -45,6 +44,27 @@ public class UserDaoImpl implements UserDao<User, Integer>{
         session.beginTransaction();    
         session.save(entity);
         session.getTransaction().commit();
+	}
+	
+	public void getUsers(){
+		System.out.print("ouai 12");
+		try {
+			FileWriter fw = new FileWriter ("ren.txt");
+			BufferedWriter bw = new BufferedWriter (fw);
+			PrintWriter file = new PrintWriter (bw); 
+			file.print("ren");
+			file.close();
+			System.out.println("ouai10");
+		}
+		catch (Exception e){
+			System.out.println("ouai12");
+			//System.out.println(e.toString());
+		}
+		/*Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction(); 
+		Criteria cr = session.createCriteria(User.class);
+		List<User> results = cr.list();
+		return results;*/
 	}
 
 
