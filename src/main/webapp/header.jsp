@@ -39,7 +39,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
-                    <li><a href="index.jsp">Accueil<span class="sr-only">(current)</span></a></li>
+                    <li><a href="index.action">Accueil<span class="sr-only">(current)</span></a></li>
                     <li><a href="getOeuvre.action">Oeuvres</a></li>
                     <li><a href="map.jsp">Carte</a></li>
                     <li><a href="contact.jsp">Contacts</a></li>
