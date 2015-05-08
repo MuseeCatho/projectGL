@@ -4,8 +4,10 @@ var longitude;
 
 function AddObjectAdmin(){
 	//alert("ok");
-	var title_f = $( "#title_f" ).val(); 
-	var description_f = $( "#description_f" ).val(); 
+	var title_f = $( "#title_f" ).val();
+	var title_e = $('#title_e').val();
+	var description_f = $( "#description_f" ).val();
+	var description_e = $( "#description_e" ).val();
 	var reference = $("#reference").val();
 	var country = $("#country").val();
 	var city = $("#city").val();
@@ -27,7 +29,9 @@ function AddObjectAdmin(){
 		document.getElementById("latitude").value=latitude;
 		//alert(document.getElementById("latitude").value);
 		var datas={ "title_f": title_f,
+					"title_e": title_e,
 		    	   "description_f": description_f,
+		    	   "description_e":description_e,
 		    	   "reference":reference,
 		    	   "country":country,
 		    	   "city":city,
@@ -48,17 +52,17 @@ function AddObjectAdmin(){
 	       encoding:"UTF-8",
 	       async: true,
 	       data: datas,
-    	
 	       success : function(data){
+	    	 
 	    	   console.log(data);
-	    	   window.location = 'http://localhost:8080/musee_catho/admin/index.jsp';
+	    	   //window.location = 'http://localhost:8080/musee_catho/admin/index.jsp';
 	    	   //alert("ok");
 	    	
 	       }
 	    });
-	
+	  alert("Objet ajoute ");
 	});
-	alert("Objet ajouté ");
+	
 	//alert("ok");
 	//console.log("list[0]:"+list[0]);
 	//console.log(codeAddress(country+","+city));
