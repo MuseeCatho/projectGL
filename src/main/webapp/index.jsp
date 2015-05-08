@@ -1,5 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
   
   <style type="text/css">
@@ -14,12 +14,16 @@
         margin-top: 50px;
     }body{
         background-color: #EFEFC8;
+    }#blockCategory{
+    	margin-top:20px;
     }
   </style>
   
  
   <body>
     <div id="container">
+
+
 <s:include value="header.jsp"></s:include>
 
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -55,15 +59,33 @@
                 <span class="sr-only">Next</span>
               </a>
             </div>
-       
 
-
-
+		<div id="blockCategory">
+		
+		<s:iterator value="listCategory">
+        <div class="col-lg-3 col-lg-offset-1">
+          <img class="img-circle" src="<s:property value="link_category"/>" width="140" height="140">
+          <h2><s:property value="name_f"/></h2>
+          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+		</s:iterator>
+		
+		</div>
+		
+		
+		 <div class="row">
+        
+      </div><!-- /.row --> 
         <div class="row top-buffer" id="pres">
             <div class="col-lg-4 col-lg-offset-1"><img src="img/presentation.jpg" class="img-responsive" alt="Responsive image"></div>
             <div class="col-lg-4 col-lg-offset-1">Texte de présentation</div>
         </div>
+                
         
+
+
+     
         
         
         <s:include value="footer.jsp"></s:include>

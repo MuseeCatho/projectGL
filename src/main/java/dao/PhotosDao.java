@@ -7,5 +7,5 @@ import mapping.Photos;
 
 public interface PhotosDao<Photos, Integer> {
 
-	public mapping.Photos getPhotos(Integer idPhotos);
+	public Collection<mapping.Photos> getPhotos(Integer idPhotos);
 }
