@@ -19,10 +19,19 @@
 	    <label for="title_f">Titre de l'objet</label>
 	    <input type="text" class="form-control" id="title_f" name="title_f" placeholder="Entrer un titre">
 	  </div>
+	   <div class="form-group">
+	    <label for="title_e">Titre de l'objet en anglais</label>
+	    <input type="text" class="form-control" id="title_e" name="title_e" placeholder="Entrer un titre">
+	  </div>
 	  <div class="form-group">
 	    <label for="description_f">Description de l'objet</label>
 <!-- 	    <input type="text" class="form-control" id="description_f" name="description_f" placeholder="Entrer une description de l'objet"> -->
 	    <textarea class="form-control" id="description_f" name="description_f" placeholder="Entrer une description de l'objet" rows="3"></textarea>
+	  </div>
+	  <div class="form-group">
+	    <label for="description_e">Description de l'objet en anglais</label>
+<!-- 	    <input type="text" class="form-control" id="description_f" name="description_f" placeholder="Entrer une description de l'objet"> -->
+	    <textarea class="form-control" id="description_e" name="description_e" placeholder="Entrer une description de l'objet" rows="3"></textarea>
 	  </div>
 	  <div class="form-group">
 	    <label for="reference">Réference de l'objet</label>
