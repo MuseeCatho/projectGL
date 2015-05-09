@@ -46,6 +46,7 @@ public class ObjectAction extends ActionSupport{
 	private List<ObjectPage> listObjectPage;
 	private Collection<Photos> photosObject;
 	private ArrayList<Photos> listPhotos;
+	private String photoUnique;
 
 	public ObjectAction() {
 	}
@@ -144,8 +145,17 @@ public class ObjectAction extends ActionSupport{
 		listObjectPage = new ArrayList<ObjectPage>();
 
 		for (ObjectMuseum e : listObject) {
-			listPhotos = new ArrayList<Photos>(photosDao.getPhotos(e.getPeriod_id()));
-			String photoUnique = listPhotos.get(0).getLink_photos();
+			listPhotos = new ArrayList<Photos>(photosDao.getPhotos(e.getId()));
+			
+			if(listPhotos.size()==0){
+				for(Photos p:listPhotos){
+					photoUnique = "img/object/autre.jpg";
+				}
+			}
+			else{
+				photoUnique = listPhotos.get(0).getLink_photos();
+			}
+			
 			periodObject = periodDao.getPeriodId(e.getPeriod_id());
 			photosObject = photosDao.getPhotos(e.getPeriod_id());
 			ObjectPage objectPage = new ObjectPage(e.getId(),

@@ -1,6 +1,7 @@
 package bean;
 
 import java.util.Date;
+import java.util.List;
 
 import mapping.ObjectMuseum;
 
@@ -28,7 +29,7 @@ public class DetailPage implements java.io.Serializable {
 	private String name;
 	private String link_photos;
 	
-	public DetailPage(Integer idObject, Integer period_id, String title_f,String title_e,
+	public DetailPage(int idObject, Integer period_id, String title_f,String title_e,
 			String country, String reference, String description_e,
 			String description_f, String length, String heigth, String width,
 			String archeologist, Date date, String city, Double latitude,
@@ -52,26 +53,19 @@ public class DetailPage implements java.io.Serializable {
 		this.name = name;
 		this.link_photos=link_photos;
 	}
-		
-	
+
 
 	public String getLink_photos() {
 		return link_photos;
 	}
 
-
-
 	public void setLink_photos(String link_photos) {
 		this.link_photos = link_photos;
 	}
 
-
-
 	public Date getDate() {
 		return date;
 	}
-
-
 
 	public void setDate(Date date) {
 		this.date = date;
