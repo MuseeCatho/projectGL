@@ -23,10 +23,6 @@ public class HomeAction extends ActionSupport{
 		CategoryDaoImpl categoriesDao = new CategoryDaoImpl();
 		
 		listCategory =new ArrayList<Category>( categoriesDao.getCategory());
-		System.out.println("getAllCategory -- listCategory.size :"+listCategory.size());
-		for(Category e:listCategory){
-			System.out.println(e.getName_f());
-		}
 		System.out.println("getAllCategory -- listCategory.size :"+listCategory.get(0).getName_e());
 		return SUCCESS;
 	}

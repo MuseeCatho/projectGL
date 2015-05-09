@@ -6,7 +6,7 @@
             <li><a href="profil.jsp">Gestion de profil</a></li>
             <li><a href="control_object.jsp">Gestion des oeuvres</a></li>
             <li><a href="#">Gestion des membres</a></li>
-            <li><a href="#">Gestion des informations</a></li>	
+            <li><a href="control_informations.jsp">Gestion des informations</a></li>	
           </ul>
         </div> 
       </div>

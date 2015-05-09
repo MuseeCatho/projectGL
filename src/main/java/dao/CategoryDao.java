@@ -10,4 +10,8 @@ public interface CategoryDao<Category, Integer> {
 	
 	public void insertCategory(Category entity);
 	
+	public Category findCategoryById(Integer id);
+	
+	public void deleteCategory(Category entity);
+	
 }
