@@ -1,31 +1,168 @@
 package action;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import mapping.ObjectMuseum;
+import mapping.Period;
+import mapping.Photos;
+import bean.DetailPage;
+
 import com.opensymphony.xwork2.ActionSupport;
 
-public class DetailAction extends ActionSupport{
+import dao.ObjectDaoImpl;
+import dao.PeriodDaoImpl;
+import dao.PhotosDaoImpl;
 
-	/**
-	 * 
-	 */
-	private String id;
-	
+public class DetailAction extends ActionSupport {
+
+	private int id;	
+	private List<ObjectMuseum> listObject;
+	private Period periodObject;
+	private List listDetailPage;
+	private List <String>listPhoto;
+	private Collection<Photos> photosObject;
+	private ArrayList<Photos> listDetail;
+	private String periodObjectString;
+	private String listPhotoString;
 	
 	private static final long serialVersionUID = 1L;
 	
+	
 	public String showdetail(){
-		System.out.println("toto");
-		System.out.println("id :"+ this.id);
+		ObjectDaoImpl objectDao = new ObjectDaoImpl();
+		PeriodDaoImpl periodDao = new PeriodDaoImpl();
+		PhotosDaoImpl photosDao = new PhotosDaoImpl();
+
+		listDetailPage = new ArrayList();
+		listPhoto = new ArrayList<String>();
+		listObject = new ArrayList<ObjectMuseum>(objectDao.getOeuvres(this.id));
+		listDetail = new ArrayList<Photos>(photosDao.getPhotos(this.id));
 		
+		
+		for (ObjectMuseum e : listObject) {
+
+			periodObject = periodDao.getPeriodId(this.id);
+			for(Photos p:listDetail){
+				listPhoto.add(p.getLink_photos());
+			}
+			StringBuilder sb = new StringBuilder();
+			
+	        for(String str : listPhoto){
+	            sb.append(str).append(","); //separating contents using semi colon
+	        }
+	      
+	        if(listPhoto.size()==0){
+	        	listPhotoString = "img/object/autre.jpg";
+			}
+	        else{
+	        	listPhotoString=sb.toString();
+	        }
+	        
+	        if(periodObject==null){
+	        	periodObjectString="no period";
+	        }
+	        else{
+		        periodObjectString=periodObject.getName();
+	        }
+			
+			
+			DetailPage objectPage = new DetailPage(this.id,
+					e.getPeriod_id(), e.getTitle_f(), e.getTitle_e(),
+					e.getCountry(), e.getReference(), e.getDescription_e(),
+					e.getDescription_f(), e.getLength(), e.getHeigth(),
+					e.getWidth(), e.getArcheologist(), e.getDate(),
+					e.getCity(), e.getLatitude(), e.getLongitude(),
+					periodObjectString,	listPhotoString);
+			listDetailPage.add(objectPage);
+		}
 		
 		return SUCCESS;
 	}
-	
-	public String getId() {
-		return id;
+
+	public void Split(String Str){
+		for (String retval: Str.split("[", 1)){
+	         System.out.println(retval);
+	      }
 	}
 
-	public void setId(String id) {
+
+	public List getListDetailPage() {
+		return listDetailPage;
+	}
+
+	public void setListDetailPage(List listDetailPage) {
+		this.listDetailPage = listDetailPage;
+	}
+
+	public List getListPhoto() {
+		return listPhoto;
+	}
+
+	public void setListPhoto(List listPhoto) {
+		this.listPhoto = listPhoto;
+	}
+
+
+
+
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
 		this.id = id;
 	}
+
+
+	public List<ObjectMuseum> getListObject() {
+		return listObject;
+	}
+
+
+	public void setListObject(List<ObjectMuseum> listObject) {
+		this.listObject = listObject;
+	}
+
+
+	public Period getPeriodObject() {
+		return periodObject;
+	}
+
+
+	public void setPeriodObject(Period periodObject) {
+		this.periodObject = periodObject;
+	}
+
+
+	public List<DetailPage> getListObjectPage() {
+		return listDetailPage;
+	}
+
+
+	public void setListObjectPage(List<DetailPage> listObjectPage) {
+		this.listDetailPage = listObjectPage;
+	}
+
+
+	public Collection<Photos> getPhotosObject() {
+		return photosObject;
+	}
+
+
+	public void setPhotosObject(Collection<Photos> photosObject) {
+		this.photosObject = photosObject;
+	}
+
+
+	public ArrayList<Photos> getListDetail() {
+		return listDetail;
+	}
+
+
+	public void setListDetail(ArrayList<Photos> listDetail) {
+		this.listDetail = listDetail;
+	}
+	
 
 }

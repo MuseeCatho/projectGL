@@ -1,31 +1,26 @@
 package action;
 
 import java.util.ArrayList;
-
 import java.util.Arrays;
 import java.util.Collection;
-
 import java.util.Date;
 import java.util.List;
 
 import mapping.Category;
 import mapping.ObjectMuseum;
 import mapping.Period;
-
 import mapping.Photos;
 import bean.ObjectPage;
-
 import mapping.ObjectCategory;
-
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import dao.CategoryDaoImpl;
 import dao.ObjectDaoImpl;
 import dao.PeriodDaoImpl;
-
 import dao.PhotosDaoImpl;
 import dao.ObjectCategoryDaoImpl;
+
 import com.google.gson.Gson;
 
 public class ObjectAction extends ActionSupport{
@@ -42,8 +37,6 @@ public class ObjectAction extends ActionSupport{
 	private Integer period;
 	private String latitude;
 	private String longitude;
-	private List<String> listOfPeriod;
-	private List<Integer> listOfPeriodId;
 	private List<Period> listP;
 	private List<Category> listCategory;
 	private String categories;
@@ -51,21 +44,15 @@ public class ObjectAction extends ActionSupport{
 	private List<ObjectMuseum> listObject;
 	private Period periodObject;
 	private List<ObjectPage> listObjectPage;
-	private Photos photosObject;
+	private Collection<Photos> photosObject;
+	private ArrayList<Photos> listPhotos;
+	private String photoUnique;
 
 	public ObjectAction() {
 	}
 
 	public void setPeriod(Integer period) {
 		this.period = period;
-	}
-
-	public ArrayList<String> listperiod() {
-		listOfPeriod = new ArrayList<String>();
-		listOfPeriod.add("Antiquitï¿½");
-		listOfPeriod.add("Moyen Age");
-		listOfPeriod.add("Prï¿½histoire");
-		return (ArrayList<String>) listOfPeriod;
 	}
 
 	public String addObjectAction() {
@@ -81,13 +68,13 @@ public class ObjectAction extends ActionSupport{
 		listCategory = new ArrayList<Category>();
 		listCategory = (List<Category>) categories.getCategory();
 
-		System.out.println("objet prêt à être ajouté");
+		System.out.println("objet prï¿½t ï¿½ ï¿½tre ajoutï¿½");
 		System.out.println("title_f: "+this.title_f);
 		System.out.println("desc: "+this.description_f);
 		System.out.println("ref: "+this.reference);
 		System.out.println("latitude: "+this.latitude);
 		System.out.println("longitude: "+this.longitude);
-		System.out.println("Période: "+this.period);
+		System.out.println("Pï¿½riode: "+this.period);
 		System.out.println("Categories: "+this.categories);
 
 		if (this.title_e == null){
@@ -109,7 +96,7 @@ public class ObjectAction extends ActionSupport{
 			ObjectCategoryDaoImpl objCat= new ObjectCategoryDaoImpl();
 			objCat.insertCategoryOfObject(listCatId, object.getId());
 			result=1;
-			System.out.println("objet ajouté");
+			System.out.println("objet ajoutï¿½");
 			
 		}
 		return SUCCESS;
@@ -141,11 +128,11 @@ public class ObjectAction extends ActionSupport{
 		this.listCategory = listCategory;
 	}
 
-	public Photos getPhotosObject() {
+	public Collection<Photos> getPhotosObject() {
 		return photosObject;
 	}
 
-	public void setPhotosObject(Photos photosObject) {
+	public void setPhotosObject(Collection<Photos> photosObject) {
 		this.photosObject = photosObject;
 	}
 
@@ -158,6 +145,17 @@ public class ObjectAction extends ActionSupport{
 		listObjectPage = new ArrayList<ObjectPage>();
 
 		for (ObjectMuseum e : listObject) {
+			listPhotos = new ArrayList<Photos>(photosDao.getPhotos(e.getId()));
+			
+			if(listPhotos.size()==0){
+				for(Photos p:listPhotos){
+					photoUnique = "img/object/autre.jpg";
+				}
+			}
+			else{
+				photoUnique = listPhotos.get(0).getLink_photos();
+			}
+			
 			periodObject = periodDao.getPeriodId(e.getPeriod_id());
 			photosObject = photosDao.getPhotos(e.getPeriod_id());
 			ObjectPage objectPage = new ObjectPage(e.getId(),
@@ -166,9 +164,14 @@ public class ObjectAction extends ActionSupport{
 					e.getDescription_f(), e.getLength(), e.getHeigth(),
 					e.getWidth(), e.getArcheologist(), e.getDate(),
 					e.getCity(), e.getLatitude(), e.getLongitude(),
-					periodObject.getName(), photosObject.getLink_photos());
+					periodObject.getName(), photoUnique);
 			listObjectPage.add(objectPage);
 		}
+		return SUCCESS;
+	}
+	
+	public String detailObject(){
+		
 		return SUCCESS;
 	}
 
@@ -194,22 +197,6 @@ public class ObjectAction extends ActionSupport{
 
 	public void setListP(List<Period> listP) {
 		this.listP = listP;
-	}
-
-	public List<Integer> getListOfPeriodId() {
-		return listOfPeriodId;
-	}
-
-	public void setListOfPeriodId(List<Integer> listOfPeriodId) {
-		this.listOfPeriodId = listOfPeriodId;
-	}
-
-	public List<String> getListOfPeriod() {
-		return listOfPeriod;
-	}
-
-	public void setListOfPeriod(List<String> listOfPeriod) {
-		this.listOfPeriod = listOfPeriod;
 	}
 
 	public String getDescription_e() {
