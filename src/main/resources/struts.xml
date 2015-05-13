@@ -32,9 +32,6 @@
         <action name="get_users" class="action.UsersAction" method="getUsers">
 			<result name="success">result.jsp</result>
 		</action>
-		<action name="get_users" class="action.UsersAction" method="getUsers">
-			<result name="success">result.jsp</result>
-		</action>
         <action name="index" class="action.HomeAction" method="getAllCategory">
 			<result name="success">index.jsp</result>
 		</action>
@@ -47,6 +44,20 @@
           <action name="add_object" class="action.ObjectAction" method="addObjectAction">
    			<result name="success">add_object.jsp</result>
    		</action> 
+   		<!-- CATEGORY -->
+   		<action name="get_category">
+   			<result name="success">get_category.jsp</result>
+   		</action>
+   		<action name="getAllCategory" class="action.CategoryAction" method="getAllCategory">
+   			<result name="success">resultAjax.jsp</result>
+   		</action>
+   		<action name="deleteCategory" class="action.CategoryAction" method="deleteCategory">
+			<result name="success">result.jsp</result>
+   		</action>
+   		<action name="addCategory" class="action.CategoryAction" method="addCategory">
+			<result name="success">result.jsp</result>
+   		</action>
+   		<!-- END CATEGORY -->
    		<action name="selectAction" class="action.ObjectAction" method="display">
 			<result name="none">add_object.jsp</result>
    		</action> 

@@ -20,9 +20,12 @@ public class DetailAction extends ActionSupport {
 	private int id;	
 	private List<ObjectMuseum> listObject;
 	private Period periodObject;
-	private List<DetailPage> listDetailPage;
+	private List listDetailPage;
+	private List <String>listPhoto;
 	private Collection<Photos> photosObject;
 	private ArrayList<Photos> listDetail;
+	private String periodObjectString;
+	private String listPhotoString;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -32,43 +35,81 @@ public class DetailAction extends ActionSupport {
 		PeriodDaoImpl periodDao = new PeriodDaoImpl();
 		PhotosDaoImpl photosDao = new PhotosDaoImpl();
 
-		listDetailPage = new ArrayList<DetailPage>();
+		listDetailPage = new ArrayList();
+		listPhoto = new ArrayList<String>();
 		listObject = new ArrayList<ObjectMuseum>(objectDao.getOeuvres(this.id));
 		listDetail = new ArrayList<Photos>(photosDao.getPhotos(this.id));
-
+		
+		
 		for (ObjectMuseum e : listObject) {
-			String photoUnique = listDetail.get(0).getLink_photos();
-			periodObject = periodDao.getPeriodId(e.getPeriod_id());
-			photosObject = photosDao.getPhotos(e.getPeriod_id());
+
+			periodObject = periodDao.getPeriodId(this.id);
+			for(Photos p:listDetail){
+				listPhoto.add(p.getLink_photos());
+			}
+			StringBuilder sb = new StringBuilder();
+			
+	        for(String str : listPhoto){
+	            sb.append(str).append(","); //separating contents using semi colon
+	        }
+	      
+	        if(listPhoto.size()==0){
+	        	listPhotoString = "img/object/autre.jpg";
+			}
+	        else{
+	        	listPhotoString=sb.toString();
+	        }
+	        
+	        if(periodObject==null){
+	        	periodObjectString="no period";
+	        }
+	        else{
+		        periodObjectString=periodObject.getName();
+	        }
+			
+			
 			DetailPage objectPage = new DetailPage(this.id,
 					e.getPeriod_id(), e.getTitle_f(), e.getTitle_e(),
 					e.getCountry(), e.getReference(), e.getDescription_e(),
 					e.getDescription_f(), e.getLength(), e.getHeigth(),
 					e.getWidth(), e.getArcheologist(), e.getDate(),
 					e.getCity(), e.getLatitude(), e.getLongitude(),
-					periodObject.getName(), photoUnique);
+					periodObjectString,	listPhotoString);
 			listDetailPage.add(objectPage);
 		}
 		
 		return SUCCESS;
 	}
 
+	public void Split(String Str){
+		for (String retval: Str.split("[", 1)){
+	         System.out.println(retval);
+	      }
+	}
 
-	public List<DetailPage> getListDetailPage() {
+
+	public List getListDetailPage() {
 		return listDetailPage;
 	}
 
-
-	public void setListDetailPage(List<DetailPage> listDetailPage) {
+	public void setListDetailPage(List listDetailPage) {
 		this.listDetailPage = listDetailPage;
 	}
+
+	public List getListPhoto() {
+		return listPhoto;
+	}
+
+	public void setListPhoto(List listPhoto) {
+		this.listPhoto = listPhoto;
+	}
+
+
 
 
 	public int getId() {
 		return id;
 	}
-
-
 	public void setId(int id) {
 		this.id = id;
 	}
