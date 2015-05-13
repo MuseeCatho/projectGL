@@ -140,9 +140,13 @@ public class ObjectAction extends ActionSupport{
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
 		PeriodDaoImpl periodDao = new PeriodDaoImpl();
 		PhotosDaoImpl photosDao = new PhotosDaoImpl();
-
+		
+		//if recherche est null
+		
 		listObject = new ArrayList<ObjectMuseum>(objectDao.getLocations());
 		listObjectPage = new ArrayList<ObjectPage>();
+		
+		//sinon
 
 		for (ObjectMuseum e : listObject) {
 			listPhotos = new ArrayList<Photos>(photosDao.getPhotos(e.getId()));
