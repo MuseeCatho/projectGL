@@ -3,6 +3,7 @@ package dao;
 import java.util.Collection;
 import java.util.List;
 
+import mapping.Category;
 import mapping.ObjectMuseum;
 import mapping.Period;
 
@@ -40,5 +41,19 @@ public class PeriodDaoImpl implements PeriodDao<Period, Integer>{
 		List<Period> period = cr.list();
 		return period;
 		
+	}
+	
+	public void insertPeriod(Period entity){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();    
+        session.save(entity);
+        session.getTransaction().commit();
+	}
+	
+	public void deletePeriod(Period entity){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();    
+        session.delete(entity);
+        session.getTransaction().commit();
 	}
 }

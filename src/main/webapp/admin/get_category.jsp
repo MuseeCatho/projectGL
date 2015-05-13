@@ -12,11 +12,12 @@
   
 <body>
  <s:include value="header_admin.jsp"></s:include>
-
- <s:include value="tab_control.jsp"></s:include>
+	<jsp:include page="navigation.jsp">
+		<jsp:param name="pageName" value="objects_manager"/>
+	</jsp:include>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Gestion des categories</h1>
+          <h1 class="page-header"><a href="control_informations.jsp">Gestion des informations</a>  > Gestion des categories</h1>
           
           <h3 class="page-header">Ajout d'une categorie</h3>
           
