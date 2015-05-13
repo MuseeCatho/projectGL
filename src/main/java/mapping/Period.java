@@ -7,6 +7,27 @@ public class Period implements java.io.Serializable {
 	
 	private int id;
 	private String name;
+	private String date;
+	private String description_e;
+	private String description_f;
+	
+	
+	public Period(int id,String name){
+		this.id=id;
+		this.name = name;
+	}
+	public Period(){
+		
+	}
+
+	public Period(int id, String name, String date, String description_e,
+			String description_f) {
+		this.id = id;
+		this.name = name;
+		this.date = date;
+		this.description_e = description_e;
+		this.description_f = description_f;
+	}
 	
 	public int getId() {
 		return id;
@@ -20,11 +41,23 @@ public class Period implements java.io.Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Period(int id,String name){
-		this.id=id;
-		this.name = name;
+	public String getDate() {
+		return date;
 	}
-	public Period(){
-		
+	public void setDate(String date) {
+		this.date = date;
 	}
+	public String getDescription_e() {
+		return description_e;
+	}
+	public void setDescription_e(String description_e) {
+		this.description_e = description_e;
+	}
+	public String getDescription_f() {
+		return description_f;
+	}
+	public void setDescription_f(String description_f) {
+		this.description_f = description_f;
+	}
+
 }

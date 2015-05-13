@@ -36,18 +36,7 @@ public class CategoryAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
-	
-	public String getResult() {
-		return result;
-	}
-
-
-	public void setResult(String result) {
-		this.result = result;
-	}
-
-
-	public String deleteCategory(){
+public String deleteCategory(){
 		
 		CategoryDaoImpl categoryDao = new CategoryDaoImpl();
 		Category category=categoryDao.findCategoryById(new Integer(this.id_category));
@@ -65,6 +54,16 @@ public class CategoryAction extends ActionSupport{
 		Category category =new Category(new Integer(0),this.title_f,this.title_e,this.link_category);
 		categoryDao.insertCategory(category);
 		return SUCCESS;
+	}
+	
+	
+	public String getResult() {
+		return result;
+	}
+
+
+	public void setResult(String result) {
+		this.result = result;
 	}
 
 	public List<Category> getListCategory() {
