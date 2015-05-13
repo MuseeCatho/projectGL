@@ -1,4 +1,4 @@
-.mediaCarousel {
+/*.mediaCarousel {
 	width: 400px;
 }
 
@@ -25,4 +25,44 @@
 .mediaModal img {
 	max-width: 100%;
 	max-height: 85vmin;
+}
+*/
+
+.mediaCarousel {
+	width: 400px;
+	height: 300px;
+}
+
+.mediaCarousel .carousel-inner {
+	height: 100%;
+}
+
+.mediaCarousel .item {
+	position: absolute;
+	height: 100%;
+}
+
+.mediaCarousel img {
+	width: 75%;
+	max-height: 300px;
+	margin: auto;
+}
+
+.mediaModal {
+	width: 75%;
+	background-color: black;
+	text-align: center;
+}
+
+.mediaModal img {
+	max-width: 100%;
+	max-height: 85vmin;
+}
+
+.mediaCarousel .video-jsContainer {
+	width: 100%;
+	height: 100px;
+	/*max-height: 300px;*/
+	margin: auto;
+	border: solid red;
 }
