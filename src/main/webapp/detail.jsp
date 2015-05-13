@@ -3,6 +3,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="js/jquery.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/mediaCarousel.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <title>Oeuvre</title>
 </head>
 <body>
@@ -27,17 +32,17 @@
 							style="">Proposer une modification</a>
 					</div>
 				</div>
-				<div id="carousel-example-generic" class="carousel slide"
+				<!--<div id="carousel-example-generic" class="carousel slide"
 					data-ride="carousel">
 					<!-- Indicators -->
-					<ol class="carousel-indicators">
+				<!-- <ol class="carousel-indicators">
 						<li data-target="#carousel-example-generic" data-slide-to="0"
 							class="active"></li>
 						<li data-target="#carousel-example-generic" data-slide-to="1"></li>
 					</ol>
 
 					<!-- Wrapper for slides -->
-					<div class="carousel-inner" role="listbox">
+				<!--	<div class="carousel-inner" role="listbox">
 						<div class="item active">
 							<img src="img/jerusalem-22.jpg" alt="caroussel1">
 							<div class="carousel-caption">Image1</div>
@@ -46,7 +51,7 @@
 					</div>
 
 					<!-- Controls -->
-					<a class="left carousel-control" href="#carousel-example-generic"
+				<!--	<a class="left carousel-control" href="#carousel-example-generic"
 						role="button" data-slide="prev"> <span
 						class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 						<span class="sr-only">Previous</span>
@@ -55,9 +60,17 @@
 						class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 						<span class="sr-only">Next</span>
 					</a>
-				</div>
-
-
+				</div>-->
+			
+				
+				<s:include value="mediaCarousel.jsp">
+					<s:param name="mediaType">image</s:param>					
+					<s:param name="mediaNames"><s:property value="link_photos"/></s:param>
+				</s:include>
+				
+				
+				
+				
 				<div id="object" style="background-color: white;">
 
 					<div style="display: block;">

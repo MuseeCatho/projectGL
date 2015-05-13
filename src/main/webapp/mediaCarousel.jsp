@@ -30,7 +30,7 @@
 				for (int i = 0; i < mediaNames.length; i++) {
 			%>
 			<div class="item <%if (i == 0) {%>active<%}%>">
-				<img src="img/<%=mediaNames[i]%>" alt="slide <%=i + 1%>"
+				<img src="<%=mediaNames[i]%>" alt="slide <%=i + 1%>"
 					<%if (mediaType.equals("image")) {%> data-toggle="modal"
 					data-target="#<%=mediaCarouselId%>Modal<%=i%>" <%}%> />
 			</div>
@@ -67,7 +67,7 @@
 					aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
-				<img src="img/<%=mediaNames[i]%>" alt="slide <%=i + 1%>" />
+				<img src="<%=mediaNames[i]%>" alt="slide <%=i + 1%>" />
 			</div>
 		</div>
 	</div>

@@ -6,6 +6,7 @@ import java.util.List;
 import mapping.Period;
 import mapping.Photos;
 
+import org.apache.jasper.tagplugins.jstl.core.If;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -27,7 +28,7 @@ public class PhotosDaoImpl implements PhotosDao<Photos, Integer>{
 		Criteria cr = session.createCriteria(Photos.class)
 				.add(Restrictions.eq("id_object",idPhotos));
 		List<Photos> photos = cr.list();
-		return photos;
+		return photos;	
 	
 	} 
 }
