@@ -6,6 +6,7 @@ public class Period implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
+	private Integer order;
 	private String name;
 	private String date;
 	private String description_e;
@@ -20,9 +21,10 @@ public class Period implements java.io.Serializable {
 		
 	}
 
-	public Period(int id, String name, String date, String description_e,
+	public Period(int id,Integer order, String name, String date, String description_e,
 			String description_f) {
 		this.id = id;
+		this.order = order;
 		this.name = name;
 		this.date = date;
 		this.description_e = description_e;
@@ -58,6 +60,12 @@ public class Period implements java.io.Serializable {
 	}
 	public void setDescription_f(String description_f) {
 		this.description_f = description_f;
+	}
+	public Integer getOrder() {
+		return order;
+	}
+	public void setOrder(Integer order) {
+		this.order = order;
 	}
 
 }

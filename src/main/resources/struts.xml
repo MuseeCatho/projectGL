@@ -71,6 +71,9 @@
    		<action name="addPeriod" class="action.PeriodAction" method="addPeriod">
 			<result name="success">resultAjax.jsp</result>
    		</action>
+   		<action name="upadtePeriod" class="action.PeriodAction" method="updatePeriod">
+			<result name="success">resultAjax.jsp</result>
+   		</action>
    		<!-- END PERIOD -->
    		<action name="selectAction" class="action.ObjectAction" method="display">
 			<result name="none">add_object.jsp</result>

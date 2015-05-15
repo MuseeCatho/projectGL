@@ -36,11 +36,11 @@
 		            <div class="row">
 		              <div class="col-md-4">
 						  <label for="description_f">Description (en francais)</label>
-	        			  <input class="form-control" id="description_f" type="text" required>
+	        			  <textarea class="form-control" id="description_f" type="text"></textarea>
 					  </div>
 		              <div class="col-md-4">
 						  <label for="description_e">Description (en anglais)</label>
-	        			  <input class="form-control" id="description_e" type="text" required>
+	        			  <textarea class="form-control" id="description_e" type="text"></textarea>
 					  </div>
 		            </div>
 		            <div class="row">
@@ -61,11 +61,13 @@
           <table class="table table-condensed" id="tabPeriod">
            <thead>
 		      <tr>
+		      	<th>Ordre</th>
 		        <th>Nom des périodes</th>
 		        <th>Date</th>
 		        <th>Description francais</th>
 		        <th>Description anglais</th>
 		        <th>Suprimer</th>
+		        <th>Modifier</th>
 		      </tr>
 		    </thead>
 		    <tbody>
@@ -120,6 +122,27 @@ function addPeriod(){
 		 
 }
 
+function update_period(id){ 
+	// on reconstitue l'id pour l'input
+	var idInput="#idInput"+id;
+	var orderPeriod= $(idInput).val(); 
+	//alert("periode order :"+orderPeriod);
+	 	 $.ajax({
+		       url : 'upadtePeriod.action',
+		       type : 'POST',
+		       encoding:"UTF-8",
+		       async: true,
+		       data: {
+		    	   "id_category": id,
+		    	   "orderPeriod": orderPeriod
+		    	},
+		       success : function(data){
+		    	   window.location = 'http://localhost:8080/musee_catho/admin/get_period.action';
+		       }
+	}); 
+		 
+}
+
 
 function getPeriod(){ 
 	//$( '#tabPeriod').empty();
@@ -152,11 +175,13 @@ function getPeriod(){
 		   	    		if(jsoParse[i].description_f==null){
 	   	    		    	jsoParse[i].description_f="non définie";
 	   	    		    }
-	   	    		 	$('#tabPeriod tr:last').after('<tr><td>'+jsoParse[i].name+
+	   	    		 	$('#tabPeriod tr:last').after('<tr><td class="col-md-1"><input id="idInput'+jsoParse[i].id+'" class="form-control" value="'+jsoParse[i].order+'" id="date" type="text" required></td><td>'+jsoParse[i].name+
 	   	    		 			'</td>'+'<td>'+jsoParse[i].date+'</td>'+
-	   	    		 			'<td>'+jsoParse[i].description_e+'</td>'+
-	   	    		 			'<td>'+jsoParse[i].description_f+'</td>'+
-	   	    		 			'<td><a class="cursor_delete" onmouseover="" onclick="delete_period('+jsoParse[i].id+')"><img src="../img/icon/cancel.png"></td></a></tr>');
+	   	    		 			'<td class="col-md-4">'+jsoParse[i].description_f+'</td>'+
+	   	    		 			'<td class="col-md-4">'+jsoParse[i].description_e+'</td>'+
+	   	    		 			'<td><a class="cursor_delete" onmouseover="" onclick="delete_period('+jsoParse[i].id+')"><img src="../img/icon/cancel.png"></td></a>'
+	   	    		 +
+    		 			'<td><a class="cursor_delete" onmouseover="" onclick="update_period('+jsoParse[i].id+')"><img src="../img/icon/modify.png"></td></a></tr>');
 	   	    	   }
 	   	    	
 		       }
