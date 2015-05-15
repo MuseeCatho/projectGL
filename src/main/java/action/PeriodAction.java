@@ -45,6 +45,12 @@ public class PeriodAction extends ActionSupport{
 		Period period=periodDao.getPeriodId(new Integer(this.id_category));
 		periodDao.deletePeriod(period);
 		
+		List<Period> listPeriodBis=(List<Period>) periodDao.getPeriodByOrder(period.getOrder(),period.getOrder());
+		for(Period e:listPeriodBis){
+			e.setOrder(e.getOrder()-1);
+			periodDao.updatePeriod(e);
+		}
+		
 		return SUCCESS;
 	}
 	public String updatePeriod(){
