@@ -39,6 +39,15 @@ public class UserDaoImpl implements UserDao<User, Integer>{
 		return user;
 	}
 	
+	public User findUserById(Integer id){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction(); 
+		Criteria cr = session.createCriteria(User.class);
+		cr.add(Restrictions.eq("id",id));
+		User user = (User) cr.uniqueResult();
+		return user;
+	}
+	
 	public void insertUser(User entity) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();    

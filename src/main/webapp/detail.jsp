@@ -4,6 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script src="js/jquery.js"></script>
+<script src="js/comment.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="css/mediaCarousel.css">
@@ -87,22 +88,47 @@
 					</div>
 
 					<div id="video" style="clear: both;">
-						<h4>Regarder la vidï¿½o de l'objet :</h4>
+						<h4>Regarder la vidéo de l'objet :</h4>
 						<iframe width="400" height="225"
 							src="https://www.youtube.com/embed/LqTyPFFS8fg" frameborder="0"
 							allowfullscreen></iframe>
 					</div>
 
-					<div style="margin-top: 30px;">
-						<h4>Ajouter un commentaire :</h4>
-						<textarea style="margin: 0px; height: 150px; width: 420px;">
-
-</textarea>
-					</div>
+					
 
 				</div>
 			</s:iterator>
 		</div>
+		<div class="row">
+		</div>
+		<s:if test="%{#session.firstname!=null}">
+		<div class="row top-buffer">
+			<div class="col-lg-5 col-lg-offset-1">
+				<form>
+				<div class="form-group">
+						<label for="commentObject">Comment:</label>
+						 <textarea class="form-control" rows="3" id="commentObject"></textarea>
+				</div>
+					<button type="button" class="btn btn-default" onclick="addComment(<s:property value="#session.id_user"/>);">Submit</button>
+				</form>
+			</div>
+		</div></br>
+		<div class="row">
+			<div class="col-lg-5 col-lg-offset-1">
+			<s:iterator value="commentDetail">
+		              <div class="panel panel-primary">
+		                <div class="panel-heading">
+		                    <h3 class="panel-title"><s:property value="pseudo"/></h3>
+		                  </div>
+		                  <div class="panel-body">
+		                    <div class="col-lg-2"><s:property value="text"/><br/></div>
+		                  </div>
+		              </div>
+			</s:iterator>
+			</div>
+		</div>
+		</s:if>
+		
 
 
 

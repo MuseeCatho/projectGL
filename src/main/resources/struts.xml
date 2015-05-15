@@ -17,9 +17,14 @@
         <action name="getLocationForMap" class="action.MapAction" method="getLocation">
             <result name="success">result.jsp</result>
         </action>
+        <!-- DETAILS OBJECT -->
         <action name="detailObject" class="action.DetailAction" method="showdetail">
             <result name="success">detail.jsp</result>
         </action>
+        <action name="addComment" class="action.CommentsAction" method="addComment">
+            <result name="success">result.jsp</result>
+        </action>
+        <!-- END DETAILS OBJECT -->
         <action name="logOut" class="action.UsersAction" method="logOut">
             <result name="success">index.jsp</result>
         </action> 
@@ -34,6 +39,9 @@
 		</action>
         <action name="index" class="action.HomeAction" method="getAllCategory">
 			<result name="success">index.jsp</result>
+		</action>
+        <action name="get_users" class="action.UsersAction" method="getUsers">
+			<result name="success">result.jsp</result>
 		</action>
     </package>
     
