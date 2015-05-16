@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Restrictions;
 
 import bdd.HibernateUtil;
@@ -46,11 +48,17 @@ public class ObjectDaoImpl implements ObjectDao<ObjectMuseum, Integer>{
 	public Collection<ObjectMuseum> getObjectResearch(String research){
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction(); 
-
+        ArrayList<String> list=new ArrayList<String>();
+        String[] parts = research.split(" ");
+    	for(String s : parts) list.add(s);
 		Criteria cr = session.createCriteria(ObjectMuseum.class);
-		cr.add(Restrictions.eq("title_f",research));
-		//Criterion c1 = Restrictions.ilike(research, cr);
-	  //  cr.add(c1);
+		Disjunction disjunction = Restrictions.disjunction();//Permet de faire des operations OR
+		
+		for(String o:list){
+			o+="%";
+			disjunction.add(Restrictions.ilike("title_f", o));
+			cr.add(disjunction);
+		}
 		List<ObjectMuseum> results = cr.list();
 		return results;
 	}
