@@ -2,7 +2,7 @@ package action;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class EnrichentAction extends ActionSupport{
+public class EnrichmentsAction extends ActionSupport{
 
 	/**
 	 * 

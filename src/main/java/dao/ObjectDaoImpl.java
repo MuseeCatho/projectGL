@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import javafx.application.Application.Parameters;
 import mapping.ObjectMuseum;
 import mapping.User;
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import mapping.Category;
 import mapping.Comment;
 import mapping.ObjectMuseum;
 import mapping.Period;
@@ -13,6 +14,7 @@ import bean.DetailPage;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import dao.CategoryDaoImpl;
 import dao.CommentDaoImpl;
 import dao.ObjectDaoImpl;
 import dao.PeriodDaoImpl;
@@ -82,8 +84,6 @@ public class DetailAction extends ActionSupport {
 	        else{
 		        periodObjectString=periodObject.getName();
 	        }
-			
-			
 			DetailPage objectPage = new DetailPage(this.id,
 					e.getPeriod_id(), e.getTitle_f(), e.getTitle_e(),
 					e.getCountry(), e.getReference(), e.getDescription_e(),
@@ -97,12 +97,14 @@ public class DetailAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public void Split(String Str){
-		for (String retval: Str.split("[", 1)){
-	         System.out.println(retval);
-	      }
+	public String deleteImage(){
+		
+		/*CategoryDaoImpl categoryDao = new CategoryDaoImpl();
+		Category category=categoryDao.findCategoryById(new Integer(this.id_category));
+		categoryDao.deleteCategory(category);*/
+		
+		return SUCCESS;
 	}
-
 
 	public List getListDetailPage() {
 		return listDetailPage;
@@ -119,9 +121,6 @@ public class DetailAction extends ActionSupport {
 	public void setListPhoto(List listPhoto) {
 		this.listPhoto = listPhoto;
 	}
-
-
-
 
 	public int getId() {
 		return id;

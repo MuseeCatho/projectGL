@@ -1,0 +1,94 @@
+@CHARSET "UTF-8";
+
+div{ 
+    border-width: 2px;
+
+}
+#bodyDetail{
+	background-color: #DCDCDC;
+}
+#container{
+	background-color:blue;
+}	
+#header{
+	width: 80%; 
+	margin: auto;
+	background-color: white;
+}
+#header-object{
+	text-align:center;
+	margin-bottom: 50px;
+}
+h1{
+	flaot: left; 
+	display: inline-block;
+	color: #222; 
+	font-size: 1.28em; 
+	padding: 18px 0 5px 0; 
+	line-height: 1.2em; 
+	font-weight: bold;
+}
+#titleDetail{
+	display: block; 
+	font-size: 1em; 
+	padding: 2px 0 0 0; 
+	color: #A66F4D;
+}
+#modification{
+	display: inline-block; 
+	float: right; 
+	margin-top: 35px;
+}
+#descriptionDetail{
+	width: 100%; 
+	min-height:20%; 
+	margin-top: 35px; 
+	float: left;
+}
+.videoDetail{
+	margin-top: 50px;
+}
+#image3DDetail{
+	display: inline-block;
+	margin-top: 25px; 
+	text-align: center; 
+	border: 1px solid grey; 
+	border-radius: 2px; 
+	width: 400px; 
+	height: 400px; 
+	margin-left: 50px;
+	text-align: center;
+}
+#commentaireDetail{
+	background-color: white;
+	margin-top: 30px;
+}
+
+#commentaireDetailTextarea{
+	
+	margin-bottom: 30px;
+}
+#listPhotos{
+	display: none;
+	text-align: center;
+}
+#listPhotosImg{
+	max-height: 180px;
+	max-width: 250px;
+	display:inline-block;
+}
+.tablecell{
+display: table;
+	border-spacing: 10px;
+}
+#photoDetail{
+	border: 2px solid gray; 
+	border-radius: 2px; 
+	width: 300px; 
+	height: 180px; 
+	margin-left: 50px;
+	display:table-cell;
+}
+#ajoutImage{
+	float: right;
+}

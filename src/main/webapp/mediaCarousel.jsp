@@ -9,7 +9,6 @@
 		String[] mediaNames = mediaNamesString.split(",");
 		//String mediaCarouselId = MD5.crypt(mediaType + mediaNames);
 %>
-
 <!-- <div class="mediaContainer">-->
 <div id="<%=mediaCarouselId%>" class="mediaCarousel carousel slide"
 	data-ride="carousel" style="width:<%=width%>;height:<%=height%>;">
@@ -37,28 +36,25 @@
 			<%
 				if (mediaType.equals("image")) {
 			%>
-			<!--  for an image : -->
+			<!-- for an image : -->
 			<p class="mediaCarousel_item" style="line-height:<%=height%>;">
-				<img src="<%=mediaNames[i]%>"
-					alt="slide <%=i + 1%>" data-toggle="modal"
-					data-target="#<%=mediaCarouselId%>Modal<%=i%>" />
+				<img src="<%=mediaNames[i]%>" alt="slide <%=i + 1%>"
+					data-toggle="modal" data-target="#<%=mediaCarouselId%>Modal<%=i%>" />
 			</p>
 			<%
 				} else if (mediaType.equals("audio")) {
 			%>
-			<!--  for an audio : -->
-
+			<!-- for an audio : -->
 			<%
 				} else if (mediaType.equals("video")) {
 			%>
-			<!--  for a video : -->
+			<!-- for a video : -->
 			<div class="video-jsContainer">
 				<video id="video<%=i%>" class="video-js vjs-default-skin" controls
 					preload="auto"
 					poster="http://video-js.zencoder.com/oceans-clip.png"
 					data-setup='{"example_option":true}'>
-					<source src="<%=mediaNames[i]%>"
-						type='video/mp4' />
+					<source src="<%=mediaNames[i]%>" type='video/mp4' />
 					<p class="vjs-no-js">
 						To view this video please enable JavaScript, and consider
 						upgrading to a web browser that <a
@@ -86,7 +82,6 @@
 		class="sr-only">Next</span>
 	</a>
 </div>
-
 <!-- modals : -->
 <%
 	if (mediaType.equals("image")) {
