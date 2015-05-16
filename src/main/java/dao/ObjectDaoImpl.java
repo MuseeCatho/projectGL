@@ -42,6 +42,14 @@ public class ObjectDaoImpl implements ObjectDao<ObjectMuseum, Integer>{
 		return results;
 	}
 	
+	public Collection<ObjectMuseum> getObjectResearch(){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction(); 
+		Criteria cr = session.createCriteria(ObjectMuseum.class);
+		List<ObjectMuseum> results = cr.list();
+		return results;
+	}
+	
 	public Collection<ObjectMuseum> getOeuvres(Integer idOeuvre){
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction(); 

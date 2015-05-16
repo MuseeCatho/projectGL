@@ -40,8 +40,9 @@
         <action name="index" class="action.HomeAction" method="getAllCategory">
 			<result name="success">index.jsp</result>
 		</action>
-        <action name="get_users" class="action.UsersAction" method="getUsers">
-			<result name="success">result.jsp</result>
+		<action name="research_action" class="action.ResearchAction" method="research">
+			<result name="success">oeuvres.jsp</result>
+
 		</action>
     </package>
     
