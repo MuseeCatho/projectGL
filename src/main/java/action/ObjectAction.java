@@ -174,7 +174,8 @@ public class ObjectAction extends ActionSupport{
 					e.getDescription_f(), e.getLength(), e.getHeigth(),
 					e.getWidth(), e.getArcheologist(), e.getDate(),
 					e.getCity(), e.getLatitude(), e.getLongitude(),
-					periodObject.getName(), photoUnique);
+					periodObject.getName(), 
+					photoUnique);
 			listObjectPage.add(objectPage);
 		}
 		return SUCCESS;

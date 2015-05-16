@@ -46,9 +46,11 @@ public class ObjectDaoImpl implements ObjectDao<ObjectMuseum, Integer>{
 	public Collection<ObjectMuseum> getObjectResearch(String research){
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction(); 
+
 		Criteria cr = session.createCriteria(ObjectMuseum.class);
-		Criterion c1 = Restrictions.ilike(research, cr);
-	    cr.add(c1);
+		cr.add(Restrictions.eq("title_f",research));
+		//Criterion c1 = Restrictions.ilike(research, cr);
+	  //  cr.add(c1);
 		List<ObjectMuseum> results = cr.list();
 		return results;
 	}

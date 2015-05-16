@@ -20,7 +20,7 @@
 
   <div class="row">
 	<div class="col-lg-8 col-lg-offset-2">
-	
+	<p style="font-weight:bold;">Résultat de la recherche pour "<s:property value="research"/>": </p>
 <s:iterator value="listObjectPage">
 
               <div class="panel panel-primary">
