@@ -41,7 +41,7 @@
 			<result name="success">index.jsp</result>
 		</action>
 		<action name="research_action" class="action.ResearchAction" method="research">
-			<result name="success">oeuvres.jsp</result>
+			<result name="success">result_research.jsp</result>
 
 		</action>
     </package>
