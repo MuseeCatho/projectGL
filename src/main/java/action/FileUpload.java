@@ -1,45 +1,62 @@
 package action;
 
 import java.io.File;
-/*import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.io.IOException;
+import java.nio.file.Files;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.fileupload.FileItem;
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.tomcat.util.http.fileupload.FileItemFactory;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;*/
+import org.apache.commons.io.FileUtils;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 public class FileUpload extends ActionSupport {
-	 private File file;
-     private String contentType;
-     private String filename;
+	private File[] uploads;
+    private String[] uploadFileNames;
+    private String[] uploadContentTypes;
 
-     public void setUpload(File file) {
-        this.file = file;
-     }
 
-     public void setUploadContentType(String contentType) {
-        this.contentType = contentType;
-     }
-
-     public void setUploadFileName(String filename) {
-        this.filename = filename;
-     }
-
-     public String execute() {
-        System.out.println("upload a file");
+    public String upload() throws Exception {
+    	/* write the files in the eclipse repository */
+        System.out.println("\n\n upload2");
+        System.out.println("files:");
+        for(int i = 0; i < uploads.length; i++) {
+            System.out.println("*** " + uploads[i] + "\t" + uploads[i].length());
+            File dest = new File("upload/" + uploadFileNames[i]);
+			FileUtils.copyFile(uploads[i], dest);
+        }
+        System.out.println("filenames:");
+        for (String n : uploadFileNames) {
+            System.out.println("*** " + n);
+        }
+        System.out.println("content types:");
+        for (String c : uploadContentTypes) {
+            System.out.println("*** " + c);
+        }
+        System.out.println("\n\n");
+        
         return SUCCESS;
-     }
+    }
+
+    public File[] getUpload() {
+        return this.uploads;
+    }
+
+    public void setUpload(File[] upload) {
+        this.uploads = upload;
+    }
+
+    public String[] getUploadFileName() {
+        return this.uploadFileNames;
+    }
+
+    public void setUploadFileName(String[] uploadFileName) {
+        this.uploadFileNames = uploadFileName;
+    }
+
+    public String[] getUploadContentType() {
+        return this.uploadContentTypes;
+    }
+
+    public void setUploadContentType(String[] uploadContentType) {
+        this.uploadContentTypes = uploadContentType;
+    }
 }
