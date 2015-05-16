@@ -17,9 +17,14 @@
         <action name="getLocationForMap" class="action.MapAction" method="getLocation">
             <result name="success">result.jsp</result>
         </action>
+        <!-- DETAILS OBJECT -->
         <action name="detailObject" class="action.DetailAction" method="showdetail">
             <result name="success">detail.jsp</result>
         </action>
+        <action name="addComment" class="action.CommentsAction" method="addComment">
+            <result name="success">result.jsp</result>
+        </action>
+        <!-- END DETAILS OBJECT -->
         <action name="logOut" class="action.UsersAction" method="logOut">
             <result name="success">index.jsp</result>
         </action> 
@@ -34,6 +39,9 @@
 		</action>
         <action name="index" class="action.HomeAction" method="getAllCategory">
 			<result name="success">index.jsp</result>
+		</action>
+        <action name="get_users" class="action.UsersAction" method="getUsers">
+			<result name="success">result.jsp</result>
 		</action>
     </package>
     
@@ -58,6 +66,23 @@
 			<result name="success">result.jsp</result>
    		</action>
    		<!-- END CATEGORY -->
+   		<!-- PERIOD -->
+   		<action name="get_period">
+   			<result name="success">get_period.jsp</result>
+   		</action>
+   		<action name="getAllPeriod" class="action.PeriodAction" method="getAllPeriod">
+   			<result name="success">resultAjax.jsp</result>
+   		</action>
+   		<action name="deletePeriod" class="action.PeriodAction" method="deletePeriod">
+			<result name="success">resultAjax.jsp</result>
+   		</action>
+   		<action name="addPeriod" class="action.PeriodAction" method="addPeriod">
+			<result name="success">resultAjax.jsp</result>
+   		</action>
+   		<action name="upadtePeriod" class="action.PeriodAction" method="updatePeriod">
+			<result name="success">resultAjax.jsp</result>
+   		</action>
+   		<!-- END PERIOD -->
    		<action name="selectAction" class="action.ObjectAction" method="display">
 			<result name="none">add_object.jsp</result>
    		</action> 
