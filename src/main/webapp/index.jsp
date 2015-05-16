@@ -63,10 +63,9 @@
 		<div id="blockCategory">
 		
 		<s:iterator value="listCategory">
-        <div class="col-lg-3 col-lg-offset-1">
+        <div class="col-lg-2 col-lg-offset-1">
           <img class="img-circle" src="<s:property value="link_category"/>" width="140" height="140">
           <h2><s:property value="name_f"/></h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
 		</s:iterator>

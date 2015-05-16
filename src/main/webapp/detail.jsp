@@ -99,31 +99,37 @@
 				</div>
 			</s:iterator>
 		</div>
-		<div class="row">
-		</div>
+		<hr>
+		
 		<s:if test="%{#session.firstname!=null}">
-		<div class="row top-buffer">
+		<div class="row">	
 			<div class="col-lg-5 col-lg-offset-1">
-				<form>
-				<div class="form-group">
-						<label for="commentObject">Comment:</label>
-						 <textarea class="form-control" rows="3" id="commentObject"></textarea>
-				</div>
-					<button type="button" class="btn btn-default" onclick="addComment(<s:property value="#session.id_user"/>);">Submit</button>
-				</form>
-			</div>
-		</div></br>
+				 <!-- Comments Form -->
+	                <div class="well">
+	                    <h4>Leave a Comment:</h4>
+	                    <form role="form">
+	                        <div class="form-group">
+	                            <textarea class="form-control" rows="3" id="commentObject"></textarea>
+	                        </div>
+	                        <button type="button" class="btn btn-primary" onclick="addComment(<s:property value="#session.id_user"/>);">Submit</button>
+	                    </form>
+	                </div>
+	         </div>
+         </div>
+
+               
 		<div class="row">
 			<div class="col-lg-5 col-lg-offset-1">
-			<s:iterator value="commentDetail">
-		              <div class="panel panel-primary">
-		                <div class="panel-heading">
-		                    <h3 class="panel-title"><s:property value="pseudo"/></h3>
-		                  </div>
-		                  <div class="panel-body">
-		                    <div class="col-lg-2"><s:property value="text"/><br/></div>
-		                  </div>
-		              </div>
+			
+			<s:iterator value="listCommentAndNameUser">
+				<div class="media">
+	                    <div class="media-body">
+	                        <h4 class="media-heading"><s:property value="pseudo"/>
+	                            <small><s:date name="date" format="dd/MM/yyyy" /> à <s:date name="date" format="hh:mm:ss" /></small>
+	                        </h4>
+	                       <s:property value="text"/>
+	                    </div>
+	            </div>
 			</s:iterator>
 			</div>
 		</div>

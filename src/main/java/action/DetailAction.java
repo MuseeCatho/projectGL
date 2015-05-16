@@ -49,9 +49,11 @@ public class DetailAction extends ActionSupport {
 		listDetail = new ArrayList<Photos>(photosDao.getPhotos(this.id));
 		listComment = new ArrayList<Comment>(commentDao.findCommentById(this.id));
 		listCommentAndNameUser=new ArrayList<CommentDetail>();
-		for (Comment e : listComment) {
-			CommentDetail commentDetail=new CommentDetail(e.getId(),userDao.findUserById(e.getId()).getPseudo(),e.getText(),e.getDate());
-			listCommentAndNameUser.add(commentDetail);
+		if(listComment.size()>0){
+			for (Comment e : listComment) {
+				CommentDetail commentDetail=new CommentDetail(e.getId(),userDao.findUserById(e.getUser_id()).getPseudo(),e.getText(),e.getDate());
+				listCommentAndNameUser.add(commentDetail);
+			}
 		}
 		
 		
