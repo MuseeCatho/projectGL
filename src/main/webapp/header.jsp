@@ -53,9 +53,9 @@
 					
 					
                   </ul>
-                  <form class="navbar-form navbar-left" role="search">
+                  <form class="navbar-form navbar-left" role="search" action="research_action.action">
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Mot-clef">
+                      <input type="text" class="form-control" placeholder="Mot-clef" name="research">
                     </div>
                     <button type="submit" class="btn btn-default">Rechercher</button>
                   </form>

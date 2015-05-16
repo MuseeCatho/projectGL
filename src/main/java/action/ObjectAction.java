@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import mapping.Category;
+import mapping.Comment;
 import mapping.ObjectMuseum;
 import mapping.Period;
 import mapping.Photos;
@@ -141,8 +142,17 @@ public class ObjectAction extends ActionSupport{
 		PeriodDaoImpl periodDao = new PeriodDaoImpl();
 		PhotosDaoImpl photosDao = new PhotosDaoImpl();
 
+		//if recherche est null
+
 		listObject = new ArrayList<ObjectMuseum>(objectDao.getLocations());
 		listObjectPage = new ArrayList<ObjectPage>();
+		
+		//sinon
+
+		//listObject = new ArrayList<ObjectMuseum>(objectDao.getLocations(parametres));
+		//listObjectPage = new ArrayList<ObjectPage>();
+		
+		//......
 
 		for (ObjectMuseum e : listObject) {
 			listPhotos = new ArrayList<Photos>(photosDao.getPhotos(e.getId()));
@@ -164,7 +174,8 @@ public class ObjectAction extends ActionSupport{
 					e.getDescription_f(), e.getLength(), e.getHeigth(),
 					e.getWidth(), e.getArcheologist(), e.getDate(),
 					e.getCity(), e.getLatitude(), e.getLongitude(),
-					periodObject.getName(), photoUnique);
+					periodObject.getName(), 
+					photoUnique);
 			listObjectPage.add(objectPage);
 		}
 		return SUCCESS;
@@ -307,6 +318,7 @@ public class ObjectAction extends ActionSupport{
 	public static void setObjectDao(ObjectDaoImpl objectDao) {
 		ObjectAction.objectDao = objectDao;
 	}
+	
 
 }
 

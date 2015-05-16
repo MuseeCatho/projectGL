@@ -25,6 +25,7 @@ public class PeriodAction extends ActionSupport{
 	private String date;
 	private String description_e;
 	private String description_f;
+	private String orderPeriod;
 
 	public String getAllPeriod(){
 		System.out.println("getAllCategory");
@@ -44,13 +45,51 @@ public class PeriodAction extends ActionSupport{
 		Period period=periodDao.getPeriodId(new Integer(this.id_category));
 		periodDao.deletePeriod(period);
 		
+		List<Period> listPeriodBis=(List<Period>) periodDao.getPeriodByOrder(period.getOrder(),period.getOrder());
+		for(Period e:listPeriodBis){
+			e.setOrder(e.getOrder()-1);
+			periodDao.updatePeriod(e);
+		}
+		
 		return SUCCESS;
+	}
+	public String updatePeriod(){
+		
+		PeriodDaoImpl periodDao = new PeriodDaoImpl();
+		
+		Period period=periodDao.getPeriodId(new Integer(this.id_category));
+		if(periodDao.getUniquePeriodByOrder(new Integer(this.orderPeriod))!=null){
+			changeOrder(new Integer(this.orderPeriod),period.getOrder());
+		}
+		
+		period.setOrder(new Integer(this.orderPeriod));
+		periodDao.updatePeriod(period);
+		
+		return SUCCESS;
+	}
+	public void changeOrder(Integer order,Integer oldValue){
+		PeriodDaoImpl periodDao = new PeriodDaoImpl();
+		//on regarde si le numéro est deja utilisé
+				List<Period> listPeriodBis=(List<Period>) periodDao.getPeriodByOrder(order,oldValue);
+				for(Period e:listPeriodBis){
+					e.setOrder(e.getOrder()+1);
+					periodDao.updatePeriod(e);
+				}
 	}
 	
 	public String addPeriod(){
 		
 		PeriodDaoImpl periodDao = new PeriodDaoImpl();
-		Period period =new Period(new Integer(0),this.title_period,this.date,this.description_e,this.description_f);
+		
+		listPeriod =new ArrayList<Period>( periodDao.getPeriod());
+		int max=0;
+		for (int i=1;i<listPeriod.size();i++){
+			if(listPeriod.get(i).getOrder()>listPeriod.get(i-1).getOrder()){
+				max=listPeriod.get(i).getOrder();
+			}
+		}
+		
+		Period period =new Period(new Integer(0),max+1,this.title_period,this.date,this.description_e,this.description_f);
 		periodDao.insertPeriod(period);
 		return SUCCESS;
 	}
@@ -108,5 +147,13 @@ public class PeriodAction extends ActionSupport{
 
 	public void setDescription_f(String description_f) {
 		this.description_f = description_f;
+	}
+
+	public String getOrderPeriod() {
+		return orderPeriod;
+	}
+
+	public void setOrderPeriod(String orderPeriod) {
+		this.orderPeriod = orderPeriod;
 	}
 }

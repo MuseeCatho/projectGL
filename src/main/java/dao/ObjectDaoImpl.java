@@ -11,6 +11,7 @@ import mapping.User;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
 import bdd.HibernateUtil;
@@ -38,6 +39,18 @@ public class ObjectDaoImpl implements ObjectDao<ObjectMuseum, Integer>{
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction(); 
 		Criteria cr = session.createCriteria(ObjectMuseum.class);
+		List<ObjectMuseum> results = cr.list();
+		return results;
+	}
+	
+	public Collection<ObjectMuseum> getObjectResearch(String research){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction(); 
+
+		Criteria cr = session.createCriteria(ObjectMuseum.class);
+		cr.add(Restrictions.eq("title_f",research));
+		//Criterion c1 = Restrictions.ilike(research, cr);
+	  //  cr.add(c1);
 		List<ObjectMuseum> results = cr.list();
 		return results;
 	}

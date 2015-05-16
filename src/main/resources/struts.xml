@@ -17,9 +17,14 @@
         <action name="getLocationForMap" class="action.MapAction" method="getLocation">
             <result name="success">result.jsp</result>
         </action>
+        <!-- DETAILS OBJECT -->
         <action name="detailObject" class="action.DetailAction" method="showdetail">
             <result name="success">detail.jsp</result>
         </action>
+        <action name="addComment" class="action.CommentsAction" method="addComment">
+            <result name="success">result.jsp</result>
+        </action>
+        <!-- END DETAILS OBJECT -->
         <action name="logOut" class="action.UsersAction" method="logOut">
             <result name="success">index.jsp</result>
         </action> 
@@ -37,6 +42,9 @@
 		</action>
 		<action name="upload_file" class="action.FileUpload">
 			<result name="success">result.jsp</result>
+		</action>
+		<action name="research_action" class="action.ResearchAction" method="research">
+			<result name="success">result_research.jsp</result>
 		</action>
     </package>
     
@@ -72,6 +80,9 @@
 			<result name="success">resultAjax.jsp</result>
    		</action>
    		<action name="addPeriod" class="action.PeriodAction" method="addPeriod">
+			<result name="success">resultAjax.jsp</result>
+   		</action>
+   		<action name="upadtePeriod" class="action.PeriodAction" method="updatePeriod">
 			<result name="success">resultAjax.jsp</result>
    		</action>
    		<!-- END PERIOD -->
