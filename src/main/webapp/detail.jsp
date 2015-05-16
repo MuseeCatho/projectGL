@@ -4,6 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script src="js/jquery.js"></script>
+<script src="js/comment.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="css/mediaCarousel.css">
@@ -87,22 +88,53 @@
 					</div>
 
 					<div id="video" style="clear: both;">
-						<h4>Regarder la vidï¿½o de l'objet :</h4>
+						<h4>Regarder la vidéo de l'objet :</h4>
 						<iframe width="400" height="225"
 							src="https://www.youtube.com/embed/LqTyPFFS8fg" frameborder="0"
 							allowfullscreen></iframe>
 					</div>
 
-					<div style="margin-top: 30px;">
-						<h4>Ajouter un commentaire :</h4>
-						<textarea style="margin: 0px; height: 150px; width: 420px;">
-
-</textarea>
-					</div>
+					
 
 				</div>
 			</s:iterator>
 		</div>
+		<hr>
+		
+		<s:if test="%{#session.firstname!=null}">
+		<div class="row">	
+			<div class="col-lg-5 col-lg-offset-1">
+				 <!-- Comments Form -->
+	                <div class="well">
+	                    <h4>Leave a Comment:</h4>
+	                    <form role="form">
+	                        <div class="form-group">
+	                            <textarea class="form-control" rows="3" id="commentObject"></textarea>
+	                        </div>
+	                        <button type="button" class="btn btn-primary" onclick="addComment(<s:property value="#session.id_user"/>);">Submit</button>
+	                    </form>
+	                </div>
+	         </div>
+         </div>
+
+               
+		<div class="row">
+			<div class="col-lg-5 col-lg-offset-1">
+			
+			<s:iterator value="listCommentAndNameUser">
+				<div class="media">
+	                    <div class="media-body">
+	                        <h4 class="media-heading"><s:property value="pseudo"/>
+	                            <small><s:date name="date" format="dd/MM/yyyy" /> à <s:date name="date" format="hh:mm:ss" /></small>
+	                        </h4>
+	                       <s:property value="text"/>
+	                    </div>
+	            </div>
+			</s:iterator>
+			</div>
+		</div>
+		</s:if>
+		
 
 
 

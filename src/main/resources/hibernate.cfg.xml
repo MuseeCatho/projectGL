@@ -19,5 +19,6 @@
         <mapping resource="table/Photos.hbm.xml"></mapping>
         <mapping resource="table/Category.hbm.xml"></mapping>
         <mapping resource="table/ObjectCategory.hbm.xml"></mapping>
+        <mapping resource="table/Comments.hbm.xml"></mapping>
     </session-factory>
 </hibernate-configuration>

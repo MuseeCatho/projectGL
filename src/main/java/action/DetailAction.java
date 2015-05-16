@@ -4,16 +4,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import mapping.Comment;
 import mapping.ObjectMuseum;
 import mapping.Period;
 import mapping.Photos;
+import bean.CommentDetail;
 import bean.DetailPage;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import dao.CommentDaoImpl;
 import dao.ObjectDaoImpl;
 import dao.PeriodDaoImpl;
 import dao.PhotosDaoImpl;
+import dao.UserDaoImpl;
 
 public class DetailAction extends ActionSupport {
 
@@ -24,6 +28,8 @@ public class DetailAction extends ActionSupport {
 	private List <String>listPhoto;
 	private Collection<Photos> photosObject;
 	private ArrayList<Photos> listDetail;
+	private ArrayList<Comment> listComment;
+	private ArrayList<CommentDetail> listCommentAndNameUser;
 	private String periodObjectString;
 	private String listPhotoString;
 	
@@ -34,11 +40,21 @@ public class DetailAction extends ActionSupport {
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
 		PeriodDaoImpl periodDao = new PeriodDaoImpl();
 		PhotosDaoImpl photosDao = new PhotosDaoImpl();
+		CommentDaoImpl commentDao = new CommentDaoImpl();
+		UserDaoImpl userDao = new UserDaoImpl();
 
 		listDetailPage = new ArrayList();
 		listPhoto = new ArrayList<String>();
 		listObject = new ArrayList<ObjectMuseum>(objectDao.getOeuvres(this.id));
 		listDetail = new ArrayList<Photos>(photosDao.getPhotos(this.id));
+		listComment = new ArrayList<Comment>(commentDao.findCommentById(this.id));
+		listCommentAndNameUser=new ArrayList<CommentDetail>();
+		if(listComment.size()>0){
+			for (Comment e : listComment) {
+				CommentDetail commentDetail=new CommentDetail(e.getId(),userDao.findUserById(e.getUser_id()).getPseudo(),e.getText(),e.getDate());
+				listCommentAndNameUser.add(commentDetail);
+			}
+		}
 		
 		
 		for (ObjectMuseum e : listObject) {
@@ -162,6 +178,22 @@ public class DetailAction extends ActionSupport {
 
 	public void setListDetail(ArrayList<Photos> listDetail) {
 		this.listDetail = listDetail;
+	}
+	public ArrayList<Comment> getListComment() {
+		return listComment;
+	}
+
+	public void setListComment(ArrayList<Comment> listComment) {
+		this.listComment = listComment;
+	}
+
+	public ArrayList<CommentDetail> getListCommentAndNameUser() {
+		return listCommentAndNameUser;
+	}
+
+	public void setListCommentAndNameUser(
+			ArrayList<CommentDetail> listCommentAndNameUser) {
+		this.listCommentAndNameUser = listCommentAndNameUser;
 	}
 	
 
