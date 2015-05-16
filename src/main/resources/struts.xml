@@ -40,9 +40,11 @@
         <action name="index" class="action.HomeAction" method="getAllCategory">
 			<result name="success">index.jsp</result>
 		</action>
+		<action name="upload_file" class="action.FileUpload">
+			<result name="success">result.jsp</result>
+		</action>
 		<action name="research_action" class="action.ResearchAction" method="research">
 			<result name="success">result_research.jsp</result>
-
 		</action>
     </package>
     
