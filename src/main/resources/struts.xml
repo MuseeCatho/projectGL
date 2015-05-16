@@ -35,6 +35,9 @@
         <action name="index" class="action.HomeAction" method="getAllCategory">
 			<result name="success">index.jsp</result>
 		</action>
+		<action name="upload_file" class="action.FileUpload">
+			<result name="success">result.jsp</result>
+		</action>
     </package>
     
     <package name="test" namespace="/admin" extends="struts-default">

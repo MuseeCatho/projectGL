@@ -11,7 +11,7 @@
 </head>
 <body>
 <h3>Ajax File Upload with Progress Bar</h3>
- <form id="UploadForm" action="UploadFile" method="post" enctype="multipart/form-data">
+ <form id="UploadForm" action="upload_file.action" method="post" enctype="multipart/form-data">
     <input type="file" size="60" id="myfile" name="myfile"> 
      <input type="submit" value="Ajax File Upload">
        <div id="progressbox">
