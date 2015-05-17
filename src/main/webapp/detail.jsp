@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="js/jquery.js"></script>
 <script src="js/comment.js"></script>
 <link rel="stylesheet"
@@ -48,13 +48,8 @@
 							<div class="tablecell">
 								<s:iterator value="listDetail">
 									<div id="photoDetail">
-										<img id="listPhotosImg"
-											src="<s:property value="link_photos"/>"
-											class="img-responsive" alt="Responsive image"> <a
-											class="cursor_delete" onmouseover=""
-											onclick="delete_category(<s:property value="id"/>)"><img
-											class="cancel_category" src="img/icon/cancel.png" width="30"
-											height="30"></a>
+										<img id="listPhotosImg"	src="<s:property value="link_photos"/>"	class="img-responsive" alt="Responsive image"> 
+										<a class="cursor_delete" onmouseover=""	onclick="addProposition('image', <s:property value="id"/>,'delete')"><img class="cancel_category" src="img/icon/cancel.png" width="30" height="30"></a>
 									</div>
 								</s:iterator>
 							</div>

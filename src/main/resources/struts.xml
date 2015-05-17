@@ -20,6 +20,9 @@
             <result name="success">result.jsp</result>
         </action>
         <!-- DETAILS OBJECT -->
+        <action name="addProposition" class="action.DetailAction" method="addProposition">
+            <result name="success">detail.jsp</result>
+   		</action>
         <action name="detailObject" class="action.DetailAction" method="showdetail">
             <result name="success">detail.jsp</result>
         </action>
