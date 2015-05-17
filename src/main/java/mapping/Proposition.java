@@ -61,7 +61,7 @@ public class Proposition implements java.io.Serializable {
 	public void setId_enrichments(Integer id_enrichments) {
 		this.id_enrichments = id_enrichments;
 	}
-	public Proposition(int id, Date date, String etat, String type, int id_audio, int id_photos, int id_videos, int id_enrichments){
+	public Proposition(Integer id, Date date, String etat, String type, int id_audio, int id_photos, int id_videos, int id_enrichments){
 		this.id=id;
 		this.date=date;
 		this.etat=etat;
