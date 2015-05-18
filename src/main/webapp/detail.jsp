@@ -29,9 +29,7 @@
 						Oeuvre <span id="titleDetail"><s:property value="title_f" /></span>
 					</h1>
 					<div id="modification">
-						<input type=button class="btn btn-primary navbar-btn"
-							role="button" value="Proposer une modification"
-							onClick="hideEnr();">
+						<input type=button class="btn btn-primary navbar-btn" role="button" value="Proposer une modification" id="buttonChange" onClick="hideEnr();">
 					</div>
 				</div>
 				<div class="row">
@@ -55,7 +53,7 @@
 							</div>
 							<div id="ajoutImage">
 								<input type=button class="btn btn-primary navbar-btn"
-									role="button" value="Ajouter une image">
+									role="button" value="Ajouter une image" >
 							</div>
 						</div>
 						<div class="panel panel-default" id="descriptionDetail">
@@ -93,15 +91,7 @@
 
 				</div>
 			</s:iterator>
-			<div class="row">
-				<div id="object" id="commentaireDetail" class="col-md-4">
-					<h4>Ajouter un commentaire :</h4>
-					<textarea id="commentaireDetailTextarea"></textarea>
-				</div>
-			</div>
-		</div>
-		<hr>
-
+			<hr>
 		<s:if test="%{#session.firstname!=null}">
 			<div class="row">
 				<div class="col-lg-5 col-lg-offset-1">
@@ -139,6 +129,8 @@
 			</div>
 	</div>
 	</s:if>
+		</div>
+		
 
 
 
