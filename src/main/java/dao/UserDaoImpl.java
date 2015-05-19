@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import mapping.Period;
 import mapping.User;
 
 import org.hibernate.Criteria;
@@ -46,6 +47,13 @@ public class UserDaoImpl implements UserDao<User, Integer>{
 		cr.add(Restrictions.eq("id",id));
 		User user = (User) cr.uniqueResult();
 		return user;
+	}
+	
+	public void updateUser(User entity){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();    
+        session.update(entity);
+        session.getTransaction().commit();
 	}
 	
 	public void insertUser(User entity) {

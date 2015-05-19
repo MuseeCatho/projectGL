@@ -36,43 +36,6 @@ initialize = function(){
         disableDefaultUI: true
     }
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-/*     var myLatLng = new google.maps.LatLng(48.583148,7.747882);
-    var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        title: 'Strasbourg'
-    });
-
-    var myLatLng2 = new google.maps.LatLng(47.218371,-1.553621);
-    var marker2 = new google.maps.Marker({
-        position: myLatLng2,
-        map: map,
-        title: 'Nantes'
-    }); */
-
-  
-
-
-/* 
-    var contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">Livre biblique</h1>'+
-      '<div id="bodyContent">'+
-      '<p>descriptionss</p>'+
-      '</div>'+
-      '</div>';
-
-  var infowindow = new google.maps.InfoWindow({
-      content: contentString
-  });
-
-  google.maps.event.addListener(marker2, 'click', function() {
-    infowindow.open(map,marker2);
-  });
-  */
-  
   
   getPosition(map);
   
