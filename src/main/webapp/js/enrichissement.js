@@ -1,6 +1,5 @@
 var arrayImage1 = new Array();
 var arrayImage2 = new Array();
-var arrayImage = new Array(arrayImage1, arrayImage2);
 var object = {};
 
 function hideEnr(idUser) {
@@ -13,11 +12,35 @@ function hideEnr(idUser) {
 		if (r == true) {
 			SaveModif(arrayImage2, object, idUser);
 			$('#buttonChange').val('Proposer une modification');
+			for (var int = 0; int < arrayImage1.length; int++) {
+				$('#icon_cancel' + arrayImage1[int]).css('display', 'inherit');
+				$('#icon_ok' + arrayImage1[int]).css('display', 'none');
+			}
 			arrayImage1 = [];
 			arrayImage2 = [];
 			$('#carouselPhotos').toggle();
 			$('#listPhotos').toggle();
 		}
+	}
+}
+
+function changeState(id) {
+	$('#icon_cancel' + id).toggle();
+	$('#icon_ok' + id).toggle();
+	if ($.inArray(id, arrayImage1) == -1) {
+		arrayImage1.push(id);
+	}
+}
+
+function cancelProposition(type, id) {
+	var r = confirm("Voulez-vous annuler votre proposition de modification?");
+	if (r == true) {
+		for (var int = 0; int < arrayImage2.length; int++) {
+			if (arrayImage2[int].id_photos == id) {
+				arrayImage2 = arrayImage2.slice(1);
+			}
+		}
+		changeState(id);
 	}
 }
 
@@ -40,10 +63,10 @@ function addProposition(type, id, etat) {
 				"id_videos" : id_videos,
 			}
 
-			arrayImage1.push(id_photos);
 			arrayImage2.push(object);
-		}
 
+			changeState(id);
+		}
 	}
 
 	return object;

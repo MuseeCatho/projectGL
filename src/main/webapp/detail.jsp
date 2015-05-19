@@ -49,14 +49,14 @@
 						<div id="listPhotos">
 							<div class="tablecell">
 								<s:iterator value="listDetail">
-									<div id="photoDetail">
-										<img id="listPhotosImg"
-											src="<s:property value="link_photos"/>"
-											class="img-responsive" alt="Responsive image"> <a
-											class="cursor_delete" onmouseover=""
-											onclick="addProposition('image', <s:property value="id"/>,'delete')"><img
-											class="cancel_category" src="img/icon/cancel.png" width="30"
-											height="30"></a>
+									<div id="photoDetail">										
+										<img id="listPhotosImg" src="<s:property value="link_photos"/>"	class="img-responsive" alt="Responsive image"> 
+										<a class="cursor_ok" onclick="cancelProposition('image',<s:property value="id"/>)">
+											<img class="ok_category icon_ok" " src="img/icon/ok.png" id="icon_ok<s:property value="id"/>" width="30" height="30">
+										</a> 
+										<a class="cursor_delete" onclick="addProposition('image', <s:property value="id"/>,'delete')">
+											<img class="cancel_category icon_cancel" src="img/icon/cancel.png" id="icon_cancel<s:property value="id"/>" width="30" height="30">
+										</a>
 									</div>
 								</s:iterator>
 							</div>

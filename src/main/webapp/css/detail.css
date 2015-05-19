@@ -92,3 +92,9 @@ display: table;
 #ajoutImage{
 	float: right;
 }
+.icon_ok{
+	display: none;
+}
+.icon_cancel{
+	display: inherit;
+}
