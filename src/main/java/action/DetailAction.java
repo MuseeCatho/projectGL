@@ -1,12 +1,16 @@
 package action;
 
+	
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import mapping.Category;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import mapping.Comment;
+import mapping.Enrichments;
 import mapping.ObjectMuseum;
 import mapping.Period;
 import mapping.Photos;
@@ -14,10 +18,11 @@ import mapping.Proposition;
 import bean.CommentDetail;
 import bean.DetailPage;
 
+import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 
-import dao.CategoryDaoImpl;
 import dao.CommentDaoImpl;
+import dao.EnrichmentsDaoImpl;
 import dao.ObjectDaoImpl;
 import dao.PeriodDaoImpl;
 import dao.PhotosDaoImpl;
@@ -33,8 +38,41 @@ public class DetailAction extends ActionSupport {
 	private List <String>listPhoto;
 	private Collection<Photos> photosObject;
 	private ArrayList<Photos> listDetail;
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+
+	public int getObject_id() {
+		return object_id;
+	}
+
+	public void setObject_id(int object_id) {
+		this.object_id = object_id;
+	}
+
+	public String getNew_description() {
+		return new_description;
+	}
+
+	public void setNew_description(String new_description) {
+		this.new_description = new_description;
+	}
+
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
 	private ArrayList<Comment> listComment;
 	private ArrayList<CommentDetail> listCommentAndNameUser;
+	private ArrayList<Enrichments> listEnrichments;
 	private String periodObjectString;
 	private String listPhotoString;
 
@@ -45,6 +83,11 @@ public class DetailAction extends ActionSupport {
 	private Integer id_photos;
 	private Integer id_videos;
 	private Integer id_enrichments;
+	private int user_id;
+	private int object_id;
+	private String new_description;
+	private String source;
+	private Object result;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -55,7 +98,7 @@ public class DetailAction extends ActionSupport {
 		PhotosDaoImpl photosDao = new PhotosDaoImpl();
 		CommentDaoImpl commentDao = new CommentDaoImpl();
 		UserDaoImpl userDao = new UserDaoImpl();
-
+		
 		listDetailPage = new ArrayList();
 		listPhoto = new ArrayList<String>();
 		listObject = new ArrayList<ObjectMuseum>(objectDao.getOeuvres(this.id));
@@ -68,7 +111,6 @@ public class DetailAction extends ActionSupport {
 				listCommentAndNameUser.add(commentDetail);
 			}
 		}
-		
 		
 		for (ObjectMuseum e : listObject) {
 
@@ -109,12 +151,35 @@ public class DetailAction extends ActionSupport {
 	}
 
 	public String addProposition(){
-		System.out.println("As");
 		PropositionDaoImpl propositionDao = new PropositionDaoImpl();
 		Proposition proposition =new Proposition(new Integer(0),this.date, this.etat, this.type,this.id_audio,this.id_photos, this.id_videos, this.id_enrichments);
-		propositionDao.insertProposition(proposition);
+		propositionDao.insertProposition(proposition);	
 		
 		return SUCCESS;
+	}
+	
+	public String addEnrichments(){
+		EnrichmentsDaoImpl enrichmentsDao = new EnrichmentsDaoImpl();
+		Enrichments enrichments =new Enrichments(new Integer(0), this.user_id, this.object_id, this.new_description,this.source);
+		enrichmentsDao.insertEnrichments(enrichments);
+		return SUCCESS;
+	}
+	
+	public String getLastEnrichmentId(){
+
+		EnrichmentsDaoImpl enrichmentsDao = new EnrichmentsDaoImpl();
+		
+		listEnrichments = new ArrayList<Enrichments>(enrichmentsDao.getEnrichments());
+		Gson gson = new Gson();		
+		result = gson.toJson(listEnrichments);
+		return SUCCESS;
+	}
+	public Object getResult() {
+		return result;
+	}
+
+	public void setResult(Object result) {
+		this.result = result;
 	}
 
 	public String getPeriodObjectString() {
@@ -135,6 +200,14 @@ public class DetailAction extends ActionSupport {
 
 	public Date getDate() {
 		return date;
+	}
+
+	public ArrayList<Enrichments> getListEnrichments() {
+		return listEnrichments;
+	}
+
+	public void setListEnrichments(ArrayList<Enrichments> listEnrichments) {
+		this.listEnrichments = listEnrichments;
 	}
 
 	public void setDate(Date date) {

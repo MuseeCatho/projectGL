@@ -20,8 +20,14 @@
             <result name="success">result.jsp</result>
         </action>
         <!-- DETAILS OBJECT -->
+        <action name="getLastEnrichmentId" class="action.DetailAction" method="getLastEnrichmentId">
+            <result name="success">result.jsp</result>
+   		</action>
+        <action name="addEnrichments" class="action.DetailAction" method="addEnrichments">
+            <result name="success">result.jsp</result>
+   		</action>
         <action name="addProposition" class="action.DetailAction" method="addProposition">
-            <result name="success">detail.jsp</result>
+            <result name="success">result.jsp</result>
    		</action>
         <action name="detailObject" class="action.DetailAction" method="showdetail">
             <result name="success">detail.jsp</result>
