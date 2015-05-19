@@ -172,7 +172,6 @@ public class DetailAction extends ActionSupport {
 		listEnrichments = new ArrayList<Enrichments>(enrichmentsDao.getEnrichments());
 		Gson gson = new Gson();		
 		result = gson.toJson(listEnrichments);
-		System.out.println("getLastEnrichmentId -- json"+result);
 		return SUCCESS;
 	}
 	public Object getResult() {

@@ -91,7 +91,6 @@ function getLastEnrichmentsId() {
 		context : this,
 		success : function(data) {
 			var res = data.replace(/&quot;/g, "\"");
-			alert(res);
 			var jsoParse = JSON.parse(res);
 			var lastIdEnr;
 			for (var i = 0; i < jsoParse.length; i++) {
@@ -100,7 +99,6 @@ function getLastEnrichmentsId() {
 			return lastIdEnr;
 		}
 	});
-	alert(lastIdEnr);
 }
 
 function SaveModif(arrayImage2, object, idUser) {
