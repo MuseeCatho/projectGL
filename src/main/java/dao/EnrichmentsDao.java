@@ -7,4 +7,5 @@ import mapping.Enrichments;
 public interface EnrichmentsDao<Enrichments, Integer> {
 	
 	public void insertEnrichments(Enrichments entity);
+	public Collection<Enrichments> getEnrichments();
 }
