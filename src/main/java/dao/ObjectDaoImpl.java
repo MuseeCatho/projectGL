@@ -48,15 +48,16 @@ public class ObjectDaoImpl implements ObjectDao<ObjectMuseum, Integer>{
 	public Collection<ObjectMuseum> getObjectResearch(String research){
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction(); 
-        ArrayList<String> list=new ArrayList<String>();
+        ArrayList<String> listObject=new ArrayList<String>();
         String[] parts = research.split(" ");
-    	for(String s : parts) list.add(s);
+    	for(String s : parts) listObject.add(s);
 		Criteria cr = session.createCriteria(ObjectMuseum.class);
 		Disjunction disjunction = Restrictions.disjunction();//Permet de faire des operations OR
 		
-		for(String o:list){
-			o+="%";
-			disjunction.add(Restrictions.ilike("title_f", o));
+		for(String object:listObject){
+			object= "%"+object;
+			object+="%";
+			disjunction.add(Restrictions.ilike("title_f", object));
 			cr.add(disjunction);
 		}
 		List<ObjectMuseum> results = cr.list();
