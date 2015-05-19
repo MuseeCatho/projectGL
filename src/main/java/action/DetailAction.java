@@ -2,21 +2,26 @@ package action;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
+import mapping.Category;
 import mapping.Comment;
 import mapping.ObjectMuseum;
 import mapping.Period;
 import mapping.Photos;
+import mapping.Proposition;
 import bean.CommentDetail;
 import bean.DetailPage;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import dao.CategoryDaoImpl;
 import dao.CommentDaoImpl;
 import dao.ObjectDaoImpl;
 import dao.PeriodDaoImpl;
 import dao.PhotosDaoImpl;
+import dao.PropositionDaoImpl;
 import dao.UserDaoImpl;
 
 public class DetailAction extends ActionSupport {
@@ -32,6 +37,14 @@ public class DetailAction extends ActionSupport {
 	private ArrayList<CommentDetail> listCommentAndNameUser;
 	private String periodObjectString;
 	private String listPhotoString;
+
+	private Date date;
+	private String etat;
+	private String type;
+	private Integer id_audio;
+	private Integer id_photos;
+	private Integer id_videos;
+	private Integer id_enrichments;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -82,8 +95,6 @@ public class DetailAction extends ActionSupport {
 	        else{
 		        periodObjectString=periodObject.getName();
 	        }
-			
-			
 			DetailPage objectPage = new DetailPage(this.id,
 					e.getPeriod_id(), e.getTitle_f(), e.getTitle_e(),
 					e.getCountry(), e.getReference(), e.getDescription_e(),
@@ -97,12 +108,86 @@ public class DetailAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public void Split(String Str){
-		for (String retval: Str.split("[", 1)){
-	         System.out.println(retval);
-	      }
+	public String addProposition(){
+		System.out.println("As");
+		PropositionDaoImpl propositionDao = new PropositionDaoImpl();
+		Proposition proposition =new Proposition(new Integer(0),this.date, this.etat, this.type,this.id_audio,this.id_photos, this.id_videos, this.id_enrichments);
+		propositionDao.insertProposition(proposition);
+		
+		return SUCCESS;
 	}
 
+	public String getPeriodObjectString() {
+		return periodObjectString;
+	}
+
+	public void setPeriodObjectString(String periodObjectString) {
+		this.periodObjectString = periodObjectString;
+	}
+
+	public String getListPhotoString() {
+		return listPhotoString;
+	}
+
+	public void setListPhotoString(String listPhotoString) {
+		this.listPhotoString = listPhotoString;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getEtat() {
+		return etat;
+	}
+
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Integer getId_audio() {
+		return id_audio;
+	}
+
+	public void setId_audio(Integer id_audio) {
+		this.id_audio = id_audio;
+	}
+
+	public Integer getId_photos() {
+		return id_photos;
+	}
+
+	public void setId_photos(Integer id_photos) {
+		this.id_photos = id_photos;
+	}
+
+	public Integer getId_videos() {
+		return id_videos;
+	}
+
+	public void setId_videos(Integer id_videos) {
+		this.id_videos = id_videos;
+	}
+
+	public Integer getId_enrichments() {
+		return id_enrichments;
+	}
+
+	public void setId_enrichments(Integer id_enrichments) {
+		this.id_enrichments = id_enrichments;
+	}
 
 	public List getListDetailPage() {
 		return listDetailPage;
@@ -116,12 +201,9 @@ public class DetailAction extends ActionSupport {
 		return listPhoto;
 	}
 
-	public void setListPhoto(List listPhoto) {
+	public void setListPhoto(List<String> listPhoto) {
 		this.listPhoto = listPhoto;
 	}
-
-
-
 
 	public int getId() {
 		return id;
