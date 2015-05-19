@@ -15,5 +15,6 @@ public interface UserDao<User, Integer> {
 	
 	public void insertUser(User entity);
 	public User findUserById(Integer id);
+	public void updateUser(User entity);
 
 }

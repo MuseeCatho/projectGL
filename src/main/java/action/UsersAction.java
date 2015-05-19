@@ -9,6 +9,7 @@ import java.util.Map;
 
 import mapping.User;
 
+import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -30,7 +31,9 @@ public class UsersAction extends ActionSupport{
 	private String job;	
 	private String password;
 	private int result;
+	private String resultAjax;
 	private int admin;
+	private int id;
 
 
 
@@ -71,6 +74,31 @@ public class UsersAction extends ActionSupport{
        session.remove("firstname");
        return SUCCESS;
    }
+	public String getInfoProfil(){
+		UserDaoImpl userDao=new UserDaoImpl();
+		User user=userDao.findUserById(this.id);
+		
+		Gson gson = new Gson();
+		resultAjax = gson.toJson(user);
+		System.out.println(resultAjax);
+		
+		
+		return SUCCESS;
+	}
+	public String updateProfil(){
+		UserDaoImpl userDao=new UserDaoImpl();
+		User user=userDao.findUserById(this.id);
+		user.setPseudo(this.pseudo);
+		user.setFirstname(this.firstname);
+		user.setName(this.name);
+		user.setCountry(this.country);
+		user.setCity(this.city);
+		user.setMail(this.email);
+		user.setJob(this.job);
+		userDao.updateUser(user);
+		return SUCCESS;
+	}
+	
 	 
 	 public String addUser() throws Exception {
 		 UserDaoImpl userDao=new UserDaoImpl();
@@ -83,17 +111,9 @@ public class UsersAction extends ActionSupport{
 		 System.out.println("addUser - country : "+this.country);
 		 System.out.println("addUser - city : "+this.city);
 		 System.out.println("addUser - job : "+this.job);
-		 
-        
-		 
+ 
 		 User user = new User(new Integer(0), this.firstname, this.name,hashPassword(this.password),this.job, this.pseudo, this.country, this.city,this.email, new Integer(0), new Integer(0));
-		 userDao.insertUser(user);
-		 
-
-	 
-	        
-	        
-		 
+		 userDao.insertUser(user);    
 		 result=0;
 		 
 	       return SUCCESS;
@@ -230,5 +250,23 @@ public class UsersAction extends ActionSupport{
 	public void setJob(String job) {
 		this.job = job;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getResultAjax() {
+		return resultAjax;
+	}
+
+	public void setResultAjax(String resultAjax) {
+		this.resultAjax = resultAjax;
+	}
+	
+	
 
 }
