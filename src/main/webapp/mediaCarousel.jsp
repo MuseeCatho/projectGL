@@ -1,66 +1,60 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	String mediaType = request.getParameter("mediaType");
-	String mediaRepository = request.getParameter("mediaRepository");
 	String mediaNamesString = request.getParameter("mediaNames");
 	String width = request.getParameter("width");
 	String height = request.getParameter("height");
 	String mediaCarouselId = request.getParameter("mediaCarouselId");
-	if (mediaType != null && mediaRepository != null
-			&& mediaNamesString != null) {
+	if (mediaType != null && mediaNamesString != null) {
 		String[] mediaNames = mediaNamesString.split(",");
 		//String mediaCarouselId = MD5.crypt(mediaType + mediaNames);
 %>
-
 <!-- <div class="mediaContainer">-->
 <div id="<%=mediaCarouselId%>" class="mediaCarousel carousel slide"
 	data-ride="carousel" style="width:<%=width%>;height:<%=height%>;">
 	<!-- Carousel indicators -->
 	<ol class="carousel-indicators">
 		<%
-				for (int i = 0; i < mediaNames.length; i++) {
-			%>
+			for (int i = 0; i < mediaNames.length; i++) {
+		%>
 		<li data-target="#<%=mediaCarouselId%>" data-slide-to="<%=i%>"
 			<%if (i == 0) {%> class="active">
 			<%
-					}
-				%>
-		</li>
-		<%
 				}
 			%>
+		</li>
+		<%
+			}
+		%>
 	</ol>
 	<!-- Carousel items -->
 	<div class="carousel-inner">
 		<%
-				for (int i = 0; i < mediaNames.length; i++) {
-			%>
+			for (int i = 0; i < mediaNames.length; i++) {
+		%>
 		<div class="item <%if (i == 0) {%>active<%}%>">
 			<%
-					if (mediaType.equals("image")) {
-				%>
-			<!--  for an image : -->
+				if (mediaType.equals("image")) {
+			%>
+			<!-- for an image : -->
 			<p class="mediaCarousel_item" style="line-height:<%=height%>;">
-				<img src="<%=mediaRepository + "/" + mediaNames[i]%>"
-					alt="slide <%=i + 1%>" data-toggle="modal"
-					data-target="#<%=mediaCarouselId%>Modal<%=i%>" />
+				<img src="<%=mediaNames[i]%>" alt="slide <%=i + 1%>"
+					data-toggle="modal" data-target="#<%=mediaCarouselId%>Modal<%=i%>" />
 			</p>
 			<%
-					} else if (mediaType.equals("audio")) {
-				%>
-			<!--  for an audio : -->
-
+				} else if (mediaType.equals("audio")) {
+			%>
+			<!-- for an audio : -->
 			<%
-					} else if (mediaType.equals("video")) {
-				%>
-			<!--  for a video : -->
+				} else if (mediaType.equals("video")) {
+			%>
+			<!-- for a video : -->
 			<div class="video-jsContainer">
 				<video id="video<%=i%>" class="video-js vjs-default-skin" controls
 					preload="auto"
 					poster="http://video-js.zencoder.com/oceans-clip.png"
 					data-setup='{"example_option":true}'>
-					<source src="<%=mediaRepository + "/" + mediaNames[i]%>"
-						type='video/mp4' />
+					<source src="<%=mediaNames[i]%>" type='video/mp4' />
 					<p class="vjs-no-js">
 						To view this video please enable JavaScript, and consider
 						upgrading to a web browser that <a
@@ -70,12 +64,12 @@
 				</video>
 			</div>
 			<%
-					}
-				%>
-		</div>
-		<%
 				}
 			%>
+		</div>
+		<%
+			}
+		%>
 	</div>
 	<!-- Controls -->
 	<a class="left carousel-control" href="#<%=mediaCarouselId%>"
@@ -88,7 +82,6 @@
 		class="sr-only">Next</span>
 	</a>
 </div>
-
 <!-- modals : -->
 <%
 	if (mediaType.equals("image")) {
@@ -104,7 +97,7 @@
 					aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
-				<img src="<%=mediaRepository + "/" + mediaNames[i]%>" />
+				<img src="<%=mediaNames[i]%>" />
 			</div>
 		</div>
 	</div>

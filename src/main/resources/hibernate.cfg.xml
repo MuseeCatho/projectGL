@@ -20,5 +20,7 @@
         <mapping resource="table/Category.hbm.xml"></mapping>
         <mapping resource="table/ObjectCategory.hbm.xml"></mapping>
         <mapping resource="table/Comments.hbm.xml"></mapping>
+        <mapping resource="table/Enrichments.hbm.xml"></mapping>
+        <mapping resource="table/Proposition.hbm.xml"></mapping>
     </session-factory>
 </hibernate-configuration>
