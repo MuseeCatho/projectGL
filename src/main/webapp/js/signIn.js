@@ -19,7 +19,7 @@ function signInAdmin(){
 	    	   if(data.indexOf("0") > -1){
 	    		   $( "#error" ).append("Vous n'êtes pas autorisé.");
 	    	   }else{
-	    		   window.location = 'http://localhost:8080/musee_catho/admin/index.action';
+	    		   window.location = 'index.action';
 	    	   }
 	       }
 	    });
@@ -47,7 +47,7 @@ function signIn(){
 	    		   $( "#error" ).append("Login ou mot de passe incorrect.");
 	    	   }else{
 	    		   $('.login').modal('hide');
-	    		   window.location = 'http://localhost:8080/musee_catho/index.action';
+	    		   window.location = 'index.action';
 	    	   }
 	       }
 	    });
@@ -64,7 +64,7 @@ function logOut(){
 	       encoding:"UTF-8",
 	       async: true,
 	       success : function(data){
-	    	   window.location = 'http://localhost:8080/musee_catho/index.action';
+	    	   window.location = 'index.action';
 	       }
 	    });
 	

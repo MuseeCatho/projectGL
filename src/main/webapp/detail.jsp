@@ -29,7 +29,11 @@
 						Oeuvre <span id="titleDetail"><s:property value="title_f" /></span>
 					</h1>
 					<div id="modification">
-						<input type=button class="btn btn-primary navbar-btn" role="button" value="Proposer une modification" id="buttonChange" onClick="hideEnr();">
+					 
+						<input type=button class="btn btn-primary navbar-btn"
+							role="button" value="Proposer une modification" id="buttonChange"
+							onClick="hideEnr(<s:property value="#session.id_user"/>);">
+					<s:iterator value="listEnrichments"><s:property value="id"/></s:iterator>
 					</div>
 				</div>
 				<div class="row">
@@ -45,22 +49,31 @@
 						<div id="listPhotos">
 							<div class="tablecell">
 								<s:iterator value="listDetail">
-									<div id="photoDetail">
-										<img id="listPhotosImg"	src="<s:property value="link_photos"/>"	class="img-responsive" alt="Responsive image"> 
-										<a class="cursor_delete" onmouseover=""	onclick="addProposition('image', <s:property value="id"/>,'delete')"><img class="cancel_category" src="img/icon/cancel.png" width="30" height="30"></a>
+									<div id="photoDetail">										
+										<img id="listPhotosImg" src="<s:property value="link_photos"/>"	class="img-responsive" alt="Responsive image"> 
+										<a class="cursor_ok" onclick="cancelProposition('image',<s:property value="id"/>)">
+											<img class="ok_category icon_ok" " src="img/icon/ok.png" id="icon_ok<s:property value="id"/>" width="30" height="30">
+										</a> 
+										<a class="cursor_delete" onclick="addProposition('image', <s:property value="id"/>,'delete')">
+											<img class="cancel_category icon_cancel" src="img/icon/cancel.png" id="icon_cancel<s:property value="id"/>" width="30" height="30">
+										</a>
 									</div>
 								</s:iterator>
 							</div>
 							<div id="ajoutImage">
 								<input type=button class="btn btn-primary navbar-btn"
-									role="button" value="Ajouter une image" >
+									role="button" value="Ajouter une image">
 							</div>
 						</div>
+						
+								<div id="listq"></div>
 						<div class="panel panel-default" id="descriptionDetail">
 							<div class="panel-heading">Description</div>
-							<div class="panel-body">
+							<div class="panel-body" id="descriptionDetail_text">
 								<s:property value="description_f" />
 							</div>
+							<button  onclick="button()" id="modif_description" style="display:none;" >Visualiser les modifications</button>
+							<p id="result" style="color:grey;"></p>
 						</div>
 					</div>
 					<div class="col-md-4">
@@ -92,45 +105,45 @@
 				</div>
 			</s:iterator>
 			<hr>
-		<s:if test="%{#session.firstname!=null}">
-			<div class="row">
-				<div class="col-lg-5 col-lg-offset-1">
-					<!-- Comments Form -->
-					<div class="well">
-						<h4>Leave a Comment:</h4>
-						<form role="form">
-							<div class="form-group">
-								<textarea class="form-control" rows="3" id="commentObject"></textarea>
-							</div>
-							<button type="button" class="btn btn-primary"
-								onclick="addComment(<s:property value="#session.id_user"/>);">Submit</button>
-						</form>
+			<s:if test="%{#session.firstname!=null}">
+				<div class="row">
+					<div class="col-lg-5 col-lg-offset-1">
+						<!-- Comments Form -->
+						<div class="well">
+							<h4>Leave a Comment:</h4>
+							<form role="form">
+								<div class="form-group">
+									<textarea class="form-control" rows="3" id="commentObject"></textarea>
+								</div>
+								<button type="button" class="btn btn-primary"
+									onclick="addComment(<s:property value="#session.id_user"/>);">Submit</button>
+							</form>
+						</div>
 					</div>
 				</div>
-			</div>
 
 
-			<div class="row">
-				<div class="col-lg-5 col-lg-offset-1">
+				<div class="row">
+					<div class="col-lg-5 col-lg-offset-1">
 
-					<s:iterator value="listCommentAndNameUser">
-						<div class="media">
-							<div class="media-body">
-								<h4 class="media-heading">
-									<s:property value="pseudo" />
-									<small><s:date name="date" format="dd/MM/yyyy" /> � <s:date
-											name="date" format="hh:mm:ss" /></small>
-								</h4>
-								<s:property value="text" />
+						<s:iterator value="listCommentAndNameUser">
+							<div class="media">
+								<div class="media-body">
+									<h4 class="media-heading">
+										<s:property value="pseudo" />
+										<small><s:date name="date" format="dd/MM/yyyy" /> � <s:date
+												name="date" format="hh:mm:ss" /></small>
+									</h4>
+									<s:property value="text" />
+								</div>
 							</div>
-						</div>
-					</s:iterator>
+						</s:iterator>
+					</div>
 				</div>
-			</div>
-	</div>
-	</s:if>
 		</div>
-		
+		</s:if>
+	</div>
+
 
 
 
