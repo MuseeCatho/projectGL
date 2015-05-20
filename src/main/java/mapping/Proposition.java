@@ -8,9 +8,13 @@ public class Proposition implements java.io.Serializable {
 	private Date date;
 	private String etat;
 	private String type;
-	private Integer id_audio;
-	private Integer id_photos;
-	private Integer id_videos;
+	private Integer id_medias;
+	public Integer getId_medias() {
+		return id_medias;
+	}
+	public void setId_medias(Integer id_medias) {
+		this.id_medias = id_medias;
+	}
 	private Integer id_enrichments;
     
 	public Integer getId() {
@@ -37,38 +41,19 @@ public class Proposition implements java.io.Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public Integer getId_audio() {
-		return id_audio;
-	}
-	public void setId_audio(Integer id_audio) {
-		this.id_audio = id_audio;
-	}
-	public Integer getId_photos() {
-		return id_photos;
-	}
-	public void setId_photos(Integer id_photos) {
-		this.id_photos = id_photos;
-	}
-	public Integer getId_videos() {
-		return id_videos;
-	}
-	public void setId_videos(Integer id_videos) {
-		this.id_videos = id_videos;
-	}
+
 	public Integer getId_enrichments() {
 		return id_enrichments;
 	}
 	public void setId_enrichments(Integer id_enrichments) {
 		this.id_enrichments = id_enrichments;
 	}
-	public Proposition(Integer id, Date date, String etat, String type, int id_audio, int id_photos, int id_videos, int id_enrichments){
+	public Proposition(Integer id, Date date, String etat, String type, int id_medias,int id_enrichments){
 		this.id=id;
 		this.date=date;
 		this.etat=etat;
 		this.type=type;
-		this.id_audio=id_audio;
-		this.id_photos=id_photos;
-		this.id_videos=id_videos;
+		this.id_medias=id_medias;
 		this.id_enrichments=id_enrichments;
 		
 	}

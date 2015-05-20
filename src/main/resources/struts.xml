@@ -20,8 +20,14 @@
             <result name="success">result.jsp</result>
         </action>
         <!-- DETAILS OBJECT -->
+        <action name="getLastEnrichmentId" class="action.DetailAction" method="getLastEnrichmentId">
+            <result name="success">result.jsp</result>
+   		</action>
+        <action name="addEnrichments" class="action.DetailAction" method="addEnrichments">
+            <result name="success">result.jsp</result>
+   		</action>
         <action name="addProposition" class="action.DetailAction" method="addProposition">
-            <result name="success">detail.jsp</result>
+            <result name="success">result.jsp</result>
    		</action>
         <action name="detailObject" class="action.DetailAction" method="showdetail">
             <result name="success">detail.jsp</result>
@@ -51,6 +57,17 @@
 		<action name="research_action" class="action.ResearchAction" method="research">
 			<result name="success">result_research.jsp</result>
 		</action>
+		<!-- PROFIL -->
+		<action name="profil">
+			<result name="success">profil.jsp</result>
+		</action>
+		<action name="getProfil" class="action.UsersAction" method="getInfoProfil">
+			<result name="success">resultAjax.jsp</result>
+		</action>
+		<action name="updateProfil" class="action.UsersAction" method="updateProfil">
+			<result name="success">resultAjax.jsp</result>
+		</action>
+		<!-- END PROFIL -->
     </package>
     
     <package name="test" namespace="/admin" extends="struts-default">

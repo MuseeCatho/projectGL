@@ -45,7 +45,7 @@
                     <li><a href="contact.jsp">Contacts</a></li>
                     
                     <s:if test="%{#session.firstname!=null}">
-						<li><a href="profil.jsp"><s:property value="#session.firstname" /></a></li>
+						<li><a href="profil.action"><s:property value="#session.firstname" /></a></li>
 					</s:if>
 					<s:else>
 					  
