@@ -58,9 +58,11 @@
 						</div>
 						<div class="panel panel-default" id="descriptionDetail">
 							<div class="panel-heading">Description</div>
-							<div class="panel-body">
+							<div class="panel-body" id="descriptionDetail_text">
 								<s:property value="description_f" />
 							</div>
+							<button  onclick="button()" id="modif_description" style="display:none;" >Visualiser les modifications</button>
+							<p id="result" style="color:grey;"></p>
 						</div>
 					</div>
 					<div class="col-md-4">
