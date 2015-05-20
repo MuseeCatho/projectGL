@@ -2,25 +2,39 @@ var arrayImage1 = new Array();
 var arrayImage2 = new Array();
 var object = {};
 
+function toogle(){
+	$('#carouselPhotos').toggle();
+	$('#annulationProposition').toggle();
+	$('#listPhotos').toggle();
+}
+function reset(){
+	arrayImage1 = [];
+	arrayImage2 = [];
+	toogle();
+	$('#buttonChange').val('Proposer une modification');
+	
+	for (var int = 0; int < arrayImage1.length; int++) {
+		$('#icon_cancel' + arrayImage1[int]).css('display', 'inherit');
+		$('#icon_ok' + arrayImage1[int]).css('display', 'none');
+	}
+}
 function hideEnr(idUser) {
 	if ($('#buttonChange').val() == 'Proposer une modification') {
 		$('#buttonChange').val('Terminer les modification');
-		$('#carouselPhotos').toggle();
-		$('#listPhotos').toggle();
+		toogle();
 	} else {
 		var r = confirm("Confimer les modifications?");
 		if (r == true) {
 			SaveModif(arrayImage2, object, idUser);
-			$('#buttonChange').val('Proposer une modification');
-			for (var int = 0; int < arrayImage1.length; int++) {
-				$('#icon_cancel' + arrayImage1[int]).css('display', 'inherit');
-				$('#icon_ok' + arrayImage1[int]).css('display', 'none');
-			}
-			arrayImage1 = [];
-			arrayImage2 = [];
-			$('#carouselPhotos').toggle();
-			$('#listPhotos').toggle();
+			reset()
 		}
+	}
+}
+
+function annulation() {
+	var r = confirm("Annuler les modifications et revenir à la page de l'oeuvre?");
+	if (r == true) {		
+		reset()
 	}
 }
 
