@@ -36,7 +36,7 @@ function cancelProposition(type, id) {
 	var r = confirm("Voulez-vous annuler votre proposition de modification?");
 	if (r == true) {
 		for (var int = 0; int < arrayImage2.length; int++) {
-			if (arrayImage2[int].id_photos == id) {
+			if (arrayImage2[int].id_medias == id) {
 				arrayImage2 = arrayImage2.slice(1);
 			}
 		}
@@ -51,16 +51,12 @@ function addProposition(type, id, etat) {
 
 		var r = confirm("Voulez-vous vraiment supprimer cette image?");
 		if (r == true) {
-			var id_audio = 0;
-			var id_photos = id;
-			var id_videos = 0;
+			var id_medias = id;
 			object = {
 				"date" : date,
 				"etat" : etat,
 				"type" : type,
-				"id_audio" : id_audio,
-				"id_photos" : id_photos,
-				"id_videos" : id_videos,
+				"id_medias" : id_medias,
 			}
 
 			arrayImage2.push(object);

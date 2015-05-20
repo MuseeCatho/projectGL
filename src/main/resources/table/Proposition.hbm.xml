@@ -17,14 +17,8 @@
         <property name="type" type="string">
             <column name="type" length="45" not-null="false" />
         </property>
-		<property name="id_audio" type="java.lang.Integer">
-            <column name="id_audio" />
-        </property>
-        <property name="id_photos" type="java.lang.Integer">
-            <column name="id_photos"/>
-        </property>
-        <property name="id_videos" type="java.lang.Integer">
-            <column name="id_videos" />
+		<property name="id_medias" type="java.lang.Integer">
+            <column name="id_medias" />
         </property>
         <property name="id_enrichments" type="java.lang.Integer">
             <column name="id_enrichments" />

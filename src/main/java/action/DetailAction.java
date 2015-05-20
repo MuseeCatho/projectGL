@@ -79,9 +79,7 @@ public class DetailAction extends ActionSupport {
 	private Date date;
 	private String etat;
 	private String type;
-	private Integer id_audio;
-	private Integer id_photos;
-	private Integer id_videos;
+	private Integer id_medias;
 	private Integer id_enrichments;
 	private int user_id;
 	private int object_id;
@@ -152,7 +150,7 @@ public class DetailAction extends ActionSupport {
 
 	public String addProposition(){
 		PropositionDaoImpl propositionDao = new PropositionDaoImpl();
-		Proposition proposition =new Proposition(new Integer(0),this.date, this.etat, this.type,this.id_audio,this.id_photos, this.id_videos, this.id_enrichments);
+		Proposition proposition =new Proposition(new Integer(0),this.date, this.etat, this.type, this.id_medias, this.id_enrichments);
 		propositionDao.insertProposition(proposition);	
 		
 		return SUCCESS;
@@ -229,29 +227,13 @@ public class DetailAction extends ActionSupport {
 	public void setType(String type) {
 		this.type = type;
 	}
-
-	public Integer getId_audio() {
-		return id_audio;
+	
+	public Integer getId_medias() {
+		return id_medias;
 	}
 
-	public void setId_audio(Integer id_audio) {
-		this.id_audio = id_audio;
-	}
-
-	public Integer getId_photos() {
-		return id_photos;
-	}
-
-	public void setId_photos(Integer id_photos) {
-		this.id_photos = id_photos;
-	}
-
-	public Integer getId_videos() {
-		return id_videos;
-	}
-
-	public void setId_videos(Integer id_videos) {
-		this.id_videos = id_videos;
+	public void setId_medias(Integer id_medias) {
+		this.id_medias = id_medias;
 	}
 
 	public Integer getId_enrichments() {
