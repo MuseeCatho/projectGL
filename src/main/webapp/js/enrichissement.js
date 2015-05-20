@@ -39,8 +39,6 @@ function hideEnr(idUser) {
 		}
 	}
 }
-
-
 var text=document.getElementById('descriptionDetail_text').innerText;
 var list_text=text.split(" ");
 var list_text_insert;
@@ -197,7 +195,6 @@ function button(){
     result=document.getElementById('result').innerHTML=result;
 }
 
-
 function compact_list_num (list) {
     var new_list=[list[0]];
     for(var k=1;k<=list.length;k++){
@@ -224,7 +221,7 @@ function indexOfCount (list, element, begin) {
         }   
     }
     return list_index;
-
+}
 function changeState(id) {
 	$('#icon_cancel' + id).toggle();
 	$('#icon_ok' + id).toggle();
@@ -243,7 +240,6 @@ function cancelProposition(type, id) {
 		}
 		changeState(id);
 	}
-
 }
 
 function addProposition(type, id, etat) {
