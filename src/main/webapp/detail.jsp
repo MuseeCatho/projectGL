@@ -94,7 +94,7 @@
 										</div>
 									</div>
 									<div id="modif_description">
-									<button onclick="button()">Visualiser les modifications</button>
+									<button onclick="description_modifie()">Visualiser les modifications</button>
 									<p id="result" style="color: grey;"></p>
 									</div>
 								</aside>

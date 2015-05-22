@@ -18,22 +18,22 @@ function reset(){
 		$('#icon_cancel' + arrayImage1[int]).css('display', 'inherit');
 		$('#icon_ok' + arrayImage1[int]).css('display', 'none');
 	}
+	$('#descriptionDetail_text').show();
+	document.getElementById('modif_text').parentNode.removeChild(document.getElementById('modif_text'));
 }
+
+
 function hideEnr(idUser) {
 	if ($('#buttonChange').val() == 'Proposer une modification') {
 		$('#buttonChange').val('Terminer les modification');
 		var e = document.getElementById('descriptionDetail_text');
+		save_text = $.trim(e.innerHTML);
 		var d = document.createElement('textarea');
-		d.innerText = e.innerText;		
+		d.innerHTML = $.trim(e.innerHTML);		//innerText ne fonctionne pas sur firefox, à modifier...
 		e.parentNode.insertBefore(d, e);
-		e.parentNode.removeChild(e);
+		$('#descriptionDetail_text').hide();
 		d.id="modif_text";
-// d.style.width='400px';
-// d.style.heigth='800px';
-		// class="form-control" rows="3"
-		// d.class="form-control";
 		$('#modif_text').addClass("form-control");
-		// d.rows="3";
 		toogle();
 	} else {
 		var r = confirm("Confimer les modifications?");
@@ -43,7 +43,8 @@ function hideEnr(idUser) {
 		}
 	}
 }
-var text=document.getElementById('descriptionDetail_text').innerText;
+var text=document.getElementById('descriptionDetail_text').innerHTML;
+text=$.trim(text);//supprime les espaces au debut de la chaine de caracteres 
 var list_text=text.split(" ");
 var list_text_insert;
 var list_word_delete=[];
@@ -51,7 +52,7 @@ var list_string_insert=[];
 var list_index_delete=[];
 var list_word_delete_string;
 
-function button(){
+function description_modifie(){
     var text_insert=document.getElementById('modif_text').value;
     list_text=text.split(" ");
     list_text_insert=text_insert.split(" ");
