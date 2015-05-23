@@ -2,8 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Gestion des categories</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Gestion des categories</title>
+	<s:include value="import.jsp"></s:include>
 </head>
 <style type="text/css">
     .cancel_category{margin-bottom:105px;}

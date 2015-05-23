@@ -2,8 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Gestion des informations</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Gestion des informations</title>
+	<s:include value="import.jsp"></s:include>
 </head>
 <body>
 <s:include value="header_admin.jsp"></s:include>

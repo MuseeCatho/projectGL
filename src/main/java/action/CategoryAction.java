@@ -1,7 +1,14 @@
 package action;
 
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.ServletContext;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
 
 import mapping.Category;
 import mapping.ObjectMuseum;
@@ -23,6 +30,9 @@ public class CategoryAction extends ActionSupport{
 	private String id_category;
 	private String link_category;
 	private String result;
+	private File[] uploads;
+    private String[] uploadFileNames;
+    private String[] uploadContentTypes;
 	
 	public String getAllCategory(){
 		System.out.println("getAllCategory");
@@ -45,16 +55,49 @@ public String deleteCategory(){
 		return SUCCESS;
 	}
 	
-	public String addCategory(){
+	public String addCategory() throws Exception{
 		
+		URL url = getClass().getResource("src/main/webapp/img/bible.gif");
+		
+		ServletContext context = ServletActionContext.getServletContext();
+
+		File destTest = new File("C:\\Users\\test.txt");
+		
+		String filePath = context.getRealPath("/img/category/bible.gif");
+		System.out.println(filePath);
+		int filePathInt= filePath.length();
+		String relatifPath=filePath.substring(0, filePathInt-10);
+		upload(relatifPath);
 		CategoryDaoImpl categoryDao = new CategoryDaoImpl();
-		if(this.link_category!=null){
-			this.link_category="img/category/other.jpg";
+		if(uploadFileNames[0]==null){
+			uploadFileNames[0]="img/category/other.jpg";
 		}
-		Category category =new Category(new Integer(0),this.title_f,this.title_e,this.link_category);
+		Category category =new Category(new Integer(0),this.title_f,this.title_e,uploadFileNames[0]);
 		categoryDao.insertCategory(category);
 		return SUCCESS;
 	}
+	
+	public String upload(String path) throws Exception {
+    	/* write the files in the eclipse repository */
+        System.out.println("\n\n upload2");
+        System.out.println("files:");
+        for(int i = 0; i < uploads.length; i++) {
+            System.out.println("*** " + uploads[i] + "\t" + uploads[i].length());
+            File dest = new File(path+"\\" + uploadFileNames[i]);
+			FileUtils.copyFile(uploads[i], dest);
+        }
+        System.out.println("filenames:");
+        for (String n : uploadFileNames) {
+            System.out.println("*** " + n);
+        }
+        System.out.println("content types:");
+        for (String c : uploadContentTypes) {
+            System.out.println("*** " + c);
+        }
+        System.out.println("\n\n");
+        
+        return SUCCESS;
+    }
 	
 	
 	public String getResult() {
@@ -104,5 +147,27 @@ public String deleteCategory(){
 		this.link_category = link_category;
 	}
 	
+	public File[] getUpload() {
+        return this.uploads;
+    }
 
+    public void setUpload(File[] upload) {
+        this.uploads = upload;
+    }
+
+    public String[] getUploadFileName() {
+        return this.uploadFileNames;
+    }
+
+    public void setUploadFileName(String[] uploadFileName) {
+        this.uploadFileNames = uploadFileName;
+    }
+
+    public String[] getUploadContentType() {
+        return this.uploadContentTypes;
+    }
+
+    public void setUploadContentType(String[] uploadContentType) {
+        this.uploadContentTypes = uploadContentType;
+    }
 }

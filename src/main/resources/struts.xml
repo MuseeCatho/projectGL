@@ -111,6 +111,9 @@
    		<action name="selectAction" class="action.ObjectAction" method="display">
 			<result name="none">add_object.jsp</result>
    		</action> 
+   		<action name="upload_file" class="action.FileUpload" method="upload">
+			<result name="success">result.jsp</result>
+		</action>
     </package>
     
     <package name="actionOeuvre" namespace="/" extends="struts-default">
