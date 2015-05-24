@@ -88,7 +88,8 @@
 			<result name="success">result.jsp</result>
    		</action>
    		<action name="addCategory" class="action.CategoryAction" method="addCategory">
-			<result name="success">result.jsp</result>
+			<result name="success" type="redirectAction">
+        <param name="actionName">get_category</param></result>
    		</action>
    		<!-- END CATEGORY -->
    		<!-- PERIOD -->

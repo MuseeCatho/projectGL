@@ -33,10 +33,6 @@
           
           <h3 class="page-header">Ajout d'une categorie</h3>
           
-          <form data-toggle="validator" role="form">     
-		        
-		        
-		       </form>
 		       
 		       <form id="UploadForm" action="addCategory.action" method="post" enctype="multipart/form-data">
 		       

@@ -1,6 +1,8 @@
 package action;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,22 +59,18 @@ public String deleteCategory(){
 	
 	public String addCategory() throws Exception{
 		
-		URL url = getClass().getResource("src/main/webapp/img/bible.gif");
-		
-		ServletContext context = ServletActionContext.getServletContext();
 
-		File destTest = new File("C:\\Users\\test.txt");
-		
-		String filePath = context.getRealPath("/img/category/bible.gif");
-		System.out.println(filePath);
-		int filePathInt= filePath.length();
-		String relatifPath=filePath.substring(0, filePathInt-10);
-		upload(relatifPath);
+		String link_picture;
 		CategoryDaoImpl categoryDao = new CategoryDaoImpl();
-		if(uploadFileNames[0]==null){
-			uploadFileNames[0]="img/category/other.jpg";
+		if(uploadFileNames==null){ //si il n'y a pas de photo
+			link_picture="img/category/other.jpg";
+		}else{
+			ServletContext context = ServletActionContext.getServletContext();
+			String webroot = context.getRealPath("")+"\\src\\main\\webapp\\img\\category";
+			upload(webroot);
+			link_picture="img/category/"+uploadFileNames[0];
 		}
-		Category category =new Category(new Integer(0),this.title_f,this.title_e,uploadFileNames[0]);
+		Category category =new Category(new Integer(0),this.title_f,this.title_e,link_picture);
 		categoryDao.insertCategory(category);
 		return SUCCESS;
 	}
