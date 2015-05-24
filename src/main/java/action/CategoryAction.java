@@ -66,7 +66,7 @@ public String deleteCategory(){
 			link_picture="img/category/other.jpg";
 		}else{
 			ServletContext context = ServletActionContext.getServletContext();
-			String webroot = context.getRealPath("")+"\\src\\main\\webapp\\img\\category";
+			String webroot = context.getRealPath("/")+"\\src\\main\\webapp\\img\\category";
 			upload(webroot);
 			link_picture="img/category/"+uploadFileNames[0];
 		}

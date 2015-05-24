@@ -44,7 +44,7 @@
 						  </div>
 			              <div class="col-md-4 col-md-offset-2">
 			              		<label for="title_e">Titre (en anglais)</label>
-		        			  	<input class="form-control" id="title_e" name="title_e" type="text" required>
+		        			  	<input class="form-control" id="title_e" name="title_e" type="text">
 			              </div>
 			              </br>
 			              </div>
