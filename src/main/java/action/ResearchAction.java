@@ -26,6 +26,7 @@ import dao.ObjectCategoryDaoImpl;
 public class ResearchAction extends ActionSupport{
 
 	private String research;
+	private String keyword;
 	private List<ObjectPage> listObjectPage;
 	private List<ObjectMuseum> listObject;
 	private List<Period> listP;
@@ -44,6 +45,14 @@ public class ResearchAction extends ActionSupport{
 		this.research = research;
 	}
 	
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
 	public List<ObjectPage> getListObjectPage() {
 		return listObjectPage;
 	}
@@ -162,4 +171,9 @@ public class ResearchAction extends ActionSupport{
 		
 		return SUCCESS;
 	}
+	public String advancedResearch(){
+		
+		return SUCCESS;
+	}
+	
 }
