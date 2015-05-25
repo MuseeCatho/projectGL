@@ -9,6 +9,8 @@ import java.util.List;
 import mapping.ObjectMuseum;
 import mapping.User;
 
+import bean.Research;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -64,6 +66,7 @@ public class ObjectDaoImpl implements ObjectDao<ObjectMuseum, Integer>{
 		return results;
 	}
 	
+	//public Collection<ObjectMuseum> getObjectAdvResearch(Research research){
 	public Collection<ObjectMuseum> getObjectAdvResearch(String research){
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction(); 

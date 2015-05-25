@@ -22,6 +22,8 @@ import dao.PeriodDaoImpl;
 import dao.PhotosDaoImpl;
 import dao.ObjectCategoryDaoImpl;
 
+import bean.Research;
+
 
 public class ResearchAction extends ActionSupport{
 
@@ -29,6 +31,7 @@ public class ResearchAction extends ActionSupport{
 	private String keyword;
 	private String keywordExclude;
 	private String reference;
+	private String period;
 	private String country;
 	private String city;
 	private List<ObjectPage> listObjectPage;
@@ -71,6 +74,14 @@ public class ResearchAction extends ActionSupport{
 
 	public void setReference(String reference) {
 		this.reference = reference;
+	}
+	
+	public String getPeriod() {
+		return period;
+	}
+
+	public void setPeriod(String period) {
+		this.period = period;
 	}
 
 	public String getCountry() {
@@ -219,11 +230,12 @@ public class ResearchAction extends ActionSupport{
 		listCategory = (List<Category>) categories.getCategory(); 
 		
 		System.out.println("debut recherche avancée");
-//			ObjectDaoImpl objectDao = new ObjectDaoImpl();
+
+		
+		//Research research=new Research(this.keyword, this.keywordExclude, this.reference, this.country, this.city);
 			
 		String research_word = this.keyword;
-//			objectDao.getOeuvres(Integer.parseInt(research_word));
-//			System.out.println("l'objet à rechercher est "+research_word);
+		
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
 		PeriodDaoImpl periodDao = new PeriodDaoImpl();
 		PhotosDaoImpl photosDao = new PhotosDaoImpl();
