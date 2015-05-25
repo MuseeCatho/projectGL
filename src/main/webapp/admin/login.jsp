@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<script src="../js/jquery.js"></script>
+		<s:include value="import.jsp"></s:include>
 		<script src="../js/signIn.js"></script>
 
 		<!-- Latest compiled and minified CSS -->
