@@ -29,7 +29,7 @@ function hideEnr(idUser) {
 		var e = document.getElementById('descriptionDetail_text');
 		save_text = $.trim(e.innerHTML);
 		var d = document.createElement('textarea');
-		d.innerHTML = $.trim(e.innerHTML);		//innerText ne fonctionne pas sur firefox, à modifier...
+		d.innerHTML = $.trim(e.innerHTML);		//innerText ne fonctionne pas sur firefox, ï¿½ modifier...
 		e.parentNode.insertBefore(d, e);
 		$('#descriptionDetail_text').hide();
 		d.id="modif_text";
@@ -293,15 +293,11 @@ function cancelProposition(type, id) {
 }
 
 function addProposition(type, id, etat) {
-	var today = new Date();
-	var date = today.toLocaleDateString();
 	if (type = 'image') {
-
 		var r = confirm("Voulez-vous vraiment supprimer cette image?");
 		if (r == true) {
 			var id_medias = id;
 			object = {
-				"date" : date,
 				"etat" : etat,
 				"type" : type,
 				"id_medias" : id_medias,
@@ -328,6 +324,8 @@ function getQueryVariable(variable) {
 }
 
 function addEnrichments(idUser) {
+	var today = new Date();
+	var date = today.toLocaleDateString();
 	var user_id = idUser;
 	var new_description = "";
 	var source = "";
@@ -338,10 +336,11 @@ function addEnrichments(idUser) {
 		encoding : "UTF-8",
 		async : false,
 		data : {
-			"object_id" : object_id,
 			"user_id" : user_id,
+			"object_id" : object_id,
 			"new_description" : new_description,
-			"source" : source
+			"source" : source,
+			"date" : date
 		},
 		success : function(data) {
 		}
@@ -372,7 +371,7 @@ function SaveModif(arrayImage2, object, idUser) {
 	if (arrayImage2.length != 0) {
 		addEnrichments(idUser);
 		getLastEnrichmentsId();
-		if (lastIdEnr != 0 && lastIdEnr != null) {
+		if (lastIdEnr != 0 && lastIdEnr != null) {alert("sd");
 			for (var int = 0; int < arrayImage2.length; int++) {
 				arrayImage2[int].id_enrichments = lastIdEnr;
 				$.ajax({
@@ -384,7 +383,7 @@ function SaveModif(arrayImage2, object, idUser) {
 					success : function(data) {
 					}
 				});
-
+				alert("AS");
 			}
 		}
 	}

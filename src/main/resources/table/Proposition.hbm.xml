@@ -8,9 +8,6 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <property name="date" type="date">
-            <column name="date" not-null="false"/>
-        </property>
         <property name="etat" type="string">
             <column name="etat" length="45" not-null="false"/>
         </property>
