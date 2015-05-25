@@ -27,6 +27,10 @@ public class ResearchAction extends ActionSupport{
 
 	private String research;
 	private String keyword;
+	private String keywordExclude;
+	private String reference;
+	private String country;
+	private String city;
 	private List<ObjectPage> listObjectPage;
 	private List<ObjectMuseum> listObject;
 	private List<Period> listP;
@@ -51,6 +55,38 @@ public class ResearchAction extends ActionSupport{
 
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+	
+	public String getKeywordExclude() {
+		return keywordExclude;
+	}
+
+	public void setKeywordExclude(String keywordExclude) {
+		this.keywordExclude = keywordExclude;
+	}
+
+	public String getReference() {
+		return reference;
+	}
+
+	public void setReference(String reference) {
+		this.reference = reference;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public List<ObjectPage> getListObjectPage() {
@@ -171,7 +207,58 @@ public class ResearchAction extends ActionSupport{
 		
 		return SUCCESS;
 	}
+	
 	public String advancedResearch(){
+		
+		PeriodDaoImpl periods = new PeriodDaoImpl();
+		listP = new ArrayList<Period>();
+		listP = (List<Period>) periods.getPeriod();
+		
+		CategoryDaoImpl categories = new CategoryDaoImpl();
+		listCategory = new ArrayList<Category>();
+		listCategory = (List<Category>) categories.getCategory(); 
+		
+		System.out.println("debut recherche avancée");
+//			ObjectDaoImpl objectDao = new ObjectDaoImpl();
+			
+		String research_word = this.keyword;
+//			objectDao.getOeuvres(Integer.parseInt(research_word));
+//			System.out.println("l'objet à rechercher est "+research_word);
+		ObjectDaoImpl objectDao = new ObjectDaoImpl();
+		PeriodDaoImpl periodDao = new PeriodDaoImpl();
+		PhotosDaoImpl photosDao = new PhotosDaoImpl();
+
+	
+
+		listObject = new ArrayList<ObjectMuseum>(objectDao.getObjectAdvResearch(research_word));
+		listObjectPage = new ArrayList<ObjectPage>();
+		
+
+		for (ObjectMuseum e : listObject) {
+			System.out.println(e.getCity());
+			listPhotos = new ArrayList<Photos>(photosDao.getPhotos(e.getId()));
+			
+			if(listPhotos.size()==0){
+				for(Photos p:listPhotos){
+					photoUnique = "img/object/autre.jpg";
+				}
+			}
+			else{
+				photoUnique = listPhotos.get(0).getLink_photos();
+			}
+			
+			periodObject = periodDao.getPeriodId(e.getPeriod_id());
+			photosObject = photosDao.getPhotos(e.getPeriod_id());
+			ObjectPage objectPage = new ObjectPage(e.getId(),
+					e.getPeriod_id(), e.getTitle_f(), e.getTitle_e(),
+					e.getCountry(), e.getReference(), e.getDescription_e(),
+					e.getDescription_f(), e.getLength(), e.getHeigth(),
+					e.getWidth(), e.getArcheologist(), e.getDate(),
+					e.getCity(), e.getLatitude(), e.getLongitude(),
+					periodObject.getName(), photoUnique);
+			listObjectPage.add(objectPage);
+		}
+
 		
 		return SUCCESS;
 	}
