@@ -22,7 +22,7 @@ function addComment(user_id){
 	    	},
 	       success : function(data){
 	    	   //alert("addcomme");
-	    	  window.location = 'http://localhost:8080/musee_catho/detailObject.action?id='+object_id;
+	    	  window.location = 'detailObject.action?id='+object_id;
 	       }
 	    });
 }

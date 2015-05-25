@@ -2,8 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Gestion des categories</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Gestion des categories</title>
+	<s:include value="import.jsp"></s:include>
 </head>
 <style type="text/css">
     .cancel_category{margin-bottom:105px;}
@@ -92,7 +93,7 @@ function delete_period(id){
 		    	   "id_category": id,
 		    	},
 		       success : function(data){
-		    	   window.location = 'http://localhost:8080/musee_catho/admin/get_period.action';
+		    	   window.location = 'get_period.action';
 		       }
 		    });
 	}
@@ -116,7 +117,7 @@ function addPeriod(){
 		    	   "description_f": description_f
 		    	},
 		       success : function(data){
-		    	   window.location = 'http://localhost:8080/musee_catho/admin/get_period.action';
+		    	   window.location = 'get_period.action';
 		       }
 	});
 		 
@@ -137,7 +138,7 @@ function update_period(id){
 		    	   "orderPeriod": orderPeriod
 		    	},
 		       success : function(data){
-		    	   window.location = 'http://localhost:8080/musee_catho/admin/get_period.action';
+		    	   window.location = 'get_period.action';
 		       }
 	}); 
 		 

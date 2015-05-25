@@ -1,94 +1,143 @@
 @CHARSET "UTF-8";
 
-div{ 
-    border-width: 2px;
-
+div {
+	border-width: 2px;
 }
-#bodyDetail{
+
+#bodyDetail {
 	background-color: #DCDCDC;
 }
-#container{
-	background-color:blue;
-}	
-#header{
-	width: 80%; 
+
+#container {
+	background-color: blue;
+}
+
+#header {
 	margin: auto;
 	background-color: white;
 }
-#header-object{
-	text-align:center;
+
+#header-object {
+	text-align: center;
 	margin-bottom: 50px;
 }
-h1{
-	flaot: left; 
+
+h1 {
+	flaot: left;
 	display: inline-block;
-	color: #222; 
-	font-size: 1.28em; 
-	padding: 18px 0 5px 0; 
-	line-height: 1.2em; 
+	color: #222;
+	font-size: 1.28em;
+	padding: 18px 0 5px 0;
+	line-height: 1.2em;
 	font-weight: bold;
 }
-#titleDetail{
-	display: block; 
-	font-size: 1em; 
-	padding: 2px 0 0 0; 
+
+#titleDetail {
+	display: block;
+	font-size: 1em;
+	padding: 2px 0 0 0;
 	color: #A66F4D;
 }
-#modification{
-	display: inline-block; 
-	float: right; 
+
+.modification {
+	text-align: right;
 	margin-top: 35px;
 }
-#descriptionDetail{
-	width: 100%; 
-	min-height:20%; 
-	margin-top: 35px; 
-	float: left;
+
+.bouttonModification {
+	margin-right: 25px;
+	width: 80%;
 }
-.videoDetail{
+
+#descriptionDetail_text {
+	width: 100%;
+	min-height: 20%;
+}
+
+#descriptionDetail {
+	width: 100%;
+	margin-top: 35px;
+}
+
+.videoDetail {
 	margin-top: 50px;
 }
-#image3DDetail{
+
+#image3DDetail {
 	display: inline-block;
-	margin-top: 25px; 
-	text-align: center; 
-	border: 1px solid grey; 
-	border-radius: 2px; 
-	width: 400px; 
-	height: 400px; 
+	margin-top: 25px;
+	text-align: center;
+	border: 1px solid grey;
+	border-radius: 2px;
+	width: 400px;
+	height: 400px;
 	margin-left: 50px;
 	text-align: center;
 }
-#commentaireDetail{
+
+#commentaireDetail {
 	background-color: white;
 	margin-top: 30px;
 }
 
-#commentaireDetailTextarea{
-	
+#commentaireDetailTextarea {
 	margin-bottom: 30px;
 }
-#listPhotos{
+
+#listPhotos {
 	display: none;
 	text-align: center;
 }
-#listPhotosImg{
-	max-height: 180px;
-	max-width: 250px;
-	display:inline-block;
+
+#listPhotosImg {
+	max-height: 100%;
+	max-width: 80%;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 30px;
 }
-.tablecell{
-display: table;
+
+.tablecell {
+	display: table;
 	border-spacing: 10px;
 }
-#photoDetail{
-	border: 2px solid gray; 
-	border-radius: 2px; 
-	width: 300px; 
-	height: 180px; 
-	margin-left: 50px;
-	display:table-cell;
+
+#photoDetail {
+	border-radius: 5px;
+	width: 300px;
+	height: 180px;
+	margin-left: 25px;
+	display: table-cell;
+	border: 3px solid rgb(38, 90, 136);
+	box-shadow: 5px 5px 1px rgb(119, 119, 119);
+	background-color: #eee;
 }
-#ajoutImage{
+
+#ajoutImage {
 	float: right;
+}
+
+.icon_ok {
+	display: none;
+}
+
+.icon_cancel {
+	display: inherit;
+}
+
+.icon {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+#annulationProposition {
+	display: none;
+}
+
+#modif_description {
+	display: none;
 }

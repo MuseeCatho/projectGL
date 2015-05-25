@@ -1,6 +1,6 @@
 .mediaCarousel { /* size of the carousel */
 	/*width: 400px;
-	height: 300px; now define in the width and height parameters of the mediaCarousel.jsp page */
+height: 300px; now define in the width and height parameters of the mediaCarousel.jsp page */
 }
 
 .mediaCarousel .carousel-inner {
@@ -18,19 +18,17 @@
 	/*line-height: 300px; now define in the height parameter of the mediaCarousel.jsp page */
 	text-align: center; /* horizontal center */
 	margin: auto;
-	background-color: blue;
 }
 
 .mediaCarousel_item img {
 	max-width: 100%;
 	max-height: 100%;
-	/*vertical-align: middle; /* vertical center */
 	position: absolute;
-	margin:auto;
-	top:0;
-	bottom:0;
-	left:0;
-	right:0;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 
 .mediaModal {

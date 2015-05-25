@@ -22,5 +22,10 @@ public class PropositionDaoImpl implements PropositionDao<Proposition, Integer>{
 		
 	}
 	
-	
+	public void insertProposition(Proposition entity){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();    
+        session.save(entity);
+        session.getTransaction().commit();
+	}
 }

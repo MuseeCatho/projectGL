@@ -43,7 +43,7 @@ function addUser(){
 					    	   "job" : job
 					    	},
 					       success : function(data){
-					    	   window.location = 'http://localhost:8080/musee_catho/index.action';
+					    	   window.location = 'index.action';
 					    	   alert("Vous êtes inscrit");
 					       }
 					    });
