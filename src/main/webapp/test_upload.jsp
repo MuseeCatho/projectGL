@@ -4,8 +4,8 @@
 <title>Ajax File Upload with Progress Bar</title>
 <!-- Include jQuery form & jQuery script file. -->
 <script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
-<script src="http://malsup.github.com/jquery.form.js"></script>
+	src="js/jquery.js"></script>
+<script src="jquery.form.js"></script>
 <script src="js/fileUploadScript.js"></script>
 <!-- Include css styles here -->
 <link href="css/fileUpload.css" rel="stylesheet" type="text/css" />

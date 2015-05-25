@@ -29,7 +29,8 @@ public class UsersAction extends ActionSupport{
 	private String city;
 	private String job;	
 	private String password;
-	private int result;
+	//private int result;
+	private int result = 0;
 	private int admin;
 
 
@@ -131,19 +132,8 @@ public class UsersAction extends ActionSupport{
 
 	public String getUsers(){
 		System.out.print("ouai 12");
-		try {
-			FileWriter fw = new FileWriter ("ren.txt");
-			BufferedWriter bw = new BufferedWriter (fw);
-			PrintWriter file = new PrintWriter (bw); 
-			file.print("ren");
-			file.close();
-			System.out.println("ouai10");
-		}
-		catch (Exception e){
-			System.out.println("ouai12");
-			//System.out.println(e.toString());
-		}
-		result=104;
+		result ++;
+		System.out.print("result:"+Integer.toString(result));
 		return SUCCESS;
 	}
 

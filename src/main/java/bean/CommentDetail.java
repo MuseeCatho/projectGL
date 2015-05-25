@@ -18,6 +18,7 @@ public class CommentDetail implements java.io.Serializable {
 		this.text = text;
 		this.date = date;
 	}
+	
 	public Integer getId() {
 		return id;
 	}
