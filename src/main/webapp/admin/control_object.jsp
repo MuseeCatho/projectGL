@@ -30,7 +30,7 @@
 		            <div class="col-md-8">
 		                <h3><s:property value="title_f"/></h3>
 		                <p><s:property value="description_f"/></p>
-		                <a href="detailObject.action?id=<s:property value="idObject"/>">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+		                <a href="detailObject.action?id=<s:property value="idObject"/>">Nombre de commentaire non validés :<s:property value="commentNotValidate"/></p> <span class="glyphicon glyphicon-chevron-right"></span></a>
 		            </div>
 		        </div>
 		     </div>

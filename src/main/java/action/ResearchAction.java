@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import mapping.Category;
+import mapping.Comment;
 import mapping.ObjectMuseum;
 import mapping.Period;
 import mapping.Photos;
@@ -17,6 +18,7 @@ import action.ObjectAction;
 import com.opensymphony.xwork2.ActionSupport;
 
 import dao.CategoryDaoImpl;
+import dao.CommentDaoImpl;
 import dao.ObjectDaoImpl;
 import dao.PeriodDaoImpl;
 import dao.PhotosDaoImpl;
@@ -127,8 +129,8 @@ public class ResearchAction extends ActionSupport{
 			ObjectDaoImpl objectDao = new ObjectDaoImpl();
 			PeriodDaoImpl periodDao = new PeriodDaoImpl();
 			PhotosDaoImpl photosDao = new PhotosDaoImpl();
-
-		
+			CommentDaoImpl commentDao = new CommentDaoImpl();
+			
 
 			listObject = new ArrayList<ObjectMuseum>(objectDao.getObjectResearch(research_word));
 			listObjectPage = new ArrayList<ObjectPage>();
@@ -149,13 +151,18 @@ public class ResearchAction extends ActionSupport{
 				
 				periodObject = periodDao.getPeriodId(e.getPeriod_id());
 				photosObject = photosDao.getPhotos(e.getPeriod_id());
+				
+				//liste des commentaires
+				
+				List<Comment> listComment=new ArrayList<Comment>(commentDao.findCommentByIdObjectByShow(new Integer(e.getId()),new Integer(0)));
+				
 				ObjectPage objectPage = new ObjectPage(e.getId(),
 						e.getPeriod_id(), e.getTitle_f(), e.getTitle_e(),
 						e.getCountry(), e.getReference(), e.getDescription_e(),
 						e.getDescription_f(), e.getLength(), e.getHeigth(),
 						e.getWidth(), e.getArcheologist(), e.getDate(),
 						e.getCity(), e.getLatitude(), e.getLongitude(),
-						periodObject.getName(), photoUnique);
+						periodObject.getName(), photoUnique,listComment.size());
 				listObjectPage.add(objectPage);
 			}
 		}
