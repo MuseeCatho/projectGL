@@ -97,9 +97,14 @@
         <action name="sign" class="action.UsersAction" method="signIn">
             <result name="success">result.jsp</result>
         </action>
+        <!-- CONTROL OBJECT-->
           <action name="add_object" class="action.ObjectAction" method="addObjectAction">
    			<result name="success">add_object.jsp</result>
-   		</action> 
+   		</action>
+   		<action name="control_object" class="action.ObjectAction" method="listObject">
+   			<result name="success">control_object.jsp</result>
+   		</action>
+   		<!-- END CONTROL OBJECT-->
    		<!-- CATEGORY -->
    		<action name="get_category">
    			<result name="success">get_category.jsp</result>

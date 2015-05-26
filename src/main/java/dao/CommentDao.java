@@ -15,4 +15,6 @@ public interface CommentDao<Comment, Integer> {
 	
 	public void deleteComment(Comment entity);
 	
+	public Collection<Comment> findCommentByIdObjectByShow(Integer id,Integer show);
+	
 }
