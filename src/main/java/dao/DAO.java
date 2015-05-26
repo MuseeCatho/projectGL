@@ -9,8 +9,8 @@ import org.hibernate.criterion.Restrictions;
 import bdd.HibernateUtil;
 
 public class DAO<MappingObject> {
-	private Session session;
-	private Class<MappingObject> objClass;
+	protected Session session;
+	protected Class<MappingObject> objClass;
 	
 	public DAO(Class<MappingObject> objClass){
 		this.objClass = objClass;
