@@ -8,9 +8,9 @@
 </head>
 <body>
 	<s:include value="header_admin.jsp"></s:include>
-	<jsp:include page="navigation.jsp">
-		<jsp:param name="pageName" value="welcome"/>
-	</jsp:include>
+	<s:include value="navigate.action">
+		<s:param name="pageName">welcome</s:param>
+	</s:include>
 
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<h1 class="page-header">TITRE</h1>

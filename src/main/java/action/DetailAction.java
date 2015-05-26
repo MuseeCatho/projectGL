@@ -105,7 +105,7 @@ public class DetailAction extends ActionSupport {
 		listCommentAndNameUser=new ArrayList<CommentDetail>();
 		if(listComment.size()>0){
 			for (Comment e : listComment) {
-				CommentDetail commentDetail=new CommentDetail(e.getId(),userDao.findUserById(e.getUser_id()).getPseudo(),e.getText(),e.getDate());
+				CommentDetail commentDetail=new CommentDetail(e.getId(),userDao.findUserById(e.getUser_id()).getPseudo(),e.getText(),e.getDate(),e.getShow());
 				listCommentAndNameUser.add(commentDetail);
 			}
 		}

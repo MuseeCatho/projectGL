@@ -24,7 +24,7 @@ public class CommentsAction extends ActionSupport{
 	
 	public String addComment(){
 		CommentDaoImpl commentDao = new CommentDaoImpl();
-		Comment comment= new Comment(new Integer(0),new Integer(this.user_id),new Integer(this.object_id),this.text,new Date());
+		Comment comment= new Comment(new Integer(0),new Integer(this.user_id),new Integer(this.object_id),this.text,new Date(),new Integer(0));
 		commentDao.insertComment(comment);
 		result=1;
 		return SUCCESS;

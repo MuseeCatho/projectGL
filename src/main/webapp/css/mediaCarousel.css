@@ -1,7 +1,6 @@
 .mediaCarousel { /* size of the carousel */
 	/*width: 400px;
 height: 300px; now define in the width and height parameters of the mediaCarousel.jsp page */
-	
 }
 
 .mediaCarousel .carousel-inner {
@@ -13,6 +12,7 @@ height: 300px; now define in the width and height parameters of the mediaCarouse
 }
 
 .mediaCarousel_item {
+	position: relative;
 	width: 75%;
 	height: 100%;
 	/*line-height: 300px; now define in the height parameter of the mediaCarousel.jsp page */
@@ -43,9 +43,9 @@ height: 300px; now define in the width and height parameters of the mediaCarouse
 }
 
 .mediaCarousel .video-jsContainer {
-	width: 100%;
-	height: 100px;
-	/*max-height: 300px;*/
-	margin: auto;
-	border: solid red;
+	/*width: 100%;
+	height: 100%;*/
+	vertical-align: middle;
+	background-color: red;
+	display: inline-block;
 }

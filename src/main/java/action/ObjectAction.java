@@ -17,6 +17,7 @@ import mapping.ObjectCategory;
 import com.opensymphony.xwork2.ActionSupport;
 
 import dao.CategoryDaoImpl;
+import dao.CommentDaoImpl;
 import dao.ObjectDaoImpl;
 import dao.PeriodDaoImpl;
 import dao.PhotosDaoImpl;
@@ -141,6 +142,9 @@ public class ObjectAction extends ActionSupport{
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
 		PeriodDaoImpl periodDao = new PeriodDaoImpl();
 		PhotosDaoImpl photosDao = new PhotosDaoImpl();
+		CommentDaoImpl commentDao = new CommentDaoImpl();
+		
+		
 
 		//if recherche est null
 
@@ -165,6 +169,10 @@ public class ObjectAction extends ActionSupport{
 			else{
 				photoUnique = listPhotos.get(0).getLink_photos();
 			}
+			//liste des commentaires
+			
+			List<Comment> listComment=new ArrayList<Comment>(commentDao.findCommentByIdObjectByShow(new Integer(e.getId()),new Integer(0)));
+			
 			
 			periodObject = periodDao.getPeriodId(e.getPeriod_id());
 			photosObject = photosDao.getPhotos(e.getPeriod_id());
@@ -175,7 +183,7 @@ public class ObjectAction extends ActionSupport{
 					e.getWidth(), e.getArcheologist(), e.getDate(),
 					e.getCity(), e.getLatitude(), e.getLongitude(),
 					periodObject.getName(), 
-					photoUnique);
+					photoUnique,listComment.size());
 			listObjectPage.add(objectPage);
 		}
 		return SUCCESS;

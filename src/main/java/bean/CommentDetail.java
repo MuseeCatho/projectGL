@@ -8,16 +8,19 @@ public class CommentDetail implements java.io.Serializable {
 	private String pseudo;
 	private String text;
 	private Date date;
+	private Integer show;
 	
 	
 	public CommentDetail(Integer id, String pseudo,
-			String text, Date date) {
+			String text, Date date,Integer show) {
 		super();
 		this.id = id;
 		this.pseudo = pseudo;
 		this.text = text;
 		this.date = date;
+		this.show=show;
 	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -41,6 +44,12 @@ public class CommentDetail implements java.io.Serializable {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public Integer getShow() {
+		return show;
+	}
+	public void setShow(Integer show) {
+		this.show = show;
 	}
 
 	
