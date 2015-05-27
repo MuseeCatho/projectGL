@@ -158,11 +158,8 @@ public class DetailAction extends ActionSupport {
 	
 	public String addEnrichments(){
 		EnrichmentsDaoImpl enrichmentsDao = new EnrichmentsDaoImpl();
-		System.out.println("1"+this.date);
 		Enrichments enrichments =new Enrichments(new Integer(0), this.user_id, this.object_id, this.new_description,this.source,this.date);
-		System.out.println("2"+this.date);
 		enrichmentsDao.insertEnrichments(enrichments);
-		System.out.println("3"+this.date);
 		return SUCCESS;
 	}
 	

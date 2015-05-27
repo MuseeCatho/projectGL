@@ -371,7 +371,7 @@ function SaveModif(arrayImage2, object, idUser) {
 	if (arrayImage2.length != 0) {
 		addEnrichments(idUser);
 		getLastEnrichmentsId();
-		if (lastIdEnr != 0 && lastIdEnr != null) {alert("sd");
+		if (lastIdEnr != 0 && lastIdEnr != null) {
 			for (var int = 0; int < arrayImage2.length; int++) {
 				arrayImage2[int].id_enrichments = lastIdEnr;
 				$.ajax({

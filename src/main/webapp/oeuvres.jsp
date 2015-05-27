@@ -12,6 +12,7 @@
         width:90%;
     }
   </style>
+  	<s:include value="import.jsp"></s:include>
   <body>
     <div id="container">
 

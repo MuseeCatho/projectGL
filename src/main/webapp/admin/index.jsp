@@ -8,7 +8,7 @@
 </head>
 <body>
 	<s:include value="header_admin.jsp"></s:include>
-	<s:include value="navigate.action">
+	<s:include value="navigation.jsp">
 		<s:param name="pageName">welcome</s:param>
 	</s:include>
 

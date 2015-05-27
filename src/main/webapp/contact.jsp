@@ -6,6 +6,7 @@
   <body>
     <div id="container">
 
+  	<s:include value="import.jsp"></s:include>
 
             <s:include value="header.jsp"></s:include>
 
