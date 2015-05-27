@@ -1,0 +1,44 @@
+.mediaCarousel { /* size of the carousel */
+	/*width: 400px;
+	height: 300px; now define in the width and height parameters of the mediaCarousel.jsp page */
+}
+
+.mediaCarousel .carousel-inner {
+	height: 100%;
+}
+
+.mediaCarousel .item {
+	height: 100%;
+}
+
+.mediaCarousel_item {
+	width: 75%;
+	height: 100%;
+	/*line-height: 300px; now define in the height parameter of the mediaCarousel.jsp page */
+	text-align: center; /* horizontal center */
+	margin: auto;
+}
+
+.mediaCarousel_item img {
+	max-width: 100%;
+	max-height: 100%;
+	vertical-align: middle; /* vertical center */
+}
+
+.mediaModal {
+	width: 75%;
+	background-color: black;
+	text-align: center;
+}
+
+.mediaModal img {
+	max-width: 100%;
+	max-height: 85vmin;
+}
+
+.mediaCarousel .video-jsContainer {
+	max-width: 100%;
+	max-height: 100%;
+	/*vertical-align: middle; /* vertical center */
+	/*background-color: red;*/
+}

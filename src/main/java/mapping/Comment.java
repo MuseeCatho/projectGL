@@ -9,17 +9,19 @@ public class Comment implements java.io.Serializable {
 	private Integer object_id;
 	private String text;
 	private Date date;
+	private Integer show;
 	
 	public Comment() {
 	}
 	
 	public Comment(Integer id, Integer user_id, Integer object_id, String text,
-			Date date) {
+			Date date,Integer show) {
 		this.id = id;
 		this.user_id = user_id;
 		this.object_id = object_id;
 		this.text = text;
 		this.date = date;
+		this.show=show;
 	}
 	public Integer getId() {
 		return id;
@@ -50,6 +52,14 @@ public class Comment implements java.io.Serializable {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public Integer getShow() {
+		return show;
+	}
+
+	public void setShow(Integer show) {
+		this.show = show;
 	}
 	
 	

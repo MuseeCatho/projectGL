@@ -27,12 +27,13 @@ public class ObjectPage implements java.io.Serializable {
 	private Double longitude;
 	private String name;
 	private String link_photos;
+	private int commentNotValidate;
 	
 	public ObjectPage(Integer idObject, Integer period_id, String title_f,String title_e,
 			String country, String reference, String description_e,
 			String description_f, String length, String heigth, String width,
 			String archeologist, Date date, String city, Double latitude,
-			Double longitude, String name, String link_photos) {
+			Double longitude, String name, String link_photos,int commentNotValidate) {
 		this.idObject = idObject;
 		this.period_id = period_id;
 		this.title_f = title_f;
@@ -51,6 +52,7 @@ public class ObjectPage implements java.io.Serializable {
 		this.longitude = longitude;
 		this.name = name;
 		this.link_photos=link_photos;
+		this.commentNotValidate=commentNotValidate;
 	}
 		
 	
@@ -205,7 +207,12 @@ public class ObjectPage implements java.io.Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	public int getCommentNotValidate() {
+		return commentNotValidate;
+	}
+	public void setCommentNotValidate(int commentNotValidate) {
+		this.commentNotValidate = commentNotValidate;
+	}
 	
 
 }

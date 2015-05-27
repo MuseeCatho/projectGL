@@ -105,7 +105,7 @@ public class DetailAction extends ActionSupport {
 		listCommentAndNameUser=new ArrayList<CommentDetail>();
 		if(listComment.size()>0){
 			for (Comment e : listComment) {
-				CommentDetail commentDetail=new CommentDetail(e.getId(),userDao.findUserById(e.getUser_id()).getPseudo(),e.getText(),e.getDate());
+				CommentDetail commentDetail=new CommentDetail(e.getId(),userDao.findUserById(e.getUser_id()).getPseudo(),e.getText(),e.getDate(),e.getShow());
 				listCommentAndNameUser.add(commentDetail);
 			}
 		}
@@ -150,7 +150,7 @@ public class DetailAction extends ActionSupport {
 
 	public String addProposition(){
 		PropositionDaoImpl propositionDao = new PropositionDaoImpl();
-		Proposition proposition =new Proposition(new Integer(0),this.date, this.etat, this.type, this.id_medias, this.id_enrichments);
+		Proposition proposition =new Proposition(new Integer(0), this.etat, this.type, this.id_medias, this.id_enrichments);
 		propositionDao.insertProposition(proposition);	
 		
 		return SUCCESS;
@@ -158,7 +158,7 @@ public class DetailAction extends ActionSupport {
 	
 	public String addEnrichments(){
 		EnrichmentsDaoImpl enrichmentsDao = new EnrichmentsDaoImpl();
-		Enrichments enrichments =new Enrichments(new Integer(0), this.user_id, this.object_id, this.new_description,this.source);
+		Enrichments enrichments =new Enrichments(new Integer(0), this.user_id, this.object_id, this.new_description,this.source,this.date);
 		enrichmentsDao.insertEnrichments(enrichments);
 		return SUCCESS;
 	}

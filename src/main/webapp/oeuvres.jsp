@@ -12,14 +12,12 @@
         width:90%;
     }
   </style>
+  	<s:include value="import.jsp"></s:include>
   <body>
     <div id="container">
 
 
    <s:include value="header.jsp"></s:include>
-   
-   
-
 
 <%--   <div class="row">
 	<div class="col-lg-8 col-lg-offset-2">
@@ -50,6 +48,14 @@
 	</div> --%>
 	
 	   <s:include value="form_advanced_research.jsp"></s:include>
+	   <script type="text/javascript">
+		   $(document).ready(function(){
+		        $('#title-adv_research').click(function(){
+		         $("#div_adv_research").toggle();
+		 		 });
+			})
+		</script>
+
 <s:iterator value="listObjectPage">	
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2">

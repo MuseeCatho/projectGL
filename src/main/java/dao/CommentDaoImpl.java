@@ -41,6 +41,16 @@ public class CommentDaoImpl implements CommentDao<Comment, Integer>{
 		return results;
 	}
 	
+	public Collection<Comment> findCommentByIdObjectByShow(Integer id, Integer show){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction(); 
+		Criteria cr = session.createCriteria(Comment.class);
+		cr.add(Restrictions.eq("object_id",id));
+		cr.add(Restrictions.eq("show",show));
+		Collection<Comment> results = cr.list();
+		return results;
+	}
+	
 	public void insertComment(Comment entity){
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();    
