@@ -9,6 +9,8 @@ import java.util.List;
 import mapping.ObjectMuseum;
 import mapping.User;
 
+import bean.Research;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -46,6 +48,26 @@ public class ObjectDaoImpl implements ObjectDao<ObjectMuseum, Integer>{
 	}
 	
 	public Collection<ObjectMuseum> getObjectResearch(String research){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction(); 
+        ArrayList<String> listObject=new ArrayList<String>();
+        String[] parts = research.split(" ");
+    	for(String s : parts) listObject.add(s);
+		Criteria cr = session.createCriteria(ObjectMuseum.class);
+		Disjunction disjunction = Restrictions.disjunction();//Permet de faire des operations OR
+		
+		for(String object:listObject){
+			object= "%"+object;
+			object+="%";
+			disjunction.add(Restrictions.ilike("title_f", object));
+			cr.add(disjunction);
+		}
+		List<ObjectMuseum> results = cr.list();
+		return results;
+	}
+	
+	//public Collection<ObjectMuseum> getObjectAdvResearch(Research research){
+	public Collection<ObjectMuseum> getObjectAdvResearch(String research){
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction(); 
         ArrayList<String> listObject=new ArrayList<String>();

@@ -57,6 +57,9 @@
 		<action name="research_action" class="action.ResearchAction" method="research">
 			<result name="success">result_research.jsp</result>
 		</action>
+		<action name="advanced_research_action" class="action.ResearchAction" method="advancedResearch">
+			<result name="success">oeuvres.jsp</result>
+		</action>
 		<!-- PROFIL -->
 		<action name="profil">
 			<result name="success">profil.jsp</result>

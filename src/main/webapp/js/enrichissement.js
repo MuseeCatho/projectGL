@@ -20,6 +20,7 @@ function reset(){
 	}
 	$('#descriptionDetail_text').show();
 	document.getElementById('modif_text').parentNode.removeChild(document.getElementById('modif_text'));
+    document.getElementById('result').innerHTML="";
 }
 
 

@@ -17,6 +17,9 @@
 
 
    <s:include value="header.jsp"></s:include>
+   
+   
+
 
 <%--   <div class="row">
 	<div class="col-lg-8 col-lg-offset-2">
@@ -46,7 +49,7 @@
 		</div>
 	</div> --%>
 	
-	
+	   <s:include value="form_advanced_research.jsp"></s:include>
 <s:iterator value="listObjectPage">	
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2">
