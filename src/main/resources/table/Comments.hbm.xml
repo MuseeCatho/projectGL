@@ -20,6 +20,9 @@
         <property name="date" type="java.util.Date">
             <column name="date"  length="40" not-null="true"/>
         </property> 
+        <property name="show" type="java.lang.Integer">
+            <column name="showComment"  not-null="false"/>
+        </property>
 
     </class>
 </hibernate-mapping>

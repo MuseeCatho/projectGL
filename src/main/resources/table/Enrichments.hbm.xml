@@ -20,5 +20,8 @@
         <property name="source" type="string">
             <column name="source" length="255" not-null="false" />
         </property>
+        <property name="date" type="date">
+            <column name="date" not-null="false"/>
+        </property>
     </class>
 </hibernate-mapping>

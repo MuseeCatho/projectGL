@@ -1,11 +1,9 @@
 package mapping;
 
-import java.util.Date;
 
 public class Proposition implements java.io.Serializable {
 	
 	private Integer id;
-	private Date date;
 	private String etat;
 	private String type;
 	private Integer id_medias;
@@ -22,12 +20,6 @@ public class Proposition implements java.io.Serializable {
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
 	}
 	public String getEtat() {
 		return etat;
@@ -48,9 +40,8 @@ public class Proposition implements java.io.Serializable {
 	public void setId_enrichments(Integer id_enrichments) {
 		this.id_enrichments = id_enrichments;
 	}
-	public Proposition(Integer id, Date date, String etat, String type, int id_medias,int id_enrichments){
+	public Proposition(Integer id, String etat, String type, int id_medias,int id_enrichments){
 		this.id=id;
-		this.date=date;
 		this.etat=etat;
 		this.type=type;
 		this.id_medias=id_medias;

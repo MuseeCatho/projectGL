@@ -12,14 +12,12 @@
         width:90%;
     }
   </style>
+  	<s:include value="import.jsp"></s:include>
   <body>
     <div id="container">
 
 
    <s:include value="header.jsp"></s:include>
-   
-   
-
 
 <%--   <div class="row">
 	<div class="col-lg-8 col-lg-offset-2">
@@ -57,6 +55,7 @@
 		 		 });
 			})
 		</script>
+
 <s:iterator value="listObjectPage">	
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2">

@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Map;
 
 import mapping.User;
@@ -14,6 +15,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import dao.UserDaoImpl;
+import dao.UserManagerDao;
 
 public class UsersAction extends ActionSupport{
 
@@ -35,13 +37,16 @@ public class UsersAction extends ActionSupport{
 	private int admin;
 	private int id;
 
-
-
+	private String searchString;
+	private int pageNumber;
+	private int pageCapacity = 10;
+	private List<User> users;
+	int numberUsers;
 
 
 	private static final long serialVersionUID = 1L;
 
-	
+
 	public String signIn() throws NoSuchAlgorithmException{
 
 		UserDaoImpl userDao=new UserDaoImpl();
@@ -71,18 +76,18 @@ public class UsersAction extends ActionSupport{
 		//session.removeAttribute("context"); 
 		Map session = ActionContext.getContext().getSession();
 		session.remove("id_user");
-       session.remove("firstname");
-       return SUCCESS;
-   }
+		session.remove("firstname");
+		return SUCCESS;
+	}
 	public String getInfoProfil(){
 		UserDaoImpl userDao=new UserDaoImpl();
 		User user=userDao.findUserById(this.id);
-		
+
 		Gson gson = new Gson();
 		resultAjax = gson.toJson(user);
 		System.out.println(resultAjax);
-		
-		
+
+
 		return SUCCESS;
 	}
 	public String updateProfil(){
@@ -98,76 +103,66 @@ public class UsersAction extends ActionSupport{
 		userDao.updateUser(user);
 		return SUCCESS;
 	}
-	
-	 
-	 public String addUser() throws Exception {
-		 UserDaoImpl userDao=new UserDaoImpl();
-		 
-		 System.out.println("addUser - pseudo : "+this.pseudo);
-		 System.out.println("addUser - password : "+this.password);
-		 System.out.println("addUser - name : "+this.name);
-		 System.out.println("addUser - firstname : "+this.firstname);
-		 System.out.println("addUser - email : "+this.email);
-		 System.out.println("addUser - country : "+this.country);
-		 System.out.println("addUser - city : "+this.city);
-		 System.out.println("addUser - job : "+this.job);
- 
-		 User user = new User(new Integer(0), this.firstname, this.name,hashPassword(this.password),this.job, this.pseudo, this.country, this.city,this.email, new Integer(0), new Integer(0));
-		 userDao.insertUser(user);    
-		 result=0;
-		 
-	       return SUCCESS;
-	   }
-	 
-	 public String checkPseudo() throws Exception {
-		 
-		 UserDaoImpl userDao=new UserDaoImpl();
-		 user =userDao.findUserAdmin(this.pseudo,null,0);
-		 if(user==null){
-			 result=0;
-		 }else{
-			 result=1;
-		 }
-		 System.out.println("result : "+result);
-		 return SUCCESS;
-	 }
-	 
+
+
+	public String addUser() throws Exception {
+		UserDaoImpl userDao=new UserDaoImpl();
+
+		System.out.println("addUser - pseudo : "+this.pseudo);
+		System.out.println("addUser - password : "+this.password);
+		System.out.println("addUser - name : "+this.name);
+		System.out.println("addUser - firstname : "+this.firstname);
+		System.out.println("addUser - email : "+this.email);
+		System.out.println("addUser - country : "+this.country);
+		System.out.println("addUser - city : "+this.city);
+		System.out.println("addUser - job : "+this.job);
+
+		User user = new User(new Integer(0), this.firstname, this.name,hashPassword(this.password),this.job, this.pseudo, this.country, this.city,this.email, new Integer(0), new Integer(0));
+		userDao.insertUser(user);    
+		result=0;
+
+		return SUCCESS;
+	}
+
+	public String checkPseudo() throws Exception {
+
+		UserDaoImpl userDao=new UserDaoImpl();
+		user =userDao.findUserAdmin(this.pseudo,null,0);
+		if(user==null){
+			result=0;
+		}else{
+			result=1;
+		}
+		System.out.println("result : "+result);
+		return SUCCESS;
+	}
+
 	public String hashPassword(String password) throws NoSuchAlgorithmException{
-		
-		 MessageDigest md = MessageDigest.getInstance("MD5");
-	        md.update(this.password.getBytes());
-	        byte byteData[] = md.digest();
-	   	 
-	        //convert the byte to hex format method 1
-	        StringBuffer sb = new StringBuffer();
-	        for (int i = 0; i < byteData.length; i++) {
-	         sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
-	        }
-	 
-	        
+
+		MessageDigest md = MessageDigest.getInstance("MD5");
+		md.update(this.password.getBytes());
+		byte byteData[] = md.digest();
+
+		//convert the byte to hex format method 1
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < byteData.length; i++) {
+			sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+		}
+
+
 		return sb.toString();
 	}
 
 
-	public String getUsers(){
-		System.out.print("ouai 12");
-		try {
-			FileWriter fw = new FileWriter ("ren.txt");
-			BufferedWriter bw = new BufferedWriter (fw);
-			PrintWriter file = new PrintWriter (bw); 
-			file.print("ren");
-			file.close();
-			System.out.println("ouai10");
-		}
-		catch (Exception e){
-			System.out.println("ouai12");
-			//System.out.println(e.toString());
-		}
-		result=104;
+	public String searchUsers(){
+		UserManagerDao userManagerDao = new UserManagerDao();
+		users = userManagerDao.searchUsers(this.admin, this.searchString, this.pageNumber, this.pageCapacity);
+		this.numberUsers = users.size();
+		System.out.println("users.size() : " + users.size());
 		return SUCCESS;
 	}
 
-
+	/* getters and setters */
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -266,7 +261,38 @@ public class UsersAction extends ActionSupport{
 	public void setResultAjax(String resultAjax) {
 		this.resultAjax = resultAjax;
 	}
-	
-	
 
+	public String getSearchString() {
+		return searchString;
+	}
+
+	public void setSearchString(String searchString) {
+		this.searchString = searchString;
+	}
+
+	public int getPageNumber() {
+		return pageNumber;
+	}
+
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+	
+	public List<User> getUsers() {
+		return users;
+	}
+	
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public int getNumberUsers() {
+		return numberUsers;
+	}
+
+	public void setNumberUsers(int numberUsers) {
+		this.numberUsers = numberUsers;
+	}
+	
+	
 }
