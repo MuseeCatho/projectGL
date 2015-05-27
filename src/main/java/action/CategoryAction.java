@@ -59,14 +59,15 @@ public String deleteCategory(){
 	
 	public String addCategory() throws Exception{
 		
-
+		
 		String link_picture;
 		CategoryDaoImpl categoryDao = new CategoryDaoImpl();
 		if(uploadFileNames==null){ //si il n'y a pas de photo
 			link_picture="img/category/other.jpg";
 		}else{
 			ServletContext context = ServletActionContext.getServletContext();
-			String webroot = context.getRealPath("/")+"\\src\\main\\webapp\\img\\category";
+			String webroot = System.getProperty("user.home")+"/uploadFile";
+			System.out.println(System.getProperty("user.home"));
 			upload(webroot);
 			link_picture="img/category/"+uploadFileNames[0];
 		}

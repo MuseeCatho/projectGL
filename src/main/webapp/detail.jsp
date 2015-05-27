@@ -150,12 +150,11 @@
 						<div class="col-lg-5 col-lg-offset-1">
 
 							<s:iterator value="listCommentAndNameUser">
-								<s:if test="show==0">
+								<s:if test="show==1">
 									<div class="media">
 										<div class="media-body">
 											<h4 class="media-heading">
 												<s:property value="pseudo" />
-												<s:property value="show" />
 												<small><s:date name="date" format="dd/MM/yyyy" /> à
 													<s:date name="date" format="hh:mm:ss" /></small>
 											</h4>

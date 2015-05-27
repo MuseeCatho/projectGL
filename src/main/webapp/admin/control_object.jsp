@@ -4,8 +4,14 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Insert title here</title>
+	<script type="text/javascript" src="../js/control_object.js"></script>
 	<s:include value="import.jsp"></s:include>
 </head>
+<style type="text/css">
+	.hideBlockTable{display:none;}
+	.cancel_category{margin-bottom:105px;}
+    .cursor_delete{cursor: pointer; }
+</style>
 <body>
  <s:include value="header_admin.jsp"></s:include>
 	<jsp:include page="navigation.jsp">
@@ -30,8 +36,22 @@
 		            <div class="col-md-8">
 		                <h3><s:property value="title_f"/></h3>
 		                <p><s:property value="description_f"/></p>
-		                <a href="detailObject.action?id=<s:property value="idObject"/>">Nombre de commentaire non validés :<s:property value="commentNotValidate"/></p> <span class="glyphicon glyphicon-chevron-right"></span></a>
+		                <button onclick="getComment(<s:property value="idObject"/>,true)" id="button_object_<s:property value="idObject"/>">Nombre de commentaire non validés :<s:property value="commentNotValidate"/></button>
 		            </div>
+		        </div>
+		        <div class="hideBlockTable" id="blockTable_<s:property value="idObject"/>">
+			        <table class="table table-condensed" >
+			           <thead>
+					      <tr>
+					      	<th>Pseudo</th>
+					        <th>Commentaires</th>
+					        <th>Valider</th>
+					        <th>Supprimer</th>
+					      </tr>
+					    </thead>
+					    <tbody id="tabCommentById_<s:property value="idObject"/>">
+					    </tbody>
+					  </table>
 		        </div>
 		     </div>
 		     <hr>
