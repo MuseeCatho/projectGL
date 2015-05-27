@@ -1,0 +1,38 @@
+#container {
+	position: relative;
+	width: 100%;
+	margin: auto;
+	background-color: blue;
+}
+
+.carousel-inner {
+	height: 500px;
+}
+
+#pres {
+	margin-top: 100px;
+	width: 90%;
+}
+
+.panel-footer {
+	margin-top: 50px;
+}
+
+body {
+	/*background-color: #EFEFC8;*/
+	/*background-color: black;*/
+	background-image: url("img/un-peu-de-prehistoire.jpg");
+}
+
+#blockCategory {
+	margin-top: 20px;
+}
+
+#background{
+	position:absolute;
+	top:0;
+	left:0;
+	min-width:100%;
+	min-height:100%;
+	z-index: -100;
+}

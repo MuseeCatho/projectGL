@@ -1,5 +1,7 @@
 package mapping;
 
+import java.util.Date;
+
 public class Enrichments implements java.io.Serializable {
 	
 	private Integer id;
@@ -7,7 +9,14 @@ public class Enrichments implements java.io.Serializable {
 	private Integer object_id;
 	private String new_description;
 	private String source;
+	private Date date;
 	
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -38,13 +47,13 @@ public class Enrichments implements java.io.Serializable {
 	public void setSource(String source) {
 		this.source = source;
 	}
-	public Enrichments(int id, int user_id, int object_id, String new_description, String source){
+	public Enrichments(int id, int user_id, int object_id, String new_description, String source, Date date){
 		this.id=id;
 		this.user_id=user_id;
 		this.object_id=object_id;
 		this.new_description=new_description;
 		this.source=source;
-		
+		this.date=date;
 	}
 	public Enrichments(){
 		

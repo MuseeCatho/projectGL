@@ -45,17 +45,25 @@
          <action name="checkPseudo" class="action.UsersAction" method="checkPseudo">
             <result name="success">result.jsp</result>
         </action>
-        <action name="get_users" class="action.UsersAction" method="getUsers">
-			<result name="success">result.jsp</result>
-		</action>
-        <action name="index" class="action.HomeAction" method="getAllCategory">
+		<!-- END DETAILS OBJECT -->
+		<action name="logOut" class="action.UsersAction" method="logOut">
 			<result name="success">index.jsp</result>
 		</action>
-		<action name="upload_file" class="action.FileUpload" method="upload">
+		<action name="add_user" class="action.UsersAction" method="addUser">
 			<result name="success">result.jsp</result>
 		</action>
-		<action name="research_action" class="action.ResearchAction" method="research">
+		<action name="checkPseudo" class="action.UsersAction" method="checkPseudo">
+			<result name="success">result.jsp</result>
+		</action>
+		<action name="index" class="action.HomeAction" method="getAllCategory">
+			<result name="success">index.jsp</result>
+		</action>
+		<action name="research_action" class="action.ResearchAction"
+			method="research">
 			<result name="success">result_research.jsp</result>
+		</action>
+		<action name="advanced_research_action" class="action.ResearchAction" method="advancedResearch">
+			<result name="success">oeuvres.jsp</result>
 		</action>
 		<!-- PROFIL -->
 		<action name="profil">
@@ -68,15 +76,38 @@
 			<result name="success">resultAjax.jsp</result>
 		</action>
 		<!-- END PROFIL -->
+		
+		<!-- TESTS : -->
+		<action name="upload_file" class="action.FileUpload" method="upload">
+			<result name="success">result.jsp</result>
+		</action>
+		<action name="test_dao" class="action.Test_DAO" method="test_UserDAO">
+			<result name="success">test_dao.jsp</result>
+		</action>
+		<action name="mediaCarousel" class="action.MediaCarousel">
+			<result name="success">mediaCarousel.jsp</result>
+		</action>
+		<action name="login">
+			<result>test_languages.jsp</result>
+		</action>
+		<!-- <action name="validateUser" class="action.LoginAction">
+			<result name="SUCCESS">index.jsp</result>
+			<result name="input">test_languages.jsp</result>
+		</action>-->
+		<!-- END TESTS -->
     </package>
-    
     <package name="test" namespace="/admin" extends="struts-default">
         <action name="sign" class="action.UsersAction" method="signIn">
             <result name="success">result.jsp</result>
         </action>
+        <!-- CONTROL OBJECT-->
           <action name="add_object" class="action.ObjectAction" method="addObjectAction">
    			<result name="success">add_object.jsp</result>
-   		</action> 
+   		</action>
+   		<action name="control_object" class="action.ObjectAction" method="listObject">
+   			<result name="success">control_object.jsp</result>
+   		</action>
+   		<!-- END CONTROL OBJECT-->
    		<!-- CATEGORY -->
    		<action name="get_category">
    			<result name="success">get_category.jsp</result>
@@ -88,7 +119,8 @@
 			<result name="success">result.jsp</result>
    		</action>
    		<action name="addCategory" class="action.CategoryAction" method="addCategory">
-			<result name="success">result.jsp</result>
+			<result name="success" type="redirectAction">
+        <param name="actionName">get_category</param></result>
    		</action>
    		<!-- END CATEGORY -->
    		<!-- PERIOD -->
@@ -100,17 +132,25 @@
    		</action>
    		<action name="deletePeriod" class="action.PeriodAction" method="deletePeriod">
 			<result name="success">resultAjax.jsp</result>
-   		</action>
-   		<action name="addPeriod" class="action.PeriodAction" method="addPeriod">
+		</action>
+		<action name="addPeriod" class="action.PeriodAction" method="addPeriod">
 			<result name="success">resultAjax.jsp</result>
-   		</action>
-   		<action name="upadtePeriod" class="action.PeriodAction" method="updatePeriod">
+		</action>
+		<action name="upadtePeriod" class="action.PeriodAction" method="updatePeriod">
 			<result name="success">resultAjax.jsp</result>
-   		</action>
-   		<!-- END PERIOD -->
-   		<action name="selectAction" class="action.ObjectAction" method="display">
+		</action>
+		<!-- END PERIOD -->
+		<!-- USERS -->
+		<action name="searchUsers" class="action.UsersAction" method="searchUsers">
+			<result name="success">usersAjax.jsp</result>
+		</action>
+		<!-- END USERS -->
+		<action name="selectAction" class="action.ObjectAction" method="display">
 			<result name="none">add_object.jsp</result>
    		</action> 
+   		<action name="upload_file" class="action.FileUpload" method="upload">
+			<result name="success">result.jsp</result>
+		</action>
     </package>
     
     <package name="actionOeuvre" namespace="/" extends="struts-default">

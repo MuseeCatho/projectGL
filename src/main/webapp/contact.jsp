@@ -56,6 +56,7 @@
 							<div class="panel-body">
 								<p></p>
 
+
 							</div>
 						</div>
 					
@@ -63,6 +64,9 @@
 			</div>
 		</div>
 		</div>
+
+  	<s:include value="import.jsp"></s:include>
+
 
 
 		<s:include value="footer.jsp"></s:include>
