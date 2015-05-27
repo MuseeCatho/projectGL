@@ -33,14 +33,13 @@
 			for (int i = 0; i < mediaNames.length; i++) {
 		%>
 		<div class="item <%if (i == 0) {%>active<%}%>">
+			<div class="mediaCarousel_item" style="line-height:<%=height%>;">
 			<%
 				if (mediaType.equals("image")) {
 			%>
 			<!-- for an image : -->
-			<p class="mediaCarousel_item" style="line-height:<%=height%>;">
 				<img src="<%=mediaNames[i]%>" alt="slide <%=i + 1%>"
 					data-toggle="modal" data-target="#<%=mediaCarouselId%>Modal<%=i%>" />
-			</p>
 			<%
 				} else if (mediaType.equals("audio")) {
 			%>
@@ -50,8 +49,8 @@
 			%>
 			<!-- for a video : -->
 			<div class="video-jsContainer">
-				<video id="video<%=i%>" class="video-js vjs-default-skin" controls
-					preload="auto"
+				<video id="video<%=i%>" class="video-js vjs-default-skin"
+					controls preload="none" width="500" height="300"
 					poster="http://video-js.zencoder.com/oceans-clip.png"
 					data-setup='{"example_option":true}'>
 					<source src="<%=mediaNames[i]%>" type='video/mp4' />
@@ -66,6 +65,7 @@
 			<%
 				}
 			%>
+			</div>
 		</div>
 		<%
 			}

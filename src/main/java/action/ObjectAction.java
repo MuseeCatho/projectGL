@@ -146,18 +146,19 @@ public class ObjectAction extends ActionSupport{
 		
 		
 
-		//if recherche est null
+
 
 		listObject = new ArrayList<ObjectMuseum>(objectDao.getLocations());
 		listObjectPage = new ArrayList<ObjectPage>();
 		
-		//sinon
-
-		//listObject = new ArrayList<ObjectMuseum>(objectDao.getLocations(parametres));
-		//listObjectPage = new ArrayList<ObjectPage>();
+		PeriodDaoImpl periods = new PeriodDaoImpl();
+		listP = new ArrayList<Period>();
+		listP = (List<Period>) periods.getPeriod();
 		
-		//......
-
+		CategoryDaoImpl categories = new CategoryDaoImpl();
+		listCategory = new ArrayList<Category>();
+		listCategory = (List<Category>) categories.getCategory();
+		
 		for (ObjectMuseum e : listObject) {
 			listPhotos = new ArrayList<Photos>(photosDao.getPhotos(e.getId()));
 			

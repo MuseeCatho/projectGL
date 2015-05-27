@@ -5,6 +5,8 @@
     #container{position:relative;width:100%;margin:auto;}
     #map{width:1000px;height:550px;margin:auto;}
   </style>
+  
+  	<s:include value="import.jsp"></s:include>
   <body>
     <div id="container">
 

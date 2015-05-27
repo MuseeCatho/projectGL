@@ -20,6 +20,7 @@ public class CommentDetail implements java.io.Serializable {
 		this.date = date;
 		this.show=show;
 	}
+	
 	public Integer getId() {
 		return id;
 	}
