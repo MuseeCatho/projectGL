@@ -1,5 +1,15 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<div id="div_adv_research" style="display:block;" class="col-lg-9 col-lg-offset-2">	
+<style>
+#title-adv_research{
+	color:#545aff;
+	cursor:pointer;
+	text-decoration: underline;
+	margin-top:50px;
+}
+</style>
+<h6 class="col-lg-9 col-lg-offset-2" id="title-adv_research">Cliquez ici pour une recherche avancée</h6>
+<div id="div_adv_research" style="display:none;" class="col-lg-9 col-lg-offset-2">	
+
 <form id="adv_research" action="advanced_research_action.action">
 	<fieldset>
 	  <div class="form-group">
