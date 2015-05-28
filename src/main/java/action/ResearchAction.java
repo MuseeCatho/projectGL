@@ -23,7 +23,6 @@ import dao.ObjectDaoImpl;
 import dao.PeriodDaoImpl;
 import dao.PhotosDaoImpl;
 import dao.ObjectCategoryDaoImpl;
-
 import bean.Research;
 
 
@@ -34,6 +33,7 @@ public class ResearchAction extends ActionSupport{
 	private String keywordExclude;
 	private String reference;
 	private String period;
+	private String categories;
 	private String country;
 	private String city;
 	private List<ObjectPage> listObjectPage;
@@ -84,6 +84,14 @@ public class ResearchAction extends ActionSupport{
 
 	public void setPeriod(String period) {
 		this.period = period;
+	}
+	
+	public String getCategories() {
+		return categories;
+	}
+
+	public void setCategories(String categories) {
+		this.categories = categories;
 	}
 
 	public String getCountry() {
@@ -212,10 +220,37 @@ public class ResearchAction extends ActionSupport{
 		//Research research=new Research(this.keyword, this.keywordExclude, this.reference, this.country, this.city);
 			
 		String research_word = this.keyword;
-		
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
+		
+		//Obtention de la période
+		Period period =new Period();
+		Integer period_id = Integer.parseInt(this.period);
+		PeriodDaoImpl periodDao = new PeriodDaoImpl();
+		period = periodDao.getPeriodId(period_id);
+		
+		//Obtention des catégories
+		CategoryDaoImpl categoryDao = new CategoryDaoImpl();
+		List<Category> listCategoryChoices=new ArrayList<Category>();
+		if(this.categories!=null){
+			ArrayList<String> listCatIdStr = new  ArrayList<String>(Arrays.asList(this.categories.split(", ")));
+			ArrayList<Integer> listCatId = new ArrayList<Integer>();
+	
+			for(String s : listCatIdStr) 
+				listCatId.add(Integer.parseInt(s));
+	
+			
+			for(int id=0; id <listCatId.size();id++){
+				listCategoryChoices.add(categoryDao.findCategoryById(listCatId.get(id)));
+			}
+		}
+		else{
+			listCategoryChoices=null;
+		}
+	
+		
+		Research research=new Research(this.keyword, this.keywordExclude, this.reference, listCategoryChoices, period, this.country, this.city);
 
-		listObject = new ArrayList<ObjectMuseum>(objectDao.getObjectAdvResearch(research_word));
+		listObject = new ArrayList<ObjectMuseum>(objectDao.getObjectAdvResearch(research));
 		listObjectPage = new ArrayList<ObjectPage>();
 		
 

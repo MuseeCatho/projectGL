@@ -66,22 +66,51 @@ public class ObjectDaoImpl implements ObjectDao<ObjectMuseum, Integer>{
 		return results;
 	}
 	
-	//public Collection<ObjectMuseum> getObjectAdvResearch(Research research){
-	public Collection<ObjectMuseum> getObjectAdvResearch(String research){
+	public Collection<ObjectMuseum> getObjectAdvResearch(Research research){
+	//public Collection<ObjectMuseum> getObjectAdvResearch(String research){
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction(); 
-        ArrayList<String> listObject=new ArrayList<String>();
-        String[] parts = research.split(" ");
-    	for(String s : parts) listObject.add(s);
-		Criteria cr = session.createCriteria(ObjectMuseum.class);
-		Disjunction disjunction = Restrictions.disjunction();//Permet de faire des operations OR
-		
-		for(String object:listObject){
-			object= "%"+object;
-			object+="%";
-			disjunction.add(Restrictions.ilike("title_f", object));
-			cr.add(disjunction);
-		}
+        Criteria cr = session.createCriteria(ObjectMuseum.class);
+        
+        if(research.getKeyword()!=null && !research.getKeyword().equals("")){
+        	
+        	ArrayList<String> listObject=new ArrayList<String>();
+            String[] parts = research.getKeyword().split(" ");
+        	for(String s : parts) listObject.add(s);
+        	Disjunction disjunction = Restrictions.disjunction();//Permet de faire des operations OR
+    		
+    		for(String object:listObject){
+    			object= "%"+object;
+    			object+="%";
+    			disjunction.add(Restrictions.ilike("title_f", object));
+    			cr.add(disjunction);
+    		}
+        }
+        if(research.getKeywordExclude()!=null && !research.getKeywordExclude().equals("")){
+        	ArrayList<String> listObject=new ArrayList<String>();
+            String[] parts = research.getKeywordExclude().split(" ");
+        	for(String s : parts) listObject.add(s);
+        	Disjunction disjunction = Restrictions.disjunction();//Permet de faire des operations OR
+    		
+    		for(String object:listObject){
+    			object= "%"+object;
+    			object+="%";
+    			disjunction.add(Restrictions.not(Restrictions.ilike("title_f", object)));
+    			cr.add(disjunction);
+    		}
+        }
+//        ArrayList<String> listObject=new ArrayList<String>();
+//       // String[] parts = research.split(" ");
+//    	//for(String s : parts) listObject.add(s);
+//		
+//		Disjunction disjunction = Restrictions.disjunction();//Permet de faire des operations OR
+//		
+//		for(String object:listObject){
+//			object= "%"+object;
+//			object+="%";
+//			disjunction.add(Restrictions.ilike("title_f", object));
+//			cr.add(disjunction);
+//		}
 		List<ObjectMuseum> results = cr.list();
 		return results;
 	}
