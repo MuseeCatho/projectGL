@@ -183,44 +183,14 @@ public class ResearchAction extends ActionSupport{
 //			objectDao.getOeuvres(Integer.parseInt(research_word));
 //			System.out.println("l'objet à rechercher est "+research_word);
 			ObjectDaoImpl objectDao = new ObjectDaoImpl();
-			PeriodDaoImpl periodDao = new PeriodDaoImpl();
-			PhotosDaoImpl photosDao = new PhotosDaoImpl();
-			CommentDaoImpl commentDao = new CommentDaoImpl();
-			
 
+		
 			listObject = new ArrayList<ObjectMuseum>(objectDao.getObjectResearch(research_word));
 			listObjectPage = new ArrayList<ObjectPage>();
 			
 
-			for (ObjectMuseum e : listObject) {
-				System.out.println(e.getCity());
-				listPhotos = new ArrayList<Photos>(photosDao.getPhotos(e.getId()));
-				
-				if(listPhotos.size()==0){
-					for(Photos p:listPhotos){
-						photoUnique = "img/object/autre.jpg";
-					}
-				}
-				else{
-					photoUnique = listPhotos.get(0).getLink_photos();
-				}
-				
-				periodObject = periodDao.getPeriodId(e.getPeriod_id());
-				photosObject = photosDao.getPhotos(e.getPeriod_id());
-				
-				//liste des commentaires
-				
-				List<Comment> listComment=new ArrayList<Comment>(commentDao.findCommentByIdObjectByShow(new Integer(e.getId()),new Integer(0)));
-				
-				ObjectPage objectPage = new ObjectPage(e.getId(),
-						e.getPeriod_id(), e.getTitle_f(), e.getTitle_e(),
-						e.getCountry(), e.getReference(), e.getDescription_e(),
-						e.getDescription_f(), e.getLength(), e.getHeigth(),
-						e.getWidth(), e.getArcheologist(), e.getDate(),
-						e.getCity(), e.getLatitude(), e.getLongitude(),
-						periodObject.getName(), photoUnique,listComment.size());
-				listObjectPage.add(objectPage);
-			}
+			ObjectAction.createListObject(listObject, listPhotos, 
+					photoUnique,  periodObject, photosObject, listObjectPage);
 		}
 		
 		return SUCCESS;
@@ -244,45 +214,13 @@ public class ResearchAction extends ActionSupport{
 		String research_word = this.keyword;
 		
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
-		PeriodDaoImpl periodDao = new PeriodDaoImpl();
-		PhotosDaoImpl photosDao = new PhotosDaoImpl();
-		CommentDaoImpl commentDao = new CommentDaoImpl();
-
-	
 
 		listObject = new ArrayList<ObjectMuseum>(objectDao.getObjectAdvResearch(research_word));
 		listObjectPage = new ArrayList<ObjectPage>();
 		
 
-		for (ObjectMuseum e : listObject) {
-			System.out.println(e.getCity());
-			listPhotos = new ArrayList<Photos>(photosDao.getPhotos(e.getId()));
-			
-			if(listPhotos.size()==0){
-				for(Photos p:listPhotos){
-					photoUnique = "img/object/autre.jpg";
-				}
-			}
-			else{
-				photoUnique = listPhotos.get(0).getLink_photos();
-			}
-			
-			periodObject = periodDao.getPeriodId(e.getPeriod_id());
-			photosObject = photosDao.getPhotos(e.getPeriod_id());
-			
-			//liste des commentaires
-			
-			List<Comment> listComment=new ArrayList<Comment>(commentDao.findCommentByIdObjectByShow(new Integer(e.getId()),new Integer(0)));
-			
-			ObjectPage objectPage = new ObjectPage(e.getId(),
-					e.getPeriod_id(), e.getTitle_f(), e.getTitle_e(),
-					e.getCountry(), e.getReference(), e.getDescription_e(),
-					e.getDescription_f(), e.getLength(), e.getHeigth(),
-					e.getWidth(), e.getArcheologist(), e.getDate(),
-					e.getCity(), e.getLatitude(), e.getLongitude(),
-					periodObject.getName(), photoUnique,listComment.size());
-			listObjectPage.add(objectPage);
-		}
+		ObjectAction.createListObject(listObject,listPhotos, 
+				photoUnique,  periodObject, photosObject, listObjectPage);
 
 		
 		return SUCCESS;

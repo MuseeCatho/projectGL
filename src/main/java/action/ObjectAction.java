@@ -139,14 +139,9 @@ public class ObjectAction extends ActionSupport{
 	}
 
 	public String listObject() {
+		
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
-		PeriodDaoImpl periodDao = new PeriodDaoImpl();
-		PhotosDaoImpl photosDao = new PhotosDaoImpl();
-		CommentDaoImpl commentDao = new CommentDaoImpl();
 		
-		
-
-
 
 		listObject = new ArrayList<ObjectMuseum>(objectDao.getLocations());
 		listObjectPage = new ArrayList<ObjectPage>();
@@ -159,7 +154,19 @@ public class ObjectAction extends ActionSupport{
 		listCategory = new ArrayList<Category>();
 		listCategory = (List<Category>) categories.getCategory();
 		
-		for (ObjectMuseum e : listObject) {
+		createListObject(listObject,listPhotos, 
+			photoUnique,  periodObject, photosObject, listObjectPage);
+		
+		return SUCCESS;
+	}
+	
+	public static void createListObject(List<ObjectMuseum> listObject2,ArrayList<Photos> listPhotos, 
+			String photoUnique, Period periodObject, Collection<Photos> photosObject, List<ObjectPage> listObjectPage){
+		
+		PeriodDaoImpl periodDao = new PeriodDaoImpl();
+		PhotosDaoImpl photosDao = new PhotosDaoImpl();
+		CommentDaoImpl commentDao = new CommentDaoImpl();
+		for (ObjectMuseum e : listObject2) {
 			listPhotos = new ArrayList<Photos>(photosDao.getPhotos(e.getId()));
 			
 			if(listPhotos.size()==0){
@@ -187,9 +194,7 @@ public class ObjectAction extends ActionSupport{
 					photoUnique,listComment.size());
 			listObjectPage.add(objectPage);
 		}
-		return SUCCESS;
 	}
-	
 	public String detailObject(){
 		
 		return SUCCESS;
