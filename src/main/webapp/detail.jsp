@@ -98,9 +98,27 @@
 									</div>
 								</div>
 								<div id="modif_description">
-									<button onclick="description_modifie()">Visualiser les
+										<button type="button" class="btn btn-primary btn-lg" 
+										data-toggle="modal" data-target="#myModal" onclick="description_modifie()">Visualiser les
 										modifications</button>
-									<p id="result" style="color: grey;"></p>
+										<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										  <div class="modal-dialog">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										        <h4 class="modal-title" id="myModalLabel">Visualisation</h4>
+										      </div>
+										      <div class="modal-body">
+										        <p id="result" style="color: grey;"></p>
+										      </div>
+										      <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">Revenir</button>
+										        <button type="button" class="btn btn-primary" id="save_modif_descr" onclick="saveModifDescr()">Enrengistrer les modifications</button>
+										      </div>
+										    </div>
+										  </div>
+										</div>
+									
 								</div>
 								</aside>
 							</div>
@@ -156,19 +174,20 @@
 				<div class="row">
 					<div class="col-lg-5 col-lg-offset-1">
 
-						<s:iterator value="listCommentAndNameUser">
-							<s:if test="show==0">
-								<div class="media">
-									<div class="media-body">
-										<h4 class="media-heading">
-											<s:property value="pseudo" />
-											<s:property value="show" />
-											<small><s:date name="date" format="dd/MM/yyyy" /> ï¿½
-												<s:date name="date" format="hh:mm:ss" /></small>
-										</h4>
-										<s:property value="text" />
+
+							<s:iterator value="listCommentAndNameUser">
+								<s:if test="show==1">
+									<div class="media">
+										<div class="media-body">
+											<h4 class="media-heading">
+												<s:property value="pseudo" />
+												<small><s:date name="date" format="dd/MM/yyyy" /> à
+													<s:date name="date" format="hh:mm:ss" /></small>
+											</h4>
+											<s:property value="text" />
+										</div>
+
 									</div>
-								</div>
 							</s:if>
 						</s:iterator>
 					</div>

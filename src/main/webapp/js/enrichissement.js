@@ -1,6 +1,7 @@
 var arrayImage1 = new Array();
 var arrayImage2 = new Array();
 var object = {};
+var text_modified=false;
 
 function toogle(){
 	$('#carouselPhotos').toggle();
@@ -236,6 +237,8 @@ function description_modifie(){
         }
     }
     result=document.getElementById('result').innerHTML=result;
+    
+    return result;
 }
 
 function compact_list_num (list) {
@@ -328,7 +331,7 @@ function addEnrichments(idUser) {
 	var today = new Date();
 	var date = today.toLocaleDateString();
 	var user_id = idUser;
-	var new_description = "";
+	var new_description = document.getElementById('result').innerHTML;
 	var source = "";
 	var object_id = getQueryVariable("id");
 	$.ajax({
@@ -369,7 +372,7 @@ function getLastEnrichmentsId() {
 }
 
 function SaveModif(arrayImage2, object, idUser) {
-	if (arrayImage2.length != 0) {
+	if (arrayImage2.length != 0 || saveModifDescr()) {
 		addEnrichments(idUser);
 		getLastEnrichmentsId();
 		if (lastIdEnr != 0 && lastIdEnr != null) {
@@ -388,4 +391,27 @@ function SaveModif(arrayImage2, object, idUser) {
 			}
 		}
 	}
+	else{
+		alert("Aucune modification n'a été détécté.")
+	}
+}
+
+function modifieText(){
+	if($.trim(description_modifie()) != $.trim(document.getElementById('descriptionDetail_text').innerHTML)){//si l'utilisateur a modifié le texte
+		return true;
+	}
+	else{
+		return false;
+	}
+    	
+}
+
+function saveModifDescr(){
+	if(modifieText()){
+		text_modified = true;
+	}
+	else{
+		alert("Vous n'avez pas fait de modifications.");
+	}
+	
 }

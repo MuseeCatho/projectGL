@@ -138,8 +138,19 @@
 		</action>
 		<action name="upadtePeriod" class="action.PeriodAction" method="updatePeriod">
 			<result name="success">resultAjax.jsp</result>
-		</action>
-		<!-- END PERIOD -->
+   		</action>
+   		<!-- END PERIOD -->
+   		<!-- COMMENT -->
+   		<action name="getCommentById" class="action.CommentsAction" method="getCommentById">
+			<result name="success">resultAjax.jsp</result>
+   		</action>
+   		<action name="deleteComment" class="action.CommentsAction" method="deleteComment">
+			<result name="success">resultAjax.jsp</result>
+   		</action>
+   		<action name="valideComment" class="action.CommentsAction" method="valideComment">
+			<result name="success">resultAjax.jsp</result>
+   		</action>
+   		<!-- END COMMENT -->
 		<!-- USERS -->
 		<action name="searchUsers" class="action.UsersAction" method="searchUsers">
 			<result name="success">usersAjax.jsp</result>
