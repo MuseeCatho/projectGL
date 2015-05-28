@@ -6,6 +6,7 @@ import java.util.List;
 
 import mapping.Category;
 import mapping.Comment;
+import mapping.Period;
 import mapping.User;
 
 import org.hibernate.Criteria;
@@ -40,6 +41,14 @@ public class CommentDaoImpl implements CommentDao<Comment, Integer>{
 		Collection<Comment> results = cr.list();
 		return results;
 	}
+	public Comment findCommentByIdComment(Integer idComment){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction(); 
+		Criteria cr = session.createCriteria(Comment.class);
+		cr.add(Restrictions.eq("id",idComment));
+		Comment comment = (Comment) cr.uniqueResult();
+		return comment;
+	}
 	
 	public Collection<Comment> findCommentByIdObjectByShow(Integer id, Integer show){
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -62,6 +71,13 @@ public class CommentDaoImpl implements CommentDao<Comment, Integer>{
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();    
         session.delete(entity);
+        session.getTransaction().commit();
+	}
+	
+	public void updateComment(Comment entity){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();    
+        session.update(entity);
         session.getTransaction().commit();
 	}
 }

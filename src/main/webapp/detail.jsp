@@ -174,19 +174,20 @@
 				<div class="row">
 					<div class="col-lg-5 col-lg-offset-1">
 
-						<s:iterator value="listCommentAndNameUser">
-							<s:if test="show==0">
-								<div class="media">
-									<div class="media-body">
-										<h4 class="media-heading">
-											<s:property value="pseudo" />
-											<s:property value="show" />
-											<small><s:date name="date" format="dd/MM/yyyy" /> ï¿½
-												<s:date name="date" format="hh:mm:ss" /></small>
-										</h4>
-										<s:property value="text" />
+
+							<s:iterator value="listCommentAndNameUser">
+								<s:if test="show==1">
+									<div class="media">
+										<div class="media-body">
+											<h4 class="media-heading">
+												<s:property value="pseudo" />
+												<small><s:date name="date" format="dd/MM/yyyy" /> à
+													<s:date name="date" format="hh:mm:ss" /></small>
+											</h4>
+											<s:property value="text" />
+										</div>
+
 									</div>
-								</div>
 							</s:if>
 						</s:iterator>
 					</div>
