@@ -81,17 +81,7 @@ function description_modifie(){
 								// lorsqu'on est sï¿½r qu'il s'agit d'une
 								// suppression
                 // console.log(list_text[k+gap2]);
-                pos_X=list_text_insert.indexOf(list_text[k+gap2],j+gap);// on
-																		// cherche
-																		// par
-																		// exemple
-																		// le
-																		// mot
-																		// "milieu"
-																		// dans
-																		// le
-																		// texte
-																		// modifiï¿½
+                pos_X=list_text_insert.indexOf(list_text[k+gap2],j+gap);
                 // console.log("pos_X: "+pos_X);
                 var notdoublon=false;
                 if(pos_X==-1){// si le mot suivant dans list_text n'existe pas
@@ -372,7 +362,7 @@ function getLastEnrichmentsId() {
 }
 
 function SaveModif(arrayImage2, object, idUser) {
-	if (arrayImage2.length != 0 || saveModifDescr()) {
+	if (arrayImage2.length != 0 || text_modified) {
 		addEnrichments(idUser);
 		getLastEnrichmentsId();
 		if (lastIdEnr != 0 && lastIdEnr != null) {
@@ -392,7 +382,7 @@ function SaveModif(arrayImage2, object, idUser) {
 		}
 	}
 	else{
-		alert("Aucune modification n'a été détécté.")
+		alert("Aucune modification n'a été détécté.");
 	}
 }
 
@@ -409,9 +399,10 @@ function modifieText(){
 function saveModifDescr(){
 	if(modifieText()){
 		text_modified = true;
+		alert('Modification prise en compte.');
 	}
 	else{
 		alert("Vous n'avez pas fait de modifications.");
+		return false;
 	}
-	
 }
