@@ -51,7 +51,7 @@
 	   <script type="text/javascript">
 		   $(document).ready(function(){
 		        $('#title-adv_research').click(function(){
-		         $("#div_adv_research").toggle();
+		         $("#div_adv_research").slideToggle();
 		 		 });
 			})
 		</script>
