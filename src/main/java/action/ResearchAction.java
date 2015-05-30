@@ -198,7 +198,7 @@ public class ResearchAction extends ActionSupport{
 			
 
 			ObjectAction.createListObject(listObject, listPhotos, 
-					photoUnique,  periodObject, photosObject, listObjectPage);
+					photoUnique,  periodObject, photosObject, listObjectPage,null);
 		}
 		
 		return SUCCESS;
@@ -255,7 +255,7 @@ public class ResearchAction extends ActionSupport{
 		
 
 		ObjectAction.createListObject(listObject,listPhotos, 
-				photoUnique,  periodObject, photosObject, listObjectPage);
+				photoUnique,  periodObject, photosObject, listObjectPage,null);
 
 		
 		return SUCCESS;
