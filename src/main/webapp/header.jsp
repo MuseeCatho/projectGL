@@ -1,4 +1,12 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+
+<s:url id="localeFR" namespace="/" action="locale" >
+   	<s:param name="request_locale" >fr</s:param>
+</s:url>
+<s:url id="localeEN" namespace="/" action="locale" >
+   <s:param name="request_locale" >en</s:param>
+</s:url>
+
 <nav class="navbar navbar-default">
 
               <div class="container-fluid">
@@ -16,10 +24,11 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
-                    <li><a href="index.action">Accueil<span class="sr-only">(current)</span></a></li>
-                    <li><a href="getOeuvre.action">Oeuvres</a></li>
-                    <li><a href="map.jsp">Carte</a></li>
-                    <li><a href="contact.jsp">Contacts</a></li>
+                    <li><a href="index.action"><s:text name="global.home" /><span class="sr-only">(current)</span></a></li>
+                    <li><a href="getOeuvre.action"><s:text name="global.art" /></a></li>
+                    <li><a href="map.jsp"><s:text name="global.map" /></a></li>
+                    <li><a href="contact.jsp"><s:text name="global.contact" /></a></li>
+                    
                     
                     <s:if test="%{#session.firstname!=null}">
 						<li><a href="profil.action"><s:property value="#session.firstname" /></a></li>
@@ -32,9 +41,9 @@
                   </ul>
                   <form class="navbar-form navbar-left" role="search" action="research_action.action">
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Mot-clef" name="research">
+                      <input type="text" class="form-control" placeholder="<s:text name="global.keyWord" />" name="research">
                     </div>
-                    <button type="submit" class="btn btn-default">Rechercher</button>
+                    <button type="submit" class="btn btn-default"><s:text name="global.search" /></button>
                   </form>
 
 
@@ -46,8 +55,12 @@
                             <span class="sr-only">Toggle Dropdown</span>
                           </button>
                           <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Francais</a></li>
-                            <li><a href="#">Anglais</a></li>
+                            <li>
+                            	<s:a href="%{localeFR}" >Francais</s:a>
+							</li>
+                            <li>
+                            	<s:a href="%{localeEN}" >English</s:a>
+                            </li>
                           </ul>
                     </div>
                   </form>

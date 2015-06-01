@@ -7,7 +7,7 @@ import mapping.ObjectMuseum;
 /**
  * Model class for Stock
  */
-public class ObjectPage implements java.io.Serializable {
+public class ObjectPage implements java.io.Serializable,Comparable<ObjectPage> {
  
 	private Integer idObject;
 	private Integer period_id;
@@ -214,5 +214,11 @@ public class ObjectPage implements java.io.Serializable {
 		this.commentNotValidate = commentNotValidate;
 	}
 	
+	
+	public int compareTo(ObjectPage o)
+	{
+	     return(commentNotValidate - o.commentNotValidate);
+	}
+
 
 }
