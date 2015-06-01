@@ -1,6 +1,17 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<div class="paginationContainer">
+<ul class="pagination">
+	<s:iterator value="pageLis">
+		<s:property escape="false" />
+	</s:iterator>
+</ul>
+</div>
 <table class="table table-hover">
-	<caption>Membres (<s:property value="numberUsers"/>):</caption>
+	<caption>
+		Membres (
+		<s:property value="numberUsers" />
+		):
+	</caption>
 	<thead>
 		<tr>
 			<th>pseudo</th>
@@ -23,3 +34,4 @@
 			</tr>
 		</s:iterator>
 </table>
+<br />

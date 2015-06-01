@@ -51,7 +51,7 @@
             <result name="success">result.jsp</result>
         </action>
 		<!-- END DETAILS OBJECT -->
-		<action name="logOut" class="action.UsersAction" method="logOut">
+		<!--<action name="logOut" class="action.UsersAction" method="logOut">
 			<result name="success">index.jsp</result>
 		</action>
 		<action name="add_user" class="action.UsersAction" method="addUser">
@@ -59,7 +59,7 @@
 		</action>
 		<action name="checkPseudo" class="action.UsersAction" method="checkPseudo">
 			<result name="success">result.jsp</result>
-		</action>
+		</action>-->
 		<action name="index" class="action.HomeAction" method="getAllCategory">
 			<result name="success">index.jsp</result>
 		</action>
@@ -88,6 +88,9 @@
 		</action>
 		<action name="test_dao" class="action.Test_DAO" method="test_UserDAO">
 			<result name="success">test_dao.jsp</result>
+		</action>
+		<action name="insert_users" class="action.UsersAction" method="insertUsersForTest">
+			<result name="success">index.jsp</result>
 		</action>
 		<action name="mediaCarousel" class="action.MediaCarousel">
 			<result name="success">mediaCarousel.jsp</result>

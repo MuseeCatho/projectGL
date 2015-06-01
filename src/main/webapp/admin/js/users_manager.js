@@ -3,14 +3,14 @@ function UsersData(){
 	this.admin = 1;
 	this.searchString = "";
 	this.pageNumber = 1;
-	this.numberUsers = 0;
+	//this.numberUsers = 0;
 	this.observer = null;
 }
 
 UsersData.prototype = {
 		search : function(){ // use the attributes admin, searchString and pageNumber
 			this.observer.loading();
-			console.log("search : " + searchString + ", admin : " + admin)
+			console.log("search : " + this.searchString + ", admin : " + this.admin)
 			var usersDataRef = this;
 			// get the data with ajax :
 			var jqxhr = $.post('http://localhost:8080/musee_catho/admin/searchUsers.action', {admin : usersDataRef.admin, searchString : usersDataRef.searchString, pageNumber : usersDataRef.pageNumber});
@@ -53,3 +53,18 @@ UsersObserver.prototype = {
 
 var usersData = new UsersData();
 var usersObserver = new UsersObserver(usersData);
+
+// event :
+
+$('#searchInput').keyup(function(e){
+	usersData.pageNumber = 1;
+	usersData.searchString = $(this).val();
+	console.log('search: ' + $(this).val());
+	usersData.search();
+});
+
+$('#adminInput').change(function(){
+	usersData.pageNumber = 1;
+	usersData.admin = $(this).val();
+	usersData.search();
+});
