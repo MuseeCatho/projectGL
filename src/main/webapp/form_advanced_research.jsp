@@ -26,7 +26,7 @@
 	  </div>
 			<div class="form-group">
 				<label for="period"> Période </label>
-				<s:select label="Sélectionner la periode de l'objet" headerKey="-1"
+				<s:select label="Sélectionner la periode de l'objet" headerKey="-1" headerValue="Indifférente"
 					list="listP" listKey="id" listValue="name" name="period"
 					id="period" value="defaultSearchEngine" cssClass="form-control" />
 			</div>

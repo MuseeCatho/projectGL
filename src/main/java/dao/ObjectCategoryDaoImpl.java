@@ -9,6 +9,8 @@ import mapping.ObjectCategory;
 import mapping.ObjectMuseum;
 
 
+import mapping.Period;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -39,6 +41,16 @@ public class ObjectCategoryDaoImpl {
 		
 		
         
+	}
+	
+	public ObjectMuseum getObjectForCategorie(Integer category_id){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction(); 
+		Criteria cr = session.createCriteria(ObjectCategory.class)
+				.add(Restrictions.eq("category_id",category_id));
+		ObjectMuseum object=new ObjectMuseum();
+		//Period period = (Period) cr.uniqueResult();
+		return object;
 	}
 	
 //	public Collection<Category> getCategory(){
