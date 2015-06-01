@@ -6,12 +6,13 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import mapping.ObjectCategory;
 import mapping.ObjectMuseum;
 import mapping.User;
-
 import bean.Research;
 
 import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
@@ -71,6 +72,7 @@ public class ObjectDaoImpl implements ObjectDao<ObjectMuseum, Integer>{
 		Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction(); 
         Criteria cr = session.createCriteria(ObjectMuseum.class);
+        Criteria crCategories = session.createCriteria(ObjectCategory.class);
         
         if(research.getKeyword()!=null && !research.getKeyword().equals("")){
         	
@@ -99,18 +101,49 @@ public class ObjectDaoImpl implements ObjectDao<ObjectMuseum, Integer>{
     			cr.add(disjunction);
     		}
         }
-//        ArrayList<String> listObject=new ArrayList<String>();
-//       // String[] parts = research.split(" ");
-//    	//for(String s : parts) listObject.add(s);
-//		
-//		Disjunction disjunction = Restrictions.disjunction();//Permet de faire des operations OR
-//		
-//		for(String object:listObject){
-//			object= "%"+object;
-//			object+="%";
-//			disjunction.add(Restrictions.ilike("title_f", object));
-//			cr.add(disjunction);
-//		}
+        if(research.getReference()!=null && !research.getReference().equals("")){
+        	cr.add(Restrictions.eq("reference", research.getReference()));
+        }
+        if(research.getPeriod()!=null && !research.getPeriod().equals("-1")){
+        	cr.add(Restrictions.eq("period_id", research.getPeriod().getId()));
+        }
+        if(research.getListCategory()!=null){
+        	//getObjectForCategorie(research.getListCategory());
+        	/*Criteria crit = session.createCriteria(ObjectMuseum.class);
+        	crit.createAlias("id", "ObjectCategoryAllias");
+        	crit.add(Restrictions.eq("ObjectCategoryAllias.object_id", "1"));
+        	System.out.println(crit.list());*/
+        	String queryWhere="(";
+        	String virgule="";
+        	for(int i=0; i<research.getListCategory().size();i++){
+        		if(i==research.getListCategory().size()-1)
+        			 virgule="";
+        		else
+        			 virgule=",";
+        		queryWhere += research.getListCategory().get(i).getId()+virgule;
+        	}
+        	queryWhere +=")";
+        	System.out.println(queryWhere);
+        	SQLQuery queryIdObject = session.createSQLQuery(
+        		    "SELECT o.id FROM object o INNER JOIN "
+        		    + "object_category oc ON o.id = oc.object_id "
+        		    + "Where oc.category_id IN "+queryWhere);
+        	
+        	System.out.println(queryIdObject.list());
+        	Disjunction disjunction = Restrictions.disjunction();
+        	for(int i=0; i<queryIdObject.list().size();i++){
+        		disjunction.add(Restrictions.eq("id",(Integer) queryIdObject.list().get(i)));		
+        	}
+        	cr.add(disjunction);
+        
+        }
+        if(research.getCountry()!=null && !research.getCountry().equals("")){
+        	cr.add(Restrictions.eq("country", research.getCountry()));
+        }
+        if(research.getCity()!=null && !research.getCity().equals("")){
+        	cr.add(Restrictions.eq("city", research.getCity()));
+        }
+        
 		List<ObjectMuseum> results = cr.list();
 		return results;
 	}
