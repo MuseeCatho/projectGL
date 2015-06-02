@@ -32,65 +32,74 @@
 						</div>
 						<div class=col-sm-2>
 							<div>
-								<aside class="modification"> <input type=button
-									class="btn btn-primary navbar-btn bouttonModification"
-									role="button" value="Proposer une modification"
-									id="buttonChange"
-									onClick="hideEnr(<s:property value="#session.id_user"/>);">
-								</aside>
-								<aside id="annulationProposition" class="modification">
-								<input type=button
-									class="btn btn-primary navbar-btn bouttonModification"
-									role="button" value="Annuler" onClick="annulation();">
-								</aside>
+								<div class="modification">
+									<input type=button
+										class="btn btn-primary navbar-btn bouttonModification"
+										role="button" value="Proposer une modification"
+										id="buttonChange"
+										onClick="hideEnr(<s:property value="#session.id_user"/>);">
+								</div>
+								<div id="annulationProposition" class="modification">
+									<input type=button
+										class="btn btn-primary navbar-btn bouttonModification"
+										role="button" value="Annuler" onClick="annulation();">
+								</div>
 							</div>
 						</div>
 
 
 						<div>
 							<div class="col-md-8">
-								<aside class="row">
-								<div id="carouselPhotos">
-									<s:include value="mediaCarousel.jsp">
-										<s:param name="mediaType">image</s:param>
-										<s:param name="mediaNames">
-											<s:property value="link_photos" />
-										</s:param>
-										<s:param name="height">400px</s:param>
-									</s:include>
-								</div>
-								<div id="listPhotos">
-									<div class="tablecell" class="row">
-										<s:iterator value="listDetail">
-											<div id="photoDetail" class="col-xs-4 col-sm-3 col-md-2 ">
-												<img border-color="blue" id="listPhotosImg"
-													src="<s:property value="link_photos"/>"
-													alt="Responsive image"> <a class="cursor_ok"
-													onclick="cancelProposition('image',<s:property value="id"/>)">
-													<img alt="alternativtext" class="icon icon_ok"
-													" src="img/icon/ok.png"
-													id="icon_ok<s:property value="id"/>" width="30" height="30">
-												</a> <a class="cursor_delete"
-													onclick="addProposition('image', <s:property value="id"/>,'delete')">
-													<img alt="alternativtext" class="icon icon_cancel"
-													src="img/icon/cancel.png"
-													id="icon_cancel<s:property value="id"/>" width="30"
-													height="30">
-												</a>
-											</div>
-										</s:iterator>
-									</div>
-									<div id="ajoutImage">
-										<input type=button class="btn btn-primary navbar-btn"
-											role="file" value="Ajouter une image"
-											onclick="$('#fileInput').click();"> <input
-											type="file" class="btn btn-primary navbar-btn"
-											value="Ajouter une image" id="fileInput" name="upload"
-											/>
+								<div class="row">
+									<div id="carouselPhotos">
+										<s:include value="mediaCarousel.jsp">
+											<s:param name="mediaType">image</s:param>
+											<s:param name="mediaNames">
+												<s:property value="link_photos" />
+											</s:param>
+											<s:param name="height">400px</s:param>
+										</s:include>
 									</div>
 								</div>
-								</aside>
-								<aside class="row">
+								<div id="listPhotos"class="row">
+									<div >
+										<div class="tablecell" class="row">
+											<s:iterator value="listDetail">
+												<div id="photoDetail"
+													class="photoDetail col-xs-4 col-sm-3 col-md-2 ">
+													<img border-color="blue" id="listPhotosImg"
+														src="<s:property value="link_photos"/>"
+														alt="Responsive image"> <a class="cursor_ok"
+														onclick="cancelProposition('image',<s:property value="id"/>)">
+														<img alt="alternativtext" class="icon icon_ok"
+														" src="img/icon/ok.png"
+														id="icon_ok<s:property value="id"/>" width="30"
+														height="30">
+													</a> <a class="cursor_delete"
+														onclick="addProposition('image', <s:property value="id"/>,'delete')">
+														<img alt="alternativtext" class="icon icon_cancel"
+														src="img/icon/cancel.png"
+														id="icon_cancel<s:property value="id"/>" width="30"
+														height="30">
+													</a>
+												</div>
+											</s:iterator>
+										</div>
+									</div>
+									<div class="row">
+									<div class="col-md-8"></div>
+										<div id="ajoutImage" class="col-md-4">
+											<input type=button class="btn btn-primary navbar-btn"
+												role="file" value="Ajouter une image"
+												onclick="$('#file').click();"> <input
+												style="display:none" type="file" id="file"
+												class="btn btn-primary navbar-btn" value="Ajouter une image"
+												id="fileInput" name="upload" />
+										</div>
+										<div class="tablecell col-md-12" id="prev"></div>
+									</div>
+								</div>
+								<div class="row"></div>
 								<div class="panel panel-default" id="descriptionDetail">
 									<div class="panel-heading">Description</div>
 									<div class="panel-body" id="descriptionDetail_text">
@@ -120,7 +129,7 @@
 										</div>
 									
 								</div>
-								</aside>
+
 							</div>
 							<div class="col-md-4">
 								<aside id="video" class="col-lg-12">

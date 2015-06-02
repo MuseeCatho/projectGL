@@ -105,7 +105,7 @@ h1 {
 	border-spacing: 10px;
 }
 
-#photoDetail {
+.photoDetail {
 	border-radius: 5px;
 	width: 300px;
 	height: 180px;
@@ -114,6 +114,17 @@ h1 {
 	border: 3px solid rgb(38, 90, 136);
 	box-shadow: 5px 5px 1px rgb(119, 119, 119);
 	background-color: #eee;
+}
+
+.photoDetailAdd {
+	border-radius: 5px;
+	width: 300px;
+	height: 180px;
+	margin-left: 25px;
+	display: table-cell;
+	border: 6px solid rgb(0, 64, 0);
+	box-shadow: 5px 5px 1px rgb(119, 119, 119);
+	background-color: #ccc;
 }
 
 #ajoutImage {

@@ -34,6 +34,9 @@
         <action name="addProposition" class="action.DetailAction" method="addProposition">
             <result name="success">result.jsp</result>
    		</action>
+   		<action name="addMedia" class="action.DetailAction" method="addMedia">
+            <result name="success">result.jsp</result>
+   		</action>
         <action name="detailObject" class="action.DetailAction" method="showdetail">
             <result name="success">detail.jsp</result>
         </action>
