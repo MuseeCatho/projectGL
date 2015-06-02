@@ -45,7 +45,22 @@
 				<span class="sr-only">Next</span>
 			</a>
 		</div>
-
+		
+<%-- 	<s:property value="request_locale" />
+					<s:if test="%{param.request_locale=='fr'}">
+						francais 
+					</s:if>
+					<s:else>
+						anglais
+					</s:else> 
+					<s:if test="%{#global.map=='Map'}">
+						francais 
+					</s:if>
+					<s:else>
+						anglais
+					</s:else> 
+					 --%>
+					
 		<div id="blockCategory">
 
 			<s:iterator value="listCategory">
@@ -55,10 +70,6 @@
 					<h2>
 						<s:property value="name_f" />
 					</h2>
-					<p>
-						<a class="btn btn-default" href="#" role="button">View details
-							&raquo;</a>
-					</p>
 				</div>
 				<!-- /.col-lg-4 -->
 			</s:iterator>

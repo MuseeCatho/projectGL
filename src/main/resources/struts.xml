@@ -22,7 +22,7 @@
             <result name="success">result.jsp</result>
         </action>
         <action name="locale" class="action.LocaleAction">
-			<result name="SUCCESS" type="redirectAction">/index.action</result>
+			<result name="SUCCESS" type="redirectAction">index.action</result>
 	   </action>
         <!-- DETAILS OBJECT -->
         <action name="getLastEnrichmentId" class="action.DetailAction" method="getLastEnrichmentId">
@@ -127,8 +127,7 @@
 			<result name="success">result.jsp</result>
    		</action>
    		<action name="addCategory" class="action.CategoryAction" method="addCategory">
-			<result name="success" type="redirectAction">
-        <param name="actionName">get_category</param></result>
+			<result name="success">get_category.jsp</result>
    		</action>
    		<!-- END CATEGORY -->
    		<!-- PERIOD -->
@@ -177,17 +176,4 @@
             <result name="success">oeuvres.jsp</result>
         </action> 
     </package>
-    
-    
-   <!--  <package name="json-default" extends="struts-default">
-    <result-types>
-        <result-type name="json" class="org.apache.struts2.json.JSONResult"/>
-    </result-types>
-    <interceptors>
-        <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
-    </interceptors>
-	</package> -->
-
-
-
 </struts>

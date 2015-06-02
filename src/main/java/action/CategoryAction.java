@@ -59,30 +59,30 @@ public String deleteCategory(){
 	
 	public String addCategory() throws Exception{
 		
-		
-		String link_picture;
+		String webroot;
 		CategoryDaoImpl categoryDao = new CategoryDaoImpl();
 		if(uploadFileNames==null){ //si il n'y a pas de photo
-			link_picture="img/category/other.jpg";
+			webroot="img/category/other.jpg";
 		}else{
 			ServletContext context = ServletActionContext.getServletContext();
-			String webroot = System.getProperty("user.home")+"/uploadFile";
+			webroot = System.getProperty("user.home")+"\\upload\\img\\category\\"+uploadFileNames[0];
 			System.out.println(System.getProperty("user.home"));
 			upload(webroot);
-			link_picture="img/category/"+uploadFileNames[0];
 		}
-		Category category =new Category(new Integer(0),this.title_f,this.title_e,link_picture);
+		Category category =new Category(new Integer(0),this.title_f,this.title_e,webroot);
 		categoryDao.insertCategory(category);
+
+		
 		return SUCCESS;
 	}
 	
-	public String upload(String path) throws Exception {
+	public void upload(String path) throws Exception {
     	/* write the files in the eclipse repository */
         System.out.println("\n\n upload2");
         System.out.println("files:");
         for(int i = 0; i < uploads.length; i++) {
             System.out.println("*** " + uploads[i] + "\t" + uploads[i].length());
-            File dest = new File(path+"\\" + uploadFileNames[i]);
+            File dest = new File(path);
 			FileUtils.copyFile(uploads[i], dest);
         }
         System.out.println("filenames:");
@@ -94,8 +94,6 @@ public String deleteCategory(){
             System.out.println("*** " + c);
         }
         System.out.println("\n\n");
-        
-        return SUCCESS;
     }
 	
 	

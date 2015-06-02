@@ -66,12 +66,12 @@
                   </form>
 
 					<s:if test="%{#session.firstname!=null}">
-						<button type="button" class="btn btn-primary navbar-btn" onclick="logOut()">Log out</button>
+						<button type="button" class="btn btn-primary navbar-btn" onclick="logOut()"><s:text name="global.logout" /></button>
 					</s:if>
 					<s:else>
-					  <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".login">Login</button>
+					  <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".login"><s:text name="global.login" /></button>
                    
-                   	  <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".inscription">Incription</button>
+                   	  <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".inscription"><s:text name="global.signIn" /></button>
                    
 					</s:else>
                    

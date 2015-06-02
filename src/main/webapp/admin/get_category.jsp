@@ -34,7 +34,7 @@
           <h3 class="page-header">Ajout d'une categorie</h3>
           
 		       
-		       <form id="UploadForm" action="addCategory.action" method="post" enctype="multipart/form-data">
+		       <form id="UploadForm" action="addCategory.action" method="post">
 		       
 			       <div class="container-fluid">
 			            <div class="row">
@@ -74,14 +74,6 @@
           
           <div id="listOeuvre">
           </div>
-        <s:iterator value="listCategory">
-	        <div class="col-lg-3">
-	          <img class="img-circle" src="../<s:property value="link_category"/>" width="140" height="140">
-	          <a class="cursor_delete" onmouseover="" onclick="delete_category(<s:property value="id"/>)"><img class="cancel_category" src="../img/icon/cancel.png" width="30" height="30"></a>
-	          <h2><s:property value="name_f"/></h2>
-	          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-	        </div>
-		</s:iterator>
 		
 		</div>
 </body>
