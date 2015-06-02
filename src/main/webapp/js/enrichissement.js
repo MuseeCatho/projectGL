@@ -108,7 +108,7 @@ function description_modifie(){
 						// soit il y eu insertion de mot
                    
                     var list_of_doublon_index_text_modified = indexOfCount(list_text_insert,list_text[k+gap2],j+gap);
-                    var list_of_doublon_index = indexOfCount(list_text,list_text[k+gap],j+gap2);
+                    var list_of_doublon_index = indexOfCount(list_text,list_text[k+gap2],j+gap2);
                     var doublon=false;
                     if(list_of_doublon_index_text_modified.length < list_of_doublon_index.length){// il y
 																									// a
