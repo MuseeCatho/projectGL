@@ -1,6 +1,11 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<s:include value="pagination.jsp"></s:include>
 <table class="table table-hover">
-	<caption>Membres (<s:property value="numberUsers"/>):</caption>
+	<caption>
+		Membres (
+		<s:property value="numberUsers" />
+		) :
+	</caption>
 	<thead>
 		<tr>
 			<th>pseudo</th>
@@ -23,3 +28,4 @@
 			</tr>
 		</s:iterator>
 </table>
+<br />
