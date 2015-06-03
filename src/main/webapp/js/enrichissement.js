@@ -2,7 +2,7 @@ var arrayImage1 = new Array();
 var arrayImage2 = new Array();
 var arrayImageUpload = new Array();
 var object = {};
-var text_modified=false;
+var text_modified = false;
 
 function toogle() {
 	$('#carouselPhotos').toggle();
@@ -13,6 +13,7 @@ function toogle() {
 function reset() {
 	arrayImage1 = [];
 	arrayImage2 = [];
+	arrayImageUpload = [];
 	toogle();
 	$('#buttonChange').val('Proposer une modification');
 
@@ -22,8 +23,12 @@ function reset() {
 	}
 	$('#descriptionDetail_text').show();
 
-	document.getElementById('modif_text').parentNode.removeChild(document.getElementById('modif_text'));
-    document.getElementById('result').innerHTML="";
+	document.getElementById('modif_text').parentNode.removeChild(document
+			.getElementById('modif_text'));
+	document.getElementById('result').innerHTML = "";
+	
+	var prev = document.getElementById('prev');
+	prev.innerHTML="";
 }
 
 function hideEnr(idUser) {
@@ -42,7 +47,7 @@ function hideEnr(idUser) {
 	} else {
 		var r = confirm("Confimer les modifications?");
 		if (r == true) {
-			SaveModif(arrayImage2, object, idUser);
+			SaveModif(arrayImage2, object, idUser, arrayImageUpload);
 			reset()
 		}
 	}
@@ -55,6 +60,7 @@ var list_word_delete = [];
 var list_string_insert = [];
 var list_index_delete = [];
 var list_word_delete_string;
+
 
 function description_modifie(){
     var text_insert=document.getElementById('modif_text').value;
@@ -217,21 +223,23 @@ function description_modifie(){
 			// console.log(list_text[index_word_delete]+" "+"index_word_delete:
 			// "+index_word_delete);
 
-            // index_word_delete++;
-            // }
-            result+='<s><span style="color:red">'+list_word_delete_string[word_delete_index]+'</span></s>'+" ";
-            word_delete_index++;
-        }
-        if(list_string_insert.indexOf(k)!=-1){
-            result+='<b><span style="color:green">'+list_text_insert[k]+'</span></b>'+" ";
-        }
-        else{
-            result+=list_text_insert[k]+" ";
-        }
-    }
-    result=document.getElementById('result').innerHTML=result;
-    
-    return result;
+			// index_word_delete++;
+			// }
+			result += '<s><span style="color:red">'
+					+ list_word_delete_string[word_delete_index]
+					+ '</span></s>' + " ";
+			word_delete_index++;
+		}
+		if (list_string_insert.indexOf(k) != -1) {
+			result += '<b><span style="color:green">' + list_text_insert[k]
+					+ '</span></b>' + " ";
+		} else {
+			result += list_text_insert[k] + " ";
+		}
+	}
+	result = document.getElementById('result').innerHTML = result;
+
+	return result;
 }
 
 function compact_list_num(list) {
@@ -364,7 +372,7 @@ function getLastEnrichmentsId() {
 	});
 }
 
-function SaveModif(arrayImage2, object, idUser) {
+function SaveModif(arrayImage2, object, idUser, arrayImageUpload) {
 	if (arrayImage2.length != 0 || text_modified) {
 		addEnrichments(idUser);
 		getLastEnrichmentsId();
@@ -383,22 +391,24 @@ function SaveModif(arrayImage2, object, idUser) {
 				});
 			}
 		}*/
-	}for (var int = 0; int < arrayImageUpload.length; int++) {
-		alert(arrayImageUpload[int]);
+
 	}
+
 	for (var int = 0; int < arrayImageUpload.length; int++) {
+		var arrayImageString = arrayImageUpload[int];
 		$.ajax({
 			url : 'addMedia.action',
 			type : 'POST',
-		    encoding:"UTF-8",
-		    encryption: "multipart/form-data",
-		    async: true,
-			data : {"listImageUpload": arrayImageUpload[int]
+			encoding : "UTF-8",
+			encryption : "multipart/form-data",
+			async : false,
+			data : {
+				"listImageUploadS" : arrayImageString
 			},
 			success : function(data) {
-			}
+			},
 		});
-}	
+	}
 }
 
 (function(listDetailIncr) {
@@ -431,7 +441,7 @@ function SaveModif(arrayImage2, object, idUser) {
 			}, false);
 			document.getElementById(classIncr).appendChild(imgIconeElement);
 			listDetailIncr++;
-			arrayImageUpload.push(imgElement.src);			
+			arrayImageUpload.push(imgElement.src);
 		}, false);
 		reader.readAsDataURL(file);
 	}
@@ -445,9 +455,6 @@ function SaveModif(arrayImage2, object, idUser) {
 			imgType = imgType[imgType.length - 1];
 			if (allowedTypes.indexOf(imgType) != -1) {
 				createThumbnail(files[i], arrayImageUpload);
-				//alert(arrayImageUpload.length);	
-				
-				
 			}
 		}
 	}, false);
@@ -460,28 +467,29 @@ function deleteAdd(incr) {
 		var obj = document.getElementById('prev');
 		var old = document.getElementById(incr);
 		obj.removeChild(old);
-	}
-	else{
+	} else {
 		alert("Aucune modification n'a �t� d�t�ct�.");
 	}
 }
 
-function modifieText(){
-	if($.trim(description_modifie()) != $.trim(document.getElementById('descriptionDetail_text').innerHTML)){//si l'utilisateur a modifi� le texte
+function modifieText() {
+	if ($.trim(description_modifie()) != $.trim(document
+			.getElementById('descriptionDetail_text').innerHTML)) {// si
+		// l'utilisateur
+		// a modifi�
+		// le texte
 		return true;
-	}
-	else{
+	} else {
 		return false;
 	}
-    	
+
 }
 
-function saveModifDescr(){
-	if(modifieText()){
+function saveModifDescr() {
+	if (modifieText()) {
 		text_modified = true;
 		alert('Modification prise en compte.');
-	}
-	else{
+	} else {
 		alert("Vous n'avez pas fait de modifications.");
 		return false;
 	}
