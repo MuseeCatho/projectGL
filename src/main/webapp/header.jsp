@@ -19,7 +19,7 @@
                     <li><a href="index.action">Accueil<span class="sr-only">(current)</span></a></li>
                     <li><a href="getOeuvre.action">Oeuvres</a></li>
                     <li><a href="map.jsp">Carte</a></li>
-                    <li><a href="contact.jsp">Contacts</a></li>
+                    <li><a href="contact.action">Contacts</a></li>
                     
                     <s:if test="%{#session.firstname!=null}">
 						<li><a href="profil.action"><s:property value="#session.firstname" /></a></li>
