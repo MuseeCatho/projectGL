@@ -19,6 +19,11 @@
         <action name="getLocationForMap" class="action.MapAction" method="getLocation">
             <result name="success">result.jsp</result>
         </action>
+        <!-- Contact -->
+        <action name="contact" class="action.ContactAction" method="getInfoContact">
+            <result name="success">contact.jsp</result>
+   		</action>
+        <!-- end  Contact -->
         <!-- DETAILS OBJECT -->
         <action name="getLastEnrichmentId" class="action.DetailAction" method="getLastEnrichmentId">
             <result name="success">result.jsp</result>
