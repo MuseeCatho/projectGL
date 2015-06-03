@@ -1,7 +1,7 @@
 
 
 		<script src="../js/jquery.js"></script>
-<!-- 		<script src="../js/index.js"></script> -->
+		<script src="js/main.js"></script>
 		<script src="../js/addObject.js"></script>
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="../bootstrap-3.2.0/dist/css/bootstrap.min.css">
