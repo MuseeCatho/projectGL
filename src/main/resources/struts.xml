@@ -163,6 +163,15 @@
 		<action name="searchUsers" class="action.UsersAction" method="searchUsers">
 			<result name="success">usersAjax.jsp</result>
 		</action>
+		<action name="permuteAdmin" class="action.UsersAction" method="permuteAdmin">
+			<result name="success">usersAjax.jsp</result>
+		</action>
+		<action name="permuteBan" class="action.UsersAction" method="permuteBan">
+			<result name="success">usersAjax.jsp</result>
+		</action>
+		<action name="deleteUser" class="action.UsersAction" method="deleteUser">
+			<result name="success">usersAjax.jsp</result>
+		</action>
 		<!-- END USERS -->
 		<action name="selectAction" class="action.ObjectAction" method="display">
 			<result name="none">add_object.jsp</result>
@@ -175,7 +184,7 @@
     <package name="actionOeuvre" namespace="/" extends="struts-default">
         <action name="getOeuvre" class="action.ObjectAction" method = "listObject">
             <result name="success">oeuvres.jsp</result>
-        </action> 
+        </action>
     </package>
     
     
