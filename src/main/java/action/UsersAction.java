@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import mapping.User;
+import addons.Pagination;
 
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionContext;
@@ -163,101 +164,10 @@ public class UsersAction extends ActionSupport{
 		// creation of StringLis :
 		int numberPages = (int) Math.ceil((float)(numberUsers) / pageCapacity);
 		System.out.println("users.size() : " + numberUsers + ", numberPages : " + numberPages);
-		this.pageLis = createPagination(pageNumber, numberPages);
-		System.out.println("number of page : " + this.pageLis.size());
+		// handle the pagination :
+		Pagination pagination = new Pagination("<a onclick=\"usersData.pageNumber=%;usersData.search();\">", "%");
+		this.pageLis = pagination.createPagination(pageNumber, numberPages);
 		return SUCCESS;
-	}
-
-	private List<String> createPagination(int pageNumber, int numberPages){
-		List<String> pageLis = new ArrayList<String>();
-		if(numberPages >= 2){
-			if(pageNumber > 1){
-				pageLis.add(getPageCode(false, pageNumber));
-			}
-			// for the first page : page[0]
-			pageLis.add(getPageCode(1, pageNumber));
-			// for the second page : page[1]
-			if(pageNumber <= 5 || numberPages <= 9){
-				pageLis.add(getPageCode(2, pageNumber));
-			}
-			else{
-				pageLis.add(getPageCode(-1, pageNumber)); // - 1 for "..."
-			}
-			if(numberPages > 2){
-				// for the third page : page[2]
-				int firstMiddlePageNumber;
-				if(pageNumber <= 5){
-					firstMiddlePageNumber = 3;
-				}
-				else if(numberPages - pageNumber < 4){
-					firstMiddlePageNumber = Math.max(3, numberPages - 6);
-				}
-				else{
-					firstMiddlePageNumber = pageNumber - 2;
-				}
-				pageLis.add(getPageCode(firstMiddlePageNumber, pageNumber));
-				if(numberPages > 3){
-					// for the other middle pages
-					for(int i = 1; i <= Math.min(4, numberPages - 3); i ++){
-						pageLis.add(getPageCode(firstMiddlePageNumber + i, pageNumber));
-					}
-					if(numberPages > 7){
-						// just after middle page : "..." or n - 1 :
-						if(numberPages <= 9 || numberPages - pageNumber <= 4){
-							pageLis.add(getPageCode(firstMiddlePageNumber + 5, pageNumber));
-						}
-						else{
-							pageLis.add(getPageCode(-1, pageNumber));
-						}
-						if(numberPages >= 9){
-							pageLis.add(getPageCode(numberPages, pageNumber));
-						}
-					}
-				}
-			}
-		}
-		if(pageNumber < numberPages){
-			pageLis.add(getPageCode(true, pageNumber));
-		}
-		return pageLis;
-	}
-
-	private String getPageCode(int pageNumber, int currentPageNumber){
-		/* return the <li> balise
-		 * call it with negative pageNumber to set suspension points
-		 */
-		String pageCode = "<li";
-		if(pageNumber < 0){
-			pageCode += "><a href=\"#\">...</a></li>";
-			return pageCode;
-		}
-		else if(pageNumber == currentPageNumber){
-			pageCode += " class=\"active\"><a href=\"#\">" + pageNumber + "</a>"; 
-		}
-		else{
-			pageCode += " onclick=\"usersData.pageNumber=" + pageNumber + ";usersData.search();\"><a href=\"#\">" + pageNumber + "</a>";
-		}
-		pageCode += "</li>";
-		return pageCode;
-	}
-
-	private String getPageCode(boolean nextPage, int currentPageNumber){
-		/* return the <li> balise
-		 * call it with true for display a next button or false for display a previous button
-		 */
-		String buttonValue;
-		int newPageNumber;
-		if(nextPage){
-			buttonValue = "&raquo;";
-			newPageNumber = currentPageNumber + 1;
-		}
-		else{
-			buttonValue = "&laquo;";
-			newPageNumber = currentPageNumber - 1;
-		}
-		String pageCode = "<li onclick=\"usersData.pageNumber = " + newPageNumber
-				+ ";usersData.search();\"><a href=\"#\">" + buttonValue + "</a></li>";
-		return pageCode;
 	}
 	
 	public String insertUsersForTest(){
