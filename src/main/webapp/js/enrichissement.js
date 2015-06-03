@@ -2,7 +2,7 @@ var arrayImage1 = new Array();
 var arrayImage2 = new Array();
 var arrayImageUpload = new Array();
 var object = {};
-var text_modified=false;
+var text_modified = false;
 
 function toogle() {
 	$('#carouselPhotos').toggle();
@@ -13,6 +13,7 @@ function toogle() {
 function reset() {
 	arrayImage1 = [];
 	arrayImage2 = [];
+	arrayImageUpload = [];
 	toogle();
 	$('#buttonChange').val('Proposer une modification');
 
@@ -22,8 +23,12 @@ function reset() {
 	}
 	$('#descriptionDetail_text').show();
 
-	document.getElementById('modif_text').parentNode.removeChild(document.getElementById('modif_text'));
-    document.getElementById('result').innerHTML="";
+	document.getElementById('modif_text').parentNode.removeChild(document
+			.getElementById('modif_text'));
+	document.getElementById('result').innerHTML = "";
+	
+	var prev = document.getElementById('prev');
+	prev.innerHTML="";
 }
 
 function hideEnr(idUser) {
@@ -42,7 +47,7 @@ function hideEnr(idUser) {
 	} else {
 		var r = confirm("Confimer les modifications?");
 		if (r == true) {
-			SaveModif(arrayImage2, object, idUser);
+			SaveModif(arrayImage2, object, idUser, arrayImageUpload);
 			reset()
 		}
 	}
@@ -56,118 +61,122 @@ var list_string_insert = [];
 var list_index_delete = [];
 var list_word_delete_string;
 
-function description_modifie(){
-    var text_insert=document.getElementById('modif_text').value;
-    list_text=text.split(" ");
-    list_text_insert=text_insert.split(" ");
-    var length_text_origin=list_text.length;
-    var length_text_modified=list_text_insert.length;
+function description_modifie() {
+	var text_insert = document.getElementById('modif_text').value;
+	list_text = text.split(" ");
+	list_text_insert = text_insert.split(" ");
+	var length_text_origin = list_text.length;
+	var length_text_modified = list_text_insert.length;
 
-    list_string_insert=[];
-    list_word_delete=[];
-    list_index_delete=[];
-    list_word_delete_string=[];
-    var count=0;
-    var gap=0;// decalage du texte modifi�
-    var gap2=0;// decalage du texte d'origine
-    for(var j=0; j<Math.max(length_text_origin,length_text_modified);j++){
-        var pos_X=-1;
-        if(list_text[j+gap2]!=list_text_insert[j+gap] && typeof list_text[j+gap2]!="undefined"){
-            console.log(list_text[j+gap2]);
-            console.log(list_text_insert[j+gap]);
-            var k=j;
-            var word_delete="";
-            var first=1;
-           
-            while(pos_X==-1){// on devrait executer cette boucle que
-								// lorsqu'on est s�r qu'il s'agit d'une
-								// suppression
-                // console.log(list_text[k+gap2]);
-                pos_X=list_text_insert.indexOf(list_text[k+gap2],j+gap);
-                // console.log("pos_X: "+pos_X);
-                var notdoublon=false;
-                if(pos_X==-1){// si le mot suivant dans list_text n'existe pas
-								// dans list_insert c'est qu'il a �t� supprim�
-								// donc il faut chercher le mot suivant
+	list_string_insert = [];
+	list_word_delete = [];
+	list_index_delete = [];
+	list_word_delete_string = [];
+	var count = 0;
+	var gap = 0;// decalage du texte modifi�
+	var gap2 = 0;// decalage du texte d'origine
+	for (var j = 0; j < Math.max(length_text_origin, length_text_modified); j++) {
+		var pos_X = -1;
+		if (list_text[j + gap2] != list_text_insert[j + gap]
+				&& typeof list_text[j + gap2] != "undefined") {
+			console.log(list_text[j + gap2]);
+			console.log(list_text_insert[j + gap]);
+			var k = j;
+			var word_delete = "";
+			var first = 1;
 
-                    list_word_delete.push(k+gap2);// on stocke les mots
-													// supprim�s
-                    if(first==1)// pour une phrase supprim� on stocke l'indice
-								// de son premier mot
-                        list_index_delete.push(k);// on ne rajoute pas gap2
-													// car on list_index_delete
-													// stocke des indices pour
-													// la list list_text_insert
-													// et non list_text
-                    word_delete+=list_text[k+gap2]+" ";
-                    first++;
-                    k++;
-                    notdoublon=true;
-                }
-                else{// si on trouve le mot en question c'est qu'il y a deux
-						// possibilit�s, soit le mot trouv� est en r�alit� un
-						// autre mot et donc le mot en question � �t� supprim�
-						// soit il y eu insertion de mot
-                   
-                    var list_of_doublon_index_text_modified = indexOfCount(list_text_insert,list_text[k+gap2],j+gap);
-                    var list_of_doublon_index = indexOfCount(list_text,list_text[k+gap],j+gap2);
-                    var doublon=false;
-                    if(list_of_doublon_index_text_modified.length < list_of_doublon_index.length){// il y
-																									// a
-																									// forcement
-																									// eu
-																									// suppression
-																									// du
-																									// mot
-																									// QUELQUE
-																									// PART
-                        console.log(list_of_doublon_index_text_modified);
-                        console.log(list_of_doublon_index);
-                        list_word_delete.push(k+gap2);// k+gap2=13
-                        if(first==1)// pour une phrase supprim� on stocke
-									// l'indice de son premier mot
-                            list_index_delete.push(k);
-                        word_delete+=list_text[k+gap2]+" ";
-                        first++;
-                        doublon = true;
-                        k++;
-                        pos_X=-1;// on le met � -1 de maniere a rester dans
-									// la boucle for
-                         
-                    }
-                    else{// dans ce cas ce n'est pas forcement une non
-							// suppression puisque l'utilisateur pourrait
-							// inserer du texte plus loin contenant le m�me mot
-                        // console.log(list_of_doublon_index_text_modified);
-                        // console.log(list_of_doublon_index);
-                        notdoublon=true;
-                    }
-                    // pos_X=-1;
-                    // break;
+			while (pos_X == -1) {// on devrait executer cette boucle que
+				// lorsqu'on est s�r qu'il s'agit d'une
+				// suppression
+				// console.log(list_text[k+gap2]);
+				pos_X = list_text_insert.indexOf(list_text[k + gap2], j + gap);
+				// console.log("pos_X: "+pos_X);
+				var notdoublon = false;
+				if (pos_X == -1) {// si le mot suivant dans list_text n'existe
+					// pas
+					// dans list_insert c'est qu'il a �t� supprim�
+					// donc il faut chercher le mot suivant
 
-                }
-                
-                if((k+gap2)>list_text.length-1){
-                    break;
-                }
+					list_word_delete.push(k + gap2);// on stocke les mots
+					// supprim�s
+					if (first == 1)// pour une phrase supprim� on stocke
+						// l'indice
+						// de son premier mot
+						list_index_delete.push(k);// on ne rajoute pas gap2
+					// car on list_index_delete
+					// stocke des indices pour
+					// la list list_text_insert
+					// et non list_text
+					word_delete += list_text[k + gap2] + " ";
+					first++;
+					k++;
+					notdoublon = true;
+				} else {// si on trouve le mot en question c'est qu'il y a deux
+					// possibilit�s, soit le mot trouv� est en r�alit� un
+					// autre mot et donc le mot en question � �t� supprim�
+					// soit il y eu insertion de mot
 
-            }
+					var list_of_doublon_index_text_modified = indexOfCount(
+							list_text_insert, list_text[k + gap2], j + gap);
+					var list_of_doublon_index = indexOfCount(list_text,
+							list_text[k + gap], j + gap2);
+					var doublon = false;
+					if (list_of_doublon_index_text_modified.length < list_of_doublon_index.length) {// il y
+						// a
+						// forcement
+						// eu
+						// suppression
+						// du
+						// mot
+						// QUELQUE
+						// PART
+						console.log(list_of_doublon_index_text_modified);
+						console.log(list_of_doublon_index);
+						list_word_delete.push(k + gap2);// k+gap2=13
+						if (first == 1)// pour une phrase supprim� on stocke
+							// l'indice de son premier mot
+							list_index_delete.push(k);
+						word_delete += list_text[k + gap2] + " ";
+						first++;
+						doublon = true;
+						k++;
+						pos_X = -1;// on le met � -1 de maniere a rester dans
+						// la boucle for
 
-            if(word_delete!="")// insertion des mots supprim�s
-                list_word_delete_string.push(word_delete);
-            // ci dessous � modifier
-            if(!doublon || notdoublon){
-                for(var i=j+gap;i<pos_X;i++){// stocke � priori les indices
-												// des mots qui on �t� ins�r�s
-                    list_string_insert.push(i);
-                    // console.log("i :"+i);
-                
-                }
-            } 
-     
-            gap=list_string_insert.length;
-            gap2=list_word_delete.length;// 1
-           // console.log("list_index_delete: "+list_index_delete.length+"count
+					} else {// dans ce cas ce n'est pas forcement une non
+						// suppression puisque l'utilisateur pourrait
+						// inserer du texte plus loin contenant le m�me mot
+						// console.log(list_of_doublon_index_text_modified);
+						// console.log(list_of_doublon_index);
+						notdoublon = true;
+					}
+					// pos_X=-1;
+					// break;
+
+				}
+
+				if ((k + gap2) > list_text.length - 1) {
+					break;
+				}
+
+			}
+
+			if (word_delete != "")// insertion des mots supprim�s
+				list_word_delete_string.push(word_delete);
+			// ci dessous � modifier
+			if (!doublon || notdoublon) {
+				for (var i = j + gap; i < pos_X; i++) {// stocke � priori les
+					// indices
+					// des mots qui on �t� ins�r�s
+					list_string_insert.push(i);
+					// console.log("i :"+i);
+
+				}
+			}
+
+			gap = list_string_insert.length;
+			gap2 = list_word_delete.length;// 1
+			// console.log("list_index_delete: "+list_index_delete.length+"count
 
 			// :"+count);
 			// for(var i=count;i<list_index_delete.length;i++){
@@ -217,21 +226,23 @@ function description_modifie(){
 			// console.log(list_text[index_word_delete]+" "+"index_word_delete:
 			// "+index_word_delete);
 
-            // index_word_delete++;
-            // }
-            result+='<s><span style="color:red">'+list_word_delete_string[word_delete_index]+'</span></s>'+" ";
-            word_delete_index++;
-        }
-        if(list_string_insert.indexOf(k)!=-1){
-            result+='<b><span style="color:green">'+list_text_insert[k]+'</span></b>'+" ";
-        }
-        else{
-            result+=list_text_insert[k]+" ";
-        }
-    }
-    result=document.getElementById('result').innerHTML=result;
-    
-    return result;
+			// index_word_delete++;
+			// }
+			result += '<s><span style="color:red">'
+					+ list_word_delete_string[word_delete_index]
+					+ '</span></s>' + " ";
+			word_delete_index++;
+		}
+		if (list_string_insert.indexOf(k) != -1) {
+			result += '<b><span style="color:green">' + list_text_insert[k]
+					+ '</span></b>' + " ";
+		} else {
+			result += list_text_insert[k] + " ";
+		}
+	}
+	result = document.getElementById('result').innerHTML = result;
+
+	return result;
 }
 
 function compact_list_num(list) {
@@ -364,7 +375,7 @@ function getLastEnrichmentsId() {
 	});
 }
 
-function SaveModif(arrayImage2, object, idUser) {
+function SaveModif(arrayImage2, object, idUser, arrayImageUpload) {
 	if (arrayImage2.length != 0 || text_modified) {
 		addEnrichments(idUser);
 		getLastEnrichmentsId();
@@ -383,22 +394,24 @@ function SaveModif(arrayImage2, object, idUser) {
 				});
 			}
 		}*/
-	}for (var int = 0; int < arrayImageUpload.length; int++) {
-		alert(arrayImageUpload[int]);
+
 	}
+
 	for (var int = 0; int < arrayImageUpload.length; int++) {
+		var arrayImageString = arrayImageUpload[int];
 		$.ajax({
 			url : 'addMedia.action',
 			type : 'POST',
-		    encoding:"UTF-8",
-		    encryption: "multipart/form-data",
-		    async: true,
-			data : {"listImageUpload": arrayImageUpload[int]
+			encoding : "UTF-8",
+			encryption : "multipart/form-data",
+			async : false,
+			data : {
+				"listImageUploadS" : arrayImageString
 			},
 			success : function(data) {
-			}
+			},
 		});
-}	
+	}
 }
 
 (function(listDetailIncr) {
@@ -431,7 +444,7 @@ function SaveModif(arrayImage2, object, idUser) {
 			}, false);
 			document.getElementById(classIncr).appendChild(imgIconeElement);
 			listDetailIncr++;
-			arrayImageUpload.push(imgElement.src);			
+			arrayImageUpload.push(imgElement.src);
 		}, false);
 		reader.readAsDataURL(file);
 	}
@@ -445,9 +458,6 @@ function SaveModif(arrayImage2, object, idUser) {
 			imgType = imgType[imgType.length - 1];
 			if (allowedTypes.indexOf(imgType) != -1) {
 				createThumbnail(files[i], arrayImageUpload);
-				//alert(arrayImageUpload.length);	
-				
-				
 			}
 		}
 	}, false);
@@ -460,28 +470,29 @@ function deleteAdd(incr) {
 		var obj = document.getElementById('prev');
 		var old = document.getElementById(incr);
 		obj.removeChild(old);
-	}
-	else{
+	} else {
 		alert("Aucune modification n'a �t� d�t�ct�.");
 	}
 }
 
-function modifieText(){
-	if($.trim(description_modifie()) != $.trim(document.getElementById('descriptionDetail_text').innerHTML)){//si l'utilisateur a modifi� le texte
+function modifieText() {
+	if ($.trim(description_modifie()) != $.trim(document
+			.getElementById('descriptionDetail_text').innerHTML)) {// si
+		// l'utilisateur
+		// a modifi�
+		// le texte
 		return true;
-	}
-	else{
+	} else {
 		return false;
 	}
-    	
+
 }
 
-function saveModifDescr(){
-	if(modifieText()){
+function saveModifDescr() {
+	if (modifieText()) {
 		text_modified = true;
 		alert('Modification prise en compte.');
-	}
-	else{
+	} else {
 		alert("Vous n'avez pas fait de modifications.");
 		return false;
 	}

@@ -5,14 +5,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="js/jquery.js"></script>
 <script src="js/comment.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<s:include value="import.jsp"></s:include>
 <link rel="stylesheet" href="css/mediaCarousel_old.css">
 <link rel="stylesheet" href="css/detail.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <s:include value="mediaElementsRequired.jsp"></s:include>
 <title>Oeuvre</title>
 </head>
@@ -30,23 +25,24 @@
 								Oeuvre <span id="titleDetail"><s:property value="title_f" /></span>
 							</h1>
 						</div>
-						<div class=col-sm-2>
-							<div>
-								<div class="modification">
-									<input type=button
-										class="btn btn-primary navbar-btn bouttonModification"
-										role="button" value="Proposer une modification"
-										id="buttonChange"
-										onClick="hideEnr(<s:property value="#session.id_user"/>);">
-								</div>
-								<div id="annulationProposition" class="modification">
-									<input type=button
-										class="btn btn-primary navbar-btn bouttonModification"
-										role="button" value="Annuler" onClick="annulation();">
+						<s:if test="%{#session.firstname!=null}">
+							<div class=col-sm-2>
+								<div>
+									<div class="modification">
+										<input type=button
+											class="btn btn-primary navbar-btn bouttonModification"
+											role="button" value="Proposer une modification"
+											id="buttonChange"
+											onClick="hideEnr(<s:property value="#session.id_user"/>);">
+									</div>
+									<div id="annulationProposition" class="modification">
+										<input type=button
+											class="btn btn-primary navbar-btn bouttonModification"
+											role="button" value="Annuler" onClick="annulation();">
+									</div>
 								</div>
 							</div>
-						</div>
-
+						</s:if>
 
 						<div>
 							<div class="col-md-8">
@@ -61,8 +57,8 @@
 										</s:include>
 									</div>
 								</div>
-								<div id="listPhotos"class="row">
-									<div >
+								<div id="listPhotos" class="row">
+									<div>
 										<div class="tablecell" class="row">
 											<s:iterator value="listDetail">
 												<div id="photoDetail"
@@ -87,12 +83,12 @@
 										</div>
 									</div>
 									<div class="row">
-									<div class="col-md-8"></div>
+										<div class="col-md-8"></div>
 										<div id="ajoutImage" class="col-md-4">
 											<input type=button class="btn btn-primary navbar-btn"
 												role="file" value="Ajouter une image"
 												onclick="$('#file').click();"> <input
-												style="display:none" type="file" id="file"
+												style="display: none" type="file" id="file"
 												class="btn btn-primary navbar-btn" value="Ajouter une image"
 												id="fileInput" name="upload" />
 										</div>
@@ -107,27 +103,36 @@
 									</div>
 								</div>
 								<div id="modif_description">
-										<button type="button" class="btn btn-primary btn-lg" 
-										data-toggle="modal" data-target="#myModal" onclick="description_modifie()">Visualiser les
+									<button type="button" class="btn btn-primary btn-lg"
+										data-toggle="modal" data-target="#myModal"
+										onclick="description_modifie()">Visualiser les
 										modifications</button>
-										<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-										  <div class="modal-dialog">
-										    <div class="modal-content">
-										      <div class="modal-header">
-										        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										        <h4 class="modal-title" id="myModalLabel">Visualisation</h4>
-										      </div>
-										      <div class="modal-body">
-										        <p id="result" style="color: grey;"></p>
-										      </div>
-										      <div class="modal-footer">
-										        <button type="button" class="btn btn-default" data-dismiss="modal">Revenir</button>
-										        <button type="button" class="btn btn-primary" id="save_modif_descr" onclick="saveModifDescr()">Enrengistrer les modifications</button>
-										      </div>
-										    </div>
-										  </div>
+									<div class="modal fade" id="myModal" tabindex="-1"
+										role="dialog" aria-labelledby="myModalLabel"
+										aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+													<h4 class="modal-title" id="myModalLabel">Visualisation</h4>
+												</div>
+												<div class="modal-body">
+													<p id="result" style="color: grey;"></p>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default"
+														data-dismiss="modal">Revenir</button>
+													<button type="button" class="btn btn-primary"
+														id="save_modif_descr" onclick="saveModifDescr()">Enrengistrer
+														les modifications</button>
+												</div>
+											</div>
 										</div>
-									
+									</div>
+
 								</div>
 
 							</div>
@@ -184,19 +189,19 @@
 					<div class="col-lg-5 col-lg-offset-1">
 
 
-							<s:iterator value="listCommentAndNameUser">
-								<s:if test="show==1">
-									<div class="media">
-										<div class="media-body">
-											<h4 class="media-heading">
-												<s:property value="pseudo" />
-												<small><s:date name="date" format="dd/MM/yyyy" /> à
-													<s:date name="date" format="hh:mm:ss" /></small>
-											</h4>
-											<s:property value="text" />
-										</div>
-
+						<s:iterator value="listCommentAndNameUser">
+							<s:if test="show==1">
+								<div class="media">
+									<div class="media-body">
+										<h4 class="media-heading">
+											<s:property value="pseudo" />
+											<small><s:date name="date" format="dd/MM/yyyy" /> ï¿½
+												<s:date name="date" format="hh:mm:ss" /></small>
+										</h4>
+										<s:property value="text" />
 									</div>
+
+								</div>
 							</s:if>
 						</s:iterator>
 					</div>
