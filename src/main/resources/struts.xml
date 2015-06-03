@@ -127,7 +127,7 @@
 			<result name="success">result.jsp</result>
    		</action>
    		<action name="addCategory" class="action.CategoryAction" method="addCategory">
-			<result name="success">get_category.jsp</result>
+			<result name="success" type="redirectAction">get_category.action</result>
    		</action>
    		<!-- END CATEGORY -->
    		<!-- PERIOD -->

@@ -8,7 +8,6 @@
 	    	
 	    	
 			<script src="http://malsup.github.com/jquery.form.js"></script>
-			<script src="../js/fileUploadScript.js"></script>
 			<!-- Include css styles here -->
 			<link href="../css/fileUpload.css" rel="stylesheet" type="text/css" />
 		<script src="../js/category.js"></script> 
@@ -33,8 +32,12 @@
           
           <h3 class="page-header">Ajout d'une categorie</h3>
           
+		       <%-- <form action="addCategory.action" method="post">
+		       	<s:submit value="submit" name="Submit bis" cssClass="btn btn-default"/>
+		       </form> --%>
 		       
-		       <form id="UploadForm" action="addCategory.action" method="post">
+		       
+		       <form id="UploadForm" action="addCategory.action" method="post" enctype="multipart/form-data">
 		       
 			       <div class="container-fluid">
 			            <div class="row">
@@ -62,7 +65,7 @@
 			            </br>
 			            <div class="row">
 			            	<label for="file1">Importer une image : </label> <input type="file" size="60" id="file1" name="upload" /> <br />
-									<input type="submit" value="Ajouter">
+									<s:submit value="submit" name="submit" cssClass="btn btn-default"/>
 
 
 			            </div>

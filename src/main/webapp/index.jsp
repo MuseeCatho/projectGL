@@ -45,21 +45,21 @@
 				<span class="sr-only">Next</span>
 			</a>
 		</div>
-		
+
 <%-- 	<s:property value="request_locale" />
-					<s:if test="%{param.request_locale=='fr'}">
+					<s:if test="%{#request_locale=='fr'}">
 						francais 
 					</s:if>
 					<s:else>
-						anglais
-					</s:else> 
-					<s:if test="%{#global.map=='Map'}">
-						francais 
-					</s:if>
-					<s:else>
-						anglais
+					anglais
 					</s:else> 
 					 --%>
+					<s:if test="%{#global.language=='en'}">
+						anglais
+					</s:if>
+					<s:if test="%{#global.language=='fr'}">
+						francais 
+					</s:if>				
 					
 		<div id="blockCategory">
 

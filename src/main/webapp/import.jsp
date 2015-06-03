@@ -1,6 +1,7 @@
 <script src="js/jquery.js"></script>
 <script src="js/signIn.js"></script>
 <script src="js/addUser.js"></script>
+<script src="js/main.js"></script>
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"

@@ -67,3 +67,8 @@ function getCategory(){
 		    });
 }
 getCategory();
+
+$(document).ready(function() {
+	$("#UploadForm").ajaxForm();
+	
+});

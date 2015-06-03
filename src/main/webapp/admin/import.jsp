@@ -1,7 +1,7 @@
 
 
 		<script src="../js/jquery.js"></script>
-<!-- 		<script src="../js/index.js"></script> -->
+		<script src="js/main.js"></script>
 		<script src="../js/addObject.js"></script>
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">

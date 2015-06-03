@@ -7,6 +7,9 @@
    <s:param name="request_locale" >en</s:param>
 </s:url>
 
+<div id="hiddenBlockLanguage" style="display: none;">
+	<s:text name="global.language" />
+</div>
 <nav class="navbar navbar-default">
 
               <div class="container-fluid">
