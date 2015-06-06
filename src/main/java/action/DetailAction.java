@@ -30,7 +30,6 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import javax.servlet.ServletContext;
 
-import org.apache.commons.codec.binary.Base64;
 
 import mapping.Comment;
 import mapping.Enrichments;

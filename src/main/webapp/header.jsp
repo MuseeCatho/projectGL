@@ -10,7 +10,8 @@
 <div id="hiddenBlockLanguage" style="display: none;">
 	<s:text name="global.language" />
 </div>
-<nav class="navbar navbar-default">
+		
+		<%-- <nav class="navbar navbar-default">
 
               <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -81,7 +82,68 @@
                    
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
-            </nav>
+            </nav> --%>
+            
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			    <div class="container">
+			        <!-- Brand and toggle get grouped for better mobile display -->
+			        <div class="navbar-header">
+			            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			                <span class="sr-only">Toggle navigation</span>
+			                <span class="icon-bar"></span>
+			                <span class="icon-bar"></span>
+			                <span class="icon-bar"></span>
+			            </button>
+			        </div>
+			
+			        <!-- Collect the nav links, forms, and other content for toggling -->
+			        	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			            <ul class="nav navbar-nav">
+		                    <li><a href="index.action"><s:text name="global.home" /><span class="sr-only">(current)</span></a></li>
+		                    <li><a href="getOeuvre.action"><s:text name="global.art" /></a></li>
+		                    <li><a href="map.jsp"><s:text name="global.map" /></a></li>
+		                    <li><a href="contact.jsp"><s:text name="global.contact" /></a></li>
+		                    
+		                    
+		                    <s:if test="%{#session.firstname!=null}">
+								<li><a href="profil.action"><s:property value="#session.firstname" /></a></li>
+							</s:if>
+							<s:else>
+							  
+							</s:else>
+							
+							
+		                  </ul>
+		                  
+				<form class="navbar-form navbar-left" role="search" action="research_action.action">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="<s:text name="global.keyWord" />" name="research">
+                    </div>
+                    <button type="submit" class="btn btn-default"><s:text name="global.search" /></button>
+                  </form>
+			            <ul class="nav navbar-nav navbar-right">
+			            
+			            	<li><a href="#" data-toggle="modal" data-target=".login"><s:text name="global.login" /></a></li>
+		                    <li><a href="#" data-toggle="modal" data-target=".inscription"><s:text name="global.signIn" /></a></li>
+		                    
+			                <li class="dropdown">
+			                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Premium Bootstrap Themes &amp; Templates"><i class="fa fa-star text-yellow"></i> Langues <b class="caret"></b></a>
+			                    <ul class="dropdown-menu">
+			                        <li>
+		                            	<s:a href="%{localeFR}" >Francais</s:a>
+									</li>
+		                            <li>
+		                            	<s:a href="%{localeEN}" >English</s:a>
+		                            </li>
+			                    </ul>
+			                </li>
+			            </ul>
+			        </div>
+			        <!-- /.navbar-collapse -->
+			    </div>
+			    <!-- /.container -->
+			</nav>
+            
             
             
             

@@ -36,3 +36,12 @@ body {
 	min-height:100%;
 	z-index: -100;
 }
+
+
+/* NAV BAR */
+.navbar-custom {
+    background-color:#fbfbf0;
+	color: #FFFFFF;
+}
+
+
