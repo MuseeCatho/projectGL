@@ -20,8 +20,8 @@
         <property name="name_e" type="string">
             <column name="name_e" length="40" not-null="true" />
         </property>
-        <property name="show" type="boolean">
-            <column name="show" />
+        <property name="showI" type="boolean">
+            <column name="showI" />
         </property>
     </class>
 </hibernate-mapping>

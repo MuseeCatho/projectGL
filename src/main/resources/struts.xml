@@ -28,6 +28,9 @@
         <action name="getLastEnrichmentId" class="action.DetailAction" method="getLastEnrichmentId">
             <result name="success">result.jsp</result>
    		</action>
+   		<action name="getLastPhotosId" class="action.DetailAction" method="getLastPhotosId">
+            <result name="success">result.jsp</result>
+   		</action>
         <action name="addEnrichments" class="action.DetailAction" method="addEnrichments">
             <result name="success">result.jsp</result>
    		</action>
@@ -35,6 +38,9 @@
             <result name="success">result.jsp</result>
    		</action>
    		<action name="addMedia" class="action.DetailAction" method="addMedia">
+            <result name="success">result.jsp</result>
+   		</action>
+   		<action name="addPhotos" class="action.DetailAction" method="addPhotos">
             <result name="success">result.jsp</result>
    		</action>
         <action name="detailObject" class="action.DetailAction" method="showdetail">

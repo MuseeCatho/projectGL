@@ -60,25 +60,27 @@
 								<div id="listPhotos" class="row">
 									<div>
 										<div class="tablecell" class="row">
-											<s:iterator value="listDetail">
-												<div id="photoDetail"
-													class="photoDetail col-xs-4 col-sm-3 col-md-2 ">
-													<img border-color="blue" id="listPhotosImg"
-														src="<s:property value="link_photos"/>"
-														alt="Responsive image"> <a class="cursor_ok"
-														onclick="cancelProposition('image',<s:property value="id"/>)">
-														<img alt="alternativtext" class="icon icon_ok"
-														" src="img/icon/ok.png"
-														id="icon_ok<s:property value="id"/>" width="30"
-														height="30">
-													</a> <a class="cursor_delete"
-														onclick="addProposition('image', <s:property value="id"/>,'delete')">
-														<img alt="alternativtext" class="icon icon_cancel"
-														src="img/icon/cancel.png"
-														id="icon_cancel<s:property value="id"/>" width="30"
-														height="30">
-													</a>
-												</div>
+											<s:iterator value="listDetail" status ="listD">
+												<s:if test="showI == false">
+													<div id="photoDetail"
+														class="photoDetail col-xs-4 col-sm-3 col-md-2 ">
+														<img border-color="blue" id="listPhotosImg"
+															src="<s:property value="link_photos"/>"
+															alt="Responsive image"> <a class="cursor_ok"
+															onclick="cancelProposition('image',<s:property value="id"/>)">
+															<img alt="alternativtext" class="icon icon_ok"
+															" src="img/icon/ok.png"
+															id="icon_ok<s:property value="id"/>" width="30"
+															height="30">
+														</a> <a class="cursor_delete"
+															onclick="addProposition('image', <s:property value="id"/>,'delete')">
+															<img alt="alternativtext" class="icon icon_cancel"
+															src="img/icon/cancel.png"
+															id="icon_cancel<s:property value="id"/>" width="30"
+															height="30">
+														</a>
+													</div>
+												</s:if>
 											</s:iterator>
 										</div>
 									</div>

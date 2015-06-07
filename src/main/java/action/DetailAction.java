@@ -67,6 +67,7 @@ public class DetailAction extends ActionSupport {
 	private ArrayList<Comment> listComment;
 	private ArrayList<CommentDetail> listCommentAndNameUser;
 	private ArrayList<Enrichments> listEnrichments;
+	private ArrayList<Photos> listPhotos;
 	private String periodObjectString;
 	private String listPhotoString;
 
@@ -84,6 +85,11 @@ public class DetailAction extends ActionSupport {
 	private String[] uploadContentTypes;
 	private File[] uploads;
 	private String listImageUploadS;
+	private String link_photos;
+	private String name_f;
+	private String name_e;
+	private Boolean showI;
+	private static String link;
 
 	private static final long serialVersionUID = 1L;
 
@@ -114,7 +120,9 @@ public class DetailAction extends ActionSupport {
 
 			periodObject = periodDao.getPeriodId(this.id);
 			for (Photos p : listDetail) {
+				if (!p.getShowI()) {
 				listPhoto.add(p.getLink_photos());
+				}
 			}
 			StringBuilder sb = new StringBuilder();
 
@@ -164,19 +172,13 @@ public class DetailAction extends ActionSupport {
 		return SUCCESS;
 	}
 
+	public String addPhotos() throws Exception {
+		PhotosDaoImpl photosDao = new PhotosDaoImpl();
+		Photos photos = new Photos(new Integer(0), this.getLink(), this.object_id, this.name_f, this.name_e, this.showI);
+		photosDao.insertPhotos(photos);
+		return SUCCESS;
+	}
 	
-	/*/
-	  String link_picture; CategoryDaoImpl categoryDao = new CategoryDaoImpl();
-	  if(uploadFileNames==null){ //si il n'y a pas de photo
-	  link_picture="img/autre.jpg"; }else{ ServletContext context =
-	  ServletActionContext.getServletContext(); String webroot =
-	  context.getRealPath("/")+"\\src\\main\\webapp\\img\\object";
-	  upload(webroot); link_picture="img/category/"+uploadFileNames[0]; }
-	  
-	  // Category category =new Category(new //
-	  Integer(0),this.title_f,this.title_e,link_picture); //
-	  categoryDao.insertCategory(category);
-	 /*/
 	public BufferedImage decodeToImage() {
 		BufferedImage image = null;
 		byte[] imageByte;
@@ -197,12 +199,13 @@ public class DetailAction extends ActionSupport {
 	public String addMedia() throws Exception {
 		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyhhmmss.SSS");
 		String date = sdf.format(new Date());
-				
+		this.setLink("img/object/" + date	+ "images.jpg");
 		BufferedImage newImg;
 		String imgstr;
 		newImg = decodeToImage();
 
-		ImageIO.write(newImg, "jpg", new File(System.getProperty("user.home") +"/workspace/projectGL/src/main/webapp/img/object/"+ date+"images.jpg"));
+		ImageIO.write(newImg, "jpg", new File(System.getProperty("user.home")
+				+ "/workspace/projectGL/src/main/webapp/" + link));
 		return SUCCESS;
 	}
 
@@ -214,6 +217,17 @@ public class DetailAction extends ActionSupport {
 				enrichmentsDao.getEnrichments());
 		Gson gson = new Gson();
 		result = gson.toJson(listEnrichments);
+		return SUCCESS;
+	}
+	
+	public String getLastPhotosId() {
+
+		PhotosDaoImpl photosDao = new PhotosDaoImpl();
+
+		listPhotos = new ArrayList<Photos>(
+				photosDao.getLastPhotos());
+		Gson gson = new Gson();
+		result = gson.toJson(listPhotos);
 		return SUCCESS;
 	}
 
@@ -433,5 +447,49 @@ public class DetailAction extends ActionSupport {
 	public void setListImageUploadS(String listImageUploadS) {
 		this.listImageUploadS = listImageUploadS;
 	}
+
+	public String getLink_photos() {
+		return link_photos;
+	}
+
+	public void setLink_photos(String link_photos) {
+		this.link_photos = link_photos;
+	}
+
+	public String getName_f() {
+		return name_f;
+	}
+
+	public void setName_f(String name_f) {
+		this.name_f = name_f;
+	}
+
+	public String getName_e() {
+		return name_e;
+	}
+
+	public void setName_e(String name_e) {
+		this.name_e = name_e;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public Boolean getShowI() {
+		return showI;
+	}
+
+	public void setShowI(Boolean showI) {
+		this.showI = showI;
+	}
+
+	
+	
+	
 
 }
