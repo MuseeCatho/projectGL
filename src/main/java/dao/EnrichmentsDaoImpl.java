@@ -6,6 +6,7 @@ import java.util.List;
 
 import mapping.Category;
 import mapping.Enrichments;
+import mapping.ObjectMuseum;
 import mapping.Proposition;
 
 import org.hibernate.Criteria;
@@ -33,14 +34,23 @@ public class EnrichmentsDaoImpl implements EnrichmentsDao<Enrichments, Integer> 
 		session.save(entity);
 		session.getTransaction().commit();
 	}
-	
-	public Collection<Enrichments> getEnrichments(){
+
+	public Collection<Enrichments> getLastEnrichments() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction(); 
+		session.beginTransaction();
 		DetachedCriteria maxId = DetachedCriteria.forClass(Enrichments.class)
-		    .setProjection( Projections.max("id") );
-		return session.createCriteria(Enrichments.class)
-		    .add( Property.forName("id").eq(maxId) )
-		    .list();
-}
+				.setProjection(Projections.max("id"));
+		return session.createCriteria(Enrichments.class).list();
 	}
+
+	public Collection<Enrichments> getEnrichments() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(Enrichments.class)/*.setProjection(
+				Projections.projectionList().add(
+						Projections.groupProperty("object_id")))*/;
+		List<Enrichments> results = cr.list();
+		return results;
+
+	}
+}

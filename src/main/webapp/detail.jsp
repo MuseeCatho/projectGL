@@ -148,7 +148,7 @@
 								</s:include></aside>
 
 								<aside id="video" class="videoDetail col-lg-12">
-								<h4>Regarder la vidéo de l'objet :</h4>
+								<h4>Regarder la vidéo de l'objet :</1h4>
 
 								<iframe width="400" height="225"
 									src="https://www.youtube.com/embed/LqTyPFFS8fg" frameborder="0"
