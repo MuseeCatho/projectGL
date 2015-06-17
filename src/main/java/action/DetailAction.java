@@ -214,7 +214,7 @@ public class DetailAction extends ActionSupport {
 		EnrichmentsDaoImpl enrichmentsDao = new EnrichmentsDaoImpl();
 
 		listEnrichments = new ArrayList<Enrichments>(
-				enrichmentsDao.getEnrichments());
+				enrichmentsDao.getLastEnrichments());
 		Gson gson = new Gson();
 		result = gson.toJson(listEnrichments);
 		return SUCCESS;

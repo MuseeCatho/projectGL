@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset=utf-8">
 <title>Insert title here</title>
 <s:include value="import.jsp"></s:include>
 </head>
@@ -14,7 +14,22 @@
 
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<h1 class="page-header">Gestion des propositions de modification</h1>
-
+		<table class="table table-condensed" id="tabPeriod">
+			<thead>
+				<tr>
+					<th>Image</th>
+					<th>Nom de l'oeuvre</th>
+					<th>Date</th>
+					<th>Nombre de demande de modification</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>azsdfghj
+			<s:iterator value="arrayListObject">asdfghjk
+					<s:property value="number" />
+			</s:iterator>
+			</tbody>
+		</table>
 
 	</div>
 </body>

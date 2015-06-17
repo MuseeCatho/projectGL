@@ -5,62 +5,57 @@
 <struts>
 	<constant name="struts.multipart.maxSize" value="2000000000" />
 	<constant name="struts.custom.i18n.resources" value="global" />
- 	<constant name="struts.devMode" value="false" />
+	<constant name="struts.devMode" value="false" />
 
-     <package name="tutorial" namespace="/" extends="struts-default">
-        <action name="hello" class="tutorial.HelloAction">
-            <result>/index.jsp</result>
-        </action>
-    </package>
-    <package name="bdd" namespace="/" extends="struts-default">
-        <action name="connect_bdd" class="bdd.JDBC" method="connect">
-            <result>/test.jsp</result>
-        </action>
-    </package>
-    <package name="action" namespace="/" extends="struts-default">
-        <action name="getLocationForMap" class="action.MapAction" method="getLocation">
-            <result name="success">result.jsp</result>
-        </action>
-        <action name="locale" class="action.LocaleAction">
+	<package name="tutorial" namespace="/" extends="struts-default">
+		<action name="hello" class="tutorial.HelloAction">
+			<result>/index.jsp</result>
+		</action>
+	</package>
+	<package name="bdd" namespace="/" extends="struts-default">
+		<action name="connect_bdd" class="bdd.JDBC" method="connect">
+			<result>/test.jsp</result>
+		</action>
+	</package>
+	<package name="action" namespace="/" extends="struts-default">
+		<action name="getLocationForMap" class="action.MapAction"
+			method="getLocation">
+			<result name="success">result.jsp</result>
+		</action>
+		<action name="locale" class="action.LocaleAction">
 			<result name="SUCCESS" type="redirectAction">index.action</result>
-	   </action>
-        <!-- DETAILS OBJECT -->
-        <action name="getLastEnrichmentId" class="action.DetailAction" method="getLastEnrichmentId">
-            <result name="success">result.jsp</result>
-   		</action>
-   		<action name="getLastPhotosId" class="action.DetailAction" method="getLastPhotosId">
-            <result name="success">result.jsp</result>
-   		</action>
-        <action name="addEnrichments" class="action.DetailAction" method="addEnrichments">
-            <result name="success">result.jsp</result>
-   		</action>
-        <action name="addProposition" class="action.DetailAction" method="addProposition">
-            <result name="success">result.jsp</result>
-   		</action>
-   		<action name="addMedia" class="action.DetailAction" method="addMedia">
-            <result name="success">result.jsp</result>
-   		</action>
-   		<action name="addPhotos" class="action.DetailAction" method="addPhotos">
-            <result name="success">result.jsp</result>
-   		</action>
-        <action name="detailObject" class="action.DetailAction" method="showdetail">
-            <result name="success">detail.jsp</result>
-        </action>
-        <action name="addComment" class="action.CommentsAction" method="addComment">
-            <result name="success">result.jsp</result>
-        </action>
-        <!-- END DETAILS OBJECT -->
-        <action name="logOut" class="action.UsersAction" method="logOut">
-            <result name="success">index.jsp</result>
-        </action> 
-        <action name="add_user" class="action.UsersAction" method="addUser">
-            <result name="success">result.jsp</result>
-        </action> 
-         <action name="checkPseudo" class="action.UsersAction" method="checkPseudo">
-            <result name="success">result.jsp</result>
-        </action>
+		</action>
+		<!-- DETAILS OBJECT -->
+		<action name="getLastEnrichmentId" class="action.DetailAction"
+			method="getLastEnrichmentId">
+			<result name="success">result.jsp</result>
+		</action>
+		<action name="getLastPhotosId" class="action.DetailAction"
+			method="getLastPhotosId">
+			<result name="success">result.jsp</result>
+		</action>
+		<action name="addEnrichments" class="action.DetailAction"
+			method="addEnrichments">
+			<result name="success">result.jsp</result>
+		</action>
+		<action name="addProposition" class="action.DetailAction"
+			method="addProposition">
+			<result name="success">result.jsp</result>
+		</action>
+		<action name="addMedia" class="action.DetailAction" method="addMedia">
+			<result name="success">result.jsp</result>
+		</action>
+		<action name="addPhotos" class="action.DetailAction" method="addPhotos">
+			<result name="success">result.jsp</result>
+		</action>
+		<action name="detailObject" class="action.DetailAction" method="showdetail">
+			<result name="success">detail.jsp</result>
+		</action>
+		<action name="addComment" class="action.CommentsAction" method="addComment">
+			<result name="success">result.jsp</result>
+		</action>
 		<!-- END DETAILS OBJECT -->
-		<!--<action name="logOut" class="action.UsersAction" method="logOut">
+		<action name="logOut" class="action.UsersAction" method="logOut">
 			<result name="success">index.jsp</result>
 		</action>
 		<action name="add_user" class="action.UsersAction" method="addUser">
@@ -68,7 +63,13 @@
 		</action>
 		<action name="checkPseudo" class="action.UsersAction" method="checkPseudo">
 			<result name="success">result.jsp</result>
-		</action>-->
+		</action>
+		<!-- END DETAILS OBJECT -->
+		<!--<action name="logOut" class="action.UsersAction" method="logOut"> <result 
+			name="success">index.jsp</result> </action> <action name="add_user" class="action.UsersAction" 
+			method="addUser"> <result name="success">result.jsp</result> </action> <action 
+			name="checkPseudo" class="action.UsersAction" method="checkPseudo"> <result 
+			name="success">result.jsp</result> </action> -->
 		<action name="index" class="action.HomeAction" method="getAllCategory">
 			<result name="success">index.jsp</result>
 		</action>
@@ -76,7 +77,8 @@
 			method="research">
 			<result name="success">result_research.jsp</result>
 		</action>
-		<action name="advanced_research_action" class="action.ResearchAction" method="advancedResearch">
+		<action name="advanced_research_action" class="action.ResearchAction"
+			method="advancedResearch">
 			<result name="success">oeuvres.jsp</result>
 		</action>
 		<!-- PROFIL -->
@@ -90,7 +92,7 @@
 			<result name="success">resultAjax.jsp</result>
 		</action>
 		<!-- END PROFIL -->
-		
+
 		<!-- TESTS : -->
 		<action name="upload_file" class="action.FileUpload" method="upload">
 			<result name="success">result.jsp</result>
@@ -107,46 +109,48 @@
 		<action name="login">
 			<result>test_languages.jsp</result>
 		</action>
-		<!-- <action name="validateUser" class="action.LoginAction">
-			<result name="SUCCESS">index.jsp</result>
-			<result name="input">test_languages.jsp</result>
-		</action>-->
+		<!-- <action name="validateUser" class="action.LoginAction"> <result name="SUCCESS">index.jsp</result> 
+			<result name="input">test_languages.jsp</result> </action> -->
 		<!-- END TESTS -->
-    </package>
-    <package name="test" namespace="/admin" extends="struts-default">
-        <action name="sign" class="action.UsersAction" method="signIn">
-            <result name="success">result.jsp</result>
-        </action>
-        <!-- CONTROL OBJECT-->
-          <action name="add_object" class="action.ObjectAction" method="addObjectAction">
-   			<result name="success">add_object.jsp</result>
-   		</action>
-   		<action name="control_object" class="action.ObjectAction" method="listObject">
-   			<result name="success">control_object.jsp</result>
-   		</action>
-   		<!-- END CONTROL OBJECT-->
-   		<!-- CATEGORY -->
-   		<action name="get_category">
-   			<result name="success">get_category.jsp</result>
-   		</action>
-   		<action name="getAllCategory" class="action.CategoryAction" method="getAllCategory">
-   			<result name="success">resultAjax.jsp</result>
-   		</action>
-   		<action name="deleteCategory" class="action.CategoryAction" method="deleteCategory">
+	</package>
+	<package name="test" namespace="/admin" extends="struts-default">
+		<action name="sign" class="action.UsersAction" method="signIn">
 			<result name="success">result.jsp</result>
-   		</action>
-   		<action name="addCategory" class="action.CategoryAction" method="addCategory">
+		</action>
+		<!-- CONTROL OBJECT -->
+		<action name="add_object" class="action.ObjectAction" method="addObjectAction">
+			<result name="success">add_object.jsp</result>
+		</action>
+		<action name="control_object" class="action.ObjectAction"
+			method="listObject">
+			<result name="success">control_object.jsp</result>
+		</action>
+		<!-- END CONTROL OBJECT -->
+		<!-- CATEGORY -->
+		<action name="get_category">
+			<result name="success">get_category.jsp</result>
+		</action>
+		<action name="getAllCategory" class="action.CategoryAction"
+			method="getAllCategory">
+			<result name="success">resultAjax.jsp</result>
+		</action>
+		<action name="deleteCategory" class="action.CategoryAction"
+			method="deleteCategory">
+			<result name="success">result.jsp</result>
+		</action>
+		<action name="addCategory" class="action.CategoryAction"
+			method="addCategory">
 			<result name="success" type="redirectAction">get_category.action</result>
-   		</action>
-   		<!-- END CATEGORY -->
-   		<!-- PERIOD -->
-   		<action name="get_period">
-   			<result name="success">get_period.jsp</result>
-   		</action>
-   		<action name="getAllPeriod" class="action.PeriodAction" method="getAllPeriod">
-   			<result name="success">resultAjax.jsp</result>
-   		</action>
-   		<action name="deletePeriod" class="action.PeriodAction" method="deletePeriod">
+		</action>
+		<!-- END CATEGORY -->
+		<!-- PERIOD -->
+		<action name="get_period">
+			<result name="success">get_period.jsp</result>
+		</action>
+		<action name="getAllPeriod" class="action.PeriodAction" method="getAllPeriod">
+			<result name="success">resultAjax.jsp</result>
+		</action>
+		<action name="deletePeriod" class="action.PeriodAction" method="deletePeriod">
 			<result name="success">resultAjax.jsp</result>
 		</action>
 		<action name="addPeriod" class="action.PeriodAction" method="addPeriod">
@@ -154,19 +158,22 @@
 		</action>
 		<action name="upadtePeriod" class="action.PeriodAction" method="updatePeriod">
 			<result name="success">resultAjax.jsp</result>
-   		</action>
-   		<!-- END PERIOD -->
-   		<!-- COMMENT -->
-   		<action name="getCommentById" class="action.CommentsAction" method="getCommentById">
+		</action>
+		<!-- END PERIOD -->
+		<!-- COMMENT -->
+		<action name="getCommentById" class="action.CommentsAction"
+			method="getCommentById">
 			<result name="success">resultAjax.jsp</result>
-   		</action>
-   		<action name="deleteComment" class="action.CommentsAction" method="deleteComment">
+		</action>
+		<action name="deleteComment" class="action.CommentsAction"
+			method="deleteComment">
 			<result name="success">resultAjax.jsp</result>
-   		</action>
-   		<action name="valideComment" class="action.CommentsAction" method="valideComment">
+		</action>
+		<action name="valideComment" class="action.CommentsAction"
+			method="valideComment">
 			<result name="success">resultAjax.jsp</result>
-   		</action>
-   		<!-- END COMMENT -->
+		</action>
+		<!-- END COMMENT -->
 		<!-- USERS -->
 		<action name="searchUsers" class="action.UsersAction" method="searchUsers">
 			<result name="success">usersAjax.jsp</result>
@@ -186,17 +193,22 @@
 			<result name="success">control_informations.jsp</result>
    		</action>
 		<!-- END INFORMATION MUSEUM -->
+		<!-- PROPOSITION -->
+		<action name="showEnrichment" class="action.PropositionAction" method="showEnrichment">
+			<result name="success">propositions_manager.jsp</result>
+		</action>
+		<!-- END PROPOSITION -->
 		<action name="selectAction" class="action.ObjectAction" method="display">
 			<result name="none">add_object.jsp</result>
-   		</action> 
-   		<action name="upload_file" class="action.FileUpload" method="upload">
+		</action>
+		<action name="upload_file" class="action.FileUpload" method="upload">
 			<result name="success">result.jsp</result>
 		</action>
-    </package>
-    
-    <package name="actionOeuvre" namespace="/" extends="struts-default">
-        <action name="getOeuvre" class="action.ObjectAction" method = "listObject">
-            <result name="success">oeuvres.jsp</result>
-        </action>
-    </package>
+	</package>
+
+	<package name="actionOeuvre" namespace="/" extends="struts-default">
+		<action name="getOeuvre" class="action.ObjectAction" method="listObject">
+			<result name="success">oeuvres.jsp</result>
+		</action>
+	</package>
 </struts>
