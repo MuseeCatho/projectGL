@@ -24,11 +24,11 @@
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
 					<div class="item active">
-						<img src="img/carousel1.jpg" alt="caroussel1">
+						<img src="img/carousel1.jpg" alt="caroussel1" class="img-responsive">
 						<div class="carousel-caption">Image1</div>
 					</div>
 					<div class="item">
-						<img src="img/carousel2.jpg" alt="carousel2">
+						<img src="img/carousel2.jpg" alt="carousel2" class="img-responsive">
 						<div class="carousel-caption">Image2</div>
 					</div>
 				</div>
@@ -73,13 +73,20 @@
 
 		<div class="row"></div>
 		<!-- /.row -->
-		<div class="row top-buffer" id="pres">
-			<div class="col-lg-4 col-lg-offset-1">
-				<img src="img/presentation.jpg" class="img-responsive"
-					alt="Responsive image">
-			</div>
-			<div class="col-lg-4 col-lg-offset-1">Texte de présentation</div>
-		</div>
+		<div class="hero">
+			
+			<div class="row">
+	                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+	                    <hr class="section-heading-spacer">
+	               
+	                    <h2 class="section-heading">Musée catholique</h2>
+	                    <p class="lead">Ceci est le texte de présentation du musée catho</p>
+	                </div>
+	                <div class="col-lg-4 col-sm-pull-5  col-sm-5">
+	                    <img class="img-responsive" src="img/presentation.jpg" class="img-responsive" alt="">
+	                </div>
+	        </div>
+        </div>
 		
 		
 

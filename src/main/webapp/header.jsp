@@ -123,9 +123,13 @@
                   </form>
 			            <ul class="nav navbar-nav navbar-right">
 			            
+			            <s:if test="%{#session.firstname!=null}">
+			            	<li><a href="#" onclick="logOut()"><s:text name="global.logout" /></a></li>
+			            </s:if>
+			            <s:else>
 			            	<li><a href="#" data-toggle="modal" data-target=".login"><s:text name="global.login" /></a></li>
 		                    <li><a href="#" data-toggle="modal" data-target=".inscription"><s:text name="global.signIn" /></a></li>
-		                    
+		                </s:else>    
 			                <li class="dropdown">
 			                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Premium Bootstrap Themes &amp; Templates"><i class="fa fa-star text-yellow"></i> Langues <b class="caret"></b></a>
 			                    <ul class="dropdown-menu">

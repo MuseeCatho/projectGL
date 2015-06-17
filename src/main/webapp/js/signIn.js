@@ -1,4 +1,5 @@
 function signInAdmin(){
+	
 	var pseudo = $( "#inputEmail" ).val(); 
 	var password = $( "#inputPassword" ).val(); 
 	console.log(password+" -- "+pseudo);
@@ -26,6 +27,7 @@ function signInAdmin(){
 	
 }
 function signIn(){
+	$( "#error" ).empty();
 	var pseudo = $( "#inputPseudo" ).val(); 
 	var password = $( "#inputPassword" ).val(); 
 	console.log(password+" -- "+pseudo);

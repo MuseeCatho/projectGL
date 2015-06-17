@@ -3,20 +3,17 @@
 <html>
 	<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	    
 	    	<s:include value="import.jsp"></s:include>
-	    	
-	    	
 			<script src="http://malsup.github.com/jquery.form.js"></script>
 			<!-- Include css styles here -->
 			<link href="../css/fileUpload.css" rel="stylesheet" type="text/css" />
-		<script src="../js/category.js"></script> 
-		<title>Gestion des categories</title>
+			<script src="../js/category.js"></script> 
+			<title>Gestion des categories</title>
 	</head>
 <style type="text/css">
     .cancel_category{margin-bottom:105px;}
     .cursor_delete{cursor: pointer; }
-  </style>
+</style>
   
 <body>
 

@@ -181,6 +181,11 @@
 			<result name="success">usersAjax.jsp</result>
 		</action>
 		<!-- END USERS -->
+		<!-- INFORMATION MUSEUM -->
+		<action name="addPhotoPresentation" class="action.HomeAction" method="addPhotoPresentation">
+			<result name="success">control_informations.jsp</result>
+   		</action>
+		<!-- END INFORMATION MUSEUM -->
 		<action name="selectAction" class="action.ObjectAction" method="display">
 			<result name="none">add_object.jsp</result>
    		</action> 
