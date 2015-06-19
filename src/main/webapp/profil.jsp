@@ -3,13 +3,12 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="js/jquery.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-<title>Profil</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<s:include value="import.jsp"></s:include>
+	<title>Profil</title>
+	<style type="text/css">
+    #formChangeProfil{margin-top:100px}
+  </style>
 </head>
 
   <body>
@@ -19,7 +18,7 @@
 
             
 
-       <form data-toggle="validator" role="form">
+       <form data-toggle="validator" role="form" id="formChangeProfil">
 
 		        
 		        	<div class="row"><!-- PSEUDO -->

@@ -3,7 +3,9 @@ package action;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,30 +61,47 @@ public String deleteCategory(){
 	
 	public String addCategory() throws Exception{
 		
-		
-		String link_picture;
+		String webroot;
 		CategoryDaoImpl categoryDao = new CategoryDaoImpl();
 		if(uploadFileNames==null){ //si il n'y a pas de photo
-			link_picture="img/category/other.jpg";
+			webroot="img/category/other.jpg";
 		}else{
-			ServletContext context = ServletActionContext.getServletContext();
-			String webroot = System.getProperty("user.home")+"/uploadFile";
-			System.out.println(System.getProperty("user.home"));
-			upload(webroot);
-			link_picture="img/category/"+uploadFileNames[0];
+			//ServletContext context = ServletActionContext.getServletContext();
+
+			//webroot = System.getProperty("user.home")+"\\upload\\img\\category\\"+uploadFileNames[0];
+			//System.out.println("user.hom :"+System.getProperty("user.home"));
+			webroot="img"+File.separatorChar+uploadFileNames[0];
+			String webrootAbsolut = getPath()+File.separatorChar+webroot;
+			//System.out.println("catalina.home :"+System.getProperty("catalina.home"));
+			upload(webrootAbsolut);
 		}
-		Category category =new Category(new Integer(0),this.title_f,this.title_e,link_picture);
+		Category category =new Category(new Integer(0),this.title_f,this.title_e,webroot);
 		categoryDao.insertCategory(category);
+		
 		return SUCCESS;
 	}
 	
-	public String upload(String path) throws Exception {
+	public String getPath() throws UnsupportedEncodingException {
+		String path = this.getClass().getClassLoader().getResource("").getPath();
+		String fullPath = URLDecoder.decode(path, "UTF-8");
+		String pathArr[] = fullPath.split("/WEB-INF/classes/");
+		System.out.println("fullPath " + fullPath);
+		System.out.println("pathArr "+ pathArr[0]);
+		fullPath = pathArr[0];
+		
+		String reponsePath = "";
+// to read a file from webcontent
+		reponsePath = new File(fullPath).getPath();
+		System.out.println("response Path "+reponsePath);
+		return reponsePath;
+	}
+	public void upload(String path) throws Exception {
     	/* write the files in the eclipse repository */
         System.out.println("\n\n upload2");
         System.out.println("files:");
         for(int i = 0; i < uploads.length; i++) {
             System.out.println("*** " + uploads[i] + "\t" + uploads[i].length());
-            File dest = new File(path+"\\" + uploadFileNames[i]);
+            File dest = new File(path);
 			FileUtils.copyFile(uploads[i], dest);
         }
         System.out.println("filenames:");
@@ -94,8 +113,6 @@ public String deleteCategory(){
             System.out.println("*** " + c);
         }
         System.out.println("\n\n");
-        
-        return SUCCESS;
     }
 	
 	

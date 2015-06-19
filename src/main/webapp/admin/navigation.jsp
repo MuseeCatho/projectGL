@@ -20,7 +20,7 @@
 					<a href="control_informations.jsp">Gestion des informations<span class="sr-only">(current)</span></a>
 				</li>
 				<li<%if (pageName != null && pageName.equals("propositions_manager"))out.print(" class=\"active\"");%>>
-					<a href="propositions_manager.jsp">Gestion des propositions de modification<span class="sr-only">(current)</span></a>
+					<a href="showEnrichment.action">Gestion des propositions de modification<span class="sr-only">(current)</span></a>
 				</li>
 			</ul>
 		</div>

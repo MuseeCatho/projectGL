@@ -8,18 +8,34 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+
+import sun.misc.BASE64Encoder;
+import sun.misc.BASE64Decoder;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
+
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReadParam;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
+
 import org.apache.commons.codec.binary.Base64;
+
+import javax.servlet.ServletContext;
+
 
 import mapping.Comment;
 import mapping.Enrichments;
@@ -29,6 +45,7 @@ import mapping.Photos;
 import mapping.Proposition;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
 
 import bean.CommentDetail;
 import bean.DetailPage;
@@ -56,6 +73,7 @@ public class DetailAction extends ActionSupport {
 	private ArrayList<Comment> listComment;
 	private ArrayList<CommentDetail> listCommentAndNameUser;
 	private ArrayList<Enrichments> listEnrichments;
+	private ArrayList<Photos> listPhotos;
 	private String periodObjectString;
 	private String listPhotoString;
 
@@ -72,7 +90,12 @@ public class DetailAction extends ActionSupport {
 	private String[] uploadFileNames;
 	private String[] uploadContentTypes;
 	private File[] uploads;
-	private ArrayList listImageUpload;
+	private String listImageUploadS;
+	private String link_photos;
+	private String name_f;
+	private String name_e;
+	private Boolean showI;
+	private static String link;
 
 	private static final long serialVersionUID = 1L;
 
@@ -103,7 +126,9 @@ public class DetailAction extends ActionSupport {
 
 			periodObject = periodDao.getPeriodId(this.id);
 			for (Photos p : listDetail) {
+				if (!p.getShowI()) {
 				listPhoto.add(p.getLink_photos());
+				}
 			}
 			StringBuilder sb = new StringBuilder();
 
@@ -153,78 +178,40 @@ public class DetailAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public String addMedia() throws Exception {
-		this.listImageUpload = new ArrayList();
-		//System.out.println(this.listImageUpload);
-		for (int i = 0; i < this.listImageUpload.size()+1;i++) {
-			
-			try {
-				/*System.out.println(System.getProperty("user.home"));
-				File fichier = new File("/home/amandine/workspace/"
-						+ "imageas.jpg");
-				PrintWriter out  = new PrintWriter(new FileWriter(fichier));
-			     
-			        out.println(this.listImageUpload);
-			      out.close();*/
-			      //ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			      byte[] bytes = Base64.decodeBase64(this.listImageUpload.get(i));
-			      ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-			        Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
-			        
-			        //ImageIO is a class containing static methods for locating ImageReaders
-			        //and ImageWriters, and performing simple encoding and decoding. 
-			 
-			        ImageReader reader = (ImageReader) readers.next();
-			        Object source = bis; 
-			        ImageInputStream iis = ImageIO.createImageInputStream(source); 
-			        reader.setInput(iis, true);
-			        ImageReadParam param = reader.getDefaultReadParam();
-			 
-			        Image image = reader.read(0, param);
-			        //got an image file
-			 
-			        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
-			        //bufferedImage is the RenderedImage to be written
-			 
-			        Graphics2D g2 = bufferedImage.createGraphics();
-			        g2.drawImage(image, null, null);
-			 
-			        File imageFile = new File("/home/amandine/workspace/"+ "images.jpg");
-			        ImageIO.write(bufferedImage, "jpg", imageFile);
-			 
-			        System.out.println(imageFile.getPath());
-				if (imageFile.createNewFile())
-					System.out.println("Le fichier a été créé");
-				else
-					System.out
-							.println("Erreur, Impossible de créer ce fichier");
-			} catch (Exception e) {
-				System.out.println("Impossible de créer le fichier");
-			}
-		}
-
-		/*
-		 * String link_picture; CategoryDaoImpl categoryDao = new
-		 * CategoryDaoImpl(); if(uploadFileNames==null){ //si il n'y a pas de
-		 * photo link_picture="img/autre.jpg"; }else{ ServletContext context =
-		 * ServletActionContext.getServletContext(); String webroot =
-		 * context.getRealPath("/")+"\\src\\main\\webapp\\img\\object";
-		 * upload(webroot); link_picture="img/category/"+uploadFileNames[0]; }
-		 */
-		// Category category =new Category(new
-		// Integer(0),this.title_f,this.title_e,link_picture);
-		// categoryDao.insertCategory(category);
+	public String addPhotos() throws Exception {
+		PhotosDaoImpl photosDao = new PhotosDaoImpl();
+		Photos photos = new Photos(new Integer(0), this.getLink(), this.object_id, this.name_f, this.name_e, this.showI);
+		photosDao.insertPhotos(photos);
 		return SUCCESS;
 	}
-
 	
-
-	public String upload(String path) throws Exception {
-		/* write the files in the eclipse repository */
-		for (int i = 0; i < uploads.length; i++) {
-			File dest = new File(path + "\\" + uploadFileNames[i]);
-			FileUtils.copyFile(uploads[i], dest);
+	public BufferedImage decodeToImage() {
+		BufferedImage image = null;
+		byte[] imageByte;
+		try {
+			String[] base64Image = this.listImageUploadS.split(",");
+			String base64ImageDecode = base64Image[1];
+			BASE64Decoder decoder = new BASE64Decoder();
+			imageByte = decoder.decodeBuffer(base64ImageDecode);
+			ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
+			image = ImageIO.read(bis);
+			bis.close();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		return image;
+	}
+
+	public String addMedia() throws Exception {
+		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyhhmmss.SSS");
+		String date = sdf.format(new Date());
+		this.setLink("img/object/" + date	+ "images.jpg");
+		BufferedImage newImg;
+		String imgstr;
+		newImg = decodeToImage();
+
+		ImageIO.write(newImg, "jpg", new File(System.getProperty("user.home")
+				+ "/workspace/projectGL/src/main/webapp/" + link));
 		return SUCCESS;
 	}
 
@@ -233,9 +220,20 @@ public class DetailAction extends ActionSupport {
 		EnrichmentsDaoImpl enrichmentsDao = new EnrichmentsDaoImpl();
 
 		listEnrichments = new ArrayList<Enrichments>(
-				enrichmentsDao.getEnrichments());
+				enrichmentsDao.getLastEnrichments());
 		Gson gson = new Gson();
 		result = gson.toJson(listEnrichments);
+		return SUCCESS;
+	}
+	
+	public String getLastPhotosId() {
+
+		PhotosDaoImpl photosDao = new PhotosDaoImpl();
+
+		listPhotos = new ArrayList<Photos>(
+				photosDao.getLastPhotos());
+		Gson gson = new Gson();
+		result = gson.toJson(listPhotos);
 		return SUCCESS;
 	}
 
@@ -448,12 +446,56 @@ public class DetailAction extends ActionSupport {
 		this.uploads = uploads;
 	}
 
-	public ArrayList getListImageUpload() {
-		return listImageUpload;
+	public String getListImageUploadS() {
+		return listImageUploadS;
 	}
 
-	public void setListImageUpload(ArrayList listImageUpload) {
-		this.listImageUpload = listImageUpload;
+	public void setListImageUploadS(String listImageUploadS) {
+		this.listImageUploadS = listImageUploadS;
 	}
+
+	public String getLink_photos() {
+		return link_photos;
+	}
+
+	public void setLink_photos(String link_photos) {
+		this.link_photos = link_photos;
+	}
+
+	public String getName_f() {
+		return name_f;
+	}
+
+	public void setName_f(String name_f) {
+		this.name_f = name_f;
+	}
+
+	public String getName_e() {
+		return name_e;
+	}
+
+	public void setName_e(String name_e) {
+		this.name_e = name_e;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public Boolean getShowI() {
+		return showI;
+	}
+
+	public void setShowI(Boolean showI) {
+		this.showI = showI;
+	}
+
+	
+	
+	
 
 }

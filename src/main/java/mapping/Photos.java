@@ -12,7 +12,7 @@ public class Photos implements java.io.Serializable {
 	private int id_object; 	
 	private String name_f;
 	private String name_e;
-	private Boolean show;
+	private Boolean showI;
 	
 	public Photos(){
 		
@@ -57,20 +57,20 @@ public class Photos implements java.io.Serializable {
 		this.name_e = name_e;
 	}
 
-	public Boolean getShow() {
-		return show;
+	public Boolean getShowI() {
+		return showI;
 	}
 
-	public void setShow(Boolean show) {
-		this.show = show;
+	public void setShowI(Boolean showI) {
+		this.showI = showI;
 	}
 
-	public Photos(int id, String link_photos, int id_object, String name_f, String name_e, Boolean show){
+	public Photos(int id, String link_photos, int id_object, String name_f, String name_e, Boolean showI){
 		this.id=id;
 		this.link_photos=link_photos; 
 		this.id_object=id_object;
 		this.name_f=name_f;
 		this.name_e=name_e;
-		this.show=show;
+		this.showI=showI;
 	}
 }

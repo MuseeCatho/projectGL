@@ -44,6 +44,7 @@ public class UsersAction extends ActionSupport{
 	private int pageNumber;
 	private int pageCapacity = 10;
 	private List<User> users;
+	private int ban;
 	int numberUsers;
 	List<String> pageLis; // for the pagination
 
@@ -159,8 +160,8 @@ public class UsersAction extends ActionSupport{
 
 	public String searchUsers(){
 		UserManagerDao userManagerDao = new UserManagerDao();
-		this.users = userManagerDao.searchUsers(this.admin, this.searchString, this.pageNumber, this.pageCapacity);
-		this.numberUsers = userManagerDao.countUsers(this.admin, this.searchString);
+		this.users = userManagerDao.searchUsers(this.admin, this.ban, this.searchString, this.pageNumber, this.pageCapacity);
+		this.numberUsers = userManagerDao.countUsers(this.admin, this.ban, this.searchString);
 		// creation of StringLis :
 		int numberPages = (int) Math.ceil((float)(numberUsers) / pageCapacity);
 		System.out.println("users.size() : " + numberUsers + ", numberPages : " + numberPages);
@@ -168,6 +169,32 @@ public class UsersAction extends ActionSupport{
 		Pagination pagination = new Pagination("<a onclick=\"usersData.pageNumber=%;usersData.search();\">", "%");
 		this.pageLis = pagination.createPagination(pageNumber, numberPages);
 		return SUCCESS;
+	}
+	
+	public String permuteAdmin(){
+		//System.out.println("permute admin " + this.id);
+		DAO<User> userDao=new DAO<User>(User.class);
+		User user= userDao.find(this.id);
+		user.setAdmin(1 - user.getAdmin());
+		userDao.update(user);
+		return searchUsers();
+	}
+	
+	public String permuteBan(){
+		System.out.println("permute ban " + this.id);
+		DAO<User> userDao=new DAO<User>(User.class);
+		User user= userDao.find(this.id);
+		user.setBan(1 - user.getBan());
+		userDao.update(user);
+		return searchUsers();
+	}
+	
+	public String deleteUser(){
+		System.out.println("delete user " + this.id);
+		DAO<User> userDao=new DAO<User>(User.class);
+		User user= userDao.find(this.id);
+		userDao.delete(user);
+		return searchUsers();
 	}
 	
 	public String insertUsersForTest(){
@@ -322,5 +349,13 @@ public class UsersAction extends ActionSupport{
 
 	public void setPageLis(List<String> pageLis) {
 		this.pageLis = pageLis;
+	}
+
+	public int getBan() {
+		return ban;
+	}
+
+	public void setBan(int ban) {
+		this.ban = ban;
 	}
 }
