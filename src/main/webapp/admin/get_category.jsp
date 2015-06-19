@@ -17,6 +17,7 @@
   
 <body>
 
+<s:if test="%{#session.id_user!=null}">
 
   <s:include value="header_admin.jsp"></s:include> 
 	<jsp:include page="navigation.jsp">
@@ -34,7 +35,7 @@
 		       </form> --%>
 		       
 		       
-		       <form id="UploadForm" action="addCategory.action" method="post" enctype="multipart/form-data">
+		      <form id="UploadForm" action="addCategory.action" method="post" enctype="multipart/form-data">
 		       
 			       <div class="container-fluid">
 			            <div class="row">
@@ -68,6 +69,16 @@
 			            </div>
 			          </div>
 									
+				</form> 
+				<form id="UploadForm" action="addPhotoPresentation.action" method="post" enctype="multipart/form-data">
+		       
+			            </br>
+			            <div class="row">
+			            	<label for="file1">Importer une image : </label> <input type="file" size="60" id="file1" name="upload" /> <br />
+									<s:submit value="submit" name="submit" cssClass="btn btn-default"/>
+
+			            </div>
+									
 				</form>
           </br></br>
           <h3 class="page-header">Liste des categories</h3>
@@ -76,5 +87,13 @@
           </div>
 		
 		</div>
+		
+	</s:if>
+	
+	<s:else>
+		<script>
+			window.location = '../admin/login.jsp';
+		</script>			  
+	</s:else>
 </body>
 </html>

@@ -8,6 +8,8 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 </head>
 <body>
+<s:if test="%{#session.id_user!=null}">
+
  <s:include value="header_admin.jsp"></s:include>
 	<jsp:include page="navigation.jsp">
 		<jsp:param name="pageName" value="objects_manager"/>
@@ -84,9 +86,17 @@
 	     <input type="hidden" name="latitude" id="latitude" value="">
 	  	 <input type="hidden" name="longitude" id="longitude" value="">
 
-<!-- 	  <button type="submit" class="btn btn-default" onclick="AddObjectAdmin()">Valider</button> -->
+	<!-- 	  <button type="submit" class="btn btn-default" onclick="AddObjectAdmin()">Valider</button> -->
 	  <div style="margin-left:0px;"><s:submit value="submit" name="submit" cssClass="btn btn-default"/></div>
-</form>
+	</form>
+
+</s:if>
+	
+	<s:else>
+		<script>
+			window.location = '../admin/login.jsp';
+		</script>			  
+	</s:else>
 <script>
 // function beforeSubmit(){
 function formSubmit(){ 
