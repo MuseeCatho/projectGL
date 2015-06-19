@@ -1,28 +1,30 @@
 var arrayImage1 = new Array();
 var arrayImage2 = new Array();
+var arrayImageUpload = new Array();
 var object = {};
+var text_modified=false;
 
-function toogle(){
+function toogle() {
 	$('#carouselPhotos').toggle();
 	$('#annulationProposition').toggle();
 	$('#listPhotos').toggle();
 	$('#modif_description').toggle();
 }
-function reset(){
+function reset() {
 	arrayImage1 = [];
 	arrayImage2 = [];
 	toogle();
 	$('#buttonChange').val('Proposer une modification');
-	
+
 	for (var int = 0; int < arrayImage1.length; int++) {
 		$('#icon_cancel' + arrayImage1[int]).css('display', 'inherit');
 		$('#icon_ok' + arrayImage1[int]).css('display', 'none');
 	}
 	$('#descriptionDetail_text').show();
+
 	document.getElementById('modif_text').parentNode.removeChild(document.getElementById('modif_text'));
     document.getElementById('result').innerHTML="";
 }
-
 
 function hideEnr(idUser) {
 	if ($('#buttonChange').val() == 'Proposer une modification') {
@@ -30,10 +32,11 @@ function hideEnr(idUser) {
 		var e = document.getElementById('descriptionDetail_text');
 		save_text = $.trim(e.innerHTML);
 		var d = document.createElement('textarea');
-		d.innerHTML = $.trim(e.innerHTML);		//innerText ne fonctionne pas sur firefox, � modifier...
+		d.innerHTML = $.trim(e.innerHTML); // innerText ne fonctionne pas sur
+		// firefox, � modifier...
 		e.parentNode.insertBefore(d, e);
 		$('#descriptionDetail_text').hide();
-		d.id="modif_text";
+		d.id = "modif_text";
 		$('#modif_text').addClass("form-control");
 		toogle();
 	} else {
@@ -44,13 +47,13 @@ function hideEnr(idUser) {
 		}
 	}
 }
-var text=document.getElementById('descriptionDetail_text').innerHTML;
-text=$.trim(text);//supprime les espaces au debut de la chaine de caracteres 
-var list_text=text.split(" ");
+var text = document.getElementById('descriptionDetail_text').innerHTML;
+text = $.trim(text);// supprime les espaces au debut de la chaine de caracteres
+var list_text = text.split(" ");
 var list_text_insert;
-var list_word_delete=[];
-var list_string_insert=[];
-var list_index_delete=[];
+var list_word_delete = [];
+var list_string_insert = [];
+var list_index_delete = [];
 var list_word_delete_string;
 
 function description_modifie(){
@@ -80,17 +83,7 @@ function description_modifie(){
 								// lorsqu'on est s�r qu'il s'agit d'une
 								// suppression
                 // console.log(list_text[k+gap2]);
-                pos_X=list_text_insert.indexOf(list_text[k+gap2],j+gap);// on
-																		// cherche
-																		// par
-																		// exemple
-																		// le
-																		// mot
-																		// "milieu"
-																		// dans
-																		// le
-																		// texte
-																		// modifi�
+                pos_X=list_text_insert.indexOf(list_text[k+gap2],j+gap);
                 // console.log("pos_X: "+pos_X);
                 var notdoublon=false;
                 if(pos_X==-1){// si le mot suivant dans list_text n'existe pas
@@ -117,7 +110,7 @@ function description_modifie(){
 						// soit il y eu insertion de mot
                    
                     var list_of_doublon_index_text_modified = indexOfCount(list_text_insert,list_text[k+gap2],j+gap);
-                    var list_of_doublon_index = indexOfCount(list_text,list_text[k+gap],j+gap2);
+                    var list_of_doublon_index = indexOfCount(list_text,list_text[k+gap2],j+gap2);
                     var doublon=false;
                     if(list_of_doublon_index_text_modified.length < list_of_doublon_index.length){// il y
 																									// a
@@ -175,54 +168,55 @@ function description_modifie(){
             gap=list_string_insert.length;
             gap2=list_word_delete.length;// 1
            // console.log("list_index_delete: "+list_index_delete.length+"count
-			// :"+count);
-            // for(var i=count;i<list_index_delete.length;i++){
-            // console.log(list_index_delete[i]-gap);
-            // list_index_delete[i]=list_index_delete[i]-gap;
-            // }
-            if(list_index_delete.length-1==1)
-                // console.log(list_index_delete[list_index_delete.length-1])
-            if(word_delete!="")
-                list_index_delete[list_index_delete.length-1]+=gap;
 
-            // -------------------------------------------------------------------------------
-            // pos_X=list_text_insert.indexOf(list_text[j],j+gap)-1;
-            // for(var i=j+gap;i<=pos_X;i++){
-            // list_string_insert.push(i);
-                
-            // }
-            // gap=list_string_insert.length;
-            count++;
-        }
-        else if(typeof list_text[j+gap2]=='undefined'){
-            list_string_insert.push(j+gap);
-        }
-    }
-    var result="";
-    // var list_index_delete=compact_list_num(list_word_delete);
-    var index_word_delete;
-    var word_delete_index=0;
-    for(var k=0;k<list_text_insert.length;k++){
-        index_word_delete=k;
-        // index_word_delete=k;
-        // if(list_word_delete.indexOf(index_word_delete)!=-1){
-        // while(list_word_delete.indexOf(index_word_delete)!=-1){
-        // result+='<s><span
+			// :"+count);
+			// for(var i=count;i<list_index_delete.length;i++){
+			// console.log(list_index_delete[i]-gap);
+			// list_index_delete[i]=list_index_delete[i]-gap;
+			// }
+			if (list_index_delete.length - 1 == 1)
+				// console.log(list_index_delete[list_index_delete.length-1])
+				if (word_delete != "")
+					list_index_delete[list_index_delete.length - 1] += gap;
+
+			// -------------------------------------------------------------------------------
+			// pos_X=list_text_insert.indexOf(list_text[j],j+gap)-1;
+			// for(var i=j+gap;i<=pos_X;i++){
+			// list_string_insert.push(i);
+
+			// }
+			// gap=list_string_insert.length;
+			count++;
+		} else if (typeof list_text[j + gap2] == 'undefined') {
+			list_string_insert.push(j + gap);
+		}
+	}
+	var result = "";
+	// var list_index_delete=compact_list_num(list_word_delete);
+	var index_word_delete;
+	var word_delete_index = 0;
+	for (var k = 0; k < list_text_insert.length; k++) {
+		index_word_delete = k;
+		// index_word_delete=k;
+		// if(list_word_delete.indexOf(index_word_delete)!=-1){
+		// while(list_word_delete.indexOf(index_word_delete)!=-1){
+		// result+='<s><span
 		// style="color:red">'+list_text[index_word_delete]+'</span></s>'+" ";
-        // console.log(list_text[index_word_delete]+" "+"index_word_delete:
+		// console.log(list_text[index_word_delete]+" "+"index_word_delete:
 		// "+index_word_delete);
-        // index_word_delete++;
-        // }
-            
-        // }
-       
-        if(list_index_delete.indexOf(k)!=-1){
-            // while(list_word_delete.indexOf(index_word_delete)!=-1){
-            // result+='<s><span
+		// index_word_delete++;
+		// }
+
+		// }
+
+		if (list_index_delete.indexOf(k) != -1) {
+			// while(list_word_delete.indexOf(index_word_delete)!=-1){
+			// result+='<s><span
 			// style="color:red">'+list_text[index_word_delete]+'</span></s>'+"
 			// ";
-            // console.log(list_text[index_word_delete]+" "+"index_word_delete:
+			// console.log(list_text[index_word_delete]+" "+"index_word_delete:
 			// "+index_word_delete);
+
             // index_word_delete++;
             // }
             result+='<s><span style="color:red">'+list_word_delete_string[word_delete_index]+'</span></s>'+" ";
@@ -236,39 +230,41 @@ function description_modifie(){
         }
     }
     result=document.getElementById('result').innerHTML=result;
+    
+    return result;
 }
 
-function compact_list_num (list) {
-    var new_list=[list[0]];
-    for(var k=1;k<=list.length;k++){
-        if(list[k]!=list[k-1]+1){
-            new_list.push(list[k-1]);
-        }
-    }
-    return new_list;
+function compact_list_num(list) {
+	var new_list = [ list[0] ];
+	for (var k = 1; k <= list.length; k++) {
+		if (list[k] != list[k - 1] + 1) {
+			new_list.push(list[k - 1]);
+		}
+	}
+	return new_list;
 }
 
-function indexOfCount (list, element, begin) {
-    if (list.indexOf(element)==-1){
-        return [];
-    }
+function indexOfCount(list, element, begin) {
+	if (list.indexOf(element) == -1) {
+		return [];
+	}
 
-    // var hash={
-    // "indexes":[]
-    // };
-    var list_index=[];
-    for(var j=begin; j<list.length;j++){
-        if(list[j]==element){
-            // hash["indexes"].push(j);
-            list_index.push(j);
-        }   
-    }
-    return list_index;
+	// var hash={
+	// "indexes":[]
+	// };
+	var list_index = [];
+	for (var j = begin; j < list.length; j++) {
+		if (list[j] == element) {
+			// hash["indexes"].push(j);
+			list_index.push(j);
+		}
+	}
+	return list_index;
 }
 
 function annulation() {
 	var r = confirm("Annuler les modifications et revenir à la page de l'oeuvre?");
-	if (r == true) {		
+	if (r == true) {
 		reset()
 	}
 }
@@ -328,7 +324,7 @@ function addEnrichments(idUser) {
 	var today = new Date();
 	var date = today.toLocaleDateString();
 	var user_id = idUser;
-	var new_description = "";
+	var new_description = document.getElementById('result').innerHTML;
 	var source = "";
 	var object_id = getQueryVariable("id");
 	$.ajax({
@@ -369,10 +365,11 @@ function getLastEnrichmentsId() {
 }
 
 function SaveModif(arrayImage2, object, idUser) {
-	if (arrayImage2.length != 0) {
+	if (arrayImage2.length != 0 || text_modified) {
 		addEnrichments(idUser);
 		getLastEnrichmentsId();
-		if (lastIdEnr != 0 && lastIdEnr != null) {
+
+		/*if (lastIdEnr != 0 && lastIdEnr != null) {
 			for (var int = 0; int < arrayImage2.length; int++) {
 				arrayImage2[int].id_enrichments = lastIdEnr;
 				$.ajax({
@@ -384,8 +381,108 @@ function SaveModif(arrayImage2, object, idUser) {
 					success : function(data) {
 					}
 				});
-				alert("AS");
+			}
+		}*/
+	}for (var int = 0; int < arrayImageUpload.length; int++) {
+		alert(arrayImageUpload[int]);
+	}
+	for (var int = 0; int < arrayImageUpload.length; int++) {
+		$.ajax({
+			url : 'addMedia.action',
+			type : 'POST',
+		    encoding:"UTF-8",
+		    encryption: "multipart/form-data",
+		    async: true,
+			data : {"listImageUpload": arrayImageUpload[int]
+			},
+			success : function(data) {
+			}
+		});
+}	
+}
+
+(function(listDetailIncr) {
+	var listDetailIncr = 0;
+	function createThumbnail(file, arrayImageUpload) {
+		var reader = new FileReader();
+		reader.addEventListener('load', function() {
+			var divElement = document.createElement('div');
+			var incr = "listDetail" + listDetailIncr;
+			divElement.id = incr;
+			divElement.className = "col-xs-4 col-sm-3 col-md-2 photoDetailAdd";
+			prev.appendChild(divElement);
+
+			var imgElement = document.createElement('img');
+			imgElement.id = "listPhotosImg";
+			imgElement.src = this.result;
+			document.getElementById(incr).appendChild(imgElement);
+			var iconeElement = document.createElement('a');
+			var classIncr = "classIcon" + listDetailIncr;
+			iconeElement.id = classIncr;
+			iconeElement.className = "cursor_cancel";
+			document.getElementById(incr).appendChild(iconeElement);
+			var imgIconeElement = document.createElement('img');
+			var iconeIncr = "icon_cancel" + listDetailIncr;
+			imgIconeElement.id = iconeIncr;
+			imgIconeElement.className = "icon icon_cancel";
+			imgIconeElement.src = "img/icon/cancel.png";
+			imgIconeElement.addEventListener('click', function() {
+				deleteAdd(incr);
+			}, false);
+			document.getElementById(classIncr).appendChild(imgIconeElement);
+			listDetailIncr++;
+			arrayImageUpload.push(imgElement.src);			
+		}, false);
+		reader.readAsDataURL(file);
+	}
+
+	var allowedTypes = [ 'png', 'jpg', 'jpeg', 'gif' ], fileInput = document
+			.querySelector('#file'), prev = document.querySelector('#prev');
+	fileInput.addEventListener('change', function() {
+		var files = this.files, filesLen = files.length, imgType;
+		for (var i = 0; i < filesLen; i++) {
+			imgType = files[i].name.split('.');
+			imgType = imgType[imgType.length - 1];
+			if (allowedTypes.indexOf(imgType) != -1) {
+				createThumbnail(files[i], arrayImageUpload);
+				//alert(arrayImageUpload.length);	
+				
+				
 			}
 		}
+	}, false);
+
+})();
+
+function deleteAdd(incr) {
+	var r = confirm("Supprimer l'image?");
+	if (r == true) {
+		var obj = document.getElementById('prev');
+		var old = document.getElementById(incr);
+		obj.removeChild(old);
+	}
+	else{
+		alert("Aucune modification n'a �t� d�t�ct�.");
+	}
+}
+
+function modifieText(){
+	if($.trim(description_modifie()) != $.trim(document.getElementById('descriptionDetail_text').innerHTML)){//si l'utilisateur a modifi� le texte
+		return true;
+	}
+	else{
+		return false;
+	}
+    	
+}
+
+function saveModifDescr(){
+	if(modifieText()){
+		text_modified = true;
+		alert('Modification prise en compte.');
+	}
+	else{
+		alert("Vous n'avez pas fait de modifications.");
+		return false;
 	}
 }

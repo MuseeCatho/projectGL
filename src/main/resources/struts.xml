@@ -4,6 +4,8 @@
       "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<constant name="struts.multipart.maxSize" value="2000000000" />
+	<constant name="struts.custom.i18n.resources" value="global" />
+ 	<constant name="struts.devMode" value="false" />
 
      <package name="tutorial" namespace="/" extends="struts-default">
         <action name="hello" class="tutorial.HelloAction">
@@ -19,11 +21,17 @@
         <action name="getLocationForMap" class="action.MapAction" method="getLocation">
             <result name="success">result.jsp</result>
         </action>
+
         <!-- Contact -->
         <action name="contact" class="action.ContactAction" method="getInfoContact">
             <result name="success">contact.jsp</result>
    		</action>
         <!-- end  Contact -->
+
+        <action name="locale" class="action.LocaleAction">
+			<result name="SUCCESS" type="redirectAction">/index.action</result>
+	   </action>
+
         <!-- DETAILS OBJECT -->
         <action name="getLastEnrichmentId" class="action.DetailAction" method="getLastEnrichmentId">
             <result name="success">result.jsp</result>
@@ -32,6 +40,9 @@
             <result name="success">result.jsp</result>
    		</action>
         <action name="addProposition" class="action.DetailAction" method="addProposition">
+            <result name="success">result.jsp</result>
+   		</action>
+   		<action name="addMedia" class="action.DetailAction" method="addMedia">
             <result name="success">result.jsp</result>
    		</action>
         <action name="detailObject" class="action.DetailAction" method="showdetail">
@@ -51,7 +62,7 @@
             <result name="success">result.jsp</result>
         </action>
 		<!-- END DETAILS OBJECT -->
-		<action name="logOut" class="action.UsersAction" method="logOut">
+		<!--<action name="logOut" class="action.UsersAction" method="logOut">
 			<result name="success">index.jsp</result>
 		</action>
 		<action name="add_user" class="action.UsersAction" method="addUser">
@@ -59,7 +70,7 @@
 		</action>
 		<action name="checkPseudo" class="action.UsersAction" method="checkPseudo">
 			<result name="success">result.jsp</result>
-		</action>
+		</action>-->
 		<action name="index" class="action.HomeAction" method="getAllCategory">
 			<result name="success">index.jsp</result>
 		</action>
@@ -88,6 +99,9 @@
 		</action>
 		<action name="test_dao" class="action.Test_DAO" method="test_UserDAO">
 			<result name="success">test_dao.jsp</result>
+		</action>
+		<action name="insert_users" class="action.UsersAction" method="insertUsersForTest">
+			<result name="success">index.jsp</result>
 		</action>
 		<action name="mediaCarousel" class="action.MediaCarousel">
 			<result name="success">mediaCarousel.jsp</result>
@@ -143,8 +157,19 @@
 		</action>
 		<action name="upadtePeriod" class="action.PeriodAction" method="updatePeriod">
 			<result name="success">resultAjax.jsp</result>
-		</action>
-		<!-- END PERIOD -->
+   		</action>
+   		<!-- END PERIOD -->
+   		<!-- COMMENT -->
+   		<action name="getCommentById" class="action.CommentsAction" method="getCommentById">
+			<result name="success">resultAjax.jsp</result>
+   		</action>
+   		<action name="deleteComment" class="action.CommentsAction" method="deleteComment">
+			<result name="success">resultAjax.jsp</result>
+   		</action>
+   		<action name="valideComment" class="action.CommentsAction" method="valideComment">
+			<result name="success">resultAjax.jsp</result>
+   		</action>
+   		<!-- END COMMENT -->
 		<!-- USERS -->
 		<action name="searchUsers" class="action.UsersAction" method="searchUsers">
 			<result name="success">usersAjax.jsp</result>

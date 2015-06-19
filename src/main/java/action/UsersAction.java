@@ -5,15 +5,18 @@ import java.security.NoSuchAlgorithmException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import mapping.User;
+import addons.Pagination;
 
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+import dao.DAO;
 import dao.UserDaoImpl;
 import dao.UserManagerDao;
 
@@ -42,7 +45,7 @@ public class UsersAction extends ActionSupport{
 	private int pageCapacity = 10;
 	private List<User> users;
 	int numberUsers;
-
+	List<String> pageLis; // for the pagination
 
 	private static final long serialVersionUID = 1L;
 
@@ -156,9 +159,28 @@ public class UsersAction extends ActionSupport{
 
 	public String searchUsers(){
 		UserManagerDao userManagerDao = new UserManagerDao();
-		users = userManagerDao.searchUsers(this.admin, this.searchString, this.pageNumber, this.pageCapacity);
-		this.numberUsers = users.size();
-		System.out.println("users.size() : " + users.size());
+		this.users = userManagerDao.searchUsers(this.admin, this.searchString, this.pageNumber, this.pageCapacity);
+		this.numberUsers = userManagerDao.countUsers(this.admin, this.searchString);
+		// creation of StringLis :
+		int numberPages = (int) Math.ceil((float)(numberUsers) / pageCapacity);
+		System.out.println("users.size() : " + numberUsers + ", numberPages : " + numberPages);
+		// handle the pagination :
+		Pagination pagination = new Pagination("<a onclick=\"usersData.pageNumber=%;usersData.search();\">", "%");
+		this.pageLis = pagination.createPagination(pageNumber, numberPages);
+		return SUCCESS;
+	}
+	
+	public String insertUsersForTest(){
+		String pseudo = "-TEST-";
+		DAO<User> userDao = new DAO<User>(User.class);
+		for(int i = 0; i < 15; i++){ // insert i * 10 users
+			for(int j = 0; j < i * 10; j++){
+				String newPseudo = pseudo + "-" + i + "-" + j + "-";
+				User user = new User(new Integer(0), "#", "#", "#","#", newPseudo, "#", "#", "#", new Integer(0), new Integer(0));
+				userDao.insert(user);
+			}
+		}
+		System.out.println("all inserted ...");
 		return SUCCESS;
 	}
 
@@ -294,5 +316,11 @@ public class UsersAction extends ActionSupport{
 		this.numberUsers = numberUsers;
 	}
 	
-	
+	public List<String> getPageLis() {
+		return pageLis;
+	}
+
+	public void setPageLis(List<String> pageLis) {
+		this.pageLis = pageLis;
+	}
 }

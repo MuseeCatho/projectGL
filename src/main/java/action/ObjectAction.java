@@ -3,6 +3,8 @@ package action;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -49,6 +51,7 @@ public class ObjectAction extends ActionSupport{
 	private Collection<Photos> photosObject;
 	private ArrayList<Photos> listPhotos;
 	private String photoUnique;
+	private String orderObject;
 
 	public ObjectAction() {
 	}
@@ -111,43 +114,12 @@ public class ObjectAction extends ActionSupport{
 
 
 
-	public void setCategories(String categories) {
-		this.categories = categories;
-	}
-
-	public List<Category> getListCategory() {
-		return listCategory;
-		}
 	
-	public List<ObjectMuseum> getListOeuvre(){
-		ObjectDaoImpl objectDao=new ObjectDaoImpl();
-		listObject =new ArrayList<ObjectMuseum>(objectDao.getLocations());
-		ArrayList list = new ArrayList();
-		return list;
-	}
-		
-	public void setListCategory(List<Category> listCategory) {
-		this.listCategory = listCategory;
-	}
-
-	public Collection<Photos> getPhotosObject() {
-		return photosObject;
-	}
-
-	public void setPhotosObject(Collection<Photos> photosObject) {
-		this.photosObject = photosObject;
-	}
 
 	public String listObject() {
+		
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
-		PeriodDaoImpl periodDao = new PeriodDaoImpl();
-		PhotosDaoImpl photosDao = new PhotosDaoImpl();
-		CommentDaoImpl commentDao = new CommentDaoImpl();
 		
-		
-
-
-
 		listObject = new ArrayList<ObjectMuseum>(objectDao.getLocations());
 		listObjectPage = new ArrayList<ObjectPage>();
 		
@@ -159,7 +131,19 @@ public class ObjectAction extends ActionSupport{
 		listCategory = new ArrayList<Category>();
 		listCategory = (List<Category>) categories.getCategory();
 		
-		for (ObjectMuseum e : listObject) {
+		createListObject(listObject,listPhotos, 
+			photoUnique,  periodObject, photosObject, listObjectPage,this.orderObject);
+		
+		return SUCCESS;
+	}
+	
+	public static void createListObject(List<ObjectMuseum> listObject2,ArrayList<Photos> listPhotos, 
+			String photoUnique, Period periodObject, Collection<Photos> photosObject, List<ObjectPage> listObjectPage,String orderObject){
+		
+		PeriodDaoImpl periodDao = new PeriodDaoImpl();
+		PhotosDaoImpl photosDao = new PhotosDaoImpl();
+		CommentDaoImpl commentDao = new CommentDaoImpl();
+		for (ObjectMuseum e : listObject2) {
 			listPhotos = new ArrayList<Photos>(photosDao.getPhotos(e.getId()));
 			
 			if(listPhotos.size()==0){
@@ -186,10 +170,14 @@ public class ObjectAction extends ActionSupport{
 					periodObject.getName(), 
 					photoUnique,listComment.size());
 			listObjectPage.add(objectPage);
+			
 		}
-		return SUCCESS;
+		//on trie par nombre de commentaire
+		if(orderObject!=null){
+			Collections.sort(listObjectPage);
+			Collections.reverse(listObjectPage);
+		}
 	}
-	
 	public String detailObject(){
 		
 		return SUCCESS;
@@ -326,6 +314,40 @@ public class ObjectAction extends ActionSupport{
 
 	public static void setObjectDao(ObjectDaoImpl objectDao) {
 		ObjectAction.objectDao = objectDao;
+	}
+
+	public String getOrderObject() {
+		return orderObject;
+	}
+
+	public void setOrderObject(String orderObject) {
+		this.orderObject = orderObject;
+	}
+	public void setCategories(String categories) {
+		this.categories = categories;
+	}
+
+	public List<Category> getListCategory() {
+		return listCategory;
+		}
+	
+	public List<ObjectMuseum> getListOeuvre(){
+		ObjectDaoImpl objectDao=new ObjectDaoImpl();
+		listObject =new ArrayList<ObjectMuseum>(objectDao.getLocations());
+		ArrayList list = new ArrayList();
+		return list;
+	}
+		
+	public void setListCategory(List<Category> listCategory) {
+		this.listCategory = listCategory;
+	}
+
+	public Collection<Photos> getPhotosObject() {
+		return photosObject;
+	}
+
+	public void setPhotosObject(Collection<Photos> photosObject) {
+		this.photosObject = photosObject;
 	}
 	
 

@@ -7,13 +7,13 @@
 <body>
 <h1>Struts 2 localization example : <s:property value="getText('global.username')" /></h1>
  
-<s:form action="validateUser" namespace="/user">
+<%-- <s:form action="validateUser" namespace="/user">
  
 	<s:textfield key="global.username" name="username" />
 	<s:password key="global.password" name="password"/>	
 	<s:submit key="global.submit" name="submit" />
  
-</s:form>
+</s:form> --%>
  
 <s:url id="localeEN" namespace="/" action="locale" >
    <s:param name="request_locale" >en</s:param>
