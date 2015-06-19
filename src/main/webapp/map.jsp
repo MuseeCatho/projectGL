@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+ 
 <html>
  
  <head>
@@ -12,7 +12,7 @@
 	<title>Map</title>
 </head>
   <body>
-
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 		<s:include value="header.jsp"></s:include>
 		<div class="row">
 	       <div id="map">
@@ -24,7 +24,7 @@
     <!-- Include Javascript -->
    
     <script type="text/javascript">
-    var map;
+var map;
 var initialize;
 var listMarker=[];
  

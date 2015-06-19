@@ -38,21 +38,31 @@ public class HomeAction extends ActionSupport{
 	}
 	
 	public String addPhotoPresentation() throws Exception{
-		PhotosSiteDaoImpl photoSiteDao = new PhotosSiteDaoImpl();
-		Photos_Site photoSite=photoSiteDao.findPhotoPresentation(new Integer(1));
-		String webroot;
-		webroot="img"+File.separatorChar+uploadFileNames[0];
-		String webrootAbsolut = getPath()+File.separatorChar+webroot;
-		//System.out.println("catalina.home :"+System.getProperty("catalina.home"));
-		upload(webrootAbsolut);
-		Photos_Site entity =new Photos_Site(new Integer(1),"photo presentation",webroot);
-		if(photoSite==null){
-			System.out.println("insert");
-			photoSiteDao.insertPhotoPresentation(entity);
-		}else{
-			System.out.println("update");
-			photoSiteDao.updatePhotoPresentation(entity);
+		if(this.uploadFileNames==null){ //si il n'y a pas de photo
+			System.out.print("NULL");
 		}
+		else{
+			PhotosSiteDaoImpl photoSiteDao = new PhotosSiteDaoImpl();
+			Photos_Site photoSite=photoSiteDao.findPhotoPresentation(new Integer(1));
+			String webroot;
+			/////////////////////////
+			//////////////////////
+			
+			////////////////////////////
+			//////////////////////////
+			webroot="img"+File.separatorChar+this.uploadFileNames[0];
+			String webrootAbsolut = getPath()+File.separatorChar+webroot;
+			upload(webrootAbsolut);
+			Photos_Site entity =new Photos_Site(new Integer(1),"photo presentation",webroot);
+			if(photoSite==null){
+				System.out.println("insert");
+				photoSiteDao.insertPhotoPresentation(entity);
+			}else{
+				System.out.println("update");
+				photoSiteDao.updatePhotoPresentation(entity);
+			}
+		}
+		
 		
 		
 		return SUCCESS;
@@ -124,6 +134,7 @@ public class HomeAction extends ActionSupport{
 	public void setUploadContentTypes(String[] uploadContentTypes) {
 		this.uploadContentTypes = uploadContentTypes;
 	}
+
 	
 
 }

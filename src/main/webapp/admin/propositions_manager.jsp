@@ -7,6 +7,8 @@
 <s:include value="import.jsp"></s:include>
 </head>
 <body>
+<s:if test="%{#session.id_user!=null}">
+
 	<s:include value="header_admin.jsp"></s:include>
 	<jsp:include page="navigation.jsp">
 		<jsp:param name="pageName" value="propositions_manager" />
@@ -32,5 +34,14 @@
 		</table>
 
 	</div>
+	
+	
+</s:if>
+	
+	<s:else>
+		<script>
+			window.location = '../admin/login.jsp';
+		</script>			  
+	</s:else>
 </body>
 </html>

@@ -83,6 +83,13 @@ public class UsersAction extends ActionSupport{
 		session.remove("firstname");
 		return SUCCESS;
 	}
+	
+	public String logOutAdmin() throws Exception { 
+		Map session = ActionContext.getContext().getSession();
+		session.remove("id_user");
+		session.remove("firstname");
+		return SUCCESS;
+	}
 	public String getInfoProfil(){
 		UserDaoImpl userDao=new UserDaoImpl();
 		User user=userDao.findUserById(this.id);
