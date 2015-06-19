@@ -18,10 +18,11 @@
         <mapping resource="table/Period.hbm.xml"></mapping>        
         <mapping resource="table/Photos.hbm.xml"></mapping>
         <mapping resource="table/Category.hbm.xml"></mapping>
-       <!--  <mapping resource="table/Museum.hbm.xml"></mapping> -->
+        <mapping resource="table/Museum.hbm.xml"></mapping>
         <mapping resource="table/ObjectCategory.hbm.xml"></mapping>
         <mapping resource="table/Comments.hbm.xml"></mapping>
         <mapping resource="table/Enrichments.hbm.xml"></mapping>
         <mapping resource="table/Proposition.hbm.xml"></mapping>
+        <mapping resource="table/Photos_site.hbm.xml"></mapping>
     </session-factory>
 </hibernate-configuration>

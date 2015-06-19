@@ -27,7 +27,7 @@
             <column name="presentation_e" length="4000" not-null="false"/>
         </property>
         <property name="presentation_f" type="string">
-            <column name="presentation_e" length ="4000" not-null="false" />
+            <column name="presentation_f" length ="4000" not-null="false" />
         </property>
         </class>
 </hibernate-mapping>

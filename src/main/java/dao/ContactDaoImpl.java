@@ -7,6 +7,7 @@ import java.util.List;
 import mapping.Category;
 import mapping.Comment;
 import mapping.Museum;
+import mapping.Period;
 import mapping.User;
 
 import org.hibernate.Criteria;
@@ -31,6 +32,13 @@ public class ContactDaoImpl implements ContactDao<Museum, Integer>{
 		Criteria cr = session.createCriteria(Museum.class);
 		Collection<Museum> results = cr.list();
 		return results;
+	}
+	
+	public void updateContact(Museum entity){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();    
+        session.update(entity);
+        session.getTransaction().commit();
 	}
 	
 }

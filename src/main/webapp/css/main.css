@@ -10,8 +10,8 @@
 }
 
 #pres {
-	margin-top: 100px;
-	width: 90%;
+	margin-top: 60px;
+	margin-bottom: 60px;
 }
 
 .panel-footer {
@@ -35,4 +35,16 @@ body {
 	min-width:100%;
 	min-height:100%;
 	z-index: -100;
+}
+
+
+/* NAV BAR */
+.navbar-custom {
+    background-color:#fbfbf0;
+	color: #FFFFFF;
+}
+
+.hero {
+  background-color: #b9c6d8;
+  padding: 70px 90px;
 }

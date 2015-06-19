@@ -2,10 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Gestion des membres</title>
-	<s:include value="import.jsp"></s:include>
-	<link href="./css/main.css" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Gestion des membres</title>
+<s:include value="import.jsp"></s:include>
+<link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/users_manager.css" rel="stylesheet" type="text/css">
+<link href="./css/alert.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<s:include value="header_admin.jsp"></s:include>
@@ -15,17 +17,34 @@
 
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<h1 class="page-header">Gestion des membres</h1>
-		<input id="searchInput" type="text"/>
-		<select id="adminInput"> 
-   			<option value="1">administrateur</option> 
-   			<option value="0">non administrateur</option> 
-		</select>
+		<form class="form-inline" role="form">
+			<div class="checkbox">
+				<label for="searchInput">Rechercher un utilisateur ou un
+					administrateur : </label> <input id="searchInput" type="text"
+					class="form-control" placeholder="recherche" />
+			</div>
+			<div class="checkbox">
+				<select id="adminInput" class="form-control">
+					<option value="0">non administrateur</option>
+					<option value="1">administrateur</option>
+				</select>
+			</div>
+			<div class="checkbox">
+				<select id="banInput" class="form-control">
+					<option value="0">non bannis</option>
+					<option value="1">bannis</option>
+				</select>
+			</div>
+		</form>
 		<div id="usersDiv"></div>
 	</div>
+</div>
+</div>
 </body>
 </html>
 
 <script>
 	var language = 'french';
 </script>
-<script src = "js/users_manager.js"></script>
+	<script src="js/users_manager.js"></script>
+	<script src="js/alert.js"></script>

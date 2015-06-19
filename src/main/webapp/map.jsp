@@ -1,29 +1,28 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
+ <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <html>
-  <style type="text/css">
-    #container{position:relative;width:100%;margin:auto;}
-    #map{width:1000px;height:550px;margin:auto;}
+ 
+ <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<s:include value="import.jsp"></s:include>
+	 <style type="text/css">
+    #map{width:1000px;height:550px;margin:auto;margin-top:100px}
   </style>
-  
-  	<s:include value="import.jsp"></s:include>
+	<title>Map</title>
+</head>
   <body>
-    <div id="container">
 
-
-            <s:include value="header.jsp"></s:include>
-
-       <div id="map">
-            <p>Veuillez patienter pendant le chargement de la carte...</p>
+		<s:include value="header.jsp"></s:include>
+		<div class="row">
+	       <div id="map">
+	            <p>Veuillez patienter pendant le chargement de la carte...</p>
+	        </div>
         </div>
-        
-        
-        <s:include value="footer.jsp"></s:include>
-        
-   </div>
+   <s:include value="footer.jsp"></s:include>
  
     <!-- Include Javascript -->
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+   
     <script type="text/javascript">
     var map;
 var initialize;
@@ -34,8 +33,18 @@ initialize = function(){
     var mapOptions = {
         zoom: 2,
         center: new google.maps.LatLng(48,2),
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        disableDefaultUI: true
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+          style: google.maps.MapTypeControlStyle.DEFAULT,
+          mapTypeIds: [
+            google.maps.MapTypeId.ROADMAP,
+            google.maps.MapTypeId.TERRAIN
+          ]
+        },
+        zoomControl: true,
+        zoomControlOptions: {
+          style: google.maps.ZoomControlStyle.SMALL
+        }
     }
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
   
@@ -61,9 +70,6 @@ function getPosition(map){
 	    	   console.log(res);
 	    	   console.log("res.length: "+res.length);
 	    	   var jsoParse=JSON.parse(res);
-/* 	    	   console.log("jsoParse[0].id : "+jsoParse[0].id);
-	    	   console.log("jsoParse[0].id : "+jsoParse[0].title);
-	    	   console.log("jsoParse[0].id : "+jsoParse[0].id); */
 	    	   console.log("jsoParse.length : "+jsoParse.length);
 
 	    	   for (var i = 0; i < jsoParse.length; i++) {

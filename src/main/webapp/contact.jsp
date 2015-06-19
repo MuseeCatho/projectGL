@@ -36,17 +36,23 @@
 
 						</div>
 						<ul>
-							<li>Numéro de téléphone :</li>
-							<li>Adresse : <s:property value="address" /></li>
-							<li>Bus/métro :</li>
-
+							<s:iterator value="listMuseum">
+								<li>Numéro de téléphone : <s:property value="phone" /></li>
+								</br>
+								<li>Adresse : <s:property value="address" /></li>
+								</br>
+								<li>Bus/métro : <s:property value="access" /></li>
+								 </br>
+								<li>Horraires : <s:property value="schedule" /></li>
+								</br>
+								<li>Mail : <s:property value="mail"/></li>
+							</s:iterator>
 						</ul>
 					</div>
 
 				</div>
 
-				<div class="col-lg-4 col-lg-offset-1" ; style :"display :
-					inline-block ; margin: 40 px">
+				<div class="col-lg-4 col-lg-offset-1" ; style :"display :inline-block ; margin: 40 px">
 
 					<div class="panel panel-primary">
 						<div class="panel-heading">
@@ -66,12 +72,6 @@
 					</div>
 				</div>
 			</div>
-
-
-			<s:iterator value="listMuseum">
-				<s:property value="id" />
-				<s:property value="address" />
-			</s:iterator>
 
 
 

@@ -3,21 +3,17 @@
 <html>
 	<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	    
 	    	<s:include value="import.jsp"></s:include>
-	    	
-	    	
 			<script src="http://malsup.github.com/jquery.form.js"></script>
-			<script src="../js/fileUploadScript.js"></script>
 			<!-- Include css styles here -->
 			<link href="../css/fileUpload.css" rel="stylesheet" type="text/css" />
-		<script src="../js/category.js"></script> 
-		<title>Gestion des categories</title>
+			<script src="../js/category.js"></script> 
+			<title>Gestion des categories</title>
 	</head>
 <style type="text/css">
     .cancel_category{margin-bottom:105px;}
     .cursor_delete{cursor: pointer; }
-  </style>
+</style>
   
 <body>
 
@@ -33,6 +29,10 @@
           
           <h3 class="page-header">Ajout d'une categorie</h3>
           
+		       <%-- <form action="addCategory.action" method="post">
+		       	<s:submit value="submit" name="Submit bis" cssClass="btn btn-default"/>
+		       </form> --%>
+		       
 		       
 		       <form id="UploadForm" action="addCategory.action" method="post" enctype="multipart/form-data">
 		       
@@ -62,7 +62,7 @@
 			            </br>
 			            <div class="row">
 			            	<label for="file1">Importer une image : </label> <input type="file" size="60" id="file1" name="upload" /> <br />
-									<input type="submit" value="Ajouter">
+									<s:submit value="submit" name="submit" cssClass="btn btn-default"/>
 
 
 			            </div>
@@ -74,14 +74,6 @@
           
           <div id="listOeuvre">
           </div>
-        <s:iterator value="listCategory">
-	        <div class="col-lg-3">
-	          <img class="img-circle" src="../<s:property value="link_category"/>" width="140" height="140">
-	          <a class="cursor_delete" onmouseover="" onclick="delete_category(<s:property value="id"/>)"><img class="cancel_category" src="../img/icon/cancel.png" width="30" height="30"></a>
-	          <h2><s:property value="name_f"/></h2>
-	          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-	        </div>
-		</s:iterator>
 		
 		</div>
 </body>
