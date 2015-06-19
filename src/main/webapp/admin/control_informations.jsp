@@ -11,6 +11,8 @@
 </head>
 <body>
 	<s:include value="header_admin.jsp"></s:include>
+	<s:if test="%{#session.id_user!=null}">
+<s:include value="header_admin.jsp"></s:include>
 	<jsp:include page="navigation.jsp">
 		<jsp:param name="pageName" value="informations_manager" />
 	</jsp:include>
@@ -92,5 +94,13 @@
 		</form>
 
 	</s:iterator>
+        
+     </s:if>
+	
+	<s:else>
+		<script>
+			window.location = '../admin/login.jsp';
+		</script>			  
+	</s:else>
 </body>
 </html>

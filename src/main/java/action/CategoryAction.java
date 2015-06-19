@@ -34,7 +34,7 @@ public class CategoryAction extends ActionSupport{
 	private String id_category;
 	private String link_category;
 	private String result;
-	private File[] uploads;
+	private File[] upl;
     private String[] uploadFileNames;
     private String[] uploadContentTypes;
 	
@@ -99,10 +99,10 @@ public String deleteCategory(){
     	/* write the files in the eclipse repository */
         System.out.println("\n\n upload2");
         System.out.println("files:");
-        for(int i = 0; i < uploads.length; i++) {
-            System.out.println("*** " + uploads[i] + "\t" + uploads[i].length());
+        for(int i = 0; i < upl.length; i++) {
+            System.out.println("*** " + upl[i] + "\t" + upl[i].length());
             File dest = new File(path);
-			FileUtils.copyFile(uploads[i], dest);
+			FileUtils.copyFile(upl[i], dest);
         }
         System.out.println("filenames:");
         for (String n : uploadFileNames) {
@@ -164,11 +164,11 @@ public String deleteCategory(){
 	}
 	
 	public File[] getUpload() {
-        return this.uploads;
+        return this.upl;
     }
 
     public void setUpload(File[] upload) {
-        this.uploads = upload;
+        this.upl = upload;
     }
 
     public String[] getUploadFileName() {

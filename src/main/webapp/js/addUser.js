@@ -44,7 +44,6 @@ function addUser(){
 					    	},
 					       success : function(data){
 					    	   window.location = 'index.action';
-					    	   alert("Vous êtes inscrit");
 					       }
 					    });
 			}

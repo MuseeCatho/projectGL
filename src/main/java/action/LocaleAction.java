@@ -16,6 +16,7 @@ public class LocaleAction extends ActionSupport{
 	
 	//business logic
 	public String execute() {
+		System.out.println("change language");
 		return "SUCCESS";
 
 	}

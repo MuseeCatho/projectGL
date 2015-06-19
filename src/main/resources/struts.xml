@@ -118,6 +118,9 @@
 			<result name="input">test_languages.jsp</result> </action> -->
 		<!-- END TESTS -->
 	</package>
+	
+	
+	
 	<package name="test" namespace="/admin" extends="struts-default">
 
 
@@ -130,7 +133,7 @@
 		</action>
 
 		<action name="sign" class="action.UsersAction" method="signIn">
-			<result name="success">result.jsp</result>
+			<result name="success">resultAjax.jsp</result>
 		</action>
 		<!-- CONTROL OBJECT -->
 		<action name="add_object" class="action.ObjectAction" method="addObjectAction">
@@ -201,6 +204,9 @@
 		</action>
 		<action name="deleteUser" class="action.UsersAction" method="deleteUser">
 			<result name="success">usersAjax.jsp</result>
+		</action>
+		<action name="logOut" class="action.UsersAction" method="logOutAdmin">
+			<result name="success">resultAjax.jsp</result>
 		</action>
 		<!-- END USERS -->
 		<!-- INFORMATION MUSEUM -->
