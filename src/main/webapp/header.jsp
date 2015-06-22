@@ -183,8 +183,8 @@
 					        <div id="error" style="color:red;"></div>			      
 		      </div>
 		      <div class="modal-footer">
-
-		        <button type="button" class="btn btn-primary" onclick="signIn()"><s:text name="global.detailOeuvre" /></button>
+ 
+		        <button type="button" class="btn btn-primary" onclick="signIn()"><s:text name="global.signIn" /></button>
 		      </div>
 		    </div>
 		  </div>

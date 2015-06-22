@@ -83,5 +83,26 @@ function valid_comment(id,idObject){
 	 }); 
 	 
 }
+function delete_object(id){
+	var r = confirm("Voulez-vous vraiment supprimer cette categorie?");
+	if (r == true) {
+		alert(id);
+		$.ajax({
+		       url : 'deleteObject.action',
+		       type : 'POST',
+		       encoding:"UTF-8",
+		       async: true,
+		       data: {
+		    	   "id": id
+		    	},
+		       success : function(data){
+		    	   alert(data);
+		    	   window.location='../admin/control_object.action?orderObject=true';
+		    	  //alert('L\'objet a bien été supprimé.');
+		       }
+		 });
+	}
+	
+}
 
 

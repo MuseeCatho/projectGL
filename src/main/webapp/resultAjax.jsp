@@ -1,1 +1,1 @@
-<%@ taglib prefix="s" uri="/struts-tags" %><s:property value="resultAjax"/>
+<%@ taglib prefix="s" uri="/struts-tags" %><s:property value="resultAjax"/> 

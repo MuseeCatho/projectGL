@@ -35,7 +35,11 @@ public class HomeAction extends ActionSupport{
 		//on récupère la photo de présentation du musée
 		PhotosSiteDaoImpl photoSiteDao = new PhotosSiteDaoImpl();
 		Photos_Site photoSite=photoSiteDao.findPhotoPresentation(new Integer(1));
-		linkPhoto=photoSite.getLink_photo();
+		if(photoSite!=null){
+			linkPhoto=photoSite.getLink_photo();
+		}else{
+			linkPhoto=photoSite.getLink_photo();
+		}
 		
 		return SUCCESS;
 	}
@@ -43,7 +47,11 @@ public class HomeAction extends ActionSupport{
 	public String homeInfoMuseum(){
 		PhotosSiteDaoImpl photoSiteDao = new PhotosSiteDaoImpl();
 		Photos_Site photoSite=photoSiteDao.findPhotoPresentation(new Integer(1));
-		linkPhoto=photoSite.getLink_photo();
+		if(photoSite!=null){
+			linkPhoto=photoSite.getLink_photo();
+		}else{
+			linkPhoto=photoSite.getLink_photo();
+		}
 		return SUCCESS;
 	}
 	
