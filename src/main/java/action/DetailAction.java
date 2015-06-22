@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,28 +16,36 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+
 import sun.misc.BASE64Encoder;
 import sun.misc.BASE64Decoder;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.net.URLDecoder;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
+
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReadParam;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
+
+
+import org.apache.commons.codec.binary.Base64;
+
 import javax.servlet.ServletContext;
 
-
+import mapping.Category;
 import mapping.Comment;
 import mapping.Enrichments;
 import mapping.ObjectMuseum;
 import mapping.Period;
 import mapping.Photos;
 import mapping.Proposition;
+import mapping.Video;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
@@ -47,6 +56,7 @@ import bean.DetailPage;
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 
+import dao.CategoryDaoImpl;
 import dao.CommentDaoImpl;
 import dao.EnrichmentsDaoImpl;
 import dao.ObjectDaoImpl;
@@ -54,6 +64,7 @@ import dao.PeriodDaoImpl;
 import dao.PhotosDaoImpl;
 import dao.PropositionDaoImpl;
 import dao.UserDaoImpl;
+import dao.VideoDaoImpl;
 
 public class DetailAction extends ActionSupport {
 
@@ -62,14 +73,17 @@ public class DetailAction extends ActionSupport {
 	private Period periodObject;
 	private List listDetailPage;
 	private List<String> listPhoto;
+	private List<String> listVideo;
 	private Collection<Photos> photosObject;
 	private ArrayList<Photos> listDetail;
+	private ArrayList<Video> listDetailVideo;
 	private ArrayList<Comment> listComment;
 	private ArrayList<CommentDetail> listCommentAndNameUser;
 	private ArrayList<Enrichments> listEnrichments;
 	private ArrayList<Photos> listPhotos;
 	private String periodObjectString;
 	private String listPhotoString;
+	private String listVideoString;
 
 	private Date date;
 	private String etat;
@@ -85,25 +99,39 @@ public class DetailAction extends ActionSupport {
 	private String[] uploadContentTypes;
 	private File[] uploads;
 	private String listImageUploadS;
-	private String link_photos;
 	private String name_f;
 	private String name_e;
 	private Boolean showI;
 	private static String link;
+	private String paramValue;
+	private static Integer idPage;
+
+	public Integer getIdPage() {
+		return idPage;
+	}
+
+	public void setIdPage(Integer idPage) {
+		this.idPage = idPage;
+	}
 
 	private static final long serialVersionUID = 1L;
 
 	public String showdetail() {
+		setIdPage(this.id);
+		System.out.println(getIdPage());
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
 		PeriodDaoImpl periodDao = new PeriodDaoImpl();
 		PhotosDaoImpl photosDao = new PhotosDaoImpl();
+		VideoDaoImpl videoDao = new VideoDaoImpl();
 		CommentDaoImpl commentDao = new CommentDaoImpl();
 		UserDaoImpl userDao = new UserDaoImpl();
 
 		listDetailPage = new ArrayList();
+		listVideo = new ArrayList<String>();
 		listPhoto = new ArrayList<String>();
 		listObject = new ArrayList<ObjectMuseum>(objectDao.getOeuvres(this.id));
 		listDetail = new ArrayList<Photos>(photosDao.getPhotos(this.id));
+		listDetailVideo = new ArrayList<Video>(videoDao.getVideo(this.id));
 		listComment = new ArrayList<Comment>(
 				commentDao.findCommentById(this.id));
 		listCommentAndNameUser = new ArrayList<CommentDetail>();
@@ -121,7 +149,7 @@ public class DetailAction extends ActionSupport {
 			periodObject = periodDao.getPeriodId(this.id);
 			for (Photos p : listDetail) {
 				if (!p.getShowI()) {
-				listPhoto.add(p.getLink_photos());
+					listPhoto.add(p.getLink_photos());
 				}
 			}
 			StringBuilder sb = new StringBuilder();
@@ -137,6 +165,24 @@ public class DetailAction extends ActionSupport {
 				listPhotoString = sb.toString();
 			}
 
+			for (Video v : listDetailVideo) {
+				if (!v.getShowI()) {
+					listVideo.add(v.getLink_video());
+				}
+			}
+			StringBuilder sv = new StringBuilder();
+
+			for (String strv : listVideo) {
+				sv.append(strv).append(","); // separating contents using semi
+												// colon
+			}
+
+			if (listVideo.size() == 0) {
+				listVideoString = "img/object/autre.jpg";
+			} else {
+				listVideoString = sv.toString();
+			}
+
 			if (periodObject == null) {
 				periodObjectString = "no period";
 			} else {
@@ -148,7 +194,7 @@ public class DetailAction extends ActionSupport {
 					e.getDescription_f(), e.getLength(), e.getHeigth(),
 					e.getWidth(), e.getArcheologist(), e.getDate(),
 					e.getCity(), e.getLatitude(), e.getLongitude(),
-					periodObjectString, listPhotoString);
+					periodObjectString, listPhotoString, listVideoString);
 			listDetailPage.add(objectPage);
 		}
 
@@ -160,6 +206,7 @@ public class DetailAction extends ActionSupport {
 		Proposition proposition = new Proposition(new Integer(0), this.etat,
 				this.type, this.id_medias, this.id_enrichments);
 		propositionDao.insertProposition(proposition);
+		
 
 		return SUCCESS;
 	}
@@ -174,11 +221,12 @@ public class DetailAction extends ActionSupport {
 
 	public String addPhotos() throws Exception {
 		PhotosDaoImpl photosDao = new PhotosDaoImpl();
-		Photos photos = new Photos(new Integer(0), this.getLink(), this.object_id, this.name_f, this.name_e, this.showI);
+		Photos photos = new Photos(new Integer(0), this.getLink(),
+				this.object_id, this.name_f, this.name_e, this.showI);
 		photosDao.insertPhotos(photos);
 		return SUCCESS;
 	}
-	
+
 	public BufferedImage decodeToImage() {
 		BufferedImage image = null;
 		byte[] imageByte;
@@ -199,7 +247,7 @@ public class DetailAction extends ActionSupport {
 	public String addMedia() throws Exception {
 		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyhhmmss.SSS");
 		String date = sdf.format(new Date());
-		this.setLink("img/object/" + date	+ "images.jpg");
+		this.setLink("img/object/" + date + "images.jpg");
 		BufferedImage newImg;
 		String imgstr;
 		newImg = decodeToImage();
@@ -219,16 +267,76 @@ public class DetailAction extends ActionSupport {
 		result = gson.toJson(listEnrichments);
 		return SUCCESS;
 	}
-	
+
 	public String getLastPhotosId() {
 
 		PhotosDaoImpl photosDao = new PhotosDaoImpl();
 
-		listPhotos = new ArrayList<Photos>(
-				photosDao.getLastPhotos());
+		listPhotos = new ArrayList<Photos>(photosDao.getLastPhotos());
 		Gson gson = new Gson();
 		result = gson.toJson(listPhotos);
 		return SUCCESS;
+	}
+	
+	/*public String execute(){System.out.println(this.id);
+	    setParamValue(Integer.toString(this.id));
+	    return SUCCESS; 
+	}*/
+
+	public String addVideo() throws Exception {
+		String webroot;
+		
+		if (uploadFileNames == null) { // si il n'y a pas de photo
+			webroot = "img/category/other.jpg";
+		} else {
+			webroot = "video" + File.separatorChar + uploadFileNames[0];
+			String webrootAbsolut = getPath() + File.separatorChar + webroot;
+			upload(webrootAbsolut);
+		}
+		System.out.println(webroot);
+		
+		VideoDaoImpl videoDao = new VideoDaoImpl();
+		Video video =new Video(new Integer(0),webroot, 1,"As","As",true);
+		videoDao.insertVideos(video);
+
+		return SUCCESS;
+	}
+
+	public String getPath() throws UnsupportedEncodingException {
+		String path = this.getClass().getClassLoader().getResource("")
+				.getPath();
+		String fullPath = URLDecoder.decode(path, "UTF-8");
+		String pathArr[] = fullPath.split("/WEB-INF/classes/");
+		System.out.println("fullPath " + fullPath);
+		System.out.println("pathArr " + pathArr[0]);
+		fullPath = pathArr[0];
+
+		String reponsePath = "";
+		// to read a file from webcontent
+		reponsePath = new File(fullPath).getPath();
+		System.out.println("response Path " + reponsePath);
+		return reponsePath;
+	}
+
+	public void upload(String path) throws Exception {
+		/* write the files in the eclipse repository */
+		System.out.println("\n\n upload2");
+		System.out.println("files:");
+		for (int i = 0; i < uploads.length; i++) {
+			System.out
+					.println("*** " + uploads[i] + "\t" + uploads[i].length());
+			File dest = new File(path);
+			FileUtils.copyFile(uploads[i], dest);
+		}
+		System.out.println("filenames:");
+		for (String n : uploadFileNames) {
+			System.out.println("*** " + n);
+		}
+		System.out.println("content types:");
+		for (String c : uploadContentTypes) {
+			System.out.println("*** " + c);
+		}
+		System.out.println("\n\n");
 	}
 
 	public Object getResult() {
@@ -448,14 +556,6 @@ public class DetailAction extends ActionSupport {
 		this.listImageUploadS = listImageUploadS;
 	}
 
-	public String getLink_photos() {
-		return link_photos;
-	}
-
-	public void setLink_photos(String link_photos) {
-		this.link_photos = link_photos;
-	}
-
 	public String getName_f() {
 		return name_f;
 	}
@@ -488,8 +588,47 @@ public class DetailAction extends ActionSupport {
 		this.showI = showI;
 	}
 
-	
-	
+	public List<String> getListVideo() {
+		return listVideo;
+	}
+
+	public void setListVideo(List<String> listVideo) {
+		this.listVideo = listVideo;
+	}
+
+	public ArrayList<Video> getListDetailVideo() {
+		return listDetailVideo;
+	}
+
+	public void setListDetailVideo(ArrayList<Video> listDetailVideo) {
+		this.listDetailVideo = listDetailVideo;
+	}
+
+	public ArrayList<Photos> getListPhotos() {
+		return listPhotos;
+	}
+
+	public void setListPhotos(ArrayList<Photos> listPhotos) {
+		this.listPhotos = listPhotos;
+	}
+
+	public String getListVideoString() {
+		return listVideoString;
+	}
+
+	public void setListVideoString(String listVideoString) {
+		this.listVideoString = listVideoString;
+	}
+
+	public String getParamValue() {
+		return paramValue;
+	}
+
+	public void setParamValue(String paramValue) {
+		this.paramValue = paramValue;
+	}
+
 	
 
+	
 }

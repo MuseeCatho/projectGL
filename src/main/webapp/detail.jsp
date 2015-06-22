@@ -61,8 +61,8 @@
 								<div id="listPhotos" class="row">
 									<div>
 										<div class="tablecell" class="row">
-											<s:iterator value="listDetail" status ="listD">
-												<s:if test="showI == false">
+											<s:iterator value="listDetail" status="listD">
+												
 													<div id="photoDetail"
 														class="photoDetail col-xs-4 col-sm-3 col-md-2 ">
 														<img border-color="blue" id="listPhotosImg"
@@ -71,23 +71,23 @@
 															onclick="cancelProposition('image',<s:property value="id"/>)">
 															<img alt="alternativtext" class="icon icon_ok"
 															" src="img/icon/ok.png"
-															id="icon_ok<s:property value="id"/>" width="30"
+															id="icon_ok_image<s:property value="id"/>" width="30"
 															height="30">
 														</a> <a class="cursor_delete"
 															onclick="addProposition('image', <s:property value="id"/>,'delete')">
 															<img alt="alternativtext" class="icon icon_cancel"
 															src="img/icon/cancel.png"
-															id="icon_cancel<s:property value="id"/>" width="30"
+															id="icon_cancel_image<s:property value="id"/>" width="30"
 															height="30">
 														</a>
 													</div>
-												</s:if>
+										
 											</s:iterator>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-8"></div>
-										<div id="ajoutImage" class="col-md-4">
+										<div id="ajoutMedia" class="col-md-4">
 											<input type=button class="btn btn-primary navbar-btn"
 												role="file" value="Ajouter une image"
 												onclick="$('#file').click();"> <input
@@ -135,89 +135,141 @@
 											</div>
 										</div>
 									</div>
-
 								</div>
-
 							</div>
 							<div class="col-md-4">
-								<aside id="video" class="col-lg-12">
-								<h4>Regarder la vidéo:</h4>
+								<aside id="carouselVideo" class="col-lg-12">
+								<h4>Regarder les vidéos:</h4>
 								<s:include value="mediaCarousel.jsp">
 									<s:param name="mediaType">video</s:param>
-									<s:param name="mediaNames">http://video-js.zencoder.com/oceans-clip.mp4</s:param>
+									<s:param name="mediaNames">
+										<s:property value="link_video" />
+									</s:param>
 									<s:param name="mediaCarouselId">mediaCarousel2</s:param>
-								</s:include></aside>
+								</s:include> </aside>
+								<aside id="listVideo">
+								<div class="tablecell" class="row">
+									<s:iterator value="listDetailVideo" status="listV">
+										<s:if test="showI == false">
+											<div id="photoDetail"
+												class="videoDetail col-xs-4 col-sm-3 col-md-2 ">
+												<video id="video" class="video vjs-default-skin" controls
+													preload="none" data-setup='{"example_option":true}'form
+													
+													width="100%" height="100%"> <source
+													src="<s:property value="link_video"/>" type='video/mp4' />
 
-								<aside id="video" class="videoDetail col-lg-12">
-								<h4>Regarder la vidéo de l'objet :</1h4>
+												</video>
 
-								<iframe width="400" height="225"
-									src="https://www.youtube.com/embed/LqTyPFFS8fg" frameborder="0"
-									allowfullscreen></iframe> </aside>
-
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-4"></div>
-							<div class="col-md-4">
-								<div id="image3DDetail">
-									<h1>Image 3d</h1>
+												<a class="cursor_ok"
+													onclick="cancelProposition('video',<s:property value="id"/>)">
+													<img alt="alternativtext" class="icon icon_ok"
+													" src="img/icon/ok.png"
+													id="icon_ok_video<s:property value="id"/>" width="30"
+													height="30">
+												</a> <a class="cursor_delete"
+													onclick="addProposition('video', <s:property value="id"/>,'delete')">
+													<img alt="alternativtext" class="icon icon_cancel"
+													src="img/icon/cancel.png"
+													id="icon_cancel_video<s:property value="id"/>" width="30"
+													height="30">
+												</a>
+											</div>
+										</s:if>
+									</s:iterator>
 								</div>
-							</div>
 
-						</div>
-					</div>
-				</s:iterator>
-				<hr>
-				<s:if test="%{#session.firstname!=null}">
-					<div class="row">
-						<div class="col-lg-5 col-lg-offset-1">
-							<!-- Comments Form -->
-							<div class="well">
-								<h4>Leave a Comment:</h4>
-								<form role="form">
-									<div class="form-group">
-										<textarea class="form-control" rows="3" id="commentObject"></textarea>
+								<div class="row">
+									<div class="col-md-8"></div>
+									<div id="ajoutVideo" class="col-md-4">
+										<form method="post" id="formVideo" action="addVideo.action">
+											<input accept="accept="
+												video/mp4,video/x-m4v,video/*""
+											type="file"
+												id="fileVideo" class="btn btn-primary navbar-btn"
+												value="Ajouter une vidéo" id="fileInput" name="upload" /> <input
+												type="url" />
+												<input type="submit" value="Envoyer" />
+										</form>
 									</div>
-									<button type="button" class="btn btn-primary"
-										onclick="addComment(<s:property value="#session.id_user"/>);">Submit</button>
-								</form>
+									<div class="tablecell col-md-12" id="prev"></div>
+								</div>
+								</aside>
 							</div>
+
+							<aside id="audio" class="audioDetail col-lg-12">
+							<h4>Ecouter les audios:</h4>
+							<s:include value="mediaCarousel.jsp">
+								<s:param name="mediaType">audio</s:param>
+								<s:param name="mediaNames">
+									<s:property value="link_video" />
+								</s:param>
+								<s:param name="mediaCarouselId">mediaCarousel3</s:param>
+							</s:include> </aside>
+
 						</div>
 					</div>
-				</s:if>
+					<div class="row">
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<div id="image3DDetail">
+								<h1>Image 3d</h1>
+							</div>
+						</div>
 
-
+					</div>
+			</div>
+			</s:iterator>
+			<hr>
+			<s:if test="%{#session.firstname!=null}">
 				<div class="row">
 					<div class="col-lg-5 col-lg-offset-1">
-
-
-						<s:iterator value="listCommentAndNameUser">
-							<s:if test="show==1">
-								<div class="media">
-									<div class="media-body">
-										<h4 class="media-heading">
-											<s:property value="pseudo" />
-											<small><s:date name="date" format="dd/MM/yyyy" /> �
-												<s:date name="date" format="hh:mm:ss" /></small>
-										</h4>
-										<s:property value="text" />
-									</div>
-
+						<!-- Comments Form -->
+						<div class="well">
+							<h4>Leave a Comment:</h4>
+							<form role="form">
+								<div class="form-group">
+									<textarea class="form-control" rows="3" id="commentObject"></textarea>
 								</div>
-							</s:if>
-						</s:iterator>
+								<button type="button" class="btn btn-primary"
+									onclick="addComment(<s:property value="#session.id_user"/>);">Submit</button>
+							</form>
+						</div>
 					</div>
 				</div>
+			</s:if>
 
+
+			<div class="row">
+				<div class="col-lg-5 col-lg-offset-1">
+
+
+					<s:iterator value="listCommentAndNameUser">
+						<s:if test="show==1">
+							<div class="media">
+								<div class="media-body">
+									<h4 class="media-heading">
+										<s:property value="pseudo" />
+										<small><s:date name="date" format="dd/MM/yyyy" /> � <s:date
+												name="date" format="hh:mm:ss" /></small>
+									</h4>
+									<s:property value="text" />
+								</div>
+
+							</div>
+						</s:if>
+					</s:iterator>
+				</div>
 			</div>
-			<div class="col-lg-1"></div>
+
 		</div>
+		<div class="col-lg-1"></div>
+	</div>
 
 
-		<div class="row">
-			<s:include value="footer.jsp"></s:include>
-		</div>
+	<div class="row">
+		<s:include value="footer.jsp"></s:include>
+	</div>
 	</div>
 	<script src="js/enrichissement.js"></script>
 </body>
