@@ -27,8 +27,7 @@ import dao.ObjectCategoryDaoImpl;
 
 import com.google.gson.Gson;
 
-public class ObjectAction extends ActionSupport{
-	
+public class ObjectAction extends ActionSupport {
 
 	private static ObjectDaoImpl objectDao;
 	private String title_f;
@@ -65,24 +64,23 @@ public class ObjectAction extends ActionSupport{
 		PeriodDaoImpl periods = new PeriodDaoImpl();
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
 		CategoryDaoImpl categories = new CategoryDaoImpl();
-		
+
 		listP = new ArrayList<Period>();
 		listP = (List<Period>) periods.getPeriod();
 
-		
 		listCategory = new ArrayList<Category>();
 		listCategory = (List<Category>) categories.getCategory();
 
 		System.out.println("objet pr�t � �tre ajout�");
-		System.out.println("title_f: "+this.title_f);
-		System.out.println("desc: "+this.description_f);
-		System.out.println("ref: "+this.reference);
-		System.out.println("latitude: "+this.latitude);
-		System.out.println("longitude: "+this.longitude);
-		System.out.println("P�riode: "+this.period);
-		System.out.println("Categories: "+this.categories);
+		System.out.println("title_f: " + this.title_f);
+		System.out.println("desc: " + this.description_f);
+		System.out.println("ref: " + this.reference);
+		System.out.println("latitude: " + this.latitude);
+		System.out.println("longitude: " + this.longitude);
+		System.out.println("P�riode: " + this.period);
+		System.out.println("Categories: " + this.categories);
 
-		if (this.title_e == null){
+		if (this.title_e == null) {
 
 			this.title_e = this.title_f;
 		}
@@ -90,96 +88,105 @@ public class ObjectAction extends ActionSupport{
 			this.description_e = this.description_f;
 		}
 
-		if(this.title_f!=null){
-			ArrayList<String> listCatIdStr = new  ArrayList<String>(Arrays.asList(this.categories.split(",")));
+		if (this.title_f != null) {
+			ArrayList<String> listCatIdStr = new ArrayList<String>(
+					Arrays.asList(this.categories.split(",")));
 			ArrayList<Integer> listCatId = new ArrayList<Integer>();
-			for(String s : listCatIdStr) listCatId.add(Integer.valueOf(s));//conversion de la liste string en int
-			System.out.println("lcid:"+listCatId.get(0));
-			ObjectMuseum object = new ObjectMuseum(new Integer(0),this.period, this.title_f,this.title_e,this.country,this.reference,this.description_e,this.description_f,"20","30","89",null,new Date(),this.city, Double.parseDouble(this.latitude),Double.parseDouble(this.longitude));
+			for (String s : listCatIdStr)
+				listCatId.add(Integer.valueOf(s));// conversion de la liste
+													// string en int
+			System.out.println("lcid:" + listCatId.get(0));
+			ObjectMuseum object = new ObjectMuseum(new Integer(0), this.period,
+					this.title_f, this.title_e, this.country, this.reference,
+					this.description_e, this.description_f, "20", "30", "89",
+					null, new Date(), this.city,
+					Double.parseDouble(this.latitude),
+					Double.parseDouble(this.longitude));
 			objectDao.addObject(object);
-			System.out.println("id objet :"+object.getId());
-			ObjectCategoryDaoImpl objCat= new ObjectCategoryDaoImpl();
+			System.out.println("id objet :" + object.getId());
+			ObjectCategoryDaoImpl objCat = new ObjectCategoryDaoImpl();
 			objCat.insertCategoryOfObject(listCatId, object.getId());
-			result=1;
+			result = 1;
 			System.out.println("objet ajout�");
-			
+
 		}
 		return SUCCESS;
 	}
-	
 
 	public String getCategories() {
 		return categories;
 	}
 
-
-
-	
-
 	public String listObject() {
-		
+
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
-		
+
 		listObject = new ArrayList<ObjectMuseum>(objectDao.getLocations());
 		listObjectPage = new ArrayList<ObjectPage>();
-		
+
 		PeriodDaoImpl periods = new PeriodDaoImpl();
 		listP = new ArrayList<Period>();
 		listP = (List<Period>) periods.getPeriod();
-		
+
 		CategoryDaoImpl categories = new CategoryDaoImpl();
 		listCategory = new ArrayList<Category>();
 		listCategory = (List<Category>) categories.getCategory();
-		
-		createListObject(listObject,listPhotos, 
-			photoUnique,  periodObject, photosObject, listObjectPage,this.orderObject);
-		
+
+		createListObject(listObject, listPhotos, photoUnique, periodObject,
+				photosObject, listObjectPage, this.orderObject);
+
 		return SUCCESS;
 	}
-	
-	public static void createListObject(List<ObjectMuseum> listObject2,ArrayList<Photos> listPhotos, 
-			String photoUnique, Period periodObject, Collection<Photos> photosObject, List<ObjectPage> listObjectPage,String orderObject){
-		
+
+	public static void createListObject(List<ObjectMuseum> listObject2,
+			ArrayList<Photos> listPhotos, String photoUnique,
+			Period periodObject, Collection<Photos> photosObject,
+			List<ObjectPage> listObjectPage, String orderObject) {
+
 		PeriodDaoImpl periodDao = new PeriodDaoImpl();
 		PhotosDaoImpl photosDao = new PhotosDaoImpl();
 		CommentDaoImpl commentDao = new CommentDaoImpl();
 		for (ObjectMuseum e : listObject2) {
 			listPhotos = new ArrayList<Photos>(photosDao.getPhotos(e.getId()));
-			
-			if(listPhotos.size()==0){
-				for(Photos p:listPhotos){
+
+			if (listPhotos.size() == 0) {
+				for (Photos p : listPhotos) {
+					photoUnique = "img/object/autre.jpg";
+				}
+			} else {
+				if (!listPhotos.get(0).getShowI()) {
+					photoUnique = listPhotos.get(0).getLink_photos();
+				} else {
 					photoUnique = "img/object/autre.jpg";
 				}
 			}
-			else{
-				photoUnique = listPhotos.get(0).getLink_photos();
-			}
-			//liste des commentaires
-			
-			List<Comment> listComment=new ArrayList<Comment>(commentDao.findCommentByIdObjectByShow(new Integer(e.getId()),new Integer(0)));
-			
-			
+			// liste des commentaires
+
+			List<Comment> listComment = new ArrayList<Comment>(
+					commentDao.findCommentByIdObjectByShow(
+							new Integer(e.getId()), new Integer(0)));
+
 			periodObject = periodDao.getPeriodId(e.getPeriod_id());
 			photosObject = photosDao.getPhotos(e.getPeriod_id());
-			ObjectPage objectPage = new ObjectPage(e.getId(),
-					e.getPeriod_id(), e.getTitle_f(), e.getTitle_e(),
-					e.getCountry(), e.getReference(), e.getDescription_e(),
+			ObjectPage objectPage = new ObjectPage(e.getId(), e.getPeriod_id(),
+					e.getTitle_f(), e.getTitle_e(), e.getCountry(),
+					e.getReference(), e.getDescription_e(),
 					e.getDescription_f(), e.getLength(), e.getHeigth(),
 					e.getWidth(), e.getArcheologist(), e.getDate(),
 					e.getCity(), e.getLatitude(), e.getLongitude(),
-					periodObject.getName(), 
-					photoUnique,listComment.size());
+					periodObject.getName(), photoUnique, listComment.size());
 			listObjectPage.add(objectPage);
-			
+
 		}
-		//on trie par nombre de commentaire
-		if(orderObject!=null){
+		// on trie par nombre de commentaire
+		if (orderObject != null) {
 			Collections.sort(listObjectPage);
 			Collections.reverse(listObjectPage);
 		}
 	}
-	public String detailObject(){
-		
+
+	public String detailObject() {
+
 		return SUCCESS;
 	}
 
@@ -323,21 +330,22 @@ public class ObjectAction extends ActionSupport{
 	public void setOrderObject(String orderObject) {
 		this.orderObject = orderObject;
 	}
+
 	public void setCategories(String categories) {
 		this.categories = categories;
 	}
 
 	public List<Category> getListCategory() {
 		return listCategory;
-		}
-	
-	public List<ObjectMuseum> getListOeuvre(){
-		ObjectDaoImpl objectDao=new ObjectDaoImpl();
-		listObject =new ArrayList<ObjectMuseum>(objectDao.getLocations());
+	}
+
+	public List<ObjectMuseum> getListOeuvre() {
+		ObjectDaoImpl objectDao = new ObjectDaoImpl();
+		listObject = new ArrayList<ObjectMuseum>(objectDao.getLocations());
 		ArrayList list = new ArrayList();
 		return list;
 	}
-		
+
 	public void setListCategory(List<Category> listCategory) {
 		this.listCategory = listCategory;
 	}
@@ -349,7 +357,6 @@ public class ObjectAction extends ActionSupport{
 	public void setPhotosObject(Collection<Photos> photosObject) {
 		this.photosObject = photosObject;
 	}
-	
 
 }
 

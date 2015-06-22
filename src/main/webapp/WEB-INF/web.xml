@@ -12,6 +12,8 @@
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
+    
     <servlet>
     	<servlet-name>fsgv</servlet-name>
     	<display-name>fsgv</display-name>

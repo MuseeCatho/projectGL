@@ -2,28 +2,35 @@ var arrayImage1 = new Array();
 var arrayImage2 = new Array();
 var arrayImageUpload = new Array();
 var object = {};
-var text_modified=false;
+var text_modified = false;
 
-function toogle() {
+function toggle() {
 	$('#carouselPhotos').toggle();
 	$('#annulationProposition').toggle();
 	$('#listPhotos').toggle();
 	$('#modif_description').toggle();
 }
 function reset() {
-	arrayImage1 = [];
-	arrayImage2 = [];
-	toogle();
+	
 	$('#buttonChange').val('Proposer une modification');
-
 	for (var int = 0; int < arrayImage1.length; int++) {
 		$('#icon_cancel' + arrayImage1[int]).css('display', 'inherit');
 		$('#icon_ok' + arrayImage1[int]).css('display', 'none');
 	}
 	$('#descriptionDetail_text').show();
 
-	document.getElementById('modif_text').parentNode.removeChild(document.getElementById('modif_text'));
-    document.getElementById('result').innerHTML="";
+	document.getElementById('modif_text').parentNode.removeChild(document
+			.getElementById('modif_text'));
+	document.getElementById('result').innerHTML = "";
+
+	var prev = document.getElementById('prev');
+	prev.innerHTML = "";
+	
+
+	arrayImage1 = [];
+	arrayImage2 = [];
+	arrayImageUpload = [];
+	toggle();
 }
 
 function hideEnr(idUser) {
@@ -38,12 +45,12 @@ function hideEnr(idUser) {
 		$('#descriptionDetail_text').hide();
 		d.id = "modif_text";
 		$('#modif_text').addClass("form-control");
-		toogle();
+		toggle();
 	} else {
 		var r = confirm("Confimer les modifications?");
 		if (r == true) {
-			SaveModif(arrayImage2, object, idUser);
-			reset()
+			SaveModif(arrayImage2, object, idUser, arrayImageUpload);
+			reset();
 		}
 	}
 }
@@ -56,10 +63,11 @@ var list_string_insert = [];
 var list_index_delete = [];
 var list_word_delete_string;
 
+
 function description_modifie(){
     var text_insert=document.getElementById('modif_text').value;
     list_text=text.split(" ");
-    list_text_insert=text_insert.split(" ");
+    list_text_insert=text_insert.match(/\S+/g);
     var length_text_origin=list_text.length;
     var length_text_modified=list_text_insert.length;
 
@@ -168,7 +176,6 @@ function description_modifie(){
             gap=list_string_insert.length;
             gap2=list_word_delete.length;// 1
            // console.log("list_index_delete: "+list_index_delete.length+"count
-
 			// :"+count);
 			// for(var i=count;i<list_index_delete.length;i++){
 			// console.log(list_index_delete[i]-gap);
@@ -217,21 +224,23 @@ function description_modifie(){
 			// console.log(list_text[index_word_delete]+" "+"index_word_delete:
 			// "+index_word_delete);
 
-            // index_word_delete++;
-            // }
-            result+='<s><span style="color:red">'+list_word_delete_string[word_delete_index]+'</span></s>'+" ";
-            word_delete_index++;
-        }
-        if(list_string_insert.indexOf(k)!=-1){
-            result+='<b><span style="color:green">'+list_text_insert[k]+'</span></b>'+" ";
-        }
-        else{
-            result+=list_text_insert[k]+" ";
-        }
-    }
-    result=document.getElementById('result').innerHTML=result;
-    
-    return result;
+			// index_word_delete++;
+			// }
+			result += '<s><span id="delete-modif" style="color:red">'
+					+ list_word_delete_string[word_delete_index]
+					+ '</span></s>' + " ";
+			word_delete_index++;
+		}
+		if (list_string_insert.indexOf(k) != -1) {
+			result += '<b><span id="add-modif" style="color:green">' + list_text_insert[k]
+					+ '</span></b>' + " ";
+		} else {
+			result += list_text_insert[k] + " ";
+		}
+	}
+	result = document.getElementById('result').innerHTML = result;
+
+	return result;
 }
 
 function compact_list_num(list) {
@@ -265,7 +274,7 @@ function indexOfCount(list, element, begin) {
 function annulation() {
 	var r = confirm("Annuler les modifications et revenir à la page de l'oeuvre?");
 	if (r == true) {
-		reset()
+		reset();
 	}
 }
 
@@ -290,18 +299,22 @@ function cancelProposition(type, id) {
 }
 
 function addProposition(type, id, etat) {
-	if (type = 'image') {
-		var r = confirm("Voulez-vous vraiment supprimer cette image?");
-		if (r == true) {
+	
+	if (type == 'image') {
+		if (etat == "delete") {
+			var r = confirm("Voulez-vous vraiment supprimer cette image?");
+		}
 			var id_medias = id;
+		
+
+		if ((r && etat=="delete") || etat=="add") {
 			object = {
 				"etat" : etat,
 				"type" : type,
 				"id_medias" : id_medias,
 			}
-
 			arrayImage2.push(object);
-
+			
 			changeState(id);
 		}
 	}
@@ -364,12 +377,75 @@ function getLastEnrichmentsId() {
 	});
 }
 
-function SaveModif(arrayImage2, object, idUser) {
+function getLastPhotosId() {
+	$.ajax({
+		url : 'getLastPhotosId.action',
+		type : 'POST',
+		contentType : "application/json",
+		encoding : "UTF-8",
+		async : false,
+		context : this,
+		success : function(data) {
+			var res = data.replace(/&quot;/g, "\"");
+			var jsoParse = JSON.parse(res);
+			var lastIdPho;
+			for (var i = 0; i < jsoParse.length; i++) {
+				this.lastIdPho = jsoParse[i].id;
+			}
+			return lastIdPho;
+		}
+	});
+}
+
+function addPhotos() {
+	var name_f = "";
+	var name_e = "";
+	var object_id = getQueryVariable("id");
+	var showI = true;
+
+	$.ajax({
+		url : 'addPhotos.action',
+		type : 'POST',
+		encoding : "UTF-8",
+		async : false,
+		data : {
+			"object_id" : object_id,
+			"name_f" : name_f,
+			"name_e" : name_e,
+			"showI" : showI
+		},
+		success : function(data) {
+		}
+	});
+	
+}
+
+function SaveModif(arrayImage2, object, idUser, arrayImageUpload) {
+	if (arrayImageUpload.length != 0) {
+		for (var int = 0; int < arrayImageUpload.length; int++) {
+			var arrayImageString = arrayImageUpload[int];
+			$.ajax({
+				url : 'addMedia.action',
+				type : 'POST',
+				encoding : "UTF-8",
+				encryption : "multipart/form-data",
+				async : false,
+				data : {
+					"listImageUploadS" : arrayImageString
+				},
+				success : function(data) {
+				},
+			});
+			addPhotos();
+			getLastPhotosId();
+			addProposition("image", lastIdPho, "add");
+		}
+		
+	}
 	if (arrayImage2.length != 0 || text_modified) {
 		addEnrichments(idUser);
 		getLastEnrichmentsId();
-
-		/*if (lastIdEnr != 0 && lastIdEnr != null) {
+		if (lastIdEnr != 0 && lastIdEnr != null) {
 			for (var int = 0; int < arrayImage2.length; int++) {
 				arrayImage2[int].id_enrichments = lastIdEnr;
 				$.ajax({
@@ -382,26 +458,14 @@ function SaveModif(arrayImage2, object, idUser) {
 					}
 				});
 			}
-		}*/
-	}for (var int = 0; int < arrayImageUpload.length; int++) {
-		alert(arrayImageUpload[int]);
+		}
+
 	}
-	for (var int = 0; int < arrayImageUpload.length; int++) {
-		$.ajax({
-			url : 'addMedia.action',
-			type : 'POST',
-		    encoding:"UTF-8",
-		    encryption: "multipart/form-data",
-		    async: true,
-			data : {"listImageUpload": arrayImageUpload[int]
-			},
-			success : function(data) {
-			}
-		});
-}	
+
 }
 
 (function(listDetailIncr) {
+
 	var listDetailIncr = 0;
 	function createThumbnail(file, arrayImageUpload) {
 		var reader = new FileReader();
@@ -422,7 +486,7 @@ function SaveModif(arrayImage2, object, idUser) {
 			iconeElement.className = "cursor_cancel";
 			document.getElementById(incr).appendChild(iconeElement);
 			var imgIconeElement = document.createElement('img');
-			var iconeIncr = "icon_cancel" + listDetailIncr;
+			var iconeIncr = "addIcon_cancel" + listDetailIncr;
 			imgIconeElement.id = iconeIncr;
 			imgIconeElement.className = "icon icon_cancel";
 			imgIconeElement.src = "img/icon/cancel.png";
@@ -431,7 +495,7 @@ function SaveModif(arrayImage2, object, idUser) {
 			}, false);
 			document.getElementById(classIncr).appendChild(imgIconeElement);
 			listDetailIncr++;
-			arrayImageUpload.push(imgElement.src);			
+			arrayImageUpload.push(imgElement.src);
 		}, false);
 		reader.readAsDataURL(file);
 	}
@@ -445,9 +509,6 @@ function SaveModif(arrayImage2, object, idUser) {
 			imgType = imgType[imgType.length - 1];
 			if (allowedTypes.indexOf(imgType) != -1) {
 				createThumbnail(files[i], arrayImageUpload);
-				//alert(arrayImageUpload.length);	
-				
-				
 			}
 		}
 	}, false);
@@ -460,28 +521,29 @@ function deleteAdd(incr) {
 		var obj = document.getElementById('prev');
 		var old = document.getElementById(incr);
 		obj.removeChild(old);
-	}
-	else{
+	} else {
 		alert("Aucune modification n'a �t� d�t�ct�.");
 	}
 }
 
-function modifieText(){
-	if($.trim(description_modifie()) != $.trim(document.getElementById('descriptionDetail_text').innerHTML)){//si l'utilisateur a modifi� le texte
+function modifieText() {
+	if ($.trim(description_modifie()) != $.trim(document
+			.getElementById('descriptionDetail_text').innerHTML)) {// si
+		// l'utilisateur
+		// a modifi�
+		// le texte
 		return true;
-	}
-	else{
+	} else {
 		return false;
 	}
-    	
+
 }
 
-function saveModifDescr(){
-	if(modifieText()){
+function saveModifDescr() {
+	if (modifieText()) {
 		text_modified = true;
 		alert('Modification prise en compte.');
-	}
-	else{
+	} else {
 		alert("Vous n'avez pas fait de modifications.");
 		return false;
 	}
