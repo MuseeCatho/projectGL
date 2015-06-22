@@ -7,13 +7,12 @@ import org.apache.commons.io.FileUtils;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class FileUpload extends ActionSupport {
+public class FileUpload{
 	private File[] uploads;
     private String[] uploadFileNames;
     private String[] uploadContentTypes;
 
-
-    public String upload() throws Exception {
+    public void upload() throws Exception {
     	/* write the files in the eclipse repository */
         System.out.println("\n\n upload2");
         System.out.println("files:");
@@ -31,30 +30,22 @@ public class FileUpload extends ActionSupport {
             System.out.println("*** " + c);
         }
         System.out.println("\n\n");
-        
-        return SUCCESS;
     }
-
     public File[] getUpload() {
         return this.uploads;
     }
-
     public void setUpload(File[] upload) {
         this.uploads = upload;
     }
-
     public String[] getUploadFileName() {
         return this.uploadFileNames;
     }
-
     public void setUploadFileName(String[] uploadFileName) {
         this.uploadFileNames = uploadFileName;
     }
-
     public String[] getUploadContentType() {
         return this.uploadContentTypes;
     }
-
     public void setUploadContentType(String[] uploadContentType) {
         this.uploadContentTypes = uploadContentType;
     }

@@ -83,7 +83,8 @@
 	                    <p class="lead">Ceci est le texte de présentation du musée catho</p>
 	                </div>
 	                <div class="col-lg-4 col-sm-pull-5  col-sm-5">
-	                    <img class="img-responsive" src="img/presentation.jpg" class="img-responsive" alt="">
+	                
+	                    <img class="img-responsive" src="<s:property value="linkPhoto"/>" class="img-responsive" alt="">
 	                </div>
 	        </div>
         </div>
