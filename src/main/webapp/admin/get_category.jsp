@@ -26,7 +26,7 @@
 	
 	
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header"><a href="control_informations.jsp">Gestion des informations</a>  > Gestion des categories</h1>
+          <h1 class="page-header"><a href="control_informations.action">Gestion des informations</a>  > Gestion des categories</h1>
           
           <h3 class="page-header">Ajout d'une categorie</h3>
           
@@ -64,22 +64,10 @@
 			            <div class="row">
 			            	<label for="file1">Importer une image : </label> <input type="file" size="60" id="file1" name="upload" /> <br />
 									<s:submit value="submit" name="submit" cssClass="btn btn-default"/>
-
-
 			            </div>
 			          </div>
 									
 				</form> 
-				<form id="UploadForm" action="addPhotoPresentation.action" method="post" enctype="multipart/form-data">
-		       
-			            </br>
-			            <div class="row">
-			            	<label for="file1">Importer une image : </label> <input type="file" size="60" id="file1" name="upload" /> <br />
-									<s:submit value="submit" name="submit" cssClass="btn btn-default"/>
-
-			            </div>
-									
-				</form>
           </br></br>
           <h3 class="page-header">Liste des categories</h3>
           

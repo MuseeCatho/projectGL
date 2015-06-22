@@ -17,28 +17,28 @@
 		<jsp:param name="pageName" value="informations_manager"/>
 	</jsp:include>
 
-        <div class="col-sm-5 col-sm-offset-3 col-md-6 col-md-offset-2 main">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Gestion des informations</h1>
          
          <a href="get_category.action">Gestion des categories</a></br>
          <a href="get_period.action">Gestion des périodes</a>
-         <br><br>
-         
-         
-         <form id="UploadForm2" action="addPhotoPresentation.action" method="post" enctype="multipart/form-data">
-		       
-			            </br>
-			            <div class="row">
-			            	<label for="file3">Importer une image : </label> <input type="file" size="60" id="file3" name="upload" /> <br />
-									<s:submit value="submit" name="submit" cssClass="btn btn-default"/>
+         <br><br> 
+         <div class="col-md-8 ">
+	         <form id="UploadForm2" action="addPhotoPresentation.action" method="post" enctype="multipart/form-data">
+			       
+				            </br>
+				            
+				            	<label for="file3">Importer une image : </label> 
+				            	<input type="file" size="60" id="file3" name="upload" /> <br />
+								<s:submit value="submit" name="submit" cssClass="btn btn-default"/>
+				            
+			</form>
+		</div>
+		
 
-
-			            </div>
-									
-		</form>
+		<img src="../<s:property value="linkPhoto"/>" width="200px" class="img-responsive" alt="Responsive image">
 		
         </div>
-        
      </s:if>
 	
 	<s:else>
