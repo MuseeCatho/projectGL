@@ -124,12 +124,12 @@
 	<package name="test" namespace="/admin" extends="struts-default">
 
 
-	<action name="control_informations" class="action.ContactAction" method="getInfoContact">
+	<!--  <action name="control_informations" class="action.ContactAction" method="getInfoContact">
             <result name="success">control_informations.jsp</result>
-   		</action>
+   		</action>-->
 		<action name="updateContact" class="action.ContactAction"
 			method="updateContact">
-			<result name="success">control_informations.jsp</result>
+			<result name="success"  type="redirectAction">control_informations.action</result>
 		</action>
 
 		<action name="sign" class="action.UsersAction" method="signIn">
