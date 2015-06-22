@@ -11,6 +11,7 @@ function AddObjectAdmin(){
 	var reference = $("#reference").val();
 	var country = $("#country").val();
 	var city = $("#city").val();
+	var file = $("#file1").val();
 	console.log("console:"+title_f+" "+description_f);
 	var latitude;
 	var longitude;
@@ -38,6 +39,7 @@ function AddObjectAdmin(){
 		    	   "latitude": latitude,
 		    	   "longitude" : longitude,
 		    	   "period": $('#period').val(),
+		    	   "file1":file,
 		    	   "categories": []
 				
 		};

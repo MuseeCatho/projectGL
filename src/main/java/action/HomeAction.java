@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
@@ -58,6 +59,11 @@ public class HomeAction extends ActionSupport{
 			Photos_Site photoSite=photoSiteDao.findPhotoPresentation(new Integer(1));
 			String webroot;
 			webroot="img"+File.separatorChar+this.uploadFileNames[0];
+			System.out.println("debut");
+			System.out.println(Arrays.toString(this.uploadFileNames));
+			System.out.println(Arrays.toString(this.uploads));
+			System.out.println(Arrays.toString(this.uploadContentTypes));
+			System.out.println("fin");
 			String webrootAbsolut = getPath()+File.separatorChar+webroot;
 			upload(webrootAbsolut);
 			Photos_Site entity =new Photos_Site(new Integer(1),"photo presentation",webroot);
