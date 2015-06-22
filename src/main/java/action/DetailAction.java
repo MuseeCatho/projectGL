@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+
 import sun.misc.BASE64Encoder;
 import sun.misc.BASE64Decoder;
 
@@ -24,10 +25,15 @@ import java.io.File;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
+
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReadParam;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
+
+
+import org.apache.commons.codec.binary.Base64;
+
 import javax.servlet.ServletContext;
 
 

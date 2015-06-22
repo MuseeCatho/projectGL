@@ -2,14 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="js/jquery.js"></script>
-<script src="js/comment.js"></script>
-<s:include value="import.jsp"></s:include>
-<link rel="stylesheet" href="css/mediaCarousel_old.css">
-<link rel="stylesheet" href="css/detail.css">
-<s:include value="mediaElementsRequired.jsp"></s:include>
-<title>Oeuvre</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script src="js/jquery.js"></script>
+	<script src="js/comment.js"></script>
+	<s:include value="import.jsp"></s:include>
+	<link rel="stylesheet" href="css/mediaCarousel_old.css">
+	<link rel="stylesheet" href="css/detail.css">
+	<s:include value="mediaElementsRequired.jsp"></s:include>
+<title> Detail Oeuvre</title>
 </head>
 <body id="bodyDetail">
 	<div id="container">
@@ -17,6 +17,7 @@
 		<div class="row">
 			<div class="col-lg-1"></div>
 			<div class="col-lg-10" id="header">
+			<br><br><br>
 				<s:iterator value="listDetailPage">
 
 					<div class="row" id="header-object">
