@@ -48,6 +48,9 @@
 		<action name="addPhotos" class="action.DetailAction" method="addPhotos">
 			<result name="success">result.jsp</result>
 		</action>
+		<action name="addVideo" class="action.DetailAction" method="addVideo">
+		<result name="success" type="redirectAction"> <param name="actionName">detailObject.action</param><param name="id">${idPage}</param></result>
+		</action>
 		<action name="detailObject" class="action.DetailAction" method="showdetail">
 			<result name="success">detail.jsp</result>
 		</action>
@@ -58,7 +61,7 @@
 		<action name="logOut" class="action.UsersAction" method="logOut">
 			<result name="success">index.jsp</result>
 		</action>
-		<action name="add_user" class="action.UsersAction" method="addUser">
+		<action name="add_user" class="action.UsersAction" method="addUservi">
 			<result name="success">result.jsp</result>
 		</action>
 		<action name="checkPseudo" class="action.UsersAction" method="checkPseudo">
@@ -194,16 +197,19 @@
 		</action>
 		<!-- END USERS -->
 		<!-- INFORMATION MUSEUM -->
-		<action name="addPhotoPresentation" class="action.HomeAction" method="addPhotoPresentation">
-			<result name="success" type="redirectAction">control_informations.action</result>
-   		</action>
+
    		<action name="control_informations" class="action.HomeAction" method="homeInfoMuseum">
 			<result name="success">control_informations.jsp</result>
    		</action>
-   		
+
+		<action name="addPhotoPresentation" class="action.HomeAction"
+			method="addPhotoPresentation">
+			<result name="success">control_informations.jsp</result>
+		</action>
 		<!-- END INFORMATION MUSEUM -->
 		<!-- PROPOSITION -->
-		<action name="showEnrichment" class="action.PropositionAction" method="showEnrichment">
+		<action name="showEnrichment" class="action.PropositionAction"
+			method="showEnrichment">
 			<result name="success">propositions_manager.jsp</result>
 		</action>
 		<!-- END PROPOSITION -->

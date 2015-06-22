@@ -6,16 +6,20 @@ var text_modified = false;
 
 function toggle() {
 	$('#carouselPhotos').toggle();
+	$('#carouselVideo').toggle();
 	$('#annulationProposition').toggle();
 	$('#listPhotos').toggle();
+	$('#listVideo').toggle();
 	$('#modif_description').toggle();
 }
 function reset() {
-	
+
 	$('#buttonChange').val('Proposer une modification');
 	for (var int = 0; int < arrayImage1.length; int++) {
-		$('#icon_cancel' + arrayImage1[int]).css('display', 'inherit');
-		$('#icon_ok' + arrayImage1[int]).css('display', 'none');
+		$('#icon_cancel_image' + arrayImage1[int]).css('display', 'inherit');
+		$('#icon_ok_image' + arrayImage1[int]).css('display', 'none');
+		$('#icon_cancel_video' + arrayImage1[int]).css('display', 'inherit');
+		$('#icon_ok_video' + arrayImage1[int]).css('display', 'none');
 	}
 	$('#descriptionDetail_text').show();
 
@@ -25,7 +29,6 @@ function reset() {
 
 	var prev = document.getElementById('prev');
 	prev.innerHTML = "";
-	
 
 	arrayImage1 = [];
 	arrayImage2 = [];
@@ -50,6 +53,7 @@ function hideEnr(idUser) {
 		var r = confirm("Confimer les modifications?");
 		if (r == true) {
 			SaveModif(arrayImage2, object, idUser, arrayImageUpload);
+			$("formVideo").submit();
 			reset();
 		}
 	}
@@ -282,9 +286,9 @@ function annulation() {
 	}
 }
 
-function changeState(id) {
-	$('#icon_cancel' + id).toggle();
-	$('#icon_ok' + id).toggle();
+function changeState(id,type) {
+	$('#icon_cancel_'+type + id).toggle();
+	$('#icon_ok_'+type + id).toggle();
 	if ($.inArray(id, arrayImage1) == -1) {
 		arrayImage1.push(id);
 	}
@@ -298,29 +302,30 @@ function cancelProposition(type, id) {
 				arrayImage2 = arrayImage2.slice(1);
 			}
 		}
-		changeState(id);
+		changeState(id,type);
 	}
 }
 
 function addProposition(type, id, etat) {
-	
-	if (type == 'image') {
-		if (etat == "delete") {
+	if (etat == "delete") {
+		if (type == 'image') {
 			var r = confirm("Voulez-vous vraiment supprimer cette image?");
 		}
-			var id_medias = id;
-		
-
-		if ((r && etat=="delete") || etat=="add") {
-			object = {
-				"etat" : etat,
-				"type" : type,
-				"id_medias" : id_medias,
-			}
-			arrayImage2.push(object);
-			
-			changeState(id);
+		if (type == 'video') {
+			var r = confirm("Voulez-vous vraiment supprimer cette video");
 		}
+	}
+	var id_medias = id;
+
+	if ((r && etat == "delete") || etat == "add") {
+		object = {
+			"etat" : etat,
+			"type" : type,
+			"id_medias" : id_medias,
+		}
+		arrayImage2.push(object);
+
+		changeState(id,type);
 	}
 
 	return object;
@@ -421,7 +426,7 @@ function addPhotos() {
 		success : function(data) {
 		}
 	});
-	
+
 }
 
 function SaveModif(arrayImage2, object, idUser, arrayImageUpload) {
@@ -444,7 +449,7 @@ function SaveModif(arrayImage2, object, idUser, arrayImageUpload) {
 			getLastPhotosId();
 			addProposition("image", lastIdPho, "add");
 		}
-		
+
 	}
 	if (arrayImage2.length != 0 || text_modified) {
 		addEnrichments(idUser);
@@ -504,14 +509,14 @@ function SaveModif(arrayImage2, object, idUser, arrayImageUpload) {
 		reader.readAsDataURL(file);
 	}
 
-	var allowedTypes = [ 'png', 'jpg', 'jpeg', 'gif' ], fileInput = document
+	var allowedTypes = [ 'png', 'jpg', 'jpeg', 'gif','png','PNG' ], fileInput = document
 			.querySelector('#file'), prev = document.querySelector('#prev');
 	fileInput.addEventListener('change', function() {
 		var files = this.files, filesLen = files.length, imgType;
 		for (var i = 0; i < filesLen; i++) {
 			imgType = files[i].name.split('.');
 			imgType = imgType[imgType.length - 1];
-			if (allowedTypes.indexOf(imgType) != -1) {
+			if (allowedTypes.indexOf(imgType.toLowerCase()) != -1) {
 				createThumbnail(files[i], arrayImageUpload);
 			}
 		}

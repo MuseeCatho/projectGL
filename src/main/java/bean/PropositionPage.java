@@ -1,5 +1,6 @@
 package bean;
 
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -14,16 +15,14 @@ public class PropositionPage implements java.io.Serializable {
 	private Object linkPhoto;
 	private String title_f;
 	private String title_e;
-	private Date date;
-	private Integer number;
+	private BigInteger number;
 
 	public PropositionPage(int idEnrichments, String linkPhoto,String title_f,
-			String title_e, Date date, Integer number) {
+			String title_e,  BigInteger number) {
 		this.idEnrichments = idEnrichments;
 		this.linkPhoto=linkPhoto;
 		this.title_f = title_f;
 		this.title_e = title_e;
-		this.date = date;
 		this.number = number;
 	}
 
@@ -57,23 +56,17 @@ public class PropositionPage implements java.io.Serializable {
 
 	public void setTitle_e(String title_e) {
 		this.title_e = title_e;
-	}
+	}	
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public Integer getNumber() {
+	public BigInteger getNumber() {
 		return number;
 	}
 
-	public void setNumber(Integer number) {
+	public void setNumber(BigInteger number) {
 		this.number = number;
 	}
+
+	
 
 
 
