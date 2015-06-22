@@ -56,6 +56,7 @@ public class HomeAction extends ActionSupport{
 	}
 	
 	
+	
 	public String addPhotoPresentation() throws Exception{
 
 		if(this.uploadFileNames==null){ //si il n'y a pas de photo
