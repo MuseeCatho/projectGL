@@ -37,6 +37,7 @@ import com.google.gson.Gson;
 public class ObjectAction extends ActionSupport {
 
 	private static ObjectDaoImpl objectDao;
+	private int id;
 	private String title_f;
 	private String title_e;
 	private String description_f;
@@ -140,6 +141,14 @@ public class ObjectAction extends ActionSupport {
 			System.out.println("objet ajout�");
 
 		}
+		return SUCCESS;
+	}
+	
+	public String deleteObject(){
+		ObjectDaoImpl objectDao = new ObjectDaoImpl();
+		ObjectMuseum object=objectDao.findObjectById(this.id);
+		objectDao.deleteObject(object);
+		result=1;
 		return SUCCESS;
 	}
 
@@ -441,6 +450,7 @@ public class ObjectAction extends ActionSupport {
 		this.photosObject = photosObject;
 	}
 
+
 	public File[] getUploads() {
 		return uploads;
 	}
@@ -472,72 +482,14 @@ public class ObjectAction extends ActionSupport {
 	public void setFile1(String file1) {
 		this.file1 = file1;
 	}
-	
-	
-	
-	
-	
-	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 
 }
-
-/*
- * package action;
- * 
- * import java.io.BufferedReader; import java.io.IOException; import
- * java.io.UnsupportedEncodingException; import java.security.Principal; import
- * java.util.ArrayList; import java.util.Collection; import
- * java.util.Enumeration; import java.util.List; import java.util.Locale; import
- * java.util.Map;
- * 
- * import javax.servlet.DispatcherType; import javax.servlet.RequestDispatcher;
- * import javax.servlet.ServletContext; import javax.servlet.ServletException;
- * import javax.servlet.ServletInputStream; import javax.servlet.ServletRequest;
- * import javax.servlet.ServletResponse; import javax.servlet.http.Cookie;
- * import javax.servlet.http.HttpServletRequest; import
- * javax.servlet.http.HttpServletResponse; import
- * javax.servlet.http.HttpSession; import javax.servlet.http.Part;
- * 
- * import org.apache.struts2.interceptor.ServletRequestAware;
- * 
- * import mapping.ObjectMuseum;
- * 
- * import com.google.gson.Gson; import com.opensymphony.xwork2.ActionSupport;
- * 
- * import dao.ObjectDaoImpl;
- * 
- * public class ObjectAction extends ActionSupport{ private static ObjectDaoImpl
- * objectDao; private List<ObjectMuseum> listObject;
- * 
- * public ObjectAction(){ getListOeuvre(); }
- * 
- * public List<ObjectMuseum> getListOeuvre(){
- * 
- * ObjectDaoImpl objectDao=new ObjectDaoImpl(); listObject =new
- * ArrayList<ObjectMuseum>(objectDao.getLocations()); ArrayList list = new
- * ArrayList();
- * 
- * for (ObjectMuseum e: listObject) {
- * 
- * System.out.println(e); } return list; }
- * 
- * 
- * 
- * public List<ObjectMuseum> getListObject() { return listObject; }
- * 
- * public void setListObject(List<ObjectMuseum> listObject) { this.listObject =
- * listObject; }
- * 
- * 
- * 
- * public static ObjectDaoImpl getObjectDao() { return objectDao; }
- * 
- * 
- * 
- * public static void setObjectDao(ObjectDaoImpl objectDao) {
- * ObjectAction.objectDao = objectDao; }
- * 
- * 
- * 
- * }
- */

@@ -16,41 +16,44 @@ function addUser(){
 		
 		$('#errorInscription').append("Tous les champs ne sont pas remplis");
 	}else{
-		
-		if(checkPasswordMatch()==0){
-			$('#errorInscription').append("Erreur lors de la saisie du mot de passe.");
-		}else{		
-			checkPseudoMatch(function(result) {
-				
-			if(result==1){
-				$('#errorInscription').append("Pseudo non disponible.");
-			}else{
-			
-					$.ajax({
-					       url : 'add_user.action',
-					       type : 'POST',
-					       //contentType: "application/json",
-					       encoding:"UTF-8",
-					       async: true,
-					       data: {
-					    	   "name": name,
-					    	   "firstname": firstname,
-					    	   "pseudo":pseudo,
-					    	   "email":email,
-					    	   "password":password,
-					    	   "country": country,
-					    	   "city" : city,
-					    	   "job" : job
-					    	},
-					       success : function(data){
-					    	   window.location = 'index.action';
-					       }
-					    });
-			}
-			
-			});
-		
-		
+		if(validateEmail(email)){
+					if(checkPasswordMatch()==0){
+						$('#errorInscription').append("Erreur lors de la saisie du mot de passe.");
+					}else{		
+						checkPseudoMatch(function(result) {
+							
+						if(result==1){
+							$('#errorInscription').append("Pseudo non disponible.");
+						}else{
+						
+								$.ajax({
+								       url : 'add_user.action',
+								       type : 'POST',
+								       //contentType: "application/json",
+								       encoding:"UTF-8",
+								       async: true,
+								       data: {
+								    	   "name": name,
+								    	   "firstname": firstname,
+								    	   "pseudo":pseudo,
+								    	   "email":email,
+								    	   "password":password,
+								    	   "country": country,
+								    	   "city" : city,
+								    	   "job" : job
+								    	},
+								       success : function(data){
+								    	   window.location = 'index.action';
+								       }
+								    });
+						}
+						
+						});
+					
+					
+					}
+		}else{
+			$('#errorInscription').append("Le format du mail n'est pas valide");
 		}
 	}
 
@@ -120,4 +123,8 @@ function checkPseudoMatchForm(callback) {
 	    	   } 	  
 	       }
 	    });
+}
+function validateEmail(email) {
+    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    return re.test(email);
 }

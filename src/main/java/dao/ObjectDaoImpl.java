@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import mapping.Comment;
 import mapping.ObjectCategory;
 import mapping.ObjectMuseum;
 import mapping.User;
@@ -191,7 +192,21 @@ public class ObjectDaoImpl implements ObjectDao<ObjectMuseum, Integer>{
 	        HibernateUtil.shutdown();
 	}
 
-
+	public ObjectMuseum findObjectById(Integer idOeuvre){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction(); 
+		Criteria cr = session.createCriteria(ObjectMuseum.class);
+		cr.add(Restrictions.eq("id",idOeuvre));
+		ObjectMuseum object = (ObjectMuseum) cr.uniqueResult();
+		return object;
+	}
+	
+	public void deleteObject(ObjectMuseum entity){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();    
+        session.delete(entity);
+        session.getTransaction().commit();
+	}
 
 
 	

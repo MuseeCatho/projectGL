@@ -6,9 +6,9 @@
     <session-factory>
         <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.password"></property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/museum</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:8889/museum</property>
         <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
        <!--  <property name="hbm2dd1.auto">update</property> -->
@@ -16,8 +16,10 @@
         <mapping resource="table/Object.hbm.xml"></mapping>
         <mapping resource="table/User.hbm.xml"></mapping>
         <mapping resource="table/Period.hbm.xml"></mapping>        
-        <mapping resource="table/Photos.hbm.xml"></mapping>
+        <mapping resource="table/Photos.hbm.xml"></mapping>      
+        <mapping resource="table/Video.hbm.xml"></mapping>
         <mapping resource="table/Category.hbm.xml"></mapping>
+        <mapping resource="table/Museum.hbm.xml"></mapping>
         <mapping resource="table/ObjectCategory.hbm.xml"></mapping>
         <mapping resource="table/Comments.hbm.xml"></mapping>
         <mapping resource="table/Enrichments.hbm.xml"></mapping>
