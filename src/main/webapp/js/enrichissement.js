@@ -63,7 +63,7 @@ var list_string_insert = [];
 var list_index_delete = [];
 var list_word_delete_string;
 
-<<<<<<< HEAD
+
 function description_modifie(){
     var text_insert=document.getElementById('modif_text').value;
     list_text=text.split(" ");
@@ -226,13 +226,13 @@ function description_modifie(){
 
 			// index_word_delete++;
 			// }
-			result += '<s><span style="color:red">'
+			result += '<s><span id="delete-modif" style="color:red">'
 					+ list_word_delete_string[word_delete_index]
 					+ '</span></s>' + " ";
 			word_delete_index++;
 		}
 		if (list_string_insert.indexOf(k) != -1) {
-			result += '<b><span style="color:green">' + list_text_insert[k]
+			result += '<b><span id="add-modif" style="color:green">' + list_text_insert[k]
 					+ '</span></b>' + " ";
 		} else {
 			result += list_text_insert[k] + " ";
