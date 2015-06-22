@@ -118,6 +118,9 @@
 			<result name="input">test_languages.jsp</result> </action> -->
 		<!-- END TESTS -->
 	</package>
+	
+	
+	
 	<package name="test" namespace="/admin" extends="struts-default">
 
 
@@ -130,14 +133,13 @@
 		</action>
 
 		<action name="sign" class="action.UsersAction" method="signIn">
-			<result name="success">result.jsp</result>
+			<result name="success">resultAjax.jsp</result>
 		</action>
 		<!-- CONTROL OBJECT -->
 		<action name="add_object" class="action.ObjectAction" method="addObjectAction">
 			<result name="success">add_object.jsp</result>
 		</action>
-		<action name="control_object" class="action.ObjectAction"
-			method="listObject">
+		<action name="control_object" class="action.ObjectAction" method="listObject">
 			<result name="success">control_object.jsp</result>
 		</action>
 		<!-- END CONTROL OBJECT -->
@@ -202,12 +204,23 @@
 		<action name="deleteUser" class="action.UsersAction" method="deleteUser">
 			<result name="success">usersAjax.jsp</result>
 		</action>
+		<action name="logOut" class="action.UsersAction" method="logOutAdmin">
+			<result name="success">resultAjax.jsp</result>
+		</action>
 		<!-- END USERS -->
 		<!-- INFORMATION MUSEUM -->
 		<action name="addPhotoPresentation" class="action.HomeAction"
 			method="addPhotoPresentation">
 			<result name="success">control_informations.jsp</result>
 		</action>
+
+		<action name="addPhotoPresentation" class="action.HomeAction" method="addPhotoPresentation">
+			<result name="success" type="redirectAction">control_informations.action</result>
+   		</action>
+   		<action name="control_informations" class="action.HomeAction" method="homeInfoMuseum">
+			<result name="success">control_informations.jsp</result>
+   		</action>
+
 		<!-- END INFORMATION MUSEUM -->
 		<!-- PROPOSITION -->
 		<action name="showEnrichment" class="action.PropositionAction"

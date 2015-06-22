@@ -18,9 +18,9 @@ function signInAdmin(){
 	       success : function(data){
 	    	   console.log(data);
 	    	   if(data.indexOf("0") > -1){
-	    		   $( "#error" ).append("Vous n'êtes pas autorisé.");
+	    		   $( "#error" ).append("Pseudo ou mot de passe incorrect.");
 	    	   }else{
-	    		   window.location = 'index.action';
+	    		   window.location = '../admin/index.jsp';
 	    	   }
 	       }
 	    });
@@ -67,6 +67,18 @@ function logOut(){
 	       async: true,
 	       success : function(data){
 	    	   window.location = 'index.action';
+	       }
+	    });
+	
+}
+function logOutAdmin(){
+	$.ajax({
+	       url : 'logOut.action',
+	       type : 'POST',
+	       encoding:"UTF-8",
+	       async: true,
+	       success : function(data){
+	    	   window.location = '../admin/login.jsp';
 	       }
 	    });
 	

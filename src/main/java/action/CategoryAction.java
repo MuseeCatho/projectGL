@@ -34,7 +34,7 @@ public class CategoryAction extends ActionSupport{
 	private String id_category;
 	private String link_category;
 	private String result;
-	private File[] uploads;
+	private File[] upl;
     private String[] uploadFileNames;
     private String[] uploadContentTypes;
 	
@@ -70,11 +70,15 @@ public String deleteCategory(){
 
 			//webroot = System.getProperty("user.home")+"\\upload\\img\\category\\"+uploadFileNames[0];
 			//System.out.println("user.hom :"+System.getProperty("user.home"));
-			webroot="img"+File.separatorChar+uploadFileNames[0];
+			webroot="img"+File.separatorChar+"category"+File.separatorChar+uploadFileNames[0];
 			String webrootAbsolut = getPath()+File.separatorChar+webroot;
 			//System.out.println("catalina.home :"+System.getProperty("catalina.home"));
 			upload(webrootAbsolut);
-		}
+
+		};
+		String context = ServletActionContext.getServletContext().getRealPath("/img");
+		//String physicalPath = getServletContext().getRealPath("/images");
+		
 		Category category =new Category(new Integer(0),this.title_f,this.title_e,webroot);
 		categoryDao.insertCategory(category);
 		
@@ -99,10 +103,10 @@ public String deleteCategory(){
     	/* write the files in the eclipse repository */
         System.out.println("\n\n upload2");
         System.out.println("files:");
-        for(int i = 0; i < uploads.length; i++) {
-            System.out.println("*** " + uploads[i] + "\t" + uploads[i].length());
+        for(int i = 0; i < upl.length; i++) {
+            System.out.println("*** " + upl[i] + "\t" + upl[i].length());
             File dest = new File(path);
-			FileUtils.copyFile(uploads[i], dest);
+			FileUtils.copyFile(upl[i], dest);
         }
         System.out.println("filenames:");
         for (String n : uploadFileNames) {
@@ -119,8 +123,6 @@ public String deleteCategory(){
 	public String getResult() {
 		return result;
 	}
-
-
 	public void setResult(String result) {
 		this.result = result;
 	}
@@ -134,55 +136,42 @@ public String deleteCategory(){
 	public String getTitle_f() {
 		return title_f;
 	}
-
 	public void setTitle_f(String title_f) {
 		this.title_f = title_f;
 	}
-
 	public String getTitle_e() {
 		return title_e;
 	}
-
 	public void setTitle_e(String title_e) {
 		this.title_e = title_e;
 	}
-
 	public String getId_category() {
 		return id_category;
 	}
-
 	public void setId_category(String id_category) {
 		this.id_category = id_category;
 	}
-
 	public String getLink_category() {
 		return link_category;
 	}
-
 	public void setLink_category(String link_category) {
 		this.link_category = link_category;
 	}
-	
 	public File[] getUpload() {
-        return this.uploads;
+        return this.upl;
     }
-
     public void setUpload(File[] upload) {
-        this.uploads = upload;
+        this.upl = upload;
     }
-
     public String[] getUploadFileName() {
         return this.uploadFileNames;
     }
-
     public void setUploadFileName(String[] uploadFileName) {
         this.uploadFileNames = uploadFileName;
     }
-
     public String[] getUploadContentType() {
         return this.uploadContentTypes;
     }
-
     public void setUploadContentType(String[] uploadContentType) {
         this.uploadContentTypes = uploadContentType;
     }

@@ -24,39 +24,62 @@ public class HomeAction extends ActionSupport{
 	 */
 	private static final long serialVersionUID = 1L;
 	private List<Category> listCategory;
-	private File[] uploads;
-    private String[] uploadFileNames;
-    private String[] uploadContentTypes;
+	String linkPhoto;
 	
 	public String getAllCategory(){
 		System.out.println("getAllCategory");
 		CategoryDaoImpl categoriesDao = new CategoryDaoImpl();
-		
 		listCategory =new ArrayList<Category>( categoriesDao.getCategory());
 		System.out.println("getAllCategory -- listCategory.size :"+listCategory.get(0).getName_e());
+		
+		//on récupère la photo de présentation du musée
+		PhotosSiteDaoImpl photoSiteDao = new PhotosSiteDaoImpl();
+		Photos_Site photoSite=photoSiteDao.findPhotoPresentation(new Integer(1));
+		linkPhoto=photoSite.getLink_photo();
+		
 		return SUCCESS;
 	}
 	
-	public String addPhotoPresentation() throws Exception{
+	public String homeInfoMuseum(){
 		PhotosSiteDaoImpl photoSiteDao = new PhotosSiteDaoImpl();
 		Photos_Site photoSite=photoSiteDao.findPhotoPresentation(new Integer(1));
-		String webroot;
-		webroot="img"+File.separatorChar+uploadFileNames[0];
-		String webrootAbsolut = getPath()+File.separatorChar+webroot;
-		//System.out.println("catalina.home :"+System.getProperty("catalina.home"));
-		upload(webrootAbsolut);
-		Photos_Site entity =new Photos_Site(new Integer(1),"photo presentation",webroot);
-		if(photoSite==null){
-			System.out.println("insert");
-			photoSiteDao.insertPhotoPresentation(entity);
-		}else{
-			System.out.println("update");
-			photoSiteDao.updatePhotoPresentation(entity);
+		linkPhoto=photoSite.getLink_photo();
+		return SUCCESS;
+	}
+	
+	
+	public String addPhotoPresentation() throws Exception{
+
+		if(this.uploadFileNames==null){ //si il n'y a pas de photo
+			System.out.print("NULL");
 		}
+		else{
+			PhotosSiteDaoImpl photoSiteDao = new PhotosSiteDaoImpl();
+			Photos_Site photoSite=photoSiteDao.findPhotoPresentation(new Integer(1));
+			String webroot;
+			webroot="img"+File.separatorChar+this.uploadFileNames[0];
+			String webrootAbsolut = getPath()+File.separatorChar+webroot;
+			upload(webrootAbsolut);
+			Photos_Site entity =new Photos_Site(new Integer(1),"photo presentation",webroot);
+			if(photoSite==null){
+				photoSiteDao.insertPhotoPresentation(entity);
+			}else{
+				photoSiteDao.updatePhotoPresentation(entity);
+			}
+		}
+		
 		
 		
 		return SUCCESS;
 		
+	}
+	
+	public List<Category> getListCategory() {
+		return listCategory;
+	}
+
+	public void setListCategory(List<Category> listCategory) {
+		this.listCategory = listCategory;
 	}
 	
 	public String getPath() throws UnsupportedEncodingException {
@@ -73,7 +96,18 @@ public class HomeAction extends ActionSupport{
 		System.out.println("response Path "+reponsePath);
 		return reponsePath;
 	}
-	public void upload(String path) throws Exception {
+	
+	
+	
+	
+	
+	
+	
+	private File[] uploads;
+    private String[] uploadFileNames;
+    private String[] uploadContentTypes;
+
+    public void upload(String path) throws Exception {
     	/* write the files in the eclipse repository */
         System.out.println("\n\n upload2");
         System.out.println("files:");
@@ -92,38 +126,31 @@ public class HomeAction extends ActionSupport{
         }
         System.out.println("\n\n");
     }
+    public File[] getUpload() {
+        return this.uploads;
+    }
+    public void setUpload(File[] upload) {
+        this.uploads = upload;
+    }
+    public String[] getUploadFileName() {
+        return this.uploadFileNames;
+    }
+    public void setUploadFileName(String[] uploadFileName) {
+        this.uploadFileNames = uploadFileName;
+    }
+    public String[] getUploadContentType() {
+        return this.uploadContentTypes;
+    }
+    public void setUploadContentType(String[] uploadContentType) {
+        this.uploadContentTypes = uploadContentType;
+    }
 
-	public List<Category> getListCategory() {
-		return listCategory;
+	public String getLinkPhoto() {
+		return linkPhoto;
 	}
 
-	public void setListCategory(List<Category> listCategory) {
-		this.listCategory = listCategory;
+	public void setLinkPhoto(String linkPhoto) {
+		this.linkPhoto = linkPhoto;
 	}
-
-	public File[] getUploads() {
-		return uploads;
-	}
-
-	public void setUploads(File[] uploads) {
-		this.uploads = uploads;
-	}
-
-	public String[] getUploadFileNames() {
-		return uploadFileNames;
-	}
-
-	public void setUploadFileNames(String[] uploadFileNames) {
-		this.uploadFileNames = uploadFileNames;
-	}
-
-	public String[] getUploadContentTypes() {
-		return uploadContentTypes;
-	}
-
-	public void setUploadContentTypes(String[] uploadContentTypes) {
-		this.uploadContentTypes = uploadContentTypes;
-	}
-	
-
+    
 }
