@@ -45,6 +45,9 @@ public class HomeAction extends ActionSupport{
 			linkPhoto=photoSite.getLink_photo();
 		}
 		
+		ContactDaoImpl contactDao = new ContactDaoImpl();
+		listMuseum= new ArrayList(contactDao.getInfoMuseum());
+		
 		return SUCCESS;
 	}
 	
