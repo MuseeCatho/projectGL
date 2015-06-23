@@ -34,37 +34,42 @@
 		%>
 		<div class="item <%if (i == 0) {%>active<%}%>">
 			<div class="mediaCarousel_item" style="line-height:<%=height%>;">
-			<%
-				if (mediaType.equals("image")) {
-			%>
-			<!-- for an image : -->
+				<%
+					if (mediaType.equals("image")) {
+				%>
+				<!-- for an image : -->
 				<img src="<%=mediaNames[i]%>" alt="slide <%=i + 1%>"
 					data-toggle="modal" data-target="#<%=mediaCarouselId%>Modal<%=i%>" />
-			<%
-				} else if (mediaType.equals("audio")) {
-			%>
-			<!-- for an audio : -->
-			<%
-				} else if (mediaType.equals("video")) {
-			%>
-			<!-- for a video : -->
-			<div class="video-jsContainer">
-				<video id="video<%=i%>" class="video-js vjs-default-skin"
-					controls preload="none" width="500" height="300"
-					poster="http://video-js.zencoder.com/oceans-clip.png"
-					data-setup='{"example_option":true}'>
-					<source src="<%=mediaNames[i]%>" type='video/mp4' />
-					<p class="vjs-no-js">
-						To view this video please enable JavaScript, and consider
-						upgrading to a web browser that <a
-							href="http://videojs.com/html5-video-support/" target="_blank">supports
-							HTML5 video</a>
-					</p>
-				</video>
-			</div>
-			<%
-				}
-			%>
+				<%
+					} else if (mediaType.equals("audio")) {
+				%>
+				<!-- for an audio : -->
+				<div class="audioContainer">
+					<div class="ui360 ui360-vis" id="ren">
+						<a href="<%=mediaNames[i]%>"></a>
+					</div>
+				</div>
+				<%
+					} else if (mediaType.equals("video")) {
+				%>
+				<!-- for a video : -->
+				<div class="video-jsContainer">
+					<video id="video<%=i%>" class="video-js vjs-default-skin" controls
+						preload="none" width="500" height="300"
+						poster="http://video-js.zencoder.com/oceans-clip.png"
+						data-setup='{"example_option":true}'>
+						<source src="<%=mediaNames[i]%>" type='video/mp4' />
+						<p class="vjs-no-js">
+							To view this video please enable JavaScript, and consider
+							upgrading to a web browser that <a
+								href="http://videojs.com/html5-video-support/" target="_blank">supports
+								HTML5 video</a>
+						</p>
+					</video>
+				</div>
+				<%
+					}
+				%>
 			</div>
 		</div>
 		<%
@@ -104,6 +109,30 @@
 </div>
 <%
 	}
-		}
+	}
 	}
 %>
+<script>
+			soundManager.setup({
+				
+				// where to find flash audio SWFs, as needed
+				url: '/path/to/swf-files/',
+				onready: function() {
+					// SM2 is ready to play audio!
+					var demo2Sound = soundManager.createSound({
+						url: '12. - Real Evil - Henry Jackman & Matthew Margeson.mp3',
+						onfinish: function() {
+							soundManager._writeDebug(this.id + ' finished playing');
+						}
+					});
+					demo2Sound.play({
+						volume: 50
+					});
+					document.body.addEventListener('click',function(){
+						console.log('click');
+						var sound = soundManager.getSoundById('sound1');
+						sound.setVolume(10);
+					});
+				}
+			});
+		</script>

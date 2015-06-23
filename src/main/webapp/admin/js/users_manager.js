@@ -58,6 +58,9 @@ UsersData.prototype = {
 					usersDataRef.observer.update(data);
 				}
 			});
+			/*jqxhr.progress(function(){
+				console.log("ren0");
+			});*/
 			jqxhr.fail(function(){
 				usersDataRef.observer.fail();
 				console.log('fail');
