@@ -84,9 +84,8 @@ function valid_comment(id,idObject){
 	 
 }
 function delete_object(id){
-	var r = confirm("Voulez-vous vraiment supprimer cette categorie?");
+	var r = confirm("Voulez-vous vraiment supprimer cet objet?");
 	if (r == true) {
-		alert(id);
 		$.ajax({
 		       url : 'deleteObject.action',
 		       type : 'POST',
@@ -96,7 +95,6 @@ function delete_object(id){
 		    	   "id": id
 		    	},
 		       success : function(data){
-		    	   alert(data);
 		    	   window.location='../admin/control_object.action?orderObject=true';
 		    	  //alert('L\'objet a bien été supprimé.');
 		       }

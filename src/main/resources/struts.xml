@@ -75,7 +75,7 @@
 		<action name="logOut" class="action.UsersAction" method="logOut">
 			<result name="success">index.jsp</result>
 		</action>
-		<action name="add_user" class="action.UsersAction" method="addUservi">
+		<action name="add_user" class="action.UsersAction" method="addUser">
 			<result name="success">result.jsp</result>
 		</action>
 		<action name="checkPseudo" class="action.UsersAction" method="checkPseudo">
@@ -156,6 +156,9 @@
 		</action>
 		<action name="deleteObject" class="action.ObjectAction" method="deleteObject">
 			<result name="success">resultAjax.jsp</result>
+		</action>
+		<action name="test" class="action.ObjectAction" method="addObjectAction">
+			<result name="success">add_object.jsp</result>
 		</action>
 		<!-- END CONTROL OBJECT -->
 		<!-- CATEGORY -->

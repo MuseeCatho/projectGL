@@ -124,7 +124,7 @@ public class ObjectAction extends ActionSupport {
 			System.out.println(this.uploadFileNames);
 			if(this.uploadFileNames!=null){
 				
-				upload();
+				uploadBis();
 				for(int i=0; i<this.uploadFileNames.length;i++){
 					webroot="img"+File.separatorChar+this.uploadFileNames[i];
 					String webrootAbsolut = getPath()+File.separatorChar+webroot;
@@ -134,16 +134,6 @@ public class ObjectAction extends ActionSupport {
 				}
 				
 			}
-			
-
-			/*String webrootAbsolut = getPath()+File.separatorChar+webroot;
-			upload(webrootAbsolut);
-			Photos_Site entity =new Photos_Site(new Integer(1),"photo presentation",webroot);
-			if(photoSite==null){
-				photoSiteDao.insertPhotoPresentation(entity);
-			}else{
-				photoSiteDao.updatePhotoPresentation(entity);
-			}*/
 			result = 1;
 			System.out.println("objet ajout�");
 
@@ -160,7 +150,7 @@ public class ObjectAction extends ActionSupport {
 	}
 
 
-    public void upload() throws Exception {
+    public void uploadBis() throws Exception {
     	/* write the files in the eclipse repository */
         System.out.println("\n\n upload2");
         System.out.println("files:");
