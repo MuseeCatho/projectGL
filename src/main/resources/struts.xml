@@ -47,6 +47,10 @@
 			method="getLastEnrichmentId">
 			<result name="success">result.jsp</result>
 		</action>
+		<action name="getLastPhotosId" class="action.DetailAction"
+			method="getLastPhotosId">
+			<result name="success">result.jsp</result>
+		</action>
 		<action name="addEnrichments" class="action.DetailAction"
 			method="addEnrichments">
 			<result name="success">result.jsp</result>
@@ -75,7 +79,7 @@
 		<action name="logOut" class="action.UsersAction" method="logOut">
 			<result name="success">index.jsp</result>
 		</action>
-		<action name="add_user" class="action.UsersAction" method="addUservi">
+		<action name="add_user" class="action.UsersAction" method="addUser">
 			<result name="success">result.jsp</result>
 		</action>
 		<action name="checkPseudo" class="action.UsersAction" method="checkPseudo">
