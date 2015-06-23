@@ -125,12 +125,13 @@ public class ObjectAction extends ActionSupport {
 			String webroot;
 			//System.out.println(this.file1);
 			System.out.println(this.uploadFileNames);
-			if(this.uploadFileNames!=null){//des fichiers sont importés 
+			if(this.uploadFileNames!=null){//si des fichiers sont importés  
 				
-				upload();
+				upload();//upload dans le dossier pas dans la base de données
 				for(int i=0; i<this.uploadFileNames.length;i++){
+					
 					String type="";
-					type=recognizeType(this.uploadContentTypes[i]);
+					type=recognizeType(this.uploadContentTypes[i]);//on detecte le type de fichier
 					webroot="upload\\"+type+File.separatorChar+this.uploadFileNames[i];
 					String webrootAbsolut = getPath()+File.separatorChar+webroot;
 					System.out.println("this.uploadContentTypes[i] :"+this.uploadContentTypes[i]);
@@ -143,12 +144,6 @@ public class ObjectAction extends ActionSupport {
 						Video video=new Video(new Integer(1), webroot,object.getId(),"","",false);
 						videoDao.insertVideos(video);
 					}
-
-					
-					/*if(this.uploadContentTypes )//si c'est un type video
-					webroot="video"+File.separatorChar+this.uploadFileNames[i];
-					Video video=new Video(new Integer(1), webroot,object.getId(),"","",false);
-					videoDao.insertVideos(video);*/
 				}
 				
 			}
