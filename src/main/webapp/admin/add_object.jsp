@@ -65,13 +65,14 @@
 <!-- 	  </div> -->
 <!-- 	     <div class="form-group"> -->
 <div class="form-group">
+<label for="media">Importer des médias</label>
 <div id = "imagesManager"></div>
-	<!-- <button id="playButton">Play</button>
-	<button id="pauseButton">Pause</button>
-	<button id="getCurrentIndex">current</button> -->
+
 	<br/><br/>
 	<div id = "audiosManager"></div><br/><br/>
-	<div id = "videosManager"></div>
+	<div id = "videosManager">
+</div>
+</div>
 	<div class="form-group">
 	<label for="period">
 	Sélectionner la période de l'objet
@@ -85,30 +86,18 @@
 	 		id="period" 
  			value="defaultSearchEngine"
  			cssClass="form-control" />
- 			
+ 			</div>
+ 			<div class="form-group">
  			<label for="categories">
 	Sélectionner les catégories
 	</label>
  			<s:checkboxlist id="categories" label="" list="listCategory" listKey="id"
 	   		listValue="name_f" name="categories"/>
- 			
-<!--  	<label for="category"> -->
-<!-- 	Sélectionner la catégorie de l'objet -->
-<!-- 	</label> -->
-<%-- 			<s:select label="Sélectionner la periode de l'objet"  --%>
-<%-- 	 		headerKey="-1"  --%>
-<%-- 	 		list="listCategory" --%>
-<%-- 	   		listKey="id" --%>
-<%-- 	   		listValue="name_f"   --%>
-<%-- 	 		name="category" --%>
-<%-- 	 		id="category"  --%>
-<%--  			value="defaultSearchEngine" --%>
-<%--  			cssClass="form-control" />		 --%>
 		
-	     </div>
+	     
 	     <input type="hidden" name="latitude" id="latitude" value="">
 	  	 <input type="hidden" name="longitude" id="longitude" value="">
-
+</div>
 	<!-- 	  <button type="submit" class="btn btn-default" onclick="AddObjectAdmin()">Valider</button> -->
 	  <div style="margin-left:0px;"><s:submit value="submit" name="submit" cssClass="btn btn-default"/></div>
 	</form>
@@ -138,6 +127,12 @@
 		// for the images :
 		var medias = [];
 		var imagesCaroussel = new MediaCarousel(mediaManager, 'imagesManager', 'image', medias, false);
+		// for the audio :
+
+		var imagesCaroussel = new MediaCarousel(mediaManager, 'audiosManager', 'audio', [], false);
+		
+		// for the video :
+		var imagesCaroussel = new MediaCarousel(mediaManager, 'videosManager', 'video', [], false);
 		
 // 		// for the audio :
 // 		medias = [];
