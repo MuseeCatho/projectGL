@@ -47,6 +47,10 @@
 			method="getLastEnrichmentId">
 			<result name="success">result.jsp</result>
 		</action>
+		<action name="getLastPhotosId" class="action.DetailAction"
+			method="getLastPhotosId">
+			<result name="success">result.jsp</result>
+		</action>
 		<action name="addEnrichments" class="action.DetailAction"
 			method="addEnrichments">
 			<result name="success">result.jsp</result>
