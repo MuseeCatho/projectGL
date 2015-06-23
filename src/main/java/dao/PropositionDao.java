@@ -10,5 +10,6 @@ public interface PropositionDao<Proposition, Integer> {
 	
 	public void insertProposition(Proposition entity);	
 	public Collection<mapping.Proposition> getProposition(Integer object_id);
+	public Collection<Proposition> getListProposition(Integer id_enrichments);
 
 }
