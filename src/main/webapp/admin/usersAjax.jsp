@@ -12,7 +12,7 @@
 		<tr>
 			<th>pseudo</th>
 			<th>email</th>
-			<th>prénom</th>
+			<th>prï¿½nom</th>
 			<th>nom</th>
 			<th>pays</th>
 			<th>ville</th>
@@ -92,14 +92,14 @@
 					<table class="table">
 						<caption><strong>Profil de <s:property value="pseudo"/></strong><br/></caption>
 						<tbody>
-							<tr><td>prénom</td><td><s:property value="firstname"/></td></tr>
+							<tr><td>prï¿½nom</td><td><s:property value="firstname"/></td></tr>
 							<tr><td>nom</td><td><s:property value="name"/></td></tr>
 							<tr><td>pseudo</td><td><s:property value="pseudo"/></td></tr>
 							<tr>
-							<td>métier</td>
+							<td>mï¿½tier</td>
 							<td>
 								<s:if test="job==''">
-									non spécifié
+									non spï¿½cifiï¿½
 								</s:if>
 								<s:else>
 									<s:property value="job"/>
@@ -147,7 +147,7 @@
 							enlever les droits d'administrateur de 
 						</s:if>
 						<s:else>
-							donner les droits d'administrateur à
+							donner les droits d'administrateur ï¿½
 						</s:else>
 						<s:property value="pseudo"/> ?</span>
 						<br/><br/>

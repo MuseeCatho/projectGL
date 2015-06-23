@@ -62,7 +62,7 @@
 									<div>
 										<div class="tablecell" class="row">
 											<s:iterator value="listDetail" status="listD">
-												
+												<s:if test="showI == false">
 													<div id="photoDetail"
 														class="photoDetail col-xs-4 col-sm-3 col-md-2 ">
 														<img border-color="blue" id="listPhotosImg"
@@ -81,7 +81,7 @@
 															height="30">
 														</a>
 													</div>
-										
+												</s:if>
 											</s:iterator>
 										</div>
 									</div>

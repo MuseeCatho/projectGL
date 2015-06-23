@@ -47,6 +47,10 @@
 			method="getLastEnrichmentId">
 			<result name="success">result.jsp</result>
 		</action>
+		<action name="getLastPhotosId" class="action.DetailAction"
+			method="getLastPhotosId">
+			<result name="success">result.jsp</result>
+		</action>
 		<action name="addEnrichments" class="action.DetailAction"
 			method="addEnrichments">
 			<result name="success">result.jsp</result>
@@ -235,6 +239,14 @@
 		<action name="showEnrichment" class="action.PropositionAction"
 			method="showEnrichment">
 			<result name="success">propositions_manager.jsp</result>
+		</action>
+		<action name="detailEnrichment" class="action.PropositionAction"
+			method="detailEnrichment">
+			<result name="success">propositions_detail.jsp</result>
+		</action>
+		<action name="getListProposition" class="action.PropositionAction"
+			method="getListProposition">
+			<result name="success">resultAjax.jsp</result>
 		</action>
 		<!-- END PROPOSITION -->
 		<action name="selectAction" class="action.ObjectAction" method="display">

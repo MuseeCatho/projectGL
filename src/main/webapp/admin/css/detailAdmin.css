@@ -1,0 +1,187 @@
+@CHARSET "UTF-8";
+
+div {
+	border-width: 2px;
+}
+
+#bodyDetail {
+	background-color: #DCDCDC;
+}
+
+#container {
+}
+
+#header {
+	margin: auto;
+	background-color: white;
+}
+
+#header-object {
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+h1 {
+	
+}
+
+#titleDetail {
+	display: block;
+	font-size: 1em;
+	padding: 2px 0 0 0;
+	color: #A66F4D;
+}
+
+.modification {
+	text-align: right;
+	margin-top: 35px;
+}
+
+.bouttonModification {
+	margin-right: 25px;
+	width: 80%;
+}
+
+#descriptionDetail_text {
+	width: 100%;
+	min-height: 20%;
+}
+
+#descriptionDetail {
+	width: 100%;
+	margin-top: 35px;
+}
+
+.videoDetail {
+	margin-top: 50px;
+}
+
+#image3DDetail {
+	display: inline-block;
+	margin-top: 25px;
+	text-align: center;
+	border: 1px solid grey;
+	border-radius: 2px;
+	width: 400px;
+	height: 400px;
+	margin-left: 50px;
+	text-align: center;
+}
+
+#commentaireDetail {
+	background-color: white;
+	margin-top: 30px;
+}
+
+#commentaireDetailTextarea {
+	margin-bottom: 30px;
+}
+
+#listPhotos {
+	display: none;
+	text-align: center;
+}
+
+#listPhotosImg {
+	max-height: 100%;
+	max-width: 85%;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 1px;
+	right: 30px;
+}
+
+.tablecell {
+	display: table;
+	border-spacing: 10px;
+}
+
+.photoDetail {
+	border-radius: 5px;
+	width: 280px;
+	height: 180px;
+	margin: 25px 0 0 25px;
+	display: table-cell;
+	border: 3px solid rgb(38, 90, 136);
+	box-shadow: 5px 5px 1px rgb(119, 119, 119);
+	background-color: #eee;
+}
+
+.photoDetailAdd {
+	border-radius: 5px;
+	width: 280px;
+	height: 180px;
+	margin: 25px 0 0 25px;
+	display: table-cell;
+	border: 6px solid rgb(0, 64, 0);
+	box-shadow: 5px 5px 1px rgb(119, 119, 119);
+	background-color: #ccc;
+}
+
+#ajoutMedia {
+	float: right;
+}
+
+.icon_ok {
+	display: none;
+}
+
+.icon_cancel {
+	display: inherit;
+}
+
+.icon {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+#annulationProposition {
+	display: none;
+}
+
+#modif_description {
+	display: none;
+}
+
+.video{
+position: relative;
+padding: 0px;
+font-size: 10px;
+vertical-align: middle;
+font-weight: 400;
+font-style: normal;
+font-family: Arial,sans-serif;
+-moz-user-select: none;
+}
+
+.videoDetail {
+	border-radius: 5px;
+	width: 270px;
+	height: 180px;
+	margin: 25px 0 0 3px;
+	display: table-cell;
+	border: 3px solid rgb(38, 90, 136);
+	box-shadow: 5px 5px 1px rgb(119, 119, 119);
+	background-color: #eee;
+	
+}
+
+#listVideo {
+	display:none;
+	text-align: center;
+}
+
+#buttonAdmin{
+	width:35px;'
+}
+#buttonAdmin:hover{
+	width:30px;
+}
+
+#listPro{
+	min-height: 40px;
+}
+

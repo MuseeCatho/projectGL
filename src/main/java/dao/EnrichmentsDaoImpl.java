@@ -7,12 +7,14 @@ import java.util.List;
 import mapping.Category;
 import mapping.Enrichments;
 import mapping.ObjectMuseum;
+import mapping.Photos;
 import mapping.Proposition;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
@@ -40,7 +42,7 @@ public class EnrichmentsDaoImpl implements EnrichmentsDao<Enrichments, Integer> 
 		session.beginTransaction();
 		DetachedCriteria maxId = DetachedCriteria.forClass(Enrichments.class)
 				.setProjection(Projections.max("id"));
-		return session.createCriteria(Enrichments.class).list();
+		return session.createCriteria(Enrichments.class).add(Property.forName("id").eq(maxId)).list();
 	}
 
 	public Collection<Enrichments> getEnrichments() {
@@ -59,6 +61,13 @@ public class EnrichmentsDaoImpl implements EnrichmentsDao<Enrichments, Integer> 
 		Criteria cr = session.createCriteria(Enrichments.class);
 		List<Enrichments> results = cr.list();
 		return results;
-
+	}
+	public Collection<Enrichments> getObjectEnrichments(Integer idObject) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(Enrichments.class);
+		cr.add(Restrictions.eq("object_id",idObject));
+		List<Enrichments> results = cr.list();
+		return results;
 	}
 }
