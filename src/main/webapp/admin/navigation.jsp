@@ -7,9 +7,6 @@
 				<li<%if (pageName != null && pageName.equals("welcome"))out.print(" class=\"active\"");%>>
 					<a href="index.jsp">Accueil<span class="sr-only">(current)</span></a>
 				</li>
-				<li<%if (pageName != null && pageName.equals("profile_manager"))out.print(" class=\"active\"");%>>
-					<a href="profil.jsp">Gestion de profil<span class="sr-only">(current)</span></a>
-				</li>
 				<li<%if (pageName != null && pageName.equals("objects_manager"))out.print(" class=\"active\"");%>>
 					<a href="control_object.action?orderObject=true">Gestion des oeuvres<span class="sr-only">(current)</span></a>
 				</li>
