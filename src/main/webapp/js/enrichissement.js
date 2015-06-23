@@ -438,7 +438,7 @@ function SaveModif(arrayImage2, object, idUser, arrayImageUpload) {
 					"listImageUploadS" : arrayImageString
 				},
 				success : function(data) {
-				},
+				}
 			});
 			addPhotos();
 			getLastPhotosId();

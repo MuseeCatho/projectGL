@@ -65,7 +65,7 @@
 								</s:else>
 							</s:else>
 							onclick = "event.stopPropagation();prettyAlert('modalPermuteBanUser<s:property value="id"/>', function(){usersData.permuteBan(<s:property value="id"/>);});"
-						"/>
+						/>
 						<img src="img/bouton-annuler-icone-6994-96.png"
 							<s:if test="admin==1">
 								title="supprimer l'administrateur" alt="supprimer l'administrateur"
@@ -87,63 +87,50 @@
 		<div class="modal fade" id="modalDisplayUser<s:property value="id"/>"
 			tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 			aria-hidden="true">
-			<div class="mediaModal modal-dialog">
-				<div class="modal-content">
-					<form class="modalForm" data-toggle="validator" role="form">
-						<div class="row">
-							<!-- PSEUDO -->
-							<div class="col-md-4">
-								<label for="pseudo_profil">Pseudo*</label> <input
-									class="form-control" id="pseudo_profil" type="text" required
-									autofocus>
-							</div>
-							<div class="col-md-4 col-md-offset-2" id="checkPseudo"></div>
-						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<label for="name_profil">Nom*</label> <input
-									class="form-control" id="name_profil" type="text" required>
-							</div>
-							<div class="col-md-4 col-md-offset-2">
-								<label for="firstName_profil">Prenom*</label> <input
-									class="form-control" id="firstName_profil" type="text" required>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<label for="email_profil">Email*</label> <input
-									class="form-control" id="email_profil" type="email" required>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<label for="country_profil">Pays*</label> <input
-									class="form-control" id="country_profil" type="text" required>
-							</div>
-							<div class="col-md-4 col-md-offset-2">
-								<label for="city_profil">Ville*</label> <input
-									class="form-control" id="city_profil" type="text" required>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<label for="job_profil">Métier</label> <input
-									class="form-control" id="job_profil" type="text">
-							</div>
-						</div>
-						</br>
-						<div class="row">
-							<div class="col-md-4">
-								<p>* champs obligatoires</p>
-								<div id="errorInscription" style="color: red;"></div>
-							</div>
-
-							<div class="col-md-3 col-md-offset-6">
-								<button type="button" class="btn btn-primary"
-									onclick="saveChange(<s:property value="#session.id_user" />);">Sauvegarder</button>
-							</div>
-						</div>
-					</form>
+			<div class="modal-dialog">
+				<div class="displayUser modal-content">
+					<table class="table">
+						<caption><strong>Profil de <s:property value="pseudo"/></strong><br/></caption>
+						<tbody>
+							<tr><td>prénom</td><td><s:property value="firstname"/></td></tr>
+							<tr><td>nom</td><td><s:property value="name"/></td></tr>
+							<tr><td>pseudo</td><td><s:property value="pseudo"/></td></tr>
+							<tr>
+							<td>métier</td>
+							<td>
+								<s:if test="job==''">
+									non spécifié
+								</s:if>
+								<s:else>
+									<s:property value="job"/>
+								</s:else>
+							</td>
+							</tr>
+							<tr><td>pays</td><td><s:property value="country"/></td></tr>
+							<tr><td>ville</td><td><s:property value="city"/></td></tr>
+							<tr><td>email</td><td><s:property value="mail"/></td></tr>
+							<tr><td>bannis ?</td>
+							<td>
+								<s:if test="ban==1">
+									oui
+								</s:if>
+								<s:else>
+									non
+								</s:else>
+							</td>
+							</tr>
+							<tr><td>administrateur ?</td>
+							<td>
+								<s:if test="admin==1">
+									oui
+								</s:if>
+								<s:else>
+									non
+								</s:else>
+							</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
