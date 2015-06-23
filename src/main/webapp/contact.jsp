@@ -3,13 +3,18 @@
 <!DOCTYPE html>
 <html>
 
-<style type="text/css">
-</style>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<s:include value="import.jsp"></s:include>
+	
+	<title>Museum</title>
+</head>
 <body>
-	<div id="container">
-
-
 		<s:include value="header.jsp"></s:include>
+
+
+
+
 
 
 
@@ -82,6 +87,5 @@
    </div>
 
 
-		</div>
 </body>
 </html>
