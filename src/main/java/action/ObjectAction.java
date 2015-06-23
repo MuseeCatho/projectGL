@@ -71,7 +71,7 @@ public class ObjectAction extends ActionSupport {
 		this.period = period;
 	}
 
-	public String addObjectAction() {
+	public String addObjectAction() throws Exception {
 
 		PeriodDaoImpl periods = new PeriodDaoImpl();
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
@@ -118,14 +118,21 @@ public class ObjectAction extends ActionSupport {
 			System.out.println("id objet :" + object.getId());
 			ObjectCategoryDaoImpl objCat = new ObjectCategoryDaoImpl();
 			objCat.insertCategoryOfObject(listCatId, object.getId());
-			PhotosDaoImpl photoSiteDao = new PhotosDaoImpl();
+			PhotosDaoImpl photoDao = new PhotosDaoImpl();
 			String webroot;
-			System.out.println(this.file1);
+			//System.out.println(this.file1);
 			System.out.println(this.uploadFileNames);
 			if(this.uploadFileNames!=null){
+				
 				webroot="img"+File.separatorChar+this.uploadFileNames[0];
-				Photos photos=new Photos(new Integer(1), webroot,object.getId(),"","",true);
-				photoSiteDao.insertPhotos(photos);
+				String webrootAbsolut = getPath()+File.separatorChar+webroot;
+				upload(webrootAbsolut);
+				for(int i=0; i<this.uploadFileNames.length;i++){
+					webroot="img"+File.separatorChar+this.uploadFileNames[i];
+					Photos photos=new Photos(new Integer(1), webroot,object.getId(),"","",false);
+					photoDao.insertPhotos(photos);
+				}
+				
 			}
 			
 
