@@ -7,7 +7,7 @@ import org.apache.commons.io.FileUtils;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class FileUpload extends ActionSupport {
+public class FileUpload extends ActionSupport{
 	private File[] uploads;
 	private String[] uploadFileNames;
 	private String[] uploadContentTypes;

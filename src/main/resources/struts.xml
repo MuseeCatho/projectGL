@@ -7,6 +7,7 @@
 	<constant name="struts.custom.i18n.resources" value="global" />
 	<constant name="struts.devMode" value="false" />
 
+
 	<package name="tutorial" namespace="/" extends="struts-default">
 		<action name="hello" class="tutorial.HelloAction">
 			<result>/index.jsp</result>
@@ -18,20 +19,32 @@
 		</action>
 	</package>
 	<package name="action" namespace="/" extends="struts-default">
+	<action name="contact" class="action.ContactAction" method="getInfoContact">
+			<result name="success">contact.jsp</result>
+		</action>
+		
+		
 		<action name="getLocationForMap" class="action.MapAction"
 			method="getLocation">
 			<result name="success">result.jsp</result>
 		</action>
-		<action name="locale" class="action.LocaleAction">
-			<result name="SUCCESS" type="redirectAction">index.action</result>
+
+		<!-- Contact -->
+		<action name="contact" class="action.ContactAction" method="getInfoContact">
+			<result name="success">contact.jsp</result>
 		</action>
+
+
+
+		<!-- end Contact -->
+
+		<action name="locale" class="action.LocaleAction">
+			<result name="SUCCESS" type="redirectAction">/index.action</result>
+		</action>
+
 		<!-- DETAILS OBJECT -->
 		<action name="getLastEnrichmentId" class="action.DetailAction"
 			method="getLastEnrichmentId">
-			<result name="success">result.jsp</result>
-		</action>
-		<action name="getLastPhotosId" class="action.DetailAction"
-			method="getLastPhotosId">
 			<result name="success">result.jsp</result>
 		</action>
 		<action name="addEnrichments" class="action.DetailAction"
@@ -48,6 +61,10 @@
 		<action name="addPhotos" class="action.DetailAction" method="addPhotos">
 			<result name="success">result.jsp</result>
 		</action>
+		<action name="addVideo" class="action.DetailAction" method="addVideo">
+		<result name="success" type="redirectAction"> <param name="actionName">detailObject.action</param>
+		<param name="id">${idPage}</param></result>
+		</action>
 		<action name="detailObject" class="action.DetailAction" method="showdetail">
 			<result name="success">detail.jsp</result>
 		</action>
@@ -58,7 +75,7 @@
 		<action name="logOut" class="action.UsersAction" method="logOut">
 			<result name="success">index.jsp</result>
 		</action>
-		<action name="add_user" class="action.UsersAction" method="addUser">
+		<action name="add_user" class="action.UsersAction" method="addUservi">
 			<result name="success">result.jsp</result>
 		</action>
 		<action name="checkPseudo" class="action.UsersAction" method="checkPseudo">
@@ -117,6 +134,16 @@
 	
 	
 	<package name="test" namespace="/admin" extends="struts-default">
+
+
+	<!--  <action name="control_informations" class="action.ContactAction" method="getInfoContact">
+            <result name="success">control_informations.jsp</result>
+   		</action>-->
+		<action name="updateContact" class="action.ContactAction"
+			method="updateContact">
+			<result name="success"  type="redirectAction">control_informations.action</result>
+		</action>
+
 		<action name="sign" class="action.UsersAction" method="signIn">
 			<result name="success">resultAjax.jsp</result>
 		</action>
@@ -124,9 +151,11 @@
 		<action name="add_object" class="action.ObjectAction" method="addObjectAction">
 			<result name="success">add_object.jsp</result>
 		</action>
-		<action name="control_object" class="action.ObjectAction"
-			method="listObject">
+		<action name="control_object" class="action.ObjectAction" method="listObject">
 			<result name="success">control_object.jsp</result>
+		</action>
+		<action name="deleteObject" class="action.ObjectAction" method="deleteObject">
+			<result name="success">resultAjax.jsp</result>
 		</action>
 		<!-- END CONTROL OBJECT -->
 		<!-- CATEGORY -->
@@ -196,11 +225,15 @@
 		<!-- END USERS -->
 		<!-- INFORMATION MUSEUM -->
 		<action name="addPhotoPresentation" class="action.HomeAction" method="addPhotoPresentation">
+			<result name="success" type="redirectAction">control_informations.action</result>
+   		</action>
+   		<action name="control_informations" class="action.HomeAction" method="homeInfoMuseum">
 			<result name="success">control_informations.jsp</result>
    		</action>
 		<!-- END INFORMATION MUSEUM -->
 		<!-- PROPOSITION -->
-		<action name="showEnrichment" class="action.PropositionAction" method="showEnrichment">
+		<action name="showEnrichment" class="action.PropositionAction"
+			method="showEnrichment">
 			<result name="success">propositions_manager.jsp</result>
 		</action>
 		<!-- END PROPOSITION -->

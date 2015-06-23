@@ -10,6 +10,8 @@
 <link href="./css/alert.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+	<s:if test="%{#session.id_userAdmin!=null}">
+	
 	<s:include value="header_admin.jsp"></s:include>
 	<s:include value="navigation.jsp">
 		<s:param name="pageName">users_manager</s:param>
@@ -40,6 +42,15 @@
 	</div>
 </div>
 </div>
+
+
+</s:if>
+	
+	<s:else>
+		<script>
+			window.location = '../admin/login.jsp';
+		</script>			  
+	</s:else>
 </body>
 </html>
 
