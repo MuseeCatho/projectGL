@@ -17,7 +17,7 @@
   
 <body>
 
-<s:if test="%{#session.id_user!=null}">
+<s:if test="%{#session.id_userAdmin!=null}">
 
   <s:include value="header_admin.jsp"></s:include> 
 	<jsp:include page="navigation.jsp">

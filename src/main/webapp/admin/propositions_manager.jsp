@@ -7,7 +7,7 @@
 <s:include value="import.jsp"></s:include>
 </head>
 <body>
-<s:if test="%{#session.id_user!=null}">
+<s:if test="%{#session.id_userAdmin!=null}">
 
 	<s:include value="header_admin.jsp"></s:include>
 	<jsp:include page="navigation.jsp">
@@ -21,15 +21,23 @@
 				<tr>
 					<th>Image</th>
 					<th>Nom de l'oeuvre</th>
-					<th>Date</th>
 					<th>Nombre de demande de modification</th>
 					<th>Details</th>
 				</tr>
 			</thead>
-			<tbody>azsdfghj
-			<s:iterator value="arrayListObject">asdfghjk
-					<s:property value="number" />
-			</s:iterator>
+			<tbody>
+				<s:iterator value="arrayListObject">
+					<tr>
+						<td><img border-color="blue" id="listPhotosImg"
+							src="../<s:property value="linkPhoto"/>" alt="Responsive image">
+						</td>
+						<td>
+						<s:property value="title_f"/>
+						</td>
+						<td>
+						<s:property value="number"/> propositions de modification
+						</td>
+					</s:iterator>
 			</tbody>
 		</table>
 

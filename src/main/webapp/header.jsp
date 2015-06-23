@@ -10,8 +10,7 @@
 <div id="hiddenBlockLanguage" style="display: none;">
 	<s:text name="global.language" />
 </div>
-            
-            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 			    <div class="container">
 			        <!-- Brand and toggle get grouped for better mobile display -->
 			        <div class="navbar-header">
@@ -29,7 +28,7 @@
 		                    <li><a href="index.action"><s:text name="global.home" /><span class="sr-only">(current)</span></a></li>
 		                    <li><a href="getOeuvre.action"><s:text name="global.art" /></a></li>
 		                    <li><a href="map.jsp"><s:text name="global.map" /></a></li>
-		                    <li><a href="contact.jsp"><s:text name="global.contact" /></a></li>
+		                    <li><a href="contact.action"><s:text name="global.contact" /></a></li>
 		                    
 		                    
 		                    <s:if test="%{#session.firstname!=null}">
@@ -183,8 +182,8 @@
 					        <div id="error" style="color:red;"></div>			      
 		      </div>
 		      <div class="modal-footer">
-
-		        <button type="button" class="btn btn-primary" onclick="signIn()"><s:text name="global.detailOeuvre" /></button>
+ 
+		        <button type="button" class="btn btn-primary" onclick="signIn()"><s:text name="global.signIn" /></button>
 		      </div>
 		    </div>
 		  </div>

@@ -14,7 +14,7 @@
 </style>
 <body>
 
-	<s:if test="%{#session.id_user!=null}">
+	<s:if test="%{#session.id_userAdmin!=null}">
 
  <s:include value="header_admin.jsp"></s:include>
 	<jsp:include page="navigation.jsp">
@@ -37,7 +37,7 @@
 		                </a>
 		            </div>
 		            <div class="col-md-8">
-		                <h3><s:property value="title_f"/></h3>
+		                <h3><s:property value="title_f"/> <a class="cursor_delete" onmouseover="" onclick="delete_object(<s:property value="idObject"/>)"><img src="../img/icon/cancel.png"></a></h3>
 		                <p><s:property value="description_f"/></p>
 		                <button onclick="getComment(<s:property value="idObject"/>,true)" id="button_object_<s:property value="idObject"/>">Nombre de commentaire non validés :<s:property value="commentNotValidate"/></button>
 		            </div>

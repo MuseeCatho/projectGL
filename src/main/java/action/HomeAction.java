@@ -10,12 +10,14 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 
 import mapping.Category;
+import mapping.Museum;
 import mapping.ObjectMuseum;
 import mapping.Photos_Site;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import dao.CategoryDaoImpl;
+import dao.ContactDaoImpl;
 import dao.PhotosSiteDaoImpl;
 
 public class HomeAction extends ActionSupport{
@@ -25,6 +27,7 @@ public class HomeAction extends ActionSupport{
 	 */
 	private static final long serialVersionUID = 1L;
 	private List<Category> listCategory;
+	private List<Museum> listMuseum;
 	String linkPhoto;
 	
 	public String getAllCategory(){
@@ -33,10 +36,17 @@ public class HomeAction extends ActionSupport{
 		listCategory =new ArrayList<Category>( categoriesDao.getCategory());
 		System.out.println("getAllCategory -- listCategory.size :"+listCategory.get(0).getName_e());
 		
-		//on récupère la photo de présentation du musée
+		//on rï¿½cupï¿½re la photo de prï¿½sentation du musï¿½e
 		PhotosSiteDaoImpl photoSiteDao = new PhotosSiteDaoImpl();
 		Photos_Site photoSite=photoSiteDao.findPhotoPresentation(new Integer(1));
-		linkPhoto=photoSite.getLink_photo();
+		if(photoSite!=null){
+			linkPhoto=photoSite.getLink_photo();
+		}else{
+			linkPhoto=photoSite.getLink_photo();
+		}
+		
+		ContactDaoImpl contactDao = new ContactDaoImpl();
+		listMuseum= new ArrayList(contactDao.getInfoMuseum());
 		
 		return SUCCESS;
 	}
@@ -45,8 +55,21 @@ public class HomeAction extends ActionSupport{
 		PhotosSiteDaoImpl photoSiteDao = new PhotosSiteDaoImpl();
 		Photos_Site photoSite=photoSiteDao.findPhotoPresentation(new Integer(1));
 		linkPhoto=photoSite.getLink_photo();
+		
+		
+
+		if(photoSite!=null){
+			linkPhoto=photoSite.getLink_photo();
+		}else{
+			linkPhoto=photoSite.getLink_photo();
+		}
+		
+		ContactDaoImpl contactDao = new ContactDaoImpl();
+		listMuseum= new ArrayList(contactDao.getInfoMuseum());
+		
 		return SUCCESS;
 	}
+	
 	
 	
 	public String addPhotoPresentation() throws Exception{
@@ -157,6 +180,14 @@ public class HomeAction extends ActionSupport{
 
 	public void setLinkPhoto(String linkPhoto) {
 		this.linkPhoto = linkPhoto;
+	}
+
+	public List<Museum> getListMuseum() {
+		return listMuseum;
+	}
+
+	public void setListMuseum(List<Museum> listMuseum) {
+		this.listMuseum = listMuseum;
 	}
     
 }

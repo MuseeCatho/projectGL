@@ -64,8 +64,13 @@ public class UsersAction extends ActionSupport{
 			result=0;
 		}else{
 			Map session = ActionContext.getContext().getSession();
-			session.put("id_user", user.getId());
-			session.put("firstname", user.getFirstname());
+			if(this.admin==1){
+				session.put("id_userAdmin", user.getId());
+				session.put("firstnameAdmin", user.getFirstname());
+			}else{
+				session.put("id_user", user.getId());
+				session.put("firstname", user.getFirstname());
+			}
 			result=1;
 		}
 		System.out.println(result);
