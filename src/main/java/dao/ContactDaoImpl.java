@@ -41,4 +41,6 @@ public class ContactDaoImpl implements ContactDao<Museum, Integer>{
         session.getTransaction().commit();
 	}
 	
+
 }
+

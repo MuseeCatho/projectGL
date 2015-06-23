@@ -28,7 +28,7 @@
 		                    <li><a href="index.action"><s:text name="global.home" /><span class="sr-only">(current)</span></a></li>
 		                    <li><a href="getOeuvre.action"><s:text name="global.art" /></a></li>
 		                    <li><a href="map.jsp"><s:text name="global.map" /></a></li>
-		                    <li><a href="contact.jsp"><s:text name="global.contact" /></a></li>
+		                    <li><a href="contact.action"><s:text name="global.contact" /></a></li>
 		                    
 		                    
 		                    <s:if test="%{#session.firstname!=null}">

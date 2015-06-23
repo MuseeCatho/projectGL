@@ -29,7 +29,34 @@ function AddObjectAdmin(){
 		document.getElementById("longitude").value=longitude;
 		document.getElementById("latitude").value=latitude;
 		//alert(document.getElementById("latitude").value);
-		var datas={ "title_f": title_f,
+		mediaManager.prepareToSave();
+		var formData = new FormData2();
+		formData.append('', mediaManager);
+		formData.append('title_f', title_f);
+		formData.append('title_e', title_e);
+		formData.append('description_f',description_f);
+		formData.append('description_e', description_e);
+		formData.append('reference', reference);
+		formData.append('country', country);
+		formData.append('city', city);
+		formData.append('latitude',latitude);
+		formData.append('longitude',longitude);
+		formData.append('period',$('#period').val());
+		
+		var listcat=[];
+		$("input:checked").each(function() {
+			listcat.push($(this).val());
+	       });
+		listcat=listcat.join(",");
+		formData.append('categories', listcat);
+		formData.send('admin/add_object.action', function(data){
+	    	 
+	    	   console.log(data);
+	    	   //window.location = 'http://localhost:8080/musee_catho/admin/index.jsp';
+	    	   //alert("ok");
+	    	
+	       }, function(){console.log('error in send');}, null);
+		/*var datas={ "title_f": title_f,
 					"title_e": title_e,
 		    	   "description_f": description_f,
 		    	   "description_e":description_e,
@@ -61,7 +88,7 @@ function AddObjectAdmin(){
 	    	   //alert("ok");
 	    	
 	       }
-	    });
+	    });*/
 	  alert("Objet ajoute ");
 	});
 	

@@ -119,5 +119,5 @@ public class ContactAction extends ActionSupport{
 		this.presentation_f = presentation_f;
 	}
 	
-
 }
+

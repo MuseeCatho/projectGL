@@ -27,8 +27,8 @@ public class HomeAction extends ActionSupport{
 	 */
 	private static final long serialVersionUID = 1L;
 	private List<Category> listCategory;
-	String linkPhoto;
 	private List<Museum> listMuseum;
+	String linkPhoto;
 	
 	public String getAllCategory(){
 		System.out.println("getAllCategory");
@@ -45,6 +45,9 @@ public class HomeAction extends ActionSupport{
 			linkPhoto=photoSite.getLink_photo();
 		}
 		
+		ContactDaoImpl contactDao = new ContactDaoImpl();
+		listMuseum= new ArrayList(contactDao.getInfoMuseum());
+		
 		return SUCCESS;
 	}
 	
@@ -54,13 +57,16 @@ public class HomeAction extends ActionSupport{
 		linkPhoto=photoSite.getLink_photo();
 		
 		
-		ContactDaoImpl contactDao = new ContactDaoImpl();
-		listMuseum= new ArrayList(contactDao.getInfoMuseum());
+
 		if(photoSite!=null){
 			linkPhoto=photoSite.getLink_photo();
 		}else{
 			linkPhoto=photoSite.getLink_photo();
 		}
+		
+		ContactDaoImpl contactDao = new ContactDaoImpl();
+		listMuseum= new ArrayList(contactDao.getInfoMuseum());
+		
 		return SUCCESS;
 	}
 	
@@ -183,6 +189,5 @@ public class HomeAction extends ActionSupport{
 	public void setListMuseum(List<Museum> listMuseum) {
 		this.listMuseum = listMuseum;
 	}
-	
     
 }

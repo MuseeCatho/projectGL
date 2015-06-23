@@ -76,6 +76,5 @@ public class Museum implements java.io.Serializable {
 			super();
 			// TODO Auto-generated constructor stub
 		}
-		
-		
+
 }

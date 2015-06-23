@@ -33,9 +33,6 @@ import javax.imageio.ImageReadParam;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
-
-import org.apache.commons.codec.binary.Base64;
-
 import javax.servlet.ServletContext;
 
 import mapping.Category;
