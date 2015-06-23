@@ -18,6 +18,7 @@ import mapping.Comment;
 import mapping.ObjectMuseum;
 import mapping.Period;
 import mapping.Photos;
+import mapping.Video;
 import mapping.Photos_Site;
 import bean.ObjectPage;
 import mapping.ObjectCategory;
@@ -31,6 +32,7 @@ import dao.PeriodDaoImpl;
 import dao.PhotosDaoImpl;
 import dao.ObjectCategoryDaoImpl;
 import dao.PhotosSiteDaoImpl;
+import dao.VideoDaoImpl;
 
 import com.google.gson.Gson;
 
@@ -71,7 +73,7 @@ public class ObjectAction extends ActionSupport {
 		this.period = period;
 	}
 
-	public String addObjectAction() {
+	public String addObjectAction() throws Exception {
 
 		PeriodDaoImpl periods = new PeriodDaoImpl();
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
@@ -118,14 +120,28 @@ public class ObjectAction extends ActionSupport {
 			System.out.println("id objet :" + object.getId());
 			ObjectCategoryDaoImpl objCat = new ObjectCategoryDaoImpl();
 			objCat.insertCategoryOfObject(listCatId, object.getId());
-			PhotosDaoImpl photoSiteDao = new PhotosDaoImpl();
+			PhotosDaoImpl photoDao = new PhotosDaoImpl();
+			VideoDaoImpl videoDao = new VideoDaoImpl();
 			String webroot;
-			System.out.println(this.file1);
+			//System.out.println(this.file1);
 			System.out.println(this.uploadFileNames);
 			if(this.uploadFileNames!=null){
-				webroot="img"+File.separatorChar+this.uploadFileNames[0];
-				Photos photos=new Photos(new Integer(1), webroot,object.getId(),"","",true);
-				photoSiteDao.insertPhotos(photos);
+				
+				upload();
+				for(int i=0; i<this.uploadFileNames.length;i++){
+					webroot="img"+File.separatorChar+this.uploadFileNames[i];
+					String webrootAbsolut = getPath()+File.separatorChar+webroot;
+					System.out.println("this.uploadContentTypes[i] "+this.uploadContentTypes[i]);
+				
+					Photos photos=new Photos(new Integer(1), webroot,object.getId(),"","",false);
+					photoDao.insertPhotos(photos);
+					
+					/*if(this.uploadContentTypes )//si c'est un type video
+					webroot="video"+File.separatorChar+this.uploadFileNames[i];
+					Video video=new Video(new Integer(1), webroot,object.getId(),"","",false);
+					videoDao.insertVideos(video);*/
+				}
+				
 			}
 			
 
@@ -153,13 +169,13 @@ public class ObjectAction extends ActionSupport {
 	}
 
 
-    public void upload(String path) throws Exception {
+    public void upload() throws Exception {
     	/* write the files in the eclipse repository */
         System.out.println("\n\n upload2");
         System.out.println("files:");
         for(int i = 0; i < uploads.length; i++) {
             System.out.println("*** " + uploads[i] + "\t" + uploads[i].length());
-            File dest = new File(path);
+            File dest = new File(getPath()+File.separatorChar+"img"+File.separatorChar+this.uploadFileNames[i]);
 			FileUtils.copyFile(uploads[i], dest);
         }
         System.out.println("filenames:");

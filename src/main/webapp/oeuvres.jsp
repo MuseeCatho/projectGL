@@ -32,6 +32,7 @@
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2">
             <div class="col-lg-4">
+            <s:property value="link_photos"/>
                 <a href="#">
                     <img src="<s:property value="link_photos"/>" class="img-responsive" alt="Responsive image">
                 </a>
