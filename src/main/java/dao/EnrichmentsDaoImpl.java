@@ -59,6 +59,13 @@ public class EnrichmentsDaoImpl implements EnrichmentsDao<Enrichments, Integer> 
 		Criteria cr = session.createCriteria(Enrichments.class);
 		List<Enrichments> results = cr.list();
 		return results;
-
+	}
+	public Collection<Enrichments> getObjectEnrichments(Integer idObject) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(Enrichments.class);
+		cr.add(Restrictions.eq("object_id",idObject));
+		List<Enrichments> results = cr.list();
+		return results;
 	}
 }

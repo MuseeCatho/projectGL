@@ -18,6 +18,7 @@ import mapping.Comment;
 import mapping.ObjectMuseum;
 import mapping.Period;
 import mapping.Photos;
+import mapping.Video;
 import mapping.Photos_Site;
 import bean.ObjectPage;
 import mapping.ObjectCategory;
@@ -31,6 +32,7 @@ import dao.PeriodDaoImpl;
 import dao.PhotosDaoImpl;
 import dao.ObjectCategoryDaoImpl;
 import dao.PhotosSiteDaoImpl;
+import dao.VideoDaoImpl;
 
 import com.google.gson.Gson;
 
@@ -119,6 +121,7 @@ public class ObjectAction extends ActionSupport {
 			ObjectCategoryDaoImpl objCat = new ObjectCategoryDaoImpl();
 			objCat.insertCategoryOfObject(listCatId, object.getId());
 			PhotosDaoImpl photoDao = new PhotosDaoImpl();
+			VideoDaoImpl videoDao = new VideoDaoImpl();
 			String webroot;
 			//System.out.println(this.file1);
 			System.out.println(this.uploadFileNames);
@@ -128,9 +131,15 @@ public class ObjectAction extends ActionSupport {
 				for(int i=0; i<this.uploadFileNames.length;i++){
 					webroot="img"+File.separatorChar+this.uploadFileNames[i];
 					String webrootAbsolut = getPath()+File.separatorChar+webroot;
-					
+					System.out.println("this.uploadContentTypes[i] "+this.uploadContentTypes[i]);
+				
 					Photos photos=new Photos(new Integer(1), webroot,object.getId(),"","",false);
 					photoDao.insertPhotos(photos);
+					
+					/*if(this.uploadContentTypes )//si c'est un type video
+					webroot="video"+File.separatorChar+this.uploadFileNames[i];
+					Video video=new Video(new Integer(1), webroot,object.getId(),"","",false);
+					videoDao.insertVideos(video);*/
 				}
 				
 			}

@@ -37,6 +37,9 @@
 						<td>
 						<s:property value="number"/> propositions de modification
 						</td>
+						<td>
+						<a href="detailEnrichment.action?id=<s:property value="idObject"/>">Détail</a>
+						</td>
 					</s:iterator>
 			</tbody>
 		</table>
