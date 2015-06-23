@@ -49,7 +49,7 @@ function AddObjectAdmin(){
 	       });
 		listcat=listcat.join(",");
 		formData.append('categories', listcat);
-		formData.send('admin/add_object.action', function(data){
+		formData.send('admin/test.action', function(data){
 	    	 
 	    	   console.log(data);
 	    	   //window.location = 'http://localhost:8080/musee_catho/admin/index.jsp';

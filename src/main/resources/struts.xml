@@ -161,6 +161,9 @@
 		<action name="deleteObject" class="action.ObjectAction" method="deleteObject">
 			<result name="success">resultAjax.jsp</result>
 		</action>
+		<action name="test" class="action.ObjectAction" method="addObjectAction">
+			<result name="success">add_object.jsp</result>
+		</action>
 		<!-- END CONTROL OBJECT -->
 		<!-- CATEGORY -->
 		<action name="get_category">

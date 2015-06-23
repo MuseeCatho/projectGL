@@ -21,7 +21,7 @@
 
   <s:include value="header_admin.jsp"></s:include> 
 	<jsp:include page="navigation.jsp">
-		<jsp:param name="pageName" value="objects_manager"/>
+		<jsp:param name="pageName" value="informations_manager"/>
 	</jsp:include>
 	
 	

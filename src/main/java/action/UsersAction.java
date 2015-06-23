@@ -91,8 +91,8 @@ public class UsersAction extends ActionSupport{
 	
 	public String logOutAdmin() throws Exception { 
 		Map session = ActionContext.getContext().getSession();
-		session.remove("id_user");
-		session.remove("firstname");
+		session.remove("id_userAdmin");
+		session.remove("firstnameAdmin");
 		return SUCCESS;
 	}
 	public String getInfoProfil(){
@@ -370,4 +370,5 @@ public class UsersAction extends ActionSupport{
 	public void setBan(int ban) {
 		this.ban = ban;
 	}
+	
 }

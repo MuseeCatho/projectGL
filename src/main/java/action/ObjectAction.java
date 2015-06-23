@@ -147,16 +147,6 @@ public class ObjectAction extends ActionSupport {
 				}
 				
 			}
-			
-
-			/*String webrootAbsolut = getPath()+File.separatorChar+webroot;
-			upload(webrootAbsolut);
-			Photos_Site entity =new Photos_Site(new Integer(1),"photo presentation",webroot);
-			if(photoSite==null){
-				photoSiteDao.insertPhotoPresentation(entity);
-			}else{
-				photoSiteDao.updatePhotoPresentation(entity);
-			}*/
 			result = 1;
 			System.out.println("objet ajout�");
 
