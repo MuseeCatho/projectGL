@@ -218,9 +218,14 @@
 						</div>
 
 					</div>
+				
+			<br>
+			<br>
+			<div class="row">
+			<div class="col-lg-5 col-lg-offset-1">
+				<h2>Comments</h2>	
 			</div>
-			</s:iterator>
-			<hr>
+			</div>
 			<s:if test="%{#session.firstname!=null}">
 				<div class="row">
 					<div class="col-lg-5 col-lg-offset-1">
@@ -237,11 +242,9 @@
 						</div>
 					</div>
 				</div>
-			</s:if>
-
-
-			<div class="row">
-				<div class="col-lg-5 col-lg-offset-1">
+			</s:if>		
+					
+			<div class="col-lg-5 col-lg-offset-1">
 
 
 					<s:iterator value="listCommentAndNameUser">
@@ -250,7 +253,7 @@
 								<div class="media-body">
 									<h4 class="media-heading">
 										<s:property value="pseudo" />
-										<small><s:date name="date" format="dd/MM/yyyy" /> ï¿½ <s:date
+										<small><s:date name="date" format="dd/MM/yyyy" /> à <s:date
 												name="date" format="hh:mm:ss" /></small>
 									</h4>
 									<s:property value="text" />
@@ -259,7 +262,19 @@
 							</div>
 						</s:if>
 					</s:iterator>
-				</div>
+				</div>		
+					
+					
+					
+					
+			</div>
+			</s:iterator>
+			<hr>
+			
+
+
+			<div class="row">
+				
 			</div>
 
 		</div>
