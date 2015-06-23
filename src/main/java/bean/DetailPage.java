@@ -28,12 +28,13 @@ public class DetailPage implements java.io.Serializable {
 	private Double longitude;
 	private String name;
 	private String link_photos;
+	private String link_video;
 	
 	public DetailPage(int idObject, Integer period_id, String title_f,String title_e,
 			String country, String reference, String description_e,
 			String description_f, String length, String heigth, String width,
 			String archeologist, Date date, String city, Double latitude,
-			Double longitude, String name, String link_photos) {
+			Double longitude, String name, String link_photos, String link_video) {
 		this.idObject = idObject;
 		this.period_id = period_id;
 		this.title_f = title_f;
@@ -52,6 +53,17 @@ public class DetailPage implements java.io.Serializable {
 		this.longitude = longitude;
 		this.name = name;
 		this.link_photos=link_photos;
+		this.link_video=link_video;
+	}
+
+
+	public String getLink_video() {
+		return link_video;
+	}
+
+
+	public void setLink_video(String link_video) {
+		this.link_video = link_video;
 	}
 
 

@@ -13,7 +13,7 @@
   
 <body>
 
-<s:if test="%{#session.id_user!=null}">
+<s:if test="%{#session.id_userAdmin!=null}">
 
  <s:include value="header_admin.jsp"></s:include>
 	<jsp:include page="navigation.jsp">
@@ -21,7 +21,7 @@
 	</jsp:include>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header"><a href="control_informations.jsp">Gestion des informations</a>  > Gestion des périodes</h1>
+          <h1 class="page-header"><a href="control_informations.action">Gestion des informations</a>  > Gestion des périodes</h1>
           
           <h3 class="page-header">Ajout d'une période</h3>
           
@@ -77,10 +77,6 @@
 		    <tbody>
 		    </tbody>
 		  </table>
-
-		<script>
-	    
-	    	 </script>
 		</div>
 
 </s:if>

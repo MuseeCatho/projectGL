@@ -7,7 +7,7 @@
 	<s:include value="import.jsp"></s:include>
 </head>
 <body>
-<s:if test="%{#session.id_user!=null}">
+<s:if test="%{#session.id_userAdmin!=null}">
 
 
 	<s:include value="header_admin.jsp"></s:include>
@@ -20,7 +20,8 @@
 				<h1 class="page-header">TITRE</h1>
 
 
-
+  
+  
 			</div>
 		</div>
 	</div>
