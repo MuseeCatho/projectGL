@@ -2,6 +2,7 @@ function MediaManager(){
 	this.medias = [];
 	this.mediasToAdd = [];
 	this.mediasToDelete = [];
+	this.mediasToDeleteType = [];
 }
 
 MediaManager.prototype = {
@@ -16,6 +17,7 @@ MediaManager.prototype = {
 				}
 				else if(media.deleteIt && media.id != null){
 					this.mediasToDelete.push(media);
+					this.mediasToDeleteType.push(media.type);
 				}
 			}
 		}
@@ -28,10 +30,10 @@ function MediaCarousel(mediaManager, divId, type, medias, canModify){
 		this.allowedFileTypes = [ 'png', 'jpg', 'jpeg', 'gif' ];
 	}
 	else if(type == 'audio'){
-		this.allowedFileTypes = [];
+		this.allowedFileTypes = ['mp3'];
 	}
 	else if(type == 'video'){
-		this.allowedFileTypes = [];
+		this.allowedFileTypes = ['mp4','avi'];
 	}
 	else{
 		this.allowedFileTypes = [];
