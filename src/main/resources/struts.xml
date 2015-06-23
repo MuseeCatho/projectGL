@@ -112,7 +112,7 @@
 
 		<!-- TESTS : -->
 		<action name="upload_file" class="action.FileUpload" method="upload">
-			<result name="success">result.jsp</result>
+			<result name="success">index.jsp</result>
 		</action>
 		<action name="test_dao" class="action.Test_DAO" method="test_UserDAO">
 			<result name="success">test_dao.jsp</result>
