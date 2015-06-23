@@ -124,11 +124,11 @@ public class ObjectAction extends ActionSupport {
 			System.out.println(this.uploadFileNames);
 			if(this.uploadFileNames!=null){
 				
-				webroot="img"+File.separatorChar+this.uploadFileNames[0];
-				String webrootAbsolut = getPath()+File.separatorChar+webroot;
-				upload(webrootAbsolut);
+				upload();
 				for(int i=0; i<this.uploadFileNames.length;i++){
 					webroot="img"+File.separatorChar+this.uploadFileNames[i];
+					String webrootAbsolut = getPath()+File.separatorChar+webroot;
+					
 					Photos photos=new Photos(new Integer(1), webroot,object.getId(),"","",false);
 					photoDao.insertPhotos(photos);
 				}
@@ -160,13 +160,13 @@ public class ObjectAction extends ActionSupport {
 	}
 
 
-    public void upload(String path) throws Exception {
+    public void upload() throws Exception {
     	/* write the files in the eclipse repository */
         System.out.println("\n\n upload2");
         System.out.println("files:");
         for(int i = 0; i < uploads.length; i++) {
             System.out.println("*** " + uploads[i] + "\t" + uploads[i].length());
-            File dest = new File(path);
+            File dest = new File(getPath()+File.separatorChar+"img"+File.separatorChar+this.uploadFileNames[i]);
 			FileUtils.copyFile(uploads[i], dest);
         }
         System.out.println("filenames:");
