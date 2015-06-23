@@ -125,16 +125,25 @@ public class ObjectAction extends ActionSupport {
 			String webroot;
 			//System.out.println(this.file1);
 			System.out.println(this.uploadFileNames);
-			if(this.uploadFileNames!=null){
+			if(this.uploadFileNames!=null){//des fichiers sont importés 
 				
 				upload();
 				for(int i=0; i<this.uploadFileNames.length;i++){
-					webroot="img"+File.separatorChar+this.uploadFileNames[i];
+					String type="";
+					type=recognizeType(this.uploadContentTypes[i]);
+					webroot="upload\\"+type+File.separatorChar+this.uploadFileNames[i];
 					String webrootAbsolut = getPath()+File.separatorChar+webroot;
-					System.out.println("this.uploadContentTypes[i] "+this.uploadContentTypes[i]);
-				
-					Photos photos=new Photos(new Integer(1), webroot,object.getId(),"","",false);
-					photoDao.insertPhotos(photos);
+					System.out.println("this.uploadContentTypes[i] :"+this.uploadContentTypes[i]);
+					
+					if(type.equals("image")){
+						Photos photos=new Photos(new Integer(1), webroot,object.getId(),"","",false);
+						photoDao.insertPhotos(photos);
+					}
+					else if(type.equals("video")){
+						Video video=new Video(new Integer(1), webroot,object.getId(),"","",false);
+						videoDao.insertVideos(video);
+					}
+
 					
 					/*if(this.uploadContentTypes )//si c'est un type video
 					webroot="video"+File.separatorChar+this.uploadFileNames[i];
@@ -168,14 +177,40 @@ public class ObjectAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-
+	
+	public static String cutSlash(String string){
+		String[] stringArray;
+		stringArray=string.split("/");
+		//System.out.println(string);
+		
+		string=stringArray[0];
+		System.out.println(string);
+		return string;
+	}
+	
+	public static String recognizeType(String media){
+		String type;
+		if(cutSlash(media).equals("image")){
+    		type="image";
+    	}
+    	else if(cutSlash(media).equals("video")){
+    		type="video";
+    	}
+    	else{
+    		type="audio";
+    	}
+		return type;
+	}
+	
     public void upload() throws Exception {
     	/* write the files in the eclipse repository */
         System.out.println("\n\n upload2");
         System.out.println("files:");
+        String type="";
         for(int i = 0; i < uploads.length; i++) {
+        	type=recognizeType(this.uploadContentTypes[i]);//va identifier le type du media
             System.out.println("*** " + uploads[i] + "\t" + uploads[i].length());
-            File dest = new File(getPath()+File.separatorChar+"img"+File.separatorChar+this.uploadFileNames[i]);
+            File dest = new File(getPath()+File.separatorChar+"upload\\"+type+File.separatorChar+this.uploadFileNames[i]);
 			FileUtils.copyFile(uploads[i], dest);
         }
         System.out.println("filenames:");
