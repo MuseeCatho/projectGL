@@ -46,9 +46,17 @@ public class EnrichmentsDaoImpl implements EnrichmentsDao<Enrichments, Integer> 
 	public Collection<Enrichments> getEnrichments() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		Criteria cr = session.createCriteria(Enrichments.class)/*.setProjection(
-				Projections.projectionList().add(
-						Projections.groupProperty("object_id")))*/;
+		Criteria cr = session.createCriteria(Enrichments.class)
+				.setProjection(Projections.projectionList()
+						.add(Projections.groupProperty("object_id").as("object_id")));
+		List<Enrichments> results = cr.list();
+		System.out.println(results);
+		return results;
+	}
+	public Collection<Enrichments> getTotalEnrichments() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(Enrichments.class);
 		List<Enrichments> results = cr.list();
 		return results;
 

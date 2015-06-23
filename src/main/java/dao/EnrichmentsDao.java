@@ -9,4 +9,5 @@ public interface EnrichmentsDao<Enrichments, Integer> {
 	public void insertEnrichments(Enrichments entity);
 	public Collection<Enrichments> getLastEnrichments();
 	public Collection<Enrichments> getEnrichments();
+	public Collection<Enrichments> getTotalEnrichments();
 }

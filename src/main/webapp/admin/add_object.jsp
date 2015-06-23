@@ -49,6 +49,14 @@
 	    <label for="city">Ville</label>
 	    <input type="text" class="form-control" id="city" name="city" placeholder="Entrer la ville d'origine de l'objet">
 	  </div>
+	  <div class="form-group">
+	  <label for="file1">Importer une photo : </label> <input type="file" size="60"
+			id="file1" name="upload" /> <br />
+		<label for="file2">Importer une photo : </label> <input type="file" size="60"
+			id="file2" name="upload" /> <br />
+		<label for="file3">Importer une photo : </label> <input type="file" size="60"
+			id="file3" name="upload" /> <br />
+	  </div>
 	     <div class="form-group">
 	<label for="period">
 	Sélectionner la période de l'objet

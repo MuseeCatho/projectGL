@@ -1,14 +1,18 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
-  <style type="text/css">
-  </style>
-  <body>
-    <div id="container">
 
-  	<s:include value="import.jsp"></s:include>
+<style type="text/css">
+</style>
+<body>
+	<div id="container">
 
-            <s:include value="header.jsp"></s:include>
+
+		<s:include value="header.jsp"></s:include>
+
+
+
 
        <div id="contact">
 			<div class="row">
@@ -77,5 +81,7 @@
         
    </div>
 
-  </body>
+
+		</div>
+</body>
 </html>
