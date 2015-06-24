@@ -28,8 +28,15 @@ function AddObjectAdmin(){
 		//alert(latitude);
 		document.getElementById("longitude").value=longitude;
 		document.getElementById("latitude").value=latitude;
+		
+		//Pierre :
+		mediaManager.prepareToSave();
+		var formData = new FormData2();
+		formData.append('', mediaManager);
+		formData.append('title_f', title_f);
+		formData.send('upload_file.action', function(){alert('ok');}, function(){console.log('error in send');}, progress);
 		//alert(document.getElementById("latitude").value);
-		var datas={ "title_f": title_f,
+		/*var datas={ "title_f": title_f,
 					"title_e": title_e,
 		    	   "description_f": description_f,
 		    	   "description_e":description_e,
@@ -47,7 +54,7 @@ function AddObjectAdmin(){
 	 	          datas['categories'].push($(this).val());
 	 	       });
 		   datas['categories']=datas['categories'].join(",");
-	$.ajax({
+	/*$.ajax({
 	       url : 'admin/add_object.action',
 	       type : 'POST',
 	       //contentType: "application/json",
@@ -69,7 +76,7 @@ function AddObjectAdmin(){
 	//console.log("list[0]:"+list[0]);
 	//console.log(codeAddress(country+","+city));
 //	document.getElementById("longitude").value=list[0];
-//	document.getElementById("latitude").value=list[1];
+//	document.getElementById("latitude").value=list[1];*/
 
 }
 

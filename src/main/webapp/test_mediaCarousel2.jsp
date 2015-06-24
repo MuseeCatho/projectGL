@@ -16,16 +16,18 @@
 			width: 500px;
 			height: 500px;
 		}
+		.cursorDelete{
+			z-index: 100;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
 	</style>
 <title>Museum</title>
 </head>
 <body>
 	<!-- The jPlayer div must not be hidden. Keep it at the root of the body element to avoid any such problems. -->
-	<div id = "imagesManager"></div>
-	<!-- <button id="playButton">Play</button>
-	<button id="pauseButton">Pause</button>
-	<button id="getCurrentIndex">current</button> -->
-	<br/><br/>
+	<div id = "imagesManager"></div><br/><br/>
 	<div id = "audiosManager"></div><br/><br/>
 	<div id = "videosManager"></div>
 	<br/>
@@ -70,7 +72,7 @@
 		medias.push(new Media(mediaManager, "video", "http://video-js.zencoder.com/oceans-clip.mp4", "video 2", "video 2", 0));
 		var imagesCaroussel = new MediaCarousel(mediaManager, 'videosManager', 'video', medias, false);
 		
-		/*$('#pauseButton').click(function(){
+		$('#pauseButton').click(function(){
 			$('#imageMedia').carousel('pause');
 		});
 		$('#playButton').click(function(){
@@ -78,7 +80,7 @@
 		});
 		$('#getCurrentIndex').click(function(){
 			alert($('.active').index());
-		});*/
+		});
 		$('#save').click(function(){
 			alert('sauvegarde');
 			mediaManager.prepareToSave();
