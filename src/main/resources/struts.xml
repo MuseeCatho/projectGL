@@ -47,6 +47,10 @@
 			method="getLastEnrichmentId">
 			<result name="success">result.jsp</result>
 		</action>
+		<action name="getLastPhotosId" class="action.DetailAction"
+			method="getLastPhotosId">
+			<result name="success">result.jsp</result>
+		</action>
 		<action name="addEnrichments" class="action.DetailAction"
 			method="addEnrichments">
 			<result name="success">result.jsp</result>
@@ -75,7 +79,7 @@
 		<action name="logOut" class="action.UsersAction" method="logOut">
 			<result name="success">index.jsp</result>
 		</action>
-		<action name="add_user" class="action.UsersAction" method="addUservi">
+		<action name="add_user" class="action.UsersAction" method="addUser">
 			<result name="success">result.jsp</result>
 		</action>
 		<action name="checkPseudo" class="action.UsersAction" method="checkPseudo">
@@ -157,6 +161,9 @@
 		<action name="deleteObject" class="action.ObjectAction" method="deleteObject">
 			<result name="success">resultAjax.jsp</result>
 		</action>
+		<action name="test" class="action.ObjectAction" method="addObjectAction">
+			<result name="success">add_object.jsp</result>
+		</action>
 		<!-- END CONTROL OBJECT -->
 		<!-- CATEGORY -->
 		<action name="get_category">
@@ -235,6 +242,14 @@
 		<action name="showEnrichment" class="action.PropositionAction"
 			method="showEnrichment">
 			<result name="success">propositions_manager.jsp</result>
+		</action>
+		<action name="detailEnrichment" class="action.PropositionAction"
+			method="detailEnrichment">
+			<result name="success">propositions_detail.jsp</result>
+		</action>
+		<action name="getListProposition" class="action.PropositionAction"
+			method="getListProposition">
+			<result name="success">resultAjax.jsp</result>
 		</action>
 		<!-- END PROPOSITION -->
 		<action name="selectAction" class="action.ObjectAction" method="display">

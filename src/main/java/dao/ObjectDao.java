@@ -17,6 +17,8 @@ public interface ObjectDao<ObjectMuseum, Integer> {
 	public Collection<ObjectMuseum> getOeuvres(Integer idOeuvre);
 	
 	public ObjectMuseum findObjectById(Integer idOeuvre);
+
+	public void updateObject(ObjectMuseum entity);
 	
 	
 

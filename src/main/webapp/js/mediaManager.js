@@ -28,13 +28,13 @@ function MediaCarousel(mediaManager, divId, type, medias, canModify){
 	this.mediaManager = mediaManager;
 	this.type = type;
 	if(type == 'image'){
-		this.allowedFileTypes = [ 'png', 'jpg', 'jpeg', 'gif', 'mp4', 'mp3' ];
+		this.allowedFileTypes = [ 'png', 'jpg', 'jpeg', 'gif' ];
 	}
 	else if(type == 'audio'){
-		this.allowedFileTypes = ['mp3', 'm4a'];
+		this.allowedFileTypes = ['mp3'];
 	}
 	else if(type == 'video'){
-		this.allowedFileTypes = ['mp4', 'mp3', 'm4a'];
+		this.allowedFileTypes = ['mp4','avi'];
 	}
 	else{
 		this.allowedFileTypes = [];

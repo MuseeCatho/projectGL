@@ -18,6 +18,7 @@ import mapping.Comment;
 import mapping.ObjectMuseum;
 import mapping.Period;
 import mapping.Photos;
+import mapping.Video;
 import mapping.Photos_Site;
 import bean.ObjectPage;
 import mapping.ObjectCategory;
@@ -31,6 +32,7 @@ import dao.PeriodDaoImpl;
 import dao.PhotosDaoImpl;
 import dao.ObjectCategoryDaoImpl;
 import dao.PhotosSiteDaoImpl;
+import dao.VideoDaoImpl;
 
 import com.google.gson.Gson;
 
@@ -71,7 +73,7 @@ public class ObjectAction extends ActionSupport {
 		this.period = period;
 	}
 
-	public String addObjectAction() {
+	public String addObjectAction() throws Exception {
 
 		PeriodDaoImpl periods = new PeriodDaoImpl();
 		ObjectDaoImpl objectDao = new ObjectDaoImpl();
@@ -118,25 +120,33 @@ public class ObjectAction extends ActionSupport {
 			System.out.println("id objet :" + object.getId());
 			ObjectCategoryDaoImpl objCat = new ObjectCategoryDaoImpl();
 			objCat.insertCategoryOfObject(listCatId, object.getId());
-			PhotosDaoImpl photoSiteDao = new PhotosDaoImpl();
+			PhotosDaoImpl photoDao = new PhotosDaoImpl();
+			VideoDaoImpl videoDao = new VideoDaoImpl();
 			String webroot;
-			System.out.println(this.file1);
+			//System.out.println(this.file1);
 			System.out.println(this.uploadFileNames);
-			if(this.uploadFileNames!=null){
-				webroot="img"+File.separatorChar+this.uploadFileNames[0];
-				Photos photos=new Photos(new Integer(1), webroot,object.getId(),"","",true);
-				photoSiteDao.insertPhotos(photos);
+			if(this.uploadFileNames!=null){//si des fichiers sont importés  
+				
+				upload();//upload dans le dossier pas dans la base de données
+				for(int i=0; i<this.uploadFileNames.length;i++){
+					
+					String type="";
+					type=recognizeType(this.uploadContentTypes[i]);//on detecte le type de fichier
+					webroot="upload\\"+type+File.separatorChar+this.uploadFileNames[i];
+					String webrootAbsolut = getPath()+File.separatorChar+webroot;
+					System.out.println("this.uploadContentTypes[i] :"+this.uploadContentTypes[i]);
+					
+					if(type.equals("image")){
+						Photos photos=new Photos(new Integer(1), webroot,object.getId(),"","",false);
+						photoDao.insertPhotos(photos);
+					}
+					else if(type.equals("video")){
+						Video video=new Video(new Integer(1), webroot,object.getId(),"","",false);
+						videoDao.insertVideos(video);
+					}
+				}
+				
 			}
-			
-
-			/*String webrootAbsolut = getPath()+File.separatorChar+webroot;
-			upload(webrootAbsolut);
-			Photos_Site entity =new Photos_Site(new Integer(1),"photo presentation",webroot);
-			if(photoSite==null){
-				photoSiteDao.insertPhotoPresentation(entity);
-			}else{
-				photoSiteDao.updatePhotoPresentation(entity);
-			}*/
 			result = 1;
 			System.out.println("objet ajoutï¿½");
 
@@ -152,14 +162,40 @@ public class ObjectAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-
-    public void upload(String path) throws Exception {
+	
+	public static String cutSlash(String string){
+		String[] stringArray;
+		stringArray=string.split("/");
+		//System.out.println(string);
+		
+		string=stringArray[0];
+		System.out.println(string);
+		return string;
+	}
+	
+	public static String recognizeType(String media){
+		String type;
+		if(cutSlash(media).equals("image")){
+    		type="image";
+    	}
+    	else if(cutSlash(media).equals("video")){
+    		type="video";
+    	}
+    	else{
+    		type="audio";
+    	}
+		return type;
+	}
+	
+    public void upload() throws Exception {
     	/* write the files in the eclipse repository */
         System.out.println("\n\n upload2");
         System.out.println("files:");
+        String type="";
         for(int i = 0; i < uploads.length; i++) {
+        	type=recognizeType(this.uploadContentTypes[i]);//va identifier le type du media
             System.out.println("*** " + uploads[i] + "\t" + uploads[i].length());
-            File dest = new File(path);
+            File dest = new File(getPath()+File.separatorChar+"upload\\"+type+File.separatorChar+this.uploadFileNames[i]);
 			FileUtils.copyFile(uploads[i], dest);
         }
         System.out.println("filenames:");

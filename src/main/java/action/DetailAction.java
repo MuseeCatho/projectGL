@@ -33,9 +33,6 @@ import javax.imageio.ImageReadParam;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
-
-import org.apache.commons.codec.binary.Base64;
-
 import javax.servlet.ServletContext;
 
 import mapping.Category;
@@ -79,7 +76,7 @@ public class DetailAction extends ActionSupport {
 	private ArrayList<Video> listDetailVideo;
 	private ArrayList<Comment> listComment;
 	private ArrayList<CommentDetail> listCommentAndNameUser;
-	private ArrayList<Enrichments> listEnrichments;
+	private ArrayList<Enrichments> listLastEnrichments;
 	private ArrayList<Photos> listPhotos;
 	private String periodObjectString;
 	private String listPhotoString;
@@ -261,10 +258,9 @@ public class DetailAction extends ActionSupport {
 
 		EnrichmentsDaoImpl enrichmentsDao = new EnrichmentsDaoImpl();
 
-		listEnrichments = new ArrayList<Enrichments>(
-				enrichmentsDao.getLastEnrichments());
+		listLastEnrichments = new ArrayList<Enrichments>(enrichmentsDao.getLastEnrichments());
 		Gson gson = new Gson();
-		result = gson.toJson(listEnrichments);
+		result = gson.toJson(listLastEnrichments);
 		return SUCCESS;
 	}
 
@@ -367,12 +363,12 @@ public class DetailAction extends ActionSupport {
 		return date;
 	}
 
-	public ArrayList<Enrichments> getListEnrichments() {
-		return listEnrichments;
+	public ArrayList<Enrichments> getlistLastEnrichments() {
+		return listLastEnrichments;
 	}
 
-	public void setListEnrichments(ArrayList<Enrichments> listEnrichments) {
-		this.listEnrichments = listEnrichments;
+	public void setlistLastEnrichments(ArrayList<Enrichments> listLastEnrichments) {
+		this.listLastEnrichments = listLastEnrichments;
 	}
 
 	public void setDate(Date date) {

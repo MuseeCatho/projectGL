@@ -1,5 +1,6 @@
 @CHARSET "UTF-8";
 
+
 div {
 	border-width: 2px;
 }
@@ -9,7 +10,6 @@ div {
 }
 
 #container {
-	background-color: blue;
 }
 
 #header {
@@ -23,13 +23,15 @@ div {
 }
 
 h1 {
-	flaot: left;
-	display: inline-block;
-	color: #222;
-	font-size: 1.28em;
-	padding: 18px 0 5px 0;
-	line-height: 1.2em;
-	font-weight: bold;
+	
+}
+#listPhotosShow {
+	max-width: 30%;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 1px;
+	right: 30px;
 }
 
 #titleDetail {
@@ -46,7 +48,7 @@ h1 {
 
 .bouttonModification {
 	margin-right: 25px;
-	width: 100%;
+	width: 80%;
 }
 
 #descriptionDetail_text {
@@ -84,19 +86,16 @@ h1 {
 	margin-bottom: 30px;
 }
 
-#listPhotos {
-	display: none;
-	text-align: center;
-}
+
 
 #listPhotosImg {
 	max-height: 100%;
-	max-width: 80%;
+	max-width: 85%;
 	position: absolute;
 	margin: auto;
 	top: 0;
 	bottom: 0;
-	left: 0;
+	left: 1px;
 	right: 30px;
 }
 
@@ -107,7 +106,7 @@ h1 {
 
 .photoDetail {
 	border-radius: 5px;
-	width: 300px;
+	width: 280px;
 	height: 180px;
 	margin: 25px 0 0 25px;
 	display: table-cell;
@@ -118,7 +117,7 @@ h1 {
 
 .photoDetailAdd {
 	border-radius: 5px;
-	width: 300px;
+	width: 280px;
 	height: 180px;
 	margin: 25px 0 0 25px;
 	display: table-cell;
@@ -128,7 +127,10 @@ h1 {
 }
 
 #ajoutMedia {
-	float: right;
+	display: inline-block;
+}
+#propositionImage{
+	display: inline-block;
 }
 
 .icon_ok {
@@ -161,7 +163,6 @@ vertical-align: middle;
 font-weight: 400;
 font-style: normal;
 font-family: Arial,sans-serif;
--moz-user-select: none;
 }
 
 .videoDetail {
@@ -176,17 +177,15 @@ font-family: Arial,sans-serif;
 	
 }
 
-#listVideo {
-	display:none;
-	text-align: center;
+
+#buttonAdmin{
+	width:35px;'
+}
+#buttonAdmin:hover{
+	width:30px;
 }
 
-#carouselAudio{
-	margin-top: 25px;
+#listPro{
+	min-height: 40px;
 }
 
-#comment{
-	background-color: #eee;
-	border: 3px solid #eee;
-	margin-top: 25px;
-}

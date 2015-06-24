@@ -7,6 +7,7 @@ import mapping.Category;
 import mapping.Enrichments;
 import mapping.Period;
 import mapping.Photos;
+import mapping.Photos_Site;
 import mapping.Proposition;
 import mapping.User;
 
@@ -44,4 +45,13 @@ public class PropositionDaoImpl implements PropositionDao<Proposition, Integer> 
 		List results = sq.list();
 		return results;
 	}
+	public Collection<Proposition> getListProposition(Integer id_enrichments) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		Criteria cr = session.createCriteria(Proposition.class);
+		cr.add(Restrictions.eq("id_enrichments",id_enrichments));
+		List results = cr.list();
+		return results;
+	}
+	
 }

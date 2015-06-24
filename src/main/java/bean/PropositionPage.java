@@ -11,27 +11,27 @@ import mapping.ObjectMuseum;
  */
 public class PropositionPage implements java.io.Serializable {
 
-	private int idEnrichments;
+	private int idObject;
 	private Object linkPhoto;
 	private String title_f;
 	private String title_e;
 	private BigInteger number;
 
-	public PropositionPage(int idEnrichments, String linkPhoto,String title_f,
+	public PropositionPage(int idObject, String linkPhoto,String title_f,
 			String title_e,  BigInteger number) {
-		this.idEnrichments = idEnrichments;
+		this.idObject = idObject;
 		this.linkPhoto=linkPhoto;
 		this.title_f = title_f;
 		this.title_e = title_e;
 		this.number = number;
 	}
 
-	public int getIdEnrichments() {
-		return idEnrichments;
+	public int getIdObject() {
+		return idObject;
 	}
 
-	public void setIdEnrichments(int idEnrichments) {
-		this.idEnrichments = idEnrichments;
+	public void setIdObject(int idObject) {
+		this.idObject = idObject;
 	}
 
 	public Object getLinkPhoto() {

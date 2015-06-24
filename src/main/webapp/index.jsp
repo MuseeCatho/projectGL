@@ -59,8 +59,8 @@
 
 			<s:iterator value="listCategory">
 				<div class="col-sm-2 col-xs-4 col-xs-offset-1 col-sm-offset-1">
-					<img class="img-circle" src="<s:property value="link_category"/>"
-						width="140" height="140">
+					<a href="advanced_research_action.action?keyword=&keywordExclude=&reference=&period=-1&categories=<s:property value="id"/>&country=&city=&submit=Rechercher"><img class="img-circle" src="<s:property value="link_category"/>"
+						width="140" height="140"></a>
 					<h2>
 						<s:property value="name_f" />
 					</h2>

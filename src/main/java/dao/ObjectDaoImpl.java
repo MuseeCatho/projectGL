@@ -9,6 +9,7 @@ import java.util.List;
 import mapping.Comment;
 import mapping.ObjectCategory;
 import mapping.ObjectMuseum;
+import mapping.Proposition;
 import mapping.User;
 import bean.Research;
 
@@ -208,7 +209,12 @@ public class ObjectDaoImpl implements ObjectDao<ObjectMuseum, Integer>{
         session.getTransaction().commit();
 	}
 
-
+	public void updateObject(ObjectMuseum entity){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();    
+        session.update(entity);
+        session.getTransaction().commit();
+	} 
 	
 	
 }
