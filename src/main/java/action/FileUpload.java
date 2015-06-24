@@ -12,6 +12,8 @@ public class FileUpload extends ActionSupport{
 	private String[] uploadFileNames;
 	private String[] uploadContentTypes;
 	private String testParam;
+	private String mediasToDelete;
+	private String mediasToDeleteTypes;
 
 
 	public String upload() throws Exception {
@@ -36,6 +38,12 @@ public class FileUpload extends ActionSupport{
 		System.out.println("\n\n");
 		if(testParam != null){
 			System.out.println("testParam : " + testParam + "\n\n");
+		}
+		if(mediasToDelete != null){
+			System.out.println("mediasToDelete : " + mediasToDelete);
+		}
+		if(mediasToDeleteTypes != null){
+			System.out.println("mediasToDeleteTypes : " + mediasToDeleteTypes);
 		}
 		return SUCCESS;
 	}
@@ -71,4 +79,22 @@ public class FileUpload extends ActionSupport{
 	public void setTestParam(String testParam) {
 		this.testParam = testParam;
 	}
+
+	public String getMediasToDelete() {
+		return mediasToDelete;
+	}
+
+	public void setMediasToDelete(String mediasToDelete) {
+		this.mediasToDelete = mediasToDelete;
+	}
+
+	public String getMediasToDeleteTypes() {
+		return mediasToDeleteTypes;
+	}
+
+	public void setMediasToDeleteTypes(String mediasToDeleteTypes) {
+		this.mediasToDeleteTypes = mediasToDeleteTypes;
+	}
+	
+	
 }

@@ -2,7 +2,7 @@ function MediaManager(){
 	this.medias = [];
 	this.mediasToAdd = [];
 	this.mediasToDelete = [];
-	this.mediasToDeleteType = [];
+	this.mediasToDeleteTypes = [];
 }
 
 MediaManager.prototype = {
@@ -17,7 +17,7 @@ MediaManager.prototype = {
 				}
 				else if(media.deleteIt && media.id != null){
 					this.mediasToDelete.push(media);
-					this.mediasToDeleteType.push(media.type);
+					this.mediasToDeleteTypes.push(media.type);
 				}
 			}
 		}

@@ -18,10 +18,14 @@ FormData2.prototype = {
 			}
 			// delete medias :
 			var mediasToDelete = [];
-			for(var i = 0; i < obj.mediasToDelete; i ++){
+			var mediasToDeleteTypes = [];
+			for(var i = 0; i < obj.mediasToDelete.length; i ++){
 				mediasToDelete.push(obj.mediasToDelete[i].id);
+				mediasToDeleteTypes.push(obj.mediasToDeleteTypes[i]);
 			}
 			this.append('mediasToDelete', mediasToDelete.toString());
+			this.append('mediasToDeleteTypes', mediasToDeleteTypes.toString());
+			console.log('append ' + mediasToDeleteTypes[0] + ': ' + mediasToDeleteTypes.length);
 		}
 		else{
 			this.originalFormData.append(name, obj);

@@ -55,21 +55,21 @@
 		// for the images :
 		var medias = [];
 		medias.push(new Media(mediaManager, "image", "img/bible.gif", "bible", "bible", 0));
-		medias.push(new Media(mediaManager, "image", "img/carousel1.jpg", "bible", "bible", 0));
-		medias.push(new Media(mediaManager, "image", "img/carousel2.jpg", "bible", "bible", 0));
-		medias.push(new Media(mediaManager, "image", "img/bas-relief.jpg", "bible", "bible", 0));
+		medias.push(new Media(mediaManager, "image", "img/carousel1.jpg", "bible", "bible", 1));
+		medias.push(new Media(mediaManager, "image", "img/carousel2.jpg", "bible", "bible", 2));
+		medias.push(new Media(mediaManager, "image", "img/bas-relief.jpg", "bible", "bible", 3));
 		var imagesCaroussel = new MediaCarousel(mediaManager, 'imagesManager', 'image', medias, false);
 		
 		// for the audio :
 		medias = [];
-		medias.push(new Media(mediaManager, "audio", "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a", "audio 1", "audio 1", 0));
-		medias.push(new Media(mediaManager, "audio", "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a", "audio 2", "audio 2", 0));
+		medias.push(new Media(mediaManager, "audio", "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a", "audio 1", "audio 1", 1));
+		medias.push(new Media(mediaManager, "audio", "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a", "audio 2", "audio 2", 2));
 		var imagesCaroussel = new MediaCarousel(mediaManager, 'audiosManager', 'audio', medias, false);
 		
 		// for the video :
 		medias = [];
-		medias.push(new Media(mediaManager, "video", "http://video-js.zencoder.com/oceans-clip.mp4", "video 1", "video 1", 0));
-		medias.push(new Media(mediaManager, "video", "http://video-js.zencoder.com/oceans-clip.mp4", "video 2", "video 2", 0));
+		medias.push(new Media(mediaManager, "video", "http://video-js.zencoder.com/oceans-clip.mp4", "video 1", "video 1", 1));
+		medias.push(new Media(mediaManager, "video", "http://video-js.zencoder.com/oceans-clip.mp4", "video 2", "video 2", 2));
 		var imagesCaroussel = new MediaCarousel(mediaManager, 'videosManager', 'video', medias, false);
 		
 		$('#pauseButton').click(function(){
