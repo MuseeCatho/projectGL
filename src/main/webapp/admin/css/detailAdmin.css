@@ -1,5 +1,6 @@
 @CHARSET "UTF-8";
 
+
 div {
 	border-width: 2px;
 }
@@ -23,6 +24,14 @@ div {
 
 h1 {
 	
+}
+#listPhotosShow {
+	max-width: 30%;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 1px;
+	right: 30px;
 }
 
 #titleDetail {
@@ -77,10 +86,7 @@ h1 {
 	margin-bottom: 30px;
 }
 
-#listPhotos {
-	display: none;
-	text-align: center;
-}
+
 
 #listPhotosImg {
 	max-height: 100%;
@@ -121,7 +127,10 @@ h1 {
 }
 
 #ajoutMedia {
-	float: right;
+	display: inline-block;
+}
+#propositionImage{
+	display: inline-block;
 }
 
 .icon_ok {
@@ -154,7 +163,6 @@ vertical-align: middle;
 font-weight: 400;
 font-style: normal;
 font-family: Arial,sans-serif;
--moz-user-select: none;
 }
 
 .videoDetail {
@@ -169,10 +177,6 @@ font-family: Arial,sans-serif;
 	
 }
 
-#listVideo {
-	display:none;
-	text-align: center;
-}
 
 #buttonAdmin{
 	width:35px;'

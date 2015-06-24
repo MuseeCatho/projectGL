@@ -5,6 +5,7 @@
 <meta charset=utf-8">
 <title>Insert title here</title>
 <s:include value="import.jsp"></s:include>
+<link rel="stylesheet" href="css/detailAdmin.css">
 </head>
 <body>
 <s:if test="%{#session.id_userAdmin!=null}">
@@ -28,7 +29,7 @@
 			<tbody>
 				<s:iterator value="arrayListObject">
 					<tr>
-						<td><img border-color="blue" id="listPhotosImg"
+						<td><img border-color="blue" id="listPhotosShow"
 							src="../<s:property value="linkPhoto"/>" alt="Responsive image">
 						</td>
 						<td>

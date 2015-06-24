@@ -7,6 +7,7 @@ import mapping.Category;
 import mapping.Enrichments;
 import mapping.Period;
 import mapping.Photos;
+import mapping.Photos_Site;
 import mapping.Proposition;
 import mapping.User;
 
@@ -52,4 +53,5 @@ public class PropositionDaoImpl implements PropositionDao<Proposition, Integer> 
 		List results = cr.list();
 		return results;
 	}
+	
 }

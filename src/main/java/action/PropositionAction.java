@@ -47,7 +47,7 @@ public class PropositionAction extends ActionSupport {
 	private List<String> listPhotoAdmin;
 	private List<String> listVideoAdmin;
 	private ArrayList<Photos> listDetailAdmin;
-	private ArrayList<Video> listDetailVideoAdmin;
+	private ArrayList<Video> listDetailAdminVideo;
 	private ArrayList<Comment> listCommentAdmin;
 	private ArrayList<CommentDetail> listCommentAndNameUserAdmin;
 	private String periodObjectStringAdmin;
@@ -109,7 +109,7 @@ public class PropositionAction extends ActionSupport {
 			listPhotoAdmin = new ArrayList<String>();
 			listObjectAdmin = new ArrayList<ObjectMuseum>(objectDao.getOeuvres(this.id));
 			listDetailAdmin = new ArrayList<Photos>(photosDao.getPhotos(this.id));
-			listDetailVideoAdmin = new ArrayList<Video>(videoDao.getVideo(this.id));
+			listDetailAdminVideo = new ArrayList<Video>(videoDao.getVideo(this.id));
 			listCommentAdmin = new ArrayList<Comment>(
 					commentDao.findCommentById(this.id));
 			listCommentAndNameUserAdmin = new ArrayList<CommentDetail>();
@@ -143,7 +143,7 @@ public class PropositionAction extends ActionSupport {
 					listPhotoStringAdmin = sb.toString();
 				}
 
-				for (Video v : listDetailVideoAdmin) {
+				for (Video v : listDetailAdminVideo) {
 					if (!v.getShowI()) {
 						listVideoAdmin.add(v.getLink_video());
 					}
@@ -181,6 +181,14 @@ public class PropositionAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
+	public ArrayList<Video> getListDetailAdminVideo() {
+		return listDetailAdminVideo;
+	}
+
+	public void setListDetailAdminVideo(ArrayList<Video> listDetailAdminVideo) {
+		this.listDetailAdminVideo = listDetailAdminVideo;
+	}
+
 	public String getObjectEnrichments(){
 		EnrichmentsDaoImpl enrichmentsDao = new EnrichmentsDaoImpl();
 		UserDaoImpl userDao = new UserDaoImpl();
@@ -196,47 +204,6 @@ public class PropositionAction extends ActionSupport {
 		Gson gson = new Gson();
 		result = gson.toJson(listProposition);
 		return SUCCESS;
-	}
-	
-
-	
-	public PropositionAction() {
-	}
-
-	public int getIdEnrichment() {
-		return idEnrichment;
-	}
-
-	public void setIdEnrichment(int idEnrichment) {
-		this.idEnrichment = idEnrichment;
-	}
-
-	public void setListProposition(ArrayList<Proposition> listProposition) {
-		this.listProposition = listProposition;
-	}
-
-	public User getListUserId() {
-		return listUserId;
-	}
-
-	public void setListUserId(User listUserId) {
-		this.listUserId = listUserId;
-	}
-
-	public ArrayList<Enrichments> getListObjectEnrichment() {
-		return listObjectEnrichment;
-	}
-
-	public void setListObjectEnrichment(ArrayList<Enrichments> listObjectEnrichment) {
-		this.listObjectEnrichment = listObjectEnrichment;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public ArrayList getListEnrichment() {
@@ -303,6 +270,14 @@ public class PropositionAction extends ActionSupport {
 		this.photoUnique = photoUnique;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public Period getPeriodObjectAdmin() {
 		return periodObjectAdmin;
 	}
@@ -344,11 +319,11 @@ public class PropositionAction extends ActionSupport {
 	}
 
 	public ArrayList<Video> getListDetailVideoAdmin() {
-		return listDetailVideoAdmin;
+		return listDetailAdminVideo;
 	}
 
-	public void setListDetailVideoAdmin(ArrayList<Video> listDetailVideoAdmin) {
-		this.listDetailVideoAdmin = listDetailVideoAdmin;
+	public void setListDetailVideoAdmin(ArrayList<Video> listDetailAdminVideo) {
+		this.listDetailAdminVideo = listDetailAdminVideo;
 	}
 
 	public ArrayList<Comment> getListCommentAdmin() {
@@ -392,6 +367,30 @@ public class PropositionAction extends ActionSupport {
 		this.listVideoStringAdmin = listVideoStringAdmin;
 	}
 
+	public ArrayList<Enrichments> getListObjectEnrichment() {
+		return listObjectEnrichment;
+	}
+
+	public void setListObjectEnrichment(ArrayList<Enrichments> listObjectEnrichment) {
+		this.listObjectEnrichment = listObjectEnrichment;
+	}
+
+	public User getListUserId() {
+		return listUserId;
+	}
+
+	public void setListUserId(User listUserId) {
+		this.listUserId = listUserId;
+	}
+
+	public int getIdEnrichment() {
+		return idEnrichment;
+	}
+
+	public void setIdEnrichment(int idEnrichment) {
+		this.idEnrichment = idEnrichment;
+	}
+
 	public String getResult() {
 		return result;
 	}
@@ -399,6 +398,11 @@ public class PropositionAction extends ActionSupport {
 	public void setResult(String result) {
 		this.result = result;
 	}
+
+	public void setListProposition(ArrayList<Proposition> listProposition) {
+		this.listProposition = listProposition;
+	}
 	
+
 	
 }

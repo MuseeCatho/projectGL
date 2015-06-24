@@ -19,7 +19,7 @@
 			<h1 class="page-header">Gestion des propositions de modification</h1>
 			<body id="bodyDetail">
 				<div id="container">
-									<div class="row">
+					<div class="row">
 						<div class="col-lg-10" id="header">
 							<br> <br> <br>
 							<s:iterator value="listDetailPageAdmin">
@@ -49,25 +49,19 @@
 											</div>
 										</div>
 									</s:if>
-
-									<div>
-										<div class="col-md-8">
-											<div id="listPhotosAdmin" class="row">
-												<div>
-													<div class="tablecell" class="row">
-														<s:iterator value="listDetailAdmin" status="listD">
-															<s:if test="showI == false">
+									<div class="col-md-8">
+										<div id="listPhotosAdmin" class="row">
+											<div>
+												<div class="tablecell" class="row">
+													<s:iterator value="listDetailAdmin" status="listD">
+														<s:if test="showI == false">
+															<div id="propositionImage">
 																<div id="photoDetailAdmin"
 																	class="photoDetail col-xs-4 col-sm-3 col-md-2 image<s:property value="id"/>">
 																	<img border-color="blue" id="listPhotosImg"
 																		src="../<s:property value="link_photos"/>"
-																		alt="Responsive image"> <a class="cursor_ok"
-																		onclick="cancelProposition('image',<s:property value="id"/>)">
-																		<img alt="alternativtext" class="icon icon_ok"
-																		" src="../img/icon/ok.png"
-																		id="icon_ok_image<s:property value="id"/>" width="30"
-																		height="30">
-																	</a> <a class="cursor_delete"
+																		alt="Responsive image"> </a> <a
+																		class="cursor_delete"
 																		onclick="addProposition('image', <s:property value="id"/>,'delete')">
 																		<img alt="alternativtext" class="icon icon_cancel"
 																		src="../img/icon/cancel.png"
@@ -75,120 +69,93 @@
 																		width="30" height="30">
 																	</a>
 																</div>
-															</s:if>
-														</s:iterator>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-8"></div>
-													<div id="ajoutMedia" class="col-md-4">
-														<input type=button class="btn btn-primary navbar-btn"
-															role="file" value="Ajouter une image"
-															onclick="$('#file').click();"> <input
-															style="display: none" type="file" id="file"
-															class="btn btn-primary navbar-btn"
-															value="Ajouter une image" id="fileInput" name="upload" />
-													</div>
-													<div class="tablecell col-md-12" id="prev"></div>
+																<div id="ajoutMediaAdmin">
+																	<input type=button class="btn btn-primary navbar-btn"
+																		role="file" value="Accepter la proposition"
+																		onclick="$('#file').click();">
+																</div>
+															</div>
+														</s:if>
+													</s:iterator>
 												</div>
 											</div>
-											<div class="row"></div>
-											<div class="panel panel-default" id="descriptionDetail">
-												<div class="panel-heading">Description</div>
-												<div class="panel-body" id="descriptionDetail_text">
-													<s:property value="description_f" />
-												</div>
+
+										</div>
+										<div class="row"></div>
+										<div class="panel panel-default" id="descriptionDetail">
+											<div class="panel-heading">Description</div>
+											<div class="panel-body" id="descriptionDetail_text">
+												<s:property value="description_f" />
 											</div>
-											<div id="modif_description">
-												<button type="button" class="btn btn-primary btn-lg"
-													data-toggle="modal" data-target="#myModal"
-													onclick="description_modifie()">Visualiser les
-													modifications</button>
-												<div class="modal fade" id="myModal" tabindex="-1"
-													role="dialog" aria-labelledby="myModalLabel"
-													aria-hidden="true">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<button type="button" class="close" data-dismiss="modal"
-																	aria-label="Close">
-																	<span aria-hidden="true">&times;</span>
-																</button>
-																<h4 class="modal-title" id="myModalLabel">Visualisation</h4>
-															</div>
-															<div class="modal-body">
-																<p id="result" style="color: grey;"></p>
-															</div>
-															<div class="modal-footer">
-																<button type="button" class="btn btn-default"
-																	data-dismiss="modal">Revenir</button>
-																<button type="button" class="btn btn-primary"
-																	id="save_modif_descr" onclick="saveModifDescr()">Enrengistrer
-																	les modifications</button>
-															</div>
+										</div>
+										<div id="modif_description">
+											<button type="button" class="btn btn-primary btn-lg"
+												data-toggle="modal" data-target="#myModal"
+												onclick="description_modifie()">Visualiser les
+												modifications</button>
+											<div class="modal fade" id="myModal" tabindex="-1"
+												role="dialog" aria-labelledby="myModalLabel"
+												aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"
+																aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+															<h4 class="modal-title" id="myModalLabel">Visualisation</h4>
+														</div>
+														<div class="modal-body">
+															<p id="result" style="color: grey;"></p>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-default"
+																data-dismiss="modal">Revenir</button>
+															<button type="button" class="btn btn-primary"
+																id="save_modif_descr" onclick="saveModifDescr()">Enrengistrer
+																les modifications</button>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-										<div class="col-md-4">
-											<aside id="listVideo">
-												<div class="tablecell" class="row">
-													<s:iterator value="listDetailVideo" status="listV">
-														<s:if test="showI == false">
-															<div id="photoDetail"
-																class="videoDetail col-xs-4 col-sm-3 col-md-2 ">
-																<video id="video" class="video vjs-default-skin"
-																	controls preload="none"
-																	data-setup='{"example_option":true}' form width="100%"
-																	height="100%">
-																	<source src="<s:property value="link_video"/>"
-																		type='video/mp4' />
-
-																</video>
-
-																<a class="cursor_ok"
-																	onclick="cancelProposition('video',<s:property value="id"/>)">
-																	<img alt="alternativtext" class="icon icon_ok"
-																	" src="img/icon/ok.png"
-																	id="icon_ok_video<s:property value="id"/>" width="30"
-																	height="30">
-																</a> <a class="cursor_delete"
-																	onclick="addProposition('video', <s:property value="id"/>,'delete')">
-																	<img alt="alternativtext" class="icon icon_cancel"
-																	src="img/icon/cancel.png"
-																	id="icon_cancel_video<s:property value="id"/>"
-																	width="30" height="30">
-																</a>
-															</div>
-														</s:if>
-													</s:iterator>
-												</div>
-
-												<div class="row">
-													<div class="col-md-8"></div>
-													<div id="ajoutVideo" class="col-md-4">
-														<form method="post" id="formVideo"
-															action="addVideo.action">
-															<input accept="accept="
-																video/mp4,video/x-m4v,video/*""
-											type="file"
-																id="fileVideo" class="btn btn-primary navbar-btn"
-																value="Ajouter une vidéo" id="fileInput" name="upload" />
-															<input type="url" /> <input type="submit"
-																value="Envoyer" />
-														</form>
-													</div>
-													<div class="tablecell col-md-12" id="prev"></div>
-												</div>
-											</aside>
-										</div>
-
-										<aside id="audio" class="audioDetail col-lg-12">
-											<h4>Ecouter les audios:</h4>
-
+									</div>
+									<div class="col-md-4">
+										<aside id="carouselVideo" class="col-lg-12">
+											<h4>Regarder les vidéos:</h4>
 										</aside>
+										<aside id="listVideo">
+											<div class="row">
+												<s:iterator value="listDetailAdminVideo">
+													<div id="photoDetail" class="videoDetail col-xs-4  ">
+														<video id="video" class="video vjs-default-skin" controls
+															preload="none" data-setup='{"example_option":true}' form
+															width="100%" height="100%">
+															<source src="<s:property value="link_video"/>"
+																type='video/mp4' />
 
+														</video>
+
+
+														</a> <a class="cursor_delete"
+															onclick="addProposition('video', <s:property value="id"/>,'delete')">
+															<img alt="alternativtext" class="icon icon_cancel"
+															src="img/icon/cancel.png"
+															id="icon_cancel_video<s:property value="id"/>" width="30"
+															height="30">
+														</a>
+													</div>
+												</s:iterator>
+											</div>
+										</aside>
+									</div>
+									</br>
+
+							<div class="col-md-8"></div>
+									<div class="col-md-4">
+										<aside id="carouselAudio" class="col-lg-12">
+											<h4>Ecouter les audios:</h4>
+										</aside>
 									</div>
 								</div>
 								<div class="row">
@@ -198,7 +165,6 @@
 											<h1>Image 3d</h1>
 										</div>
 									</div>
-
 								</div>
 						</div>
 						</s:iterator>
@@ -277,7 +243,6 @@
 
 				<div class="row"></div>
 		</div>
-
 		</div>
 
 
