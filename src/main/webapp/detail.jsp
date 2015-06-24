@@ -2,14 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<script src="js/jquery.js"></script>
-	<script src="js/comment.js"></script>
-	<s:include value="import.jsp"></s:include>
-	<link rel="stylesheet" href="css/mediaCarousel_old.css">
-	<link rel="stylesheet" href="css/detail.css">
-	<s:include value="mediaElementsRequired.jsp"></s:include>
-<title> Detail Oeuvre</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="js/jquery.js"></script>
+<script src="js/comment.js"></script>
+<s:include value="import.jsp"></s:include>
+<link rel="stylesheet" href="css/mediaCarousel_old.css">
+<link rel="stylesheet" href="css/detail.css">
+<s:include value="mediaElementsRequired.jsp"></s:include>
+<title>Detail Oeuvre</title>
 </head>
 <body id="bodyDetail">
 	<div id="container">
@@ -17,7 +17,7 @@
 		<div class="row">
 			<div class="col-lg-1"></div>
 			<div class="col-lg-10" id="header">
-			<br><br><br>
+				<br> <br> <br>
 				<s:iterator value="listDetailPage">
 
 					<div class="row" id="header-object">
@@ -129,7 +129,7 @@
 													<button type="button" class="btn btn-default"
 														data-dismiss="modal">Revenir</button>
 													<button type="button" class="btn btn-primary"
-														id="save_modif_descr" onclick="saveModifDescr()">Enrengistrer
+														id="save_modif_descr" onclick="saveModifDescr()">Enregistrer
 														les modifications</button>
 												</div>
 											</div>
@@ -154,8 +154,7 @@
 											<div id="photoDetail"
 												class="videoDetail col-xs-4 col-sm-3 col-md-2 ">
 												<video id="video" class="video vjs-default-skin" controls
-													preload="none" data-setup='{"example_option":true}'form
-													
+													preload="none" data-setup='{"example_option":true}' form
 													width="100%" height="100%"> <source
 													src="<s:property value="link_video"/>" type='video/mp4' />
 
@@ -188,24 +187,30 @@
 											type="file"
 												id="fileVideo" class="btn btn-primary navbar-btn"
 												value="Ajouter une vidÃ©o" id="fileInput" name="upload" /> <input
-												type="url" />
-												<input type="submit" value="Envoyer" />
+												type=button class="btn btn-primary navbar-btn" role="file"
+												value="Ajouter une image" onclick="$('#file').click();">
+											<input style="display: none" type="submit" id="file"
+												class="btn btn-primary navbar-btn" value="Envoyer"
+												id="fileInput" name="upload" /><input type="submit" value="Envoyer"/>
 										</form>
 									</div>
 									<div class="tablecell col-md-12" id="prev"></div>
 								</div>
 								</aside>
 							</div>
-
-							<aside id="audio" class="audioDetail col-lg-12">
-							<h4>Ecouter les audios:</h4>
-							<s:include value="mediaCarousel.jsp">
-								<s:param name="mediaType">audio</s:param>
-								<s:param name="mediaNames">
-									<s:property value="link_video" />
-								</s:param>
-								<s:param name="mediaCarouselId">mediaCarousel3</s:param>
-							</s:include> </aside>
+							</br>
+							<br>
+							<div class="col-md-4">
+								<aside id="carouselAudio" class="col-lg-12">
+								<h4>Ecouter les audios:</h4>
+								<s:include value="mediaCarousel.jsp">
+									<s:param name="mediaType">audio</s:param>
+									<s:param name="mediaNames">
+										<s:property value="link_video" />
+									</s:param>
+									<s:param name="mediaCarouselId">mediaCarousel3</s:param>
+								</s:include> </aside>
+							</div>
 
 						</div>
 					</div>
@@ -218,64 +223,55 @@
 						</div>
 
 					</div>
-				
-			<br>
-			<br>
-			<div class="row">
-			<div class="col-lg-5 col-lg-offset-1">
-				<h2>Comments</h2>	
-			</div>
-			</div>
-			<s:if test="%{#session.firstname!=null}">
-				<div class="row">
-					<div class="col-lg-5 col-lg-offset-1">
-						<!-- Comments Form -->
-						<div class="well">
-							<h4>Leave a Comment:</h4>
-							<form role="form">
-								<div class="form-group">
-									<textarea class="form-control" rows="3" id="commentObject"></textarea>
-								</div>
-								<button type="button" class="btn btn-primary"
-									onclick="addComment(<s:property value="#session.id_user"/>);">Submit</button>
-							</form>
+					<div id="comment">
+						<div class="row">
+							<div class="col-lg-5 col-lg-offset-1">
+								<h2>Comments</h2>
+							</div>
 						</div>
-					</div>
-				</div>
-			</s:if>		
-					
-			<div class="col-lg-5 col-lg-offset-1">
-
-
-					<s:iterator value="listCommentAndNameUser">
-						<s:if test="show==1">
-							<div class="media">
-								<div class="media-body">
-									<h4 class="media-heading">
-										<s:property value="pseudo" />
-										<small><s:date name="date" format="dd/MM/yyyy" /> à <s:date
-												name="date" format="hh:mm:ss" /></small>
-									</h4>
-									<s:property value="text" />
+						<s:if test="%{#session.firstname!=null}">
+							<div class="row">
+								<div class="col-lg-5 col-lg-offset-1">
+									<!-- Comments Form -->
+									<div class="well">
+										<h4>Leave a Comment:</h4>
+										<form role="form">
+											<div class="form-group">
+												<textarea class="form-control" rows="3" id="commentObject"></textarea>
+											</div>
+											<button type="button" class="btn btn-primary"
+												onclick="addComment(<s:property value="#session.id_user"/>);">Submit</button>
+										</form>
+									</div>
 								</div>
-
 							</div>
 						</s:if>
-					</s:iterator>
-				</div>		
-					
-					
-					
-					
+
+						<div class="col-lg-5 col-lg-offset-1">
+							<s:iterator value="listCommentAndNameUser">
+								<s:if test="show==1">
+									<div class="media">
+										<div class="media-body">
+											<h4 class="media-heading">
+												<s:property value="pseudo" />
+												<small><s:date name="date" format="dd/MM/yyyy" /> ï¿½
+													<s:date name="date" format="hh:mm:ss" /></small>
+											</h4>
+											<s:property value="text" />
+										</div>
+
+									</div>
+								</s:if>
+							</s:iterator>
+						</div>
+					</div>
 			</div>
 			</s:iterator>
 			<hr>
-			
 
 
-			<div class="row">
-				
-			</div>
+
+			<div class="row"></div>
 
 		</div>
 		<div class="col-lg-1"></div>

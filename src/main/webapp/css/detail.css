@@ -46,7 +46,7 @@ h1 {
 
 .bouttonModification {
 	margin-right: 25px;
-	width: 80%;
+	width: 100%;
 }
 
 #descriptionDetail_text {
@@ -179,4 +179,14 @@ font-family: Arial,sans-serif;
 #listVideo {
 	display:none;
 	text-align: center;
+}
+
+#carouselAudio{
+	margin-top: 25px;
+}
+
+#comment{
+	background-color: #eee;
+	border: 3px solid #eee;
+	margin-top: 25px;
 }

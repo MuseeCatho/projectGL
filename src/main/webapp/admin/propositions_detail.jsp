@@ -19,7 +19,7 @@
 			<h1 class="page-header">Gestion des propositions de modification</h1>
 			<body id="bodyDetail">
 				<div id="container">
-					<div class="row">
+									<div class="row">
 						<div class="col-lg-10" id="header">
 							<br> <br> <br>
 							<s:iterator value="listDetailPageAdmin">
